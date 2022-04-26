@@ -38,10 +38,6 @@ module.exports = (sequelize) => {
     //   type: DataTypes.BOOLEAN,
     //   defaultValue: false,
     // },
-    // isprofessor: {
-    //   type: DataTypes.BOOLEAN,
-    //   defaultValue: false,
-    // },
     isuser: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
