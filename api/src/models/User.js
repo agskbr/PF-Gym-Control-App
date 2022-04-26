@@ -64,3 +64,5 @@ module.exports = (sequelize) => {
     },
   });
 };
+
+// agregar dni
