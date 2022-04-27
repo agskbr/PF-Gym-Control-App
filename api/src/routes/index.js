@@ -6,6 +6,7 @@ const { Router } = require('express');
 
 const router = Router();
 
+const activity = require ('./Routes/Activity')
 const recipes = require ('./Routes/Recipes')
 const user = require ('./Routes/User')
 
@@ -13,9 +14,8 @@ const user = require ('./Routes/User')
 // Ejemplo: router.use('/auth', authRouter);
  
 
-
-
+router.use('/activity', activity)
 router.use('/recipes', recipes)
-router.use ('/user', user)
+router.use('/user', user)
 
 module.exports = router;
