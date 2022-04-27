@@ -1,24 +1,21 @@
 const { Router } = require('express');
-const Activity = require('../models/Activity');
+
+
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
-
 const router = Router();
+
+const recipes = require ('./Routes/Recipes')
+const user = require ('./Routes/User')
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
  
-router.post("/activity", async (req,res) => {
-    try{
-        const{ name, description, video, image, price, day, hour, capacity } = req.body
-        const newAct = await Activity.create({name, description, video, image, price, day, hour, capacity }) 
-        res.send (newAct)
-    
-    } catch(err){
-        console.log(err)
-    }
-})
 
+
+
+router.use('/recipes', recipes)
+router.use ('/user', user)
 
 module.exports = router;
