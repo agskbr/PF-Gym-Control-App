@@ -1,7 +1,7 @@
 const {
     Activity,
     User
-} = require('../db');
+} = require('../../db');
 
 const getDetailsUser = async (id) => {
     const user = await User.findAll({
