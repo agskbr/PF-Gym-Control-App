@@ -35,9 +35,20 @@ const { Activity, User } = sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-Activity.belongsToMany(User,{through:"ActivityUser"});
-User.belongsToMany(Activity,{through:"ActivityUser"});
+const ActivityUser = sequelize.define('Activity_User', {
+  payState: {
+    type: DataTypes.ENUM("PAGO" , "NO-PAGO"),//----
+    defaultValue:"NO-PAGO"
+  },
+  payDay: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+},{ timestamps: false });
 
+
+Activity.belongsToMany(User, { through: ActivityUser });
+User.belongsToMany(Activity, { through: ActivityUser });
 
 
 module.exports = {
