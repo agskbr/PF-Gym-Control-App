@@ -4,9 +4,9 @@ const {
 } = require('../../db');
 
 const getDetailsUser = async (id) => {
-    const user = await User.findAll({
+    const user = await User.findOne({
         where: {
-            name: id
+            id: id
         },
         include: {
             model: Activity,
