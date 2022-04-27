@@ -13,5 +13,4 @@ router.get("/users/dni", async (req, res) => {
     }
 });
 
-
 module.exports = router;
