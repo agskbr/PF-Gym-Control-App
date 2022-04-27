@@ -14,13 +14,13 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    lastname: {
+    lastName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    din:{
+    dni:{
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
     },
     phoneNumber: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     password: {
       type: DataTypes.STRING,
@@ -42,17 +42,9 @@ module.exports = (sequelize) => {
     //   type: DataTypes.BOOLEAN,
     //   defaultValue: false,
     // },
-    isuser: {
+    isUser: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
-    },
-    diaDePago: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
-    estadoDePago:{
-      type: DataTypes.ENUM("PAGO" , "NO-PAGO"),
-      defaultValue:"NO-PAGO"
     },
     status:{
       type: DataTypes.ENUM("ACTIVO" , "INACTIVO"),
