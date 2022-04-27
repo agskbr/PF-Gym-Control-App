@@ -1,4 +1,4 @@
-const { Router } = require('express');
+const { router } = require('express');
 const Activity = require('../models/Activity');
 
 router.post("/activity", async (req,res) => {
