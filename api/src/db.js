@@ -6,7 +6,7 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/activities`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
@@ -34,6 +34,22 @@ const { Activity, User } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
+
+const ActivityUser = sequelize.define('Activity_User', {
+  payState: {
+    type: DataTypes.ENUM("PAGO" , "NO-PAGO"),//----
+    defaultValue:"NO-PAGO"
+  },
+  payDay: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+},{ timestamps: false });
+
+
+Activity.belongsToMany(User, { through: ActivityUser });
+User.belongsToMany(Activity, { through: ActivityUser });
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
