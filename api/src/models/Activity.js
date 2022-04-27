@@ -4,15 +4,18 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('activity', {
+
     id:{
       type: DataTypes.INTEGER,
         autoIncrement:true,
         primaryKey: true
     },
+
     name:{
       type: DataTypes.STRING,
       allowNull: false,
     },
+
     description:{
       type: DataTypes.TEXT,
       allowNull: true
@@ -30,9 +33,22 @@ module.exports = (sequelize) => {
     price:{
       type: DataTypes.INTEGER,
       allowNull: true
-    }
+    },
+
+    day:{
+      type: DataTypes.STRING,//lunes, miercoles, jueves
+      allowNull: true
+    },
+
+    hour:{
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      defaultValue: ["8-10","10-12","12-14","14-16","16-18","18-20"]
+    },
+
+    capacity:{
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
 
   });
 };
-
-// agregar dias hora capacidad
