@@ -4,9 +4,11 @@ const { Router } = require('express');
 
 
 const router = Router();
-
+const { getCards} = require('../controllers/Cards-Controllers/controllers')
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
+
+router.get('/cards', getCards)
 
 
 module.exports = router;
