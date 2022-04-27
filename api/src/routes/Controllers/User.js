@@ -6,7 +6,7 @@ const {
 const getDetailsUser = async (id) => {
     const user = await User.findAll({
         where: {
-            name: id
+            id: id
         },
         include: {
             model: Activity,

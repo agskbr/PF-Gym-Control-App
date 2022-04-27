@@ -3,12 +3,12 @@ const router = Router();
 const getDetailsUser = require('../Controllers/User')
 
 
-router.get("/users/:id", async (req, res) => {
-    const { id } = req.params;
-    if (id) {
-        const userId = await getDetailsUser(id)
-        ? res.status(200).send(userId)
-        : res.status(404).send("Perro no encontrado");
+router.get("/users/:dni", async (req, res) => {
+    const { dni } = req.params;
+    if (dni) {
+        const userDni = await getDetailsUser(dni)
+        ? res.status(200).send(userDni)
+        : res.status(404).send("usuario no encontrado");
     }
 });
 
