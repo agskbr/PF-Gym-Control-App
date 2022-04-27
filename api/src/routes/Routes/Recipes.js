@@ -23,9 +23,9 @@ const id = req.params.id;
 const allRecipes = await getApiInfo();
 if(id){
     const fillRecipe = await allRecipes.filter(el => el.id.toString() === id);
-       fillRecipe.length
-       ? res.status(200).json(fillRecipe)
-       : res.status(404).send("La receta no existe, intenta con otro ID.");
+    fillRecipe.length
+    ? res.status(200).json(fillRecipe)
+    : res.status(404).send("La receta no existe, intenta con otro ID.");
 }
 })
 
