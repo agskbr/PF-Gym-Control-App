@@ -1,0 +1,75 @@
+.dialogContainer {
+  border: none;
+  border-radius: 5px;
+  width: 70%;
+  padding-bottom: 40px;
+}
+.headerDialog {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.closeBtn {
+  border: 2px solid #fe4f22;
+  border-radius: 5px;
+  color: #fe4f22;
+  text-align: center;
+}
+.closeBtn:hover {
+  cursor: pointer;
+}
+.closeBtn:focus {
+  outline: none;
+}
+
+.contentDialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.customInput {
+  border: none;
+  background-color: whitesmoke;
+  width: 180px;
+  margin-top: 10px;
+  padding: 10px;
+  font-family: sans-serif;
+  border-radius: 5px;
+}
+.customInput:focus {
+  outline: 1px solid #fe4f22;
+}
+
+.customTextArea {
+  border: none;
+  background-color: whitesmoke;
+  resize: none;
+  border-radius: 5px;
+  font-family: sans-serif;
+  margin-top: 10px;
+  height: 80px;
+  padding: 10px;
+  width: 180px;
+}
+
+.customTextArea:focus {
+  outline: 1px solid #fe4f22;
+}
+
+.createBtn {
+  border: none;
+  border-radius: 5px;
+  background-color: #fe4f22;
+  padding: 10px;
+  color: white;
+  font-family: sans-serif;
+  margin-top: 20px;
+}
+
+.createBtn:hover {
+  cursor: pointer;
+}
+.createBtn:focus {
+  outline: none;
+}

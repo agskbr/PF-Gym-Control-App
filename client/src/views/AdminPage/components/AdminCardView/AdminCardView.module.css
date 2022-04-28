@@ -1,0 +1,54 @@
+.principalContainer {
+  height: 100%;
+  width: 100%;
+  margin-top: 60px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.addButton {
+  border: none;
+  position: absolute;
+  border-radius: 5px;
+  color: white;
+  font-family: sans-serif;
+  padding: 10px;
+  right: 200px;
+  height: 40px;
+  background-color: #fe4f22;
+}
+.addButton:hover {
+    cursor: pointer;
+}
+.addButton:focus {
+    outline: none;
+}
+.principalContainer h4 {
+  font-family: sans-serif;
+  color: #fe4f22;
+}
+
+.card {
+  height: 100px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 10px 10px 25px grey;
+}
+
+.headerOfCard {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 40px;
+}
+
+.header {
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid grey;
+}
