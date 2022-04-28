@@ -5,7 +5,6 @@ const router = Router();
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
-
 const activity = require ('./Activity')
 const recipes = require ('./Recipes')
 const user = require ('./User')
