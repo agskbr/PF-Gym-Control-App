@@ -1,5 +1,5 @@
 const axios = require ('axios');
-const {Recipe, Dietipe} = require ('../../db')
+
 
 const getApiInfo = async () =>{
     try {
@@ -20,31 +20,7 @@ const getApiInfo = async () =>{
     console.log (apiUrl)
 }
 
-const getDbInfo = async () => {
-    try {
-        
-        return await Recipe.findAll({
-            include: {
-                model: Dietipe,
-                attributes : ['name'],
-                through: {
-                    attributes: []
-                }
-            }
-        })
-    } catch (error) {
-        console.log(error)
-    }
 
-}
 
-const getAllRecipes = async () =>{
-    const apiInfo = await getApiInfo();
-    const dbInfo = await getDbInfo();
-    const allInfo = apiInfo.concat(dbInfo);
-    return allInfo;
-}
+module.exports = getApiInfo
 
-module.exports = {
-    getAllRecipes
-}
