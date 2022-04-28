@@ -1,6 +1,7 @@
 const { Router } = require('express');
 
 const { Activity } = require('../../db');
+const Activity = require('../../models/Activity');
 const router = Router();
 const activitysDbInfo  = require ('../Controllers/Activity')
 
@@ -36,6 +37,17 @@ router.get("/activity", async (req,res) => {
         res.status(500).json({message: error.message})
     }
 })
-
+//--------- ver si esta ok esta ruta --------------------- falta activar el contolador getActivityInfo desde controllers
+//esperando a unir con json
+router.get ('/activity/:id', async (req, res,) => {
+    const id = req.params.id;
+    const allActivities = await getActivityInfo();
+    if(id){
+        const activity = await allActivities.filter(el => el.id.toString() === id);
+        activity.length
+        ? res.status(200).json(activity)
+        : res.status(404).send("Activity not found, try another one.");
+    }
+    })
 
 module.exports = router;
