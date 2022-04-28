@@ -13,9 +13,6 @@ router.get ('/', async (req, res,) => {
     }else{ // caso contrario que no haya un query, envia todas las recetas
         res.status(200).send(recipesTotal);
     }
-
-
-
 })
 
 router.get ('/:id', async (req, res,) => {
