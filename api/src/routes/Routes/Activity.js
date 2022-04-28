@@ -19,6 +19,7 @@ router.post("/", async (req,res) => {
     }
 })
 
+
 router.get("/", async (req,res) => {
     // ME GUARDO EL NAME QUE ME LLEGA POR QUERY PARA USARLO CUANDO LO NECESITE
     const {name} = req.query;
