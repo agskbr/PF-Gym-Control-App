@@ -14,10 +14,10 @@ const getApiInfo = async () =>{
             }
         })
         return apiInfo;   
-        
     } catch (error) {
         console.log(error)
     }
+    console.log (apiUrl)
 }
 
 const getDbInfo = async () => {
