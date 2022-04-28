@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@redux-devtools/extension": "^3.2.2",
+    "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.1",
     "@testing-library/user-event": "^12.2.2",
@@ -13,7 +14,6 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.3.0",
     "react-scripts": "4.0.0",
-    "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
     "web-vitals": "^0.2.4"
   },
