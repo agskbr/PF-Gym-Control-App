@@ -71,8 +71,6 @@ const ActivityUser = sequelize.define('Activity_User', {
 Activity.belongsToMany(User, { through: ActivityUser });
 User.belongsToMany(Activity, { through: ActivityUser });
 
-Recipe.belongsToMany(Dietipe, { through: 'recipe_dietipe' });
-Dietipe.belongsToMany(Recipe, { through: 'recipe_dietipe' });
 
 
 module.exports = {

@@ -19,6 +19,7 @@ router.post("/", async (req,res) => {
     }
 })
 
+
 router.get("/", async (req,res) => {
     // ME GUARDO EL NAME QUE ME LLEGA POR QUERY PARA USARLO CUANDO LO NECESITE
     const {name} = req.query;
@@ -36,6 +37,18 @@ router.get("/", async (req,res) => {
         res.status(500).json({message: error.message})
     }
 })
-// hola
+
+//--------- ver si esta ok esta ruta --------------------- falta activar el contolador getActivityInfo desde controllers
+//esperando a unir con json
+router.get ('/:id', async (req, res,) => {
+    const id = req.params.id;
+    const allActivities = await getActivityInfo();
+    if(id){
+        const activity = await allActivities.filter(el => el.id.toString() === id);
+        activity.length
+        ? res.status(200).json(activity)
+        : res.status(404).send("Activity not found, try another one.");
+    }
+    })
 
 module.exports = router;
