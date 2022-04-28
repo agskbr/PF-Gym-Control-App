@@ -1,6 +1,11 @@
 import React from "react";
-// import style from "./AdminPage.module.css";
+import style from "./AdminPage.module.css";
+import SideBar from "./components/SideBar/SideBar.jsx";
 
 export default function AdminPage() {
-  return <div>AdminPage</div>;
+  return (
+    <div className={style.principalContainer}>
+      <SideBar />
+    </div>
+  );
 }
