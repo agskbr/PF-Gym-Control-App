@@ -16,11 +16,23 @@ const getDetailsUser = async (id) => {
             }
         }
     })
-
     return user;
 }
 
+const getAllUsers = async () => {
+    const user = await User.findOne({
+        include: {
+            model: Activity,
+            attributes: ["name"],
+            through: {
+                attributes: [],
+            }
+        }
+    })
+    return user;
+}
 
 module.exports = {
-    getDetailsUser
+    getDetailsUser,
+    getAllUsers
 }
