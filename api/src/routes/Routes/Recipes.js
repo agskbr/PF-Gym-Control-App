@@ -1,5 +1,5 @@
-const {router} = require ('express');
-const router = router();
+const {Router} = require ('express');
+const router = Router();
 const getApiInfo = require ('../Controllers/Recipes.js')
 
 router.get ('/recipes', async (req, res,) => {

@@ -1,5 +1,8 @@
-const { router } = require('express');
-const Activity = require('../models/Activity');
+const { Router } = require('express');
+// const Activity = require('.../models/Activity')
+const { Activity } = require('../../db');
+const router = Router();
+const activitysDbInfo  = require ('../Controllers/Activity')
 
 router.post("/activity", async (req,res) => {
     try{

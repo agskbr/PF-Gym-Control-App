@@ -1,6 +1,8 @@
-
-const router = require("..");
 const User = require("../../models/User");
+const {Router} = require ('express');
+const router = Router();
+const getDetailsUser = require ('../Controllers/User')
+
 
 router.get("/users/:id", async (req, res) => {
     const { id } = req.params;
@@ -22,9 +24,6 @@ router.post("/user", async (req,res) =>{
     }
 } )
 
-const {Router} = require ('express');
-const router = Router();
-const getDetailsUser = require ('../Controllers/User')
 
 
 
