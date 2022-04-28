@@ -4,7 +4,7 @@ const { Activity } = require('../../db');
 const router = Router();
 const activitysDbInfo  = require ('../Controllers/Activity')
 
-const Activity = require('../../models/Activity');
+// const Activity = require('../../models/Activity');
 
 
 

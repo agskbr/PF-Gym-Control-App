@@ -1,6 +1,5 @@
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
-const { DataTypes } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const { DataTypes } = require("sequelize");
