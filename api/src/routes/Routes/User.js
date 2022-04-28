@@ -1,7 +1,8 @@
 const User = require("../../models/User");
 const {Router} = require ('express');
 const router = Router();
-const getDetailsUser = require ('../Controllers/User')
+const getDetailsUser = require('../Controllers/User');
+const getAllUsers = require("../Controllers/User");
 
 
 router.get("/users/:id", async (req, res) => {
@@ -13,6 +14,11 @@ router.get("/users/:id", async (req, res) => {
     }
 });
 
+router.get("/users", async (req, res) => {
+        const userId = await getAllUsers()
+        ? res.status(200).send(userId)
+        : res.status(404).send("Perro no encontrado");
+});
 
 router.post("/user", async (req,res) =>{
     try{
