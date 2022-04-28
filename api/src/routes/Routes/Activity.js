@@ -8,7 +8,7 @@ const activitysDbInfo  = require ('../Controllers/Activity')
 
 
 
-router.post("/activity", async (req,res) => {
+router.post("/", async (req,res) => {
     try{
         const{ name, description, video, image, price, day, hour, capacity } = req.body
         const newAct = await Activity.create({name, description, video, image, price, day, hour, capacity }) 
@@ -19,7 +19,7 @@ router.post("/activity", async (req,res) => {
     }
 })
 
-router.get("/activity", async (req,res) => {
+router.get("/", async (req,res) => {
     // ME GUARDO EL NAME QUE ME LLEGA POR QUERY PARA USARLO CUANDO LO NECESITE
     const {name} = req.query;
     try {

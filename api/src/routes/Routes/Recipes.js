@@ -2,7 +2,7 @@ const {Router} = require ('express');
 const router = Router();
 const getApiInfo = require ('../Controllers/Recipes.js')
 
-router.get ('/recipes', async (req, res,) => {
+router.get ('/', async (req, res,) => {
     const name = req.query.name;
     const recipesTotal = await getApiInfo();
     if (name){
@@ -13,12 +13,9 @@ router.get ('/recipes', async (req, res,) => {
     }else{ // caso contrario que no haya un query, envia todas las recetas
         res.status(200).send(recipesTotal);
     }
-
-
-
 })
 
-router.get ('/recipes/:id', async (req, res,) => {
+router.get ('/:id', async (req, res,) => {
 const id = req.params.id;
 const allRecipes = await getApiInfo();
 if(id){
