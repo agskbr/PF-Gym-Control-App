@@ -3,9 +3,8 @@ const { Sequelize } = require('sequelize');
 const { DataTypes } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const {
-  DB_USER, DB_PASSWORD, DB_HOST,
-} = process.env;
+const { DataTypes } = require("sequelize");
+const {DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/activities`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -33,12 +32,9 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Activity, User } = sequelize.models;
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-
 const ActivityUser = sequelize.define('Activity_User', {
   payState: {
-    type: DataTypes.ENUM("PAGO" , "NO-PAGO"),//----
+    type: DataTypes.ENUM("PAGO" , "NO-PAGO"),
     defaultValue:"NO-PAGO"
   },
   payDay: {
@@ -50,6 +46,8 @@ const ActivityUser = sequelize.define('Activity_User', {
 
 Activity.belongsToMany(User, { through: ActivityUser });
 User.belongsToMany(Activity, { through: ActivityUser });
+
+
 
 
 module.exports = {

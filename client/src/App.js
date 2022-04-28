@@ -1,9 +1,14 @@
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import AdminPage from "./views/AdminPage/AdminPage";
 
 function App() {
   return (
     <div className="App">
-      <h1>Proyecto final Henry</h1>
+      <Routes>
+        <Route path="/" element={<h1>Proyecto final Henry</h1>} />
+        <Route path="/adminDashboard" element={<AdminPage />} />
+      </Routes>
     </div>
   );
 }
