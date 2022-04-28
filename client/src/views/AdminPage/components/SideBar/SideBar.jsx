@@ -1,4 +1,5 @@
 import React from "react";
+import CustomItemSideBar from "../CustomItemSideBar/CustomItemSideBar";
 import style from "./SideBar.module.css";
 
 export default function SideBar() {
@@ -12,15 +13,9 @@ export default function SideBar() {
       </div>
       <div className={style.separator}></div>
       <div className={style.contentSideBar}>
-        <div className={style.itemOfSideBar}>
-          <span>Usuarios</span>
-        </div>
-        <div className={style.itemOfSideBar}>
-          <span>Clases</span>
-        </div>
-        <div className={style.itemOfSideBar}>
-          <span>Instructores</span>
-        </div>
+        <CustomItemSideBar name="Usuarios"/>
+        <CustomItemSideBar onClick={() => console.log("Change AdminCardView")} name="Clases"/>
+        <CustomItemSideBar name="Instructores"/>
       </div>
     </div>
   );

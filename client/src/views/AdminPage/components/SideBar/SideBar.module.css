@@ -45,14 +45,3 @@
   width: 100%;
 }
 
-.itemOfSideBar {
-  width: 60%;
-  text-align: start;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.itemOfSideBar span {
-  font-size: 18px;
-  font-weight: 500;
-}

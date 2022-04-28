@@ -5,19 +5,19 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 30px;
-  padding-right: 30px;
 }
 
 .titleTopBar span {
   font-family: sans-serif;
   font-size: 32px;
+  margin-left: 20px;
 }
 .userAndNotification {
   width: 160px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-right: 20px;
 }
 
 .notificationIcon {
