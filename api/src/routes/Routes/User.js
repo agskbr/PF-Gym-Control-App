@@ -10,14 +10,14 @@ router.get("/users/:id", async (req, res) => {
     if (id) {
         const userId = await getDetailsUser(id)
         ? res.status(200).send(userId)
-        : res.status(404).send("Perro no encontrado");
+        : res.status(404).send("Usuario no encontrado");
     }
 });
 
 router.get("/users", async (req, res) => {
         const userId = await getAllUsers()
         ? res.status(200).send(userId)
-        : res.status(404).send("Perro no encontrado");
+        : res.status(404).send("Usuario no encontrado");
 });
 
 router.post("/user", async (req,res) =>{
