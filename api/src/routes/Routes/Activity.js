@@ -37,6 +37,7 @@ router.get("/", async (req,res) => {
         res.status(500).json({message: error.message})
     }
 })
+
 //--------- ver si esta ok esta ruta --------------------- falta activar el contolador getActivityInfo desde controllers
 //esperando a unir con json
 router.get ('/:id', async (req, res,) => {
