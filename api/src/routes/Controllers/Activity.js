@@ -24,3 +24,6 @@ const activitysDbInfo = async () => {
 module.exports = {
     activitysDbInfo
 }
+
+
+// hacer la getApiInfo
