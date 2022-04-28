@@ -1,7 +1,6 @@
 const { Router } = require('express');
 
 const { Activity } = require('../../db');
-const Activity = require('../../models/Activity');
 const router = Router();
 const activitysDbInfo  = require ('../Controllers/Activity')
 
@@ -9,7 +8,7 @@ const activitysDbInfo  = require ('../Controllers/Activity')
 
 
 
-router.post("/activity", async (req,res) => {
+router.post("/", async (req,res) => {
     try{
         const{ name, description, video, image, price, day, hour, capacity } = req.body
         const newAct = await Activity.create({name, description, video, image, price, day, hour, capacity }) 
@@ -20,7 +19,7 @@ router.post("/activity", async (req,res) => {
     }
 })
 
-router.get("/activity", async (req,res) => {
+router.get("/", async (req,res) => {
     // ME GUARDO EL NAME QUE ME LLEGA POR QUERY PARA USARLO CUANDO LO NECESITE
     const {name} = req.query;
     try {
@@ -39,7 +38,7 @@ router.get("/activity", async (req,res) => {
 })
 //--------- ver si esta ok esta ruta --------------------- falta activar el contolador getActivityInfo desde controllers
 //esperando a unir con json
-router.get ('/activity/:id', async (req, res,) => {
+router.get ('/:id', async (req, res,) => {
     const id = req.params.id;
     const allActivities = await getActivityInfo();
     if(id){

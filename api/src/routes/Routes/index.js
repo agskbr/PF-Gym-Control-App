@@ -5,9 +5,9 @@ const { Router } = require('express');
 
 
 
-const activity = require ('./Routes/Activity')
-const recipes = require ('./Routes/Recipes')
-const user = require ('./Routes/User')
+const activity = require ('./Activity')
+const recipes = require ('./Recipes')
+const user = require ('./User')
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
