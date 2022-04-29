@@ -7,6 +7,7 @@ const { Router } = require('express');
 const activity = require ('./Activity')
 const recipes = require ('./Recipes')
 const user = require ('./User')
+const trainer = require ('./Trainer')
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -17,5 +18,6 @@ const router = Router();
 router.use('/activity', activity)
 router.use('/recipes', recipes)
 router.use('/user', user)
+router.use('/trainer', trainer)
 
 module.exports = router;

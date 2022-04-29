@@ -1,6 +1,7 @@
-const { Activity, User } = require('../db');
+const { Activity, User, Trainer } = require('../db');
 const activities = require('../../activity.json')
 const users = require('../../usuarios.json')
+const trainer = require('../../trainer.json')
 
 const loaderUsers = async () => {
     try {
@@ -49,11 +50,15 @@ const loaderActivity = async () => {
     try {
         const modelActivity = activities.map((el) => {
             return {
+                id: el.id,
                 name: el.name,
                 description: el.description,
                 video: el.video,
                 image: el.image,
-                price: el.price
+                price: el.price,
+                day: el.day,
+                hour: el.hour,
+                capacity: el.capacity
             };
         });
         modelActivity.forEach(async (el) => {
@@ -63,7 +68,10 @@ const loaderActivity = async () => {
                     description: el.description,
                     video: el.video,
                     image: el.image,
-                    price: el.price
+                    price: el.price,
+                    day: el.day,
+                    hour: el.hour,
+                    capacity: el.capacity
                 },
             });
         });
@@ -74,7 +82,37 @@ const loaderActivity = async () => {
     }
 }
 
+const loaderTrainer = async () => {
+    try {
+        const modelTrainer = trainer.map((el) => {
+            return {
+                id: el.id,
+                name: el.name,
+                image: el.image,
+                specialty: el.specialty,
+                experience: el.experience,
+            };
+        });
+        modelTrainer.forEach(async (el) => {
+            await Trainer.findOrCreate({
+                where: {
+                id: el.id,
+                name: el.name,
+                image: el.image,
+                specialty: el.specialty,
+                experience: el.experience,
+                },
+            });
+        });
+        console.log('Entrenadores cargados en la DB')
+    }
+    catch (error) {
+        console.log('Error en la carga de entrenadores a la DB')
+    }
+}
+
 module.exports = {
     loaderUsers,
-    loaderActivity
+    loaderActivity,
+    loaderTrainer
 }
