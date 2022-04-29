@@ -1,0 +1,18 @@
+
+
+.all-activities {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    width: 40rem;
+    margin: 4.8rem auto 0 auto;
+    
+}
+
+.activity {
+    background-color: #e7dccc;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.185);
+
+}
