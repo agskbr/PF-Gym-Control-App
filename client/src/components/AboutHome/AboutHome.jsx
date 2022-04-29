@@ -1,6 +1,6 @@
 import React from 'react'; 
 import s from './AboutHome.module.css';
-import video from '../../assets/180419_Boxing_A1_04.mp4';
+//import video from '../../assets/180419_Boxing_A1_04.mp4';
 import t1 from '../../assets/trainer1.jpg';
 import t2 from '../../assets/trainer2.jpg';
 import t3 from '../../assets/trainer3.jpg';
@@ -44,7 +44,7 @@ export default function AboutHome() {
     <main>
         <div className={s.aboutPage}>
             <video autoPlay playsInline muted loop className={s.aboutPageHero}>
-                <source src={video} type="video/mp4"/>
+                {/* <source src={video} type="video/mp4"/> */}
             </video>
             <div className={s.aboutContent}>
                 <section className={s.aboutSection}>
