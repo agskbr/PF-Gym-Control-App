@@ -1,0 +1,71 @@
+
+.section-hero {
+    background-image: linear-gradient(to right, rgb(34, 34, 34, 0.8), rgba(34, 34, 34, 0.8)), url('./img/hero.jpg');
+    background-size: cover;
+    padding: 4rem 0;
+  }
+  
+  
+  .heading-primary,
+  .heading-secondary {
+    font-weight: 700;
+    color: inherit;
+    letter-spacing: -1px;
+  }
+  
+  .heading-primary-container {
+    width: 70%;
+    margin: 0 auto;
+  }
+  
+  .heading-primary {
+    font-size: 4rem;
+    line-height: 1.05;
+    margin-bottom: 3.2rem;
+    color: inherit;
+  }
+  
+  
+  .hero-main {
+    max-width: 130rem;
+    margin: 0 auto;
+    padding: 2rem 3.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-text-box {
+    text-align: center;
+    color: #f4f3ef;
+  }
+  
+  .hero-description {
+    margin: 0 auto;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    margin-bottom: 4.8rem;
+    align-self: center;
+    width: 60%;
+  }
+  
+  .login-text {
+    color: white;
+    margin-top: 4rem;
+    font-size: 1.2rem;
+  }
+  
+  .login-link:link, .login-link:visited{
+    color: white;
+  }
+  
+  .btn-main:link, .btn-main:visited {
+    background-color: #eb4e27;
+    padding: 1rem 2rem;
+    border-radius: 9px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }

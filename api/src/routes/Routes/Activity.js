@@ -1,25 +1,42 @@
 const { Router } = require('express');
-
 const { Activity } = require('../../db');
 const router = Router();
-const activitysDbInfo  = require ('../Controllers/Activity')
+const { activitysDbInfo } = require('../Controllers/Activity');
 
 // const Activity = require('../../models/Activity');
 
 
 
-router.post("/activity", async (req,res) => {
+router.post("/", async (req,res) => {
     try{
-        const{ name, description, video, image, price, day, hour, capacity } = req.body
-        const newAct = await Activity.create({name, description, video, image, price, day, hour, capacity }) 
-        res.send (newAct)
-    
+        const { name, description, video, image, price, day, hour, capacity } = req.body
+        
+        const actividad = await Activity.findOne({
+            where: {
+                name: name,
+            },
+        })
+
+        if (!actividad) {
+            const newAct = await Activity.create({
+                name,
+                description,
+                video,
+                image,
+                price,
+                day,
+                hour,
+                capacity
+            }) 
+            res.send (newAct)
+        }else return res.send(actividad)
     } catch(err){
         console.log(err)
     }
 })
 
-router.get("/activity", async (req,res) => {
+
+router.get("/", async (req,res) => {
     // ME GUARDO EL NAME QUE ME LLEGA POR QUERY PARA USARLO CUANDO LO NECESITE
     const {name} = req.query;
     try {
@@ -37,5 +54,17 @@ router.get("/activity", async (req,res) => {
     }
 })
 
+//--------- ver si esta ok esta ruta --------------------- falta activar el contolador getActivityInfo desde controllers
+//esperando a unir con json
+router.get ('/:id', async (req, res,) => {
+    const id = req.params.id;
+    const allActivities = await activitysDbInfo();
+    if(id){
+        const activity = await allActivities.filter(el => el.id.toString() === id);
+        activity.length
+        ? res.status(200).json(activity)
+        : res.status(404).send("Activity not found, try another one.");
+    }
+    })
 
 module.exports = router;

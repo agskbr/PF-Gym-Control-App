@@ -3,24 +3,30 @@ const {
     User
 } = require('../../db');
 
-const getDetailsUser = async (id) => {
+const getDetailsUser = async (dni) => {
     const user = await User.findOne({
         where: {
-            id: id
+            dni: dni
         },
         include: {
             model: Activity,
-            attributes: ["name"],
-            through: {
-                attributes: [],
-            }
+            attributes: ["name"]
         }
     })
-
     return user;
 }
 
+const getAllUsers = async () => {
+    const user = await User.findAll({
+        include: {
+            model: Activity,
+            attributes: ["name"]
+        }
+    })
+    return user;
+}
 
 module.exports = {
-    getDetailsUser
+    getDetailsUser,
+    getAllUsers
 }

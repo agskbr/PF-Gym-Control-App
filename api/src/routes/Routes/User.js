@@ -1,39 +1,54 @@
-const User = require("../../models/User");
-const {Router} = require ('express');
+const { User } = require("../../db");
+const { Router } = require('express');
 const router = Router();
-const getDetailsUser = require ('../Controllers/User')
+const { getDetailsUser, getAllUsers } = require('../Controllers/User');
 
 
-router.get("/users/:id", async (req, res) => {
-    const { id } = req.params;
-    if (id) {
-        const userId = await getDetailsUser(id)
-        ? res.status(200).send(userId)
-        : res.status(404).send("Perro no encontrado");
+
+
+router.post("/", async (req,res) =>{
+    try{
+        const {name,lastName,email,age,phoneNumber,password,dni,image} = req.body
+        
+        const usuario = await User.findOne({
+            where: {
+                email: email,
+            },
+        })
+
+        if (!usuario) {
+            newUser = await User.create({
+                name: name,
+                lastName: lastName,
+                dni: dni,
+                email: email,
+                age: age,
+                phoneNumber: phoneNumber,
+                password: password,
+                image: image,
+            })
+            console.log("usuario creado")
+            return res.send(newUser)
+        } else return res.send(usuario);
+    }catch(err){
+        res.status(500).json({message: err.message})
     }
+})
+
+router.get("/", async (req, res) => {
+    const users = await getAllUsers();
+    users ? res.status(200).send(users)
+    : res.status(404).send("Usuario no encontrado");
 });
 
-
-router.post("/user", async (req,res) =>{
-    try{
-        const {id, name, lastname, email, age, phoneNumber, password, dni, iUser, notifications, image } = req.body
-        const newUser = await User.create ({id, name, lastname, email, age, phoneNumber, password, dni, iUser, notifications, image})
-        res.send (newUser)
-    } catch(err){
-        console.log(err)
-    }
-} )
-
-
-
-
-router.get("/users/dni", async (req, res) => {
+router.get("/:dni", async (req, res) => {
     const { dni } = req.params;
     if (dni) {
         const userDni = await getDetailsUser(dni)
-        ? res.status(200).send(userDni)
+        userDni ? res.status(200).send(userDni)
         : res.status(404).send("Usuario no encontrado");
     }
 });
+
 
 module.exports = router;
