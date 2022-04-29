@@ -3,7 +3,7 @@ const activities = require('../../activity.json')
 const users = require('../../usuarios.json')
 const trainer = require('../../trainer.json')
 
-const loaderUsers = async () => {
+const loaderUsers = async () => { 
     try {
         const modelUsers = users.map((el) => {
             return {
