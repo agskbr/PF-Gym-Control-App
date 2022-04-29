@@ -1,0 +1,59 @@
+.expert{
+   /*  height: 30rem; */
+    background: rgba(250,250,250,.2);
+    padding: 2rem 1.5rem;  
+    margin: 1rem auto;
+    border-radius: 3rem;
+    transform: scale(.95);
+    transition: transform .3s linear;
+    transform-origin: center;
+    width: 40vw;
+}
+.flexi{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1rem;
+}
+.expertImg{
+    display: block;
+    height: 15rem;
+    width: 15rem;
+    margin-top: 3rem;
+    filter: grayscale(1);
+    object-fit: cover;
+    object-position: top;
+    clip-path: circle(50%);
+    transition: all .3s ease;
+}
+.expertName{
+    display:block;
+    font-size: 3rem;
+    color: #111111;
+    padding-bottom: .5rem;
+    transition: all .2s;
+}
+.expertSub{
+    display: block;
+    font-size: 1.2rem;
+    color: #777;
+    transition: all .2s;
+}
+.expertDetail{
+    font-size: 1.2rem;
+    font-weight: lighter;
+    transition: all .2s;
+}
+.expert:hover{
+    transform: scale(1);
+    background: rgba(255, 253, 253, 0.4);
+}
+.expert:hover .expertSub,
+.expert:hover .expertDetail{
+  color: #111111;
+}
+.expert:hover .expertImg{
+    filter: none;
+}
+.expert:hover .expertName{
+    color: rgb(129,7,6);
+}

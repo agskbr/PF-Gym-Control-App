@@ -1,0 +1,51 @@
+.aboutPage{
+    min-height: 100vh; 
+    /* height: 100vh; */
+    margin-top: -15rem;
+    position: relative;
+    padding: 12rem 2rem 2rem 2rem;
+}
+.aboutContent{
+    color: #adadad;
+}
+.aboutPageHero{
+    background-image: url(../../assets/OIP.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width:100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: grayscale(1) brightness(20%);
+    z-index: -5;
+}
+.aboutSection{
+    min-height: 30vh;
+}
+.aboutHeading{
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 3rem 0;
+}
+.aboutParagraph{
+    font-size: 1.2rem;
+    display: block;
+    font-weight: lighter;
+    max-width:90rem;
+    margin: auto;
+}
+.aboutParagraph:not(:last-child){
+    font-size: 1.2rem;
+    display: block;
+    padding-bottom: 1rem;
+}
+.flexy{
+    display: grid;
+    max-width: 120rem;
+    margin: auto;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
