@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import CustomInput from "../CustomInput/CustomInput.jsx";
 import { validateForm } from "../../../../utils/validateForm";
 import style from "./CustomModal.module.css";
-// import { useDispatch } from "react-redux";
-// import { createActivity } from "../../../../store/actions/index";
+import { useDispatch, useSelector } from "react-redux";
+import { createActivity } from "../../../../store/actions/index";
 
 export default function CustomModal() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const { trainers } = useSelector((state) => state);
+
   const [activity, setActivity] = useState({
     image: "",
     video: "",
     name: "",
     description: "",
     price: "",
+    trainers: [],
     day: [],
     hour: [],
     capacity: "",
@@ -26,6 +29,7 @@ export default function CustomModal() {
     day: "",
     hour: "",
     capacity: "",
+    trainers: "",
   });
   const handlerChange = (event) => {
     const name = event.target.name;
@@ -57,6 +61,7 @@ export default function CustomModal() {
               price: "",
               day: [],
               hour: [],
+              trainers: [],
               capacity: "",
             });
             setErrors({
@@ -174,15 +179,46 @@ export default function CustomModal() {
             </ul>
           </div>
           <label htmlFor="hour">{errors.hour}</label>
+          <select
+            onChange={handlerChangeSelectTag}
+            className={style.customSelectTag}
+            name="trainers"
+          >
+            <option hidden>Selecciona entrenador</option>
+            {trainers.map((trainer) => (
+              <option key={trainer.id} value={trainer.name}>
+                {trainer.name}
+              </option>
+            ))}
+          </select>
+          <div className={style.selectedItemsContainer}>
+            <ul>
+              {activity.trainers.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <label htmlFor="trainers">{errors.trainers}</label>
         </div>
       </div>
       <button
         onClick={() => {
           setErrors(validateForm(activity));
           if (Object.values(errors).length < 1) {
-            // dispatch(createActivity(activity));
+            dispatch(
+              createActivity({
+                ...activity,
+                price: parseInt(activity.price),
+                capacity: parseInt(activity.capacity),
+              })
+            );
             document.getElementById("dialogId").close();
-            console.log(activity);
+            console.log({
+              ...activity,
+              price: parseInt(activity.price),
+              trainers: [],
+              capacity: parseInt(activity.capacity),
+            });
             setActivity({
               image: "",
               video: "",
@@ -191,6 +227,7 @@ export default function CustomModal() {
               price: "",
               day: [],
               hour: [],
+              trainers: [],
               capacity: "",
             });
           }
