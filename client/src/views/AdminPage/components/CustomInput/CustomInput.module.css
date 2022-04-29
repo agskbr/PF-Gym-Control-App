@@ -1,0 +1,27 @@
+.customInput {
+  border: none;
+  background-color: whitesmoke;
+  width: 180px;
+  margin-top: 10px;
+  padding: 10px;
+  font-family: sans-serif;
+  border-radius: 5px;
+}
+.customInput:focus {
+  outline: 1px solid #fe4f22;
+}
+
+.inputContainer {
+  width: 200px;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+}
+.inputContainer label {
+  color: red;
+  text-align: start;
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+
