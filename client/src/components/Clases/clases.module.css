@@ -1,0 +1,16 @@
+
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+    display: grid;
+    grid-template-areas: left-sidebar activities;
+    grid-template-columns: 33vw 1fr;
+    background-image: url("../../assets/clases_background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+   
+}
