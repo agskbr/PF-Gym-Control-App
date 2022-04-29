@@ -76,20 +76,34 @@ router.get ('/:id', async (req, res,) => {
     }
     })
 
-
+    router.put('/:id', async (req, res, next) => {
+        let {id} = req.params
+        let activity = req.body;
+        try {
+            let act = await Activity.update(activity, {   
+                    where: {
+                        id: id
+                    }
+            })
+            return res.status(200).json(act)
+        
+        } catch (error) {
+            next(error);
+        } 
+    })
 
 router.delete ('/:id', async (req, res) => {    
- const {id} = req.params;   
-  try {
+const {id} = req.params;   
+try {
     await Activity.destroy({   
         where: {                                            
-          id : id,
+            id : id,
         }
-   })
-   res.status(200).send('deleted activity!!') 
-  } catch (error) {
-     console.log(error);
-  }
+    })
+    res.status(200).send('deleted activity!!') 
+} catch (error) {
+    console.log(error);
+}
 }) 
 
 module.exports = router;

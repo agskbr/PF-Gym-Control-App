@@ -3,7 +3,7 @@ const activities = require('../../activity.json')
 const users = require('../../usuarios.json')
 const trainer = require('../../trainer.json')
 
-const loaderUsers = async () => {
+const loaderUsers = async () => { 
     try {
         const modelUsers = users.map((el) => {
             return {
@@ -58,11 +58,12 @@ const loaderActivity = async () => {
                 price: el.price,
                 day: el.day,
                 hour: el.hour,
-                capacity: el.capacity
+                capacity: el.capacity,
+                trainers: el.trainers
             };
         });
         modelActivity.forEach(async (el) => {
-            await Activity.findOrCreate({
+            const activityIns = await Activity.findOrCreate({
                 where: {
                     name: el.name,
                     description: el.description,
@@ -74,6 +75,14 @@ const loaderActivity = async () => {
                     capacity: el.capacity
                 },
             });
+            el.trainers.forEach(async (e) => {
+                const trainersIns = await Trainer.findOne({
+                    where: {
+                        name: e.name
+                    }
+                })
+                await trainersIns.addActivity(activityIns[0])
+            })
         });
         console.log('Actividades cargadas en la DB')
     }
