@@ -54,7 +54,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Activity, User} = sequelize.models;
+const { Activity, User, Trainer} = sequelize.models;
 
 const ActivityUser = sequelize.define('Activity_User', {
   payState: {
@@ -71,7 +71,8 @@ const ActivityUser = sequelize.define('Activity_User', {
 Activity.belongsToMany(User, { through: ActivityUser });
 User.belongsToMany(Activity, { through: ActivityUser });
 
-
+Trainer.belongsToMany(Activity, { through: 'Trainer_Activity' });
+Activity.belongsToMany(Trainer, { through: 'Trainer_Activity' });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

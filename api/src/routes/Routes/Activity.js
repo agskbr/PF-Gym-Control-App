@@ -1,7 +1,7 @@
 const { Router } = require('express');
-const { Activity } = require('../../db');
+const { Activity, Trainer } = require('../../db');
 const router = Router();
-const { activitysDbInfo } = require('../Controllers/Activity');
+const { activitysDbInfo, } = require('../Controllers/Activity');
 
 // const Activity = require('../../models/Activity');
 
@@ -9,7 +9,7 @@ const { activitysDbInfo } = require('../Controllers/Activity');
 
 router.post("/", async (req,res) => {
     try{
-        const { name, description, video, image, price, day, hour, capacity } = req.body
+        const { name, description, video, image, price, day, hour, capacity, trainers } = req.body
         
         const actividad = await Activity.findOne({
             where: {
@@ -28,6 +28,14 @@ router.post("/", async (req,res) => {
                 hour,
                 capacity
             }) 
+        const trainerenc = await Trainer.findAll({
+            where: {
+                name: trainers,}
+        })
+
+        newAct.addTrainer(trainerenc)
+
+
             res.send (newAct)
         }else return res.send(actividad)
     } catch(err){
@@ -66,5 +74,21 @@ router.get ('/:id', async (req, res,) => {
         : res.status(404).send("Activity not found, try another one.");
     }
     })
+
+
+
+router.delete ('/:id', async (req, res) => {    
+ const {id} = req.params;   
+  try {
+    await Activity.destroy({   
+        where: {                                            
+          id : id,
+        }
+   })
+   res.status(200).send('deleted activity!!') 
+  } catch (error) {
+     console.log(error);
+  }
+}) 
 
 module.exports = router;
