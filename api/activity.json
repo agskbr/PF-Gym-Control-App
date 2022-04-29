@@ -12,7 +12,14 @@
             "16-18"
           ],
         "capacity": 15,
-        "trainers":["Juani"]
+        "trainers":[
+          {
+          "name": "Juanse"
+          },
+          {
+            "name": "Yani"
+          }
+      ]
         
     },
     {
@@ -28,7 +35,14 @@
             "18-20"
           ],
         "capacity": 10,
-        "trainers":["Juanse"]
+        "trainers":[
+          {
+          "name": "Juanse"
+          },
+          {
+            "name": "Yani"
+          }
+      ]
     },
     {
         "id": 3,
@@ -43,7 +57,14 @@
             "16-18"
           ],
         "capacity": 15,
-        "trainers":["Yani"]
+        "trainers":[
+          {
+          "name": "Juanse"
+          },
+          {
+            "name": "Yani"
+          }
+      ]
     },
     {
         "id": 4,
@@ -58,7 +79,14 @@
             "18-20"
           ],
         "capacity": 15,
-        "trainers":["Santi"]
+        "trainers":[
+          {
+          "name": "Juanse"
+          },
+          {
+            "name": "Yani"
+          }
+      ]
     },
     {
         "id": 5,
@@ -73,7 +101,14 @@
             "18-20"
           ],
         "capacity": 10,
-        "trainers":["Euge"]
+        "trainers":[
+          {
+          "name": "Juanse"
+          },
+          {
+            "name": "Yani"
+          }
+      ]
     },
     {
         "id": 6,
@@ -88,7 +123,14 @@
             "18-20"
           ],
         "capacity": 20,
-        "trainers":["Gusta"]
+        "trainers":[
+          {
+          "name": "Juanse"
+          },
+          {
+            "name": "Yani"
+          }
+      ]
     },
 
     {   "id": 7,
@@ -103,7 +145,14 @@
             "16-18"
           ],
         "capacity": 15,
-        "trainers":["Mati"]
+        "trainers":[
+          {
+          "name": "Juanse"
+          },
+          {
+            "name": "Yani"
+          }
+      ]
     },
 
     {   "id": 8,
@@ -118,7 +167,14 @@
             "18-20"
           ],
         "capacity": 10,
-        "trainers":["Agus"]
+        "trainers":[
+          {
+          "name": "Juanse"
+          },
+          {
+            "name": "Yani"
+          }
+      ]
     }
 
     
