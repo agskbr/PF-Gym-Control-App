@@ -1,8 +1,7 @@
 const { Router } = require('express');
-
 const { Activity } = require('../../db');
 const router = Router();
-const activitysDbInfo  = require ('../Controllers/Activity')
+const { activitysDbInfo } = require('../Controllers/Activity');
 
 // const Activity = require('../../models/Activity');
 
@@ -10,10 +9,27 @@ const activitysDbInfo  = require ('../Controllers/Activity')
 
 router.post("/", async (req,res) => {
     try{
-        const{ name, description, video, image, price, day, hour, capacity } = req.body
-        const newAct = await Activity.create({name, description, video, image, price, day, hour, capacity }) 
-        res.send (newAct)
-    
+        const { name, description, video, image, price, day, hour, capacity } = req.body
+        
+        const actividad = await Activity.findOne({
+            where: {
+                name: name,
+            },
+        })
+
+        if (!actividad) {
+            const newAct = await Activity.create({
+                name,
+                description,
+                video,
+                image,
+                price,
+                day,
+                hour,
+                capacity
+            }) 
+            res.send (newAct)
+        }else return res.send(actividad)
     } catch(err){
         console.log(err)
     }
@@ -42,7 +58,7 @@ router.get("/", async (req,res) => {
 //esperando a unir con json
 router.get ('/:id', async (req, res,) => {
     const id = req.params.id;
-    const allActivities = await getActivityInfo();
+    const allActivities = await activitysDbInfo();
     if(id){
         const activity = await allActivities.filter(el => el.id.toString() === id);
         activity.length

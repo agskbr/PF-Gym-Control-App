@@ -4,7 +4,6 @@ const { Router } = require('express');
 // Ejemplo: const authRouter = require('./auth.js');
 
 
-
 const activity = require ('./Activity')
 const recipes = require ('./Recipes')
 const user = require ('./User')
@@ -13,7 +12,7 @@ const user = require ('./User')
 // Ejemplo: router.use('/auth', authRouter);
 
 const router = Router();
- 
+
 
 router.use('/activity', activity)
 router.use('/recipes', recipes)

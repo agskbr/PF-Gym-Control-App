@@ -2,19 +2,14 @@ const {
     Activity,
     User
 } = require('../../db');
-const data = require('../../../package.json')
 
 const activitysDbInfo = async () => {
     try {
         return await Activity.findAll({
             include: {
                 model: User,
-                attributes: ["name","lastName","dni"],
-                include: {
-                    model: Activity_User,
-                    attributes: ["payDay", "payState"]
-                }
-            }
+                attributes: ["name","lastName","dni"]
+            },
         })
     } catch (err) {
         console.log(err);
