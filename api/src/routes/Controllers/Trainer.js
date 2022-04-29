@@ -11,16 +11,13 @@ const trainersDbInfo = async () => {
                 attributes: ["name"],
                 through: {
                     attributes: [],
-                  },
+                },
             },
         })
     } catch (error) {
         console.log(error);
     }
 }
-
-
-
 
 
 module.exports = {
