@@ -37,7 +37,7 @@ module.exports = (sequelize) => {
     password: {
       type: DataTypes.STRING,
     },
-    // ? dejo estoy dos por las dudas que los itilicemos mas adelante. 
+    // ? dejo estoy dos por las dudas que los utilicemos mas adelante. 
     // isadmin: {
     //   type: DataTypes.BOOLEAN,
     //   defaultValue: false,

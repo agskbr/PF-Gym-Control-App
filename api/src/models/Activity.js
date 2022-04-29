@@ -36,8 +36,7 @@ module.exports = (sequelize) => {
     },
 
     day:{
-      type: DataTypes.STRING,//lunes, miercoles, jueves
-      allowNull: true
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
 
     hour:{
