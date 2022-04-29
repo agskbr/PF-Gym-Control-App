@@ -33,8 +33,9 @@ router.post("/", async (req,res) => {
                 name: trainers,}
         })
 
-        newAct.addTrainer(trainerenc)
-
+        if (trainerenc) {
+            newAct.addTrainer(trainerenc);
+        }
 
             res.send (newAct)
         }else return res.send(actividad)
