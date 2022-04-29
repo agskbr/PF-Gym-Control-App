@@ -46,7 +46,7 @@ router.delete ('/:id', async (req, res) => {
         specialty, 
         experience, 
         createdInDb, 
-        activity,
+        activities,
        } = req.body;
 
        const trainerCreated = await Trainer.create({ 
@@ -58,7 +58,7 @@ router.delete ('/:id', async (req, res) => {
        });
 
        const ActDb = await Activity.findAll({
-           where: {name: name }
+           where: {name: activities }
 
        })
 
