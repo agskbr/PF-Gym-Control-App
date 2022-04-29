@@ -5,10 +5,11 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('trainer', {
 
-    id:{
-      type: DataTypes.INTEGER,
-        autoIncrement:true,
-        primaryKey: true
+    id: {
+      type: DataTypes.STRING,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      primaryKey: true,
     },
 
     name:{
@@ -28,6 +29,12 @@ module.exports = (sequelize) => {
     experience:{
       type: DataTypes.TEXT,
       allowNull: true,
+},
+
+    createdInDb: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: true,
 },
     
   });

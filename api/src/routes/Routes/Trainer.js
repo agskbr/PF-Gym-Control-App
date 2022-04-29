@@ -1,4 +1,4 @@
-const { Trainer } = require("../../db");
+const { Trainer, Activity } = require("../../db");
 const { Router } = require('express');
 const router = Router();
 const {trainersDbInfo} = require('../Controllers/Trainer')
@@ -38,7 +38,40 @@ router.delete ('/:id', async (req, res) => {
      }
    }) 
 
+   router.post('/', async (req, res, next) => {
+    try{
+      const { 
+        name, 
+        image,  
+        specialty, 
+        experience, 
+        createdInDb, 
+        activity,
+       } = req.body;
 
+       const trainerCreated = await Trainer.create({ 
+        name,
+        image,
+        specialty,
+        experience,
+        createdInDb,
+       });
+
+       const ActDb = await Activity.findAll({
+           where: {name: name }
+
+       })
+
+       trainerCreated.addActivity(ActDb)
+      
+      return res.status(200).send("Coach created successfully!!!");
+    }
+  
+    catch(error){
+      next (error)
+    }
+  
+  })
 
 
 
