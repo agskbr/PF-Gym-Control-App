@@ -19,10 +19,20 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const { loaderUsers , loaderActivity} = require('./src/loader/loader')
+//const  { userDb, orderDb, orderlineDb, review_productDb, reviewsDb} = require('./data.js')
+
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(process.env.PORT, () => {
-    console.log('%s listening  '); // eslint-disable-line no-console
+  server.listen(process.env.PORT, async () => {
+
+    await loaderUsers();
+    await loaderActivity();
+
+    console.log('%s listening 3001 '); // eslint-disable-line no-console
   });
 });
+
+
+

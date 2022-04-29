@@ -42,7 +42,6 @@ module.exports = (sequelize) => {
 
     hour:{
       type: DataTypes.ARRAY(DataTypes.STRING),
-      defaultValue: ["8-10","10-12","12-14","14-16","16-18","18-20"]
     },
 
     capacity:{

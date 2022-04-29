@@ -13,7 +13,7 @@ const user = require ('./User')
 // Ejemplo: router.use('/auth', authRouter);
 
 const router = Router();
- 
+
 
 router.use('/activity', activity)
 router.use('/recipes', recipes)
