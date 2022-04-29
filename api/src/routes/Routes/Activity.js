@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { Activity } = require('../../db');
 const router = Router();
-const { activitysDbInfo } = require('../Controllers/Activity');
+const { activitysDbInfo, } = require('../Controllers/Activity');
 
 // const Activity = require('../../models/Activity');
 
@@ -66,5 +66,21 @@ router.get ('/:id', async (req, res,) => {
         : res.status(404).send("Activity not found, try another one.");
     }
     })
+
+
+
+router.delete ('/:id', async (req, res) => {    
+ const {id} = req.params;   
+  try {
+    await Activity.destroy({   
+        where: {                                            
+          id : id,
+        }
+   })
+   res.status(200).send('deleted activity!!') 
+  } catch (error) {
+     console.log(error);
+  }
+}) 
 
 module.exports = router;

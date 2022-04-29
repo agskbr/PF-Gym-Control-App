@@ -1,44 +1,117 @@
 [
     {
+        "id": 1,
         "name": "BodyCombat",
         "description": "El body combat es una combinación de diferentes deportes de contacto y artes marciales como el kick boxing, el boxeo o el muay thai con una coreografía al ritmo de la música que va cambiando cada cierto tiempo. Las clases de body combat, una de las disciplinas estrella de la compañía Les Mills, han sido en buena parte responsables de acercar estas disciplinas al gran público Obviamente esta disciplina no es ninguna novedad. Mezcla distintas artes marciales y es un ejercicio muy variado,  con el que ejercitas tanto brazos como piernas, y sirve para descargar muchísima tensión, sobre todo si piensas en alguien a quien le tienes mucha manía mientras te lías a patadas y puñetazos. Eso si, te recomiendo que si lo quieres practicar te compres unas vendas elásticas para las muñecas o unos guantes de body combat, no sólo las proteges, si no que además lo hace mucho más creíble. Es otra de mis clases preferidas para sudar, divertirte y liberar estrés.",
         "video": "https://youtu.be/ehVlA74NLz0",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-bodycombat.jpg.webp",
-        "price": "200"
+        "price": 200,
+        "day": ["Lunes", "Miercoles", "Viernes"],
+        "hour": [
+            "12-14",
+            "16-18"
+          ],
+        "capacity": 15
+        
     },
     {
+        "id": 2,
         "name": "Gap",
         "description": "Gap es un acrónimo de glúteos, abdomen y pierna y, por tanto, una clase que se centra en el trabajo exclusivo de esos grupos musculares. Suelen ser clases con un gran número de repeticiones sobre el mismo grupo muscular, y pueden realizarse sin material y peso libre, o con diversos materiales como fitball, lastres o pesas entre otros. Es un entrenamiento en alza en gimnasios y polideportivos para luchar contra el sedentarismo actual y contra la acumulación de grasas en determinadas partes del cuerpo, perfecto para mujeres y apto para hombres.",
         "video": "https://youtu.be/5IEL9iMVCxM",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-gap.jpg.webp",
-        "price": "200"
+        "price": 300,
+        "day": ["Martes", "jueves"],
+        "hour": [
+            "14-16",
+            "18-20"
+          ],
+        "capacity": 10
     },
     {
+        "id": 3,
         "name": "Pilates",
         "description": "El pilates es un sistema de entrenamiento tanto a nivel físico, como mental. Generalmente en los gimnasios se ofertan clases de pilates suelo, aunque también existe la posibilidad de realizarlo con máquinas. Con esta clase, además de ponernos en forma y reeducar el control postural, conseguimos mejorar nuestra concentración. El objetivo de esta clase no reside en la quema de calorías, si no en la mejora de la musculatura y nuestra flexibilidad a través de la realización de movimientos de una forma suave y lenta, controlando en todo momento la ejecución y la respiración.",
         "video": "https://youtu.be/lFe97uu3FEQ?t=10",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-pilates.jpg.webp",
-        "price": "200"
+        "price": 250,
+        "day": ["Lunes", "Miercoles", "Viernes"],
+        "hour": [
+            "12-14",
+            "16-18"
+          ],
+        "capacity": 15
     },
     {
+        "id": 4,
         "name": "Body Pump",
         "description": "El body pump es una adaptación del trabajo en sala a las clases colectivas y se realiza con la barra y las pesas. Es ideal para empezar a tonificar la musculatura. La clase está dividida en tracks, y cada track se centra en el trabajo de un grupo muscular pierna, pecho, espalda, bíceps, tríceps, hombro y abdomen. En cada grupo muscular, se tiene que adaptar el peso, ya que no es lo mismo trabajar la pierna que es un grupo muscular grande, que el tríceps, que es un grupo muscular pequeño. Aunque la clase se haga con pesas, se trata de un entrenamiento aeróbico, muchas repeticiones con poco peso. Con ello conseguimos reducir nuestros porcentajes de grasa y definir nuestra musculatura sin ensanchar o aumentar masa muscular. Esta clase es ideal para complementar con otras clases o rutinas más aeróbicas, como correr o hacer elíptica, y es totalmente necesaria para conseguir acelerar el metabolismo y así aumentar la quema de calorías. Es otra de mis clases top del gimnasio, pero cuidado con el peso que te pones los primeros días porque las agujetas sino serán mortales. Además fíjate muy bien en el instructor y pregúntale si tienes dudas de los movimientos ya que te puedes lesionar.",
         "video": "https://youtu.be/1aThW3QKKCY",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-bodypump.jpg.webp",
-        "price": "200"
+        "price": 300,
+        "day": ["Lunes", "Miercoles", "Viernes"],
+        "hour": [
+            "14-16",
+            "18-20"
+          ],
+        "capacity": 15
     },
     {
+        "id": 5,
         "name": "Yoga",
         "description": "Se trata de una disciplina milenaria originaria de la India, que pretende armonizar cuerpo y mente. Más que una práctica, se considera un estilo de vida: cultivar el cuerpo, la mente y el espíritu a través de la meditación, la respiración y las asanas. Existen más de 100 tipos de yoga, aunque los más practicados en nuestro continente son Hatha Yoga, uno de los más dinámicos, Yoga Kundalini, más espiritual o el Bikram Yoga que se practica en una habitación a altas temperaturas.",
         "video": "https://youtu.be/Rxd9pDZqZcU",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-yoga.jpg.webp",
-        "price": "200"
+        "price": 200,
+        "day": ["Martes", "jueves"],
+        "hour": [
+            "14-16",
+            "18-20"
+          ],
+        "capacity": 10
     },
     {
+        "id": 6,
         "name": "Zumba",
         "description": "El éxito de estas clases reside en que no es necesario saber bailar para poder participar. A través de la combinación de pasos sencillos y generalmente relacionados con los ritmos latinos y el aerobic, se crean coreografías fáciles y divertidas con las que conseguimos quemar calorías pasando un rato divertido. En el caso del Zumba, se incluyen ejercicios de fitness durante las coreografías, permitiendo que las clases sean un poco más intensas. Ayuda a educir el peso, mejorar el equilibrio y reducir el estrés.",
         "video": "https://youtu.be/vYXRZNVVFVA",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-zumba.jpg.webp",
-        "price": "200"
+        "price": 200,
+        "day": ["Lunes", "Miercoles", "Viernes"],
+        "hour": [
+            "14-16",
+            "18-20"
+          ],
+        "capacity": 20
+    },
+
+    {   "id": 7,
+        "name": "TRX",
+        "description": "También conocido como Total Body Resistance Exercise, el TRX es un entrenamiento que se realiza en suspensión y con el uso del propio peso corporal. A través de una cinta de nylon muy resistente del apoyo de una parte del cuerpo (manos o pies) en el suelo, y otra, sostenida a través de un punto de anclaje (con soportes para los pies o empuñaduras), se aprovecha el peso del propio cuerpo para ejercitar todos los grupos musculares. Cuenta con múltiples ventajas para todo tu cuerpo, como riesgo muy reducido de padecer lesiones, aumento de la fuerza, pérdida de peso y ayuda contra la pérdida de masa osea. También es otra de mis clases preferidas y cuando puedo lo práctico en casa con mi propio trx.",
+        "video": "https://youtu.be/Scf3ZcxG1zc",
+        "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-trx.jpg.webp",
+        "price": 200,
+        "day": ["Lunes", "Miercoles", "Viernes"],
+        "hour": [
+            "12-14",
+            "16-18"
+          ],
+        "capacity": 15
+    },
+
+    {   "id": 8,
+        "name": "CardioBox",
+        "description": "Esta clase se basa en la adaptación de las artes marciales y el trabajo cardiovascular a una clase colectiva, coreografiada y con apoyo musical. Se centra en la repetición constante de los ejercicios, pudiendo practicar diversos movimientos procedentes del capoeira, boxeo o el kickboxing, como las patadas, los puñetazos, la jinga, etc. pero a diferencia de las artes marciales, no existirá ningún tipo de contacto. Se trata de un entrenamiento global en el que implicas diversos grupos musculares y existe una implicación cardiovascular importante.",
+        "video": "https://youtu.be/IPF6VPSRNCY",
+        "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-cardiobox.jpg.webp",
+        "price": 300,
+        "day": ["Martes", "jueves"],
+        "hour": [
+            "14-16",
+            "18-20"
+          ],
+        "capacity": 10
     }
+
+    
 ]

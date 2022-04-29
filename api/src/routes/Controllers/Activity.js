@@ -38,8 +38,10 @@ const activitysDbInfo = async () => {
 
 
 //agregar , getActivityInfo
+
+
 module.exports = {
-    activitysDbInfo
+    activitysDbInfo,
 }
 
 
