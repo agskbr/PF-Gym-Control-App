@@ -24,4 +24,50 @@ const getAllTrainers = () => {
   };
 };
 
+export function getActivity() {
+	return function (dispatch) {
+		axios.get(`${base_url}/activity`).then((activity) =>
+			dispatch({
+				type: 'GET_ACTIVITY',
+				payload: activity.data,
+			})
+		);
+	};
+}
+export function getActivityById(payload) {
+	return async function (dispatch) {
+		try {
+			const activity = await axios.get(
+				`${base_url}/activity` + payload
+			);
+			dispatch({
+				type: 'GET_ACTIVITY_DETAIL',
+				payload: activity.data,
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	};
+}
+
+
+export function filterByDay(payload) {
+	return async function (dispatch) {
+		dispatch({
+			type: 'FILTER_BY_DAY',
+			payload,
+		});
+	};
+}
+
+export function filterByHour(payload) {
+	return async function (dispatch) {
+		dispatch({
+			type: 'FILTER_BY_HOUR',
+			payload,
+		});
+	};
+}
+
+
 export { createActivity, getAllTrainers };
