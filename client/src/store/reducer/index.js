@@ -5,8 +5,11 @@ import {
 } from "../actions-type/index";
 
 const initialState = {
+  allActivities: [],
   activities: [],
   trainers: [],
+  detail: [],
+  days: [],
   isLoading: false,
 };
 
@@ -22,6 +25,37 @@ const rootReducer = (state = initialState, action) => {
 
     case RECEIVED_POST:
       return { ...state, isLoading: false };
+
+    case 'GET_ACTIVITY':
+      return { 
+        ...state,
+        activities: action.payload,
+        allActivities: action.payload,
+      };
+
+    case 'GET_ACTIVITY_DETAIL':
+      return {
+        ...state,
+        detail: action.payload,
+      };
+
+    case 'FILTER_BY_DAY': {
+        const allActiv = state.allActivities;
+        const filteredDay = 
+        action.payload === 'all'
+          ? allActiv
+          : allActiv.filter((activity) => activity.day.includes(action.payload));
+        return { ...state, activities: filteredDay };
+      }
+
+    case 'FILTER_BY_HOUR': {
+        const allActiv = state.allActivities;
+        const filteredHour =
+          action.payload === 'all'
+            ? allActiv
+            : allActiv.filter((activity) => activity.hour.includes(action.payload));
+        return { ...state, activities: filteredHour };
+      }
 
     default:
       return {
