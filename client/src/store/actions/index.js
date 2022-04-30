@@ -24,4 +24,16 @@ const getAllTrainers = () => {
   };
 };
 
-export { createActivity, getAllTrainers };
+export function getActivity() {
+	return function (dispatch) {
+		axios.get(`${base_url}/activity`).then((activity) =>
+			dispatch({
+				type: 'GET_ACTIVITY',
+				payload: activity.data,
+			})
+		);
+	};
+}
+
+
+export { createActivity, getAllTrainers, getActivity };

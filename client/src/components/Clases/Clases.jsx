@@ -1,4 +1,8 @@
 import style from "./clases.module.css";
+import Activities  from "../Activities/Activities";
+
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const Clases = () => {
@@ -20,7 +24,7 @@ return (
         </div>
         
         <div className={style.clases}>
-            
+          {/*   <Activities /> */}
         </div>
 
     </div>
