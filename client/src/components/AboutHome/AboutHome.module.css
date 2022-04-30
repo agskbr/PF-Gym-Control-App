@@ -49,4 +49,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
 }
+.aboutMapIcon{
+    color: #eb4e27;
+}
  

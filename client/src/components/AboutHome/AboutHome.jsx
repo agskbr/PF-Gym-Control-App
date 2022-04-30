@@ -4,8 +4,11 @@ import { getAllTrainers } from '../../store/actions';
 import s from './AboutHome.module.css';
 //import video from '../../assets/180419_Boxing_A1_04.mp4';
 import Trainers from '../Trainers/Trainers';
+import Map from '../Map/Map';
+import credentialsMap from '../../credentialsMap';
+import {ImLocation2} from 'react-icons/im'
 
-
+const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credentialsMap.mapsKey}`
 
 export default function AboutHome() {
   const dispatch = useDispatch();
@@ -50,7 +53,28 @@ export default function AboutHome() {
                         />)}
                     </div>
                 </section>
+                <section className={s.aboutSection}>
+                    <h1 className={s.aboutHeading}>Encontranos en...</h1>
+                    <p className={s.aboutParagraph}>
+                                <ImLocation2 className={s.aboutMapIcon}/>
+                                Gral. Las Heras 837, Monte Grande.
+                            </p>
+                    <div className={s.encontranosFlex}>
+                        <div className={s.encontranosMapa}>
+                            
+                        </div>
+                        <div className={s.encontranosTexto}>
+                            <Map
+                                googleMapURL={mapURL}
+                                containerElement={<div style={{height:'400px'}}/>}
+                                mapElement={<div style={{height:'60%'}}/>}
+                                loadingElement={<p>Cargando</p>}
+                            />
+                        </div>
+                    </div>
+                </section>
             </div>
+
         </div>
     </main>
   )
