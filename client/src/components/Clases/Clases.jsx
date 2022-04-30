@@ -4,6 +4,13 @@ import Activities  from "../Activities/Activities";
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import {
+	getActivity,
+	getActivityById,
+	filterByDay,
+    filterByHour
+} from "../../store/actions"
+
 
 const Clases = () => {
 
