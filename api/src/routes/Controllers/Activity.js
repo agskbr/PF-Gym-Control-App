@@ -1,6 +1,7 @@
 const {
     Activity,
-    User
+    User,
+    Trainer
 } = require('../../db');
 
 const activitysDbInfo = async () => {
@@ -10,6 +11,11 @@ const activitysDbInfo = async () => {
                 model: User,
                 attributes: ["name","lastName","dni"]
             },
+            include: {
+                model: Trainer,
+                attributes: ["name"]
+            }
+            
         })
     } catch (err) {
         console.log(err);
