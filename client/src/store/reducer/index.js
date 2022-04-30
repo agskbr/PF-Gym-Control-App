@@ -9,8 +9,8 @@ const initialState = {
   activities: [],
   trainers: [],
   detail: [],
-  days: [],
-  hour: [],
+  /* days: [],
+  hour: [], */
   isLoading: false,
 };
 
@@ -40,7 +40,7 @@ const rootReducer = (state = initialState, action) => {
         detail: action.payload,
       };
 
-    case 'GET_DAYS':
+    /* case 'GET_DAYS':
         return {
           ...state,
           days: action.payload,
@@ -50,7 +50,7 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             hour: action.payload,
           };
-
+ */
     case 'FILTER_BY_DAY': {
         const allActiv = state.allActivities;
         const filteredDay = 
