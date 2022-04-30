@@ -54,19 +54,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Activity, User, Trainer} = sequelize.models;
-
-const ActivityUser = sequelize.define('Activity_User', {
-  payState: {
-    type: DataTypes.ENUM("PAGO" , "NO-PAGO"),
-    defaultValue:"NO-PAGO"
-  },
-  payDay: {
-    type: DataTypes.DATE,
-    allowNull: true,
-  },
-},{ timestamps: false });
-
+const { Activity, User, Trainer, ActivityUser} = sequelize.models;
 
 Activity.belongsToMany(User, { through: ActivityUser });
 User.belongsToMany(Activity, { through: ActivityUser });
