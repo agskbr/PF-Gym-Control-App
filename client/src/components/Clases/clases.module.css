@@ -65,7 +65,7 @@
   
 }
 
-button{
+.elButton{
     font-size: 20px;
     background-color: #ff5e00;
     color: #ffffff;
@@ -76,7 +76,7 @@ button{
     width: 400px;
     border-radius: 15px;
 }
-button:hover{
+.elButton:hover{
     background-color: #ff0000;
 
 }
@@ -86,8 +86,4 @@ button:hover{
     background-color: #ff670280;
     height: 85vh;
     margin: 5rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(400px, 1fr));
-   
 }
