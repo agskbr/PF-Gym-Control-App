@@ -25,8 +25,8 @@ const hour = useSelector((state) => state.hour);
 
 useEffect(() => {
     dispatch(getActivity());
-    /* dispatch(getDays());
-    dispatch(getHour()); */
+    dispatch(getDays());
+    dispatch(getHour());
 }, [dispatch]);
 
 return (
@@ -38,7 +38,7 @@ return (
             <p>de 10 actividades</p>
             <p>con los mejores profesionales</p>
 
-            <button>Reserva tu clase ahora</button>
+            <button className={style.elButton}>Reserva tu clase ahora</buttonc>
         
             <div className={style.donWait}> 
             No esperes mas

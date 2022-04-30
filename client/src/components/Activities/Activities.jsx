@@ -16,7 +16,7 @@ const Activities = ({ allActivities }) => {
                 allActivities?.map((activity) => (
                     <Activity key={activity.id} {...activity} />
                 ))
-                
+
             }
 
 
