@@ -65,7 +65,7 @@
   
 }
 
-button{
+.elButton{
     font-size: 20px;
     background-color: #ff5e00;
     color: #ffffff;
@@ -76,7 +76,7 @@ button{
     width: 400px;
     border-radius: 15px;
 }
-button:hover{
+.elButton:hover{
     background-color: #ff0000;
 
 }
