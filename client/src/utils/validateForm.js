@@ -27,6 +27,9 @@ const validateForm = (inputs) => {
   if (!inputs.hour.length) {
     errors.hour = "Debe seleccionar al menos un horario";
   }
+  if (!inputs.trainers.length) {
+    errors.trainers = "Debe seleccionar instructor";
+  }
 
   return errors;
 };
