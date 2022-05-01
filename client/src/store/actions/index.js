@@ -12,15 +12,7 @@ const createActivity = (activity) => {
     }
   };
 };
-const editActivity = (activity, id) => {
-  return async () => {
-    try {
-      await axios.put(`${base_url}/activity/${id}`);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
+
 const getAllTrainers = () => {
   return async (dispatch) => {
     try {
@@ -69,7 +61,7 @@ export function getActivityById(payload) {
       const activity = await axios.get(`${base_url}/activity/` + payload);
       dispatch({
         type: "GET_ACTIVITY_DETAIL",
-        payload: activity.data[0],
+        payload: activity.data,
       });
     } catch (err) {
       console.log(err);
@@ -95,4 +87,4 @@ export function filterByHour(payload) {
   };
 }
 
-export { createActivity, getAllTrainers, editActivity };
+export { createActivity, getAllTrainers };
