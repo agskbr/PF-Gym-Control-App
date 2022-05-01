@@ -63,7 +63,7 @@ export function getActivityById(payload) {
 			);
 			dispatch({
 				type: 'GET_ACTIVITY_DETAIL',
-				payload: activity.data,
+				payload: activity.data[0],
 			});
 		} catch (err) {
 			console.log(err);
