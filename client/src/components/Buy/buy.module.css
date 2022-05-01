@@ -42,10 +42,12 @@
     margin-top: -1vw;
 }
 .description{
+    background-color: rgba(0, 0, 0, 0.815);
     grid-area: descr;
     font-size: .8vw;
     color: rgb(221, 221, 221);
     margin-top: -1vw;
+    align-self: center;
 }
 .day{
     grid-area: day;
