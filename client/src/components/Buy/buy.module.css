@@ -1,0 +1,28 @@
+.background{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../assets/buy_background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: grayscale(100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    background-color: rgba(0,0,0,0.5);
+    width: 40vw;
+    height: 80vh;
+    display: grid; 
+    grid-area:   "  name     "
+                 "  image    "
+                 "  descr    "
+                 "  day      "
+                 "  hour     "
+                 "  price    "
+                 "  capa     "
+    ;
+    
+}
