@@ -13,6 +13,16 @@ const createActivity = (activity) => {
   };
 };
 
+const editActivity = (activity, id) => {
+  return async () => {
+    try {
+      await axios.put(`${base_url}/activity/${id}`, activity);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 const getAllTrainers = () => {
   return async (dispatch) => {
     try {
@@ -87,4 +97,4 @@ export function filterByHour(payload) {
   };
 }
 
-export { createActivity, getAllTrainers };
+export { createActivity, getAllTrainers, editActivity };
