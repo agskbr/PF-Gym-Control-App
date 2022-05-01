@@ -1,44 +1,43 @@
-.dialogContainer {
-  border: none;
-  border-radius: 5px;
-  height: 80%;
-  width: 70%;
-  padding-bottom: 40px;
-}
-.headerDialog {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-.closeBtn {
-  border: 2px solid #fe4f22;
-  border-radius: 5px;
-  color: #fe4f22;
-  text-align: center;
-}
-.closeBtn:hover {
-  cursor: pointer;
-}
-.closeBtn:focus {
-  outline: none;
-}
-
-.contentDialog {
+.principalContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.contentDialog label {
-  font-size: 12px;
+.principalContainer h3 {
   font-family: sans-serif;
-  color: red;
-  text-align: start;
+  color: #fe4f22;
 }
 
-.textAreaContainer {
-  text-align: start;
+.inputsContainer {
+  background-color: white;
+  height: 75vh;
+  overflow-y: scroll;
+  box-shadow: 8px 8px 20px grey;
+  width: 80%;
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
+  align-items: center;
+  border-radius: 5px;
+  padding: 20px;
+}
+.textAreaContainer {
+  display: flex;
+  flex-direction: column;
+}
+.textAreaContainer span {
+  font-size: 14px;
+  padding: 10px;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: grey;
+  text-align: start;
+}
+.textAreaContainer label {
+  font-family: sans-serif;
+  font-size: 12px;
+  color: red;
+  text-align: start;
 }
 
 .customTextArea {
@@ -57,7 +56,7 @@
   outline: 1px solid #fe4f22;
 }
 
-.createBtn {
+.editBtn {
   border: none;
   border-radius: 5px;
   background-color: #fe4f22;
@@ -67,12 +66,9 @@
   margin-top: 20px;
 }
 
-.createBtn:hover {
+.editBtn:hover {
   cursor: pointer;
 }
-.createBtn:focus {
+.editBtn:focus {
   outline: none;
 }
-
-
-

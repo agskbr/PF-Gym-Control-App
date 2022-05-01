@@ -59,11 +59,11 @@ export function getActivityById(payload) {
 	return async function (dispatch) {
 		try {
 			const activity = await axios.get(
-				`${base_url}/activity` + payload
+				`${base_url}/activity/` + payload
 			);
 			dispatch({
 				type: 'GET_ACTIVITY_DETAIL',
-				payload: activity.data,
+				payload: activity.data[0],
 			});
 		} catch (err) {
 			console.log(err);
