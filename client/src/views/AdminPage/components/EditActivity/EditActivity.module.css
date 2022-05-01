@@ -72,3 +72,13 @@
 .editBtn:focus {
   outline: none;
 }
+
+.disabledEditBtn {
+  background-color: whitesmoke;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: black;
+  font-family: sans-serif;
+  margin-top: 20px;
+}

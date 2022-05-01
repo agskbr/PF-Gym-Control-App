@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getActivityById } from "../../../../store/actions/index.js";
+import {
+  editActivity,
+  getActivityById,
+} from "../../../../store/actions/index.js";
 import { validateForm } from "../../../../utils/validateForm.js";
 import CustomInput from "../CustomInput/CustomInput.jsx";
 import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
 import style from "./EditActivity.module.css";
+import swal from "sweetalert";
 
 export default function EditActivity() {
   const { trainers, detail } = useSelector((state) => state);
@@ -82,7 +86,7 @@ export default function EditActivity() {
         name: activityToEdit.name,
         video: activityToEdit.video,
         description: activityToEdit.description,
-        price: activityToEdit.description,
+        price: activityToEdit.price,
       });
     }
   }, [activityToEdit]);
@@ -185,10 +189,34 @@ export default function EditActivity() {
           />
         </div>
         <button
+          disabled={Object.values(errors).length}
           onClick={() => {
             setErrors(validateForm(activity));
+            if (Object.values(errors).length === 0) {
+              dispatch(editActivity(activity, id));
+              swal({
+                closeOnEsc: false,
+                closeOnClickOutside: false,
+                buttons: "Aceptar",
+                icon: "success",
+                title: "Actividad editada correctamente",
+              });
+              setErrors({
+                image: "",
+                video: "",
+                name: "",
+                description: "",
+                price: "",
+                capacity: "",
+                day: "",
+                hour: "",
+                trainers: "",
+              });
+            }
           }}
-          className={style.editBtn}
+          className={
+            Object.values(errors).length ? style.disabledEditBtn : style.editBtn
+          }
         >
           Editar actividad
         </button>
