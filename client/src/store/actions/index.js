@@ -12,7 +12,15 @@ const createActivity = (activity) => {
     }
   };
 };
-
+const editActivity = (activity, id) => {
+  return async () => {
+    try {
+      await axios.put(`${base_url}/activity/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 const getAllTrainers = () => {
   return async (dispatch) => {
     try {
@@ -25,14 +33,14 @@ const getAllTrainers = () => {
 };
 
 export function getActivity() {
-	return function (dispatch) {
-		axios.get(`${base_url}/activity`).then((activity) =>
-			dispatch({
-				type: 'GET_ACTIVITY',
-				payload: activity.data,
-			})
-		);
-	};
+  return function (dispatch) {
+    axios.get(`${base_url}/activity`).then((activity) =>
+      dispatch({
+        type: "GET_ACTIVITY",
+        payload: activity.data,
+      })
+    );
+  };
 }
 
 /* export function getDays() {
@@ -56,39 +64,35 @@ export function getHour() {
 } */
 
 export function getActivityById(payload) {
-	return async function (dispatch) {
-		try {
-			const activity = await axios.get(
-				`${base_url}/activity/` + payload
-			);
-			dispatch({
-				type: 'GET_ACTIVITY_DETAIL',
-				payload: activity.data[0],
-			});
-		} catch (err) {
-			console.log(err);
-		}
-	};
+  return async function (dispatch) {
+    try {
+      const activity = await axios.get(`${base_url}/activity/` + payload);
+      dispatch({
+        type: "GET_ACTIVITY_DETAIL",
+        payload: activity.data[0],
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 }
 
-
 export function filterByDay(payload) {
-	return async function (dispatch) {
-		dispatch({
-			type: 'FILTER_BY_DAY',
-			payload,
-		});
-	};
+  return async function (dispatch) {
+    dispatch({
+      type: "FILTER_BY_DAY",
+      payload,
+    });
+  };
 }
 
 export function filterByHour(payload) {
-	return async function (dispatch) {
-		dispatch({
-			type: 'FILTER_BY_HOUR',
-			payload,
-		});
-	};
+  return async function (dispatch) {
+    dispatch({
+      type: "FILTER_BY_HOUR",
+      payload,
+    });
+  };
 }
 
-
-export { createActivity, getAllTrainers };
+export { createActivity, getAllTrainers, editActivity };
