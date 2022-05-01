@@ -4,9 +4,12 @@ import AdminPage from "./views/AdminPage/AdminPage";
 import Home from "./components/Home/home";
 import AboutHome from "./components/AboutHome/AboutHome";
 import Clases from "./components/Clases/Clases";
+import Buy from "./components/Buy/Buy";
 
 
 function App() {
+
+
   return (
     <div className="App">
       {/* <Nav /> */}
@@ -15,6 +18,7 @@ function App() {
         <Route path="/adminDashboard" element={<AdminPage />} />
         <Route path="/about" element={<AboutHome />} />
         <Route path="/clases" element={<Clases />} />
+        <Route path="/clases/:id" element={<Buy />} />
       </Routes>
     </div>
   );
