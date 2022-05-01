@@ -25,7 +25,7 @@ const { loaderUsers , loaderActivity, loaderTrainer} = require('./src/loader/loa
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(process.env.PORT, async () => {
+  server.listen(process.env.PORT || 3001, async () => {
 
     await loaderUsers();
     await loaderActivity();
