@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import style from "./AdminCardView.module.css";
+import { Link } from "react-router-dom";
+import { FaArrowCircleUp, FaArrowCircleDown } from "react-icons/fa";
 
 export default function AdminCardView() {
+  const [isAscendentOrder, setIsAscendentOrder] = useState({
+    name: false,
+    price: false,
+  });
+  const { activities } = useSelector((state) => state);
   return (
     <div className={style.principalContainer}>
       <div className={style.titleAndAddBtn}>
@@ -18,9 +26,59 @@ export default function AdminCardView() {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Name</th>
+              <th>
+                <div className={style.headWithFilterBtn}>
+                  <span>Name</span>
+                  {isAscendentOrder.name ? (
+                    <FaArrowCircleDown
+                      className={style.iconBtn}
+                      onClick={() =>
+                        setIsAscendentOrder({
+                          ...isAscendentOrder,
+                          name: !isAscendentOrder.name,
+                        })
+                      }
+                    />
+                  ) : (
+                    <FaArrowCircleUp
+                      className={style.iconBtn}
+                      onClick={() =>
+                        setIsAscendentOrder({
+                          ...isAscendentOrder,
+                          name: !isAscendentOrder.name,
+                        })
+                      }
+                    />
+                  )}
+                </div>
+              </th>
               <th className={style.thDescription}>Description</th>
-              <th>Price</th>
+              <th>
+                <div className={style.headWithFilterBtn}>
+                  <span>Price</span>
+                  {isAscendentOrder.price ? (
+                    <FaArrowCircleDown
+                      className={style.iconBtn}
+                      onClick={() =>
+                        setIsAscendentOrder({
+                          ...isAscendentOrder,
+                          price: !isAscendentOrder.price,
+                        })
+                      }
+                    />
+                  ) : (
+                    <FaArrowCircleUp
+                      className={style.iconBtn}
+                      onClick={() =>
+                        setIsAscendentOrder({
+                          ...isAscendentOrder,
+                          price: !isAscendentOrder.price,
+                        })
+                      }
+                    />
+                  )}
+                </div>
+              </th>
               <th>Video</th>
               <th>Image</th>
               <th>Days</th>
@@ -28,55 +86,55 @@ export default function AdminCardView() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>2</td>
-              <td>Zumba</td>
-              <td className={style.tdDescription}>
-                El éxito de estas clases reside en que no es necesario saber
-                bailar para poder participar. A través de la combinación de
-                pasos sencillos y generalmente relacionados con los ritmos
-                latinos y el aerobic, se crean coreografías fáciles y divertidas
-                con las que conseguimos quemar calorías pasando un rato
-                divertido. En el caso del Zumba, se incluyen ejercicios de
-                fitness durante las coreografías, permitiendo que las clases
-                sean un poco más intensas. Ayuda a educir el peso, mejorar el
-                equilibrio y reducir el estrés.
-              </td>
-              <td>200</td>
-              <td className={style.tdImageAndVideo}>
-                "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-zumba.jpg.webp",
-              </td>
-              <td className={style.tdImageAndVideo}>
-                "https://youtu.be/vYXRZNVVFVA"
-              </td>
-              <td>
-                <div className={style.listOfItems}>
-                  <ul>
-                    <li>Lunes</li>
-                    <li>Miercoles</li>
-                    <li>Viernes</li>
+            {activities.map((activity) => (
+              <tr key={activity.id}>
+                <td key={Math.random()}>{activity.id}</td>
+                <td key={Math.random()}>{activity.name}</td>
+                <td key={Math.random()} className={style.tdDescription}>
+                  {activity.description}
+                </td>
+                <td key={Math.random()}>{activity.price}</td>
+                <td key={Math.random()} className={style.tdImageAndVideo}>
+                  {activity.image}
+                </td>
+                <td key={Math.random()} className={style.tdImageAndVideo}>
+                  {activity.video}
+                </td>
+                <td key={Math.random()}>
+                  <ul key={activity.id}>
+                    {activity.day.map((d) => (
+                      <li key={Math.random()}>{d}</li>
+                    ))}
                   </ul>
-                </div>
-              </td>
-              <td>
-                <div className={style.listOfItems}>
-                  <ul>
-                    <li>14-16</li>
-                    <li>18-20</li>
+                </td>
+                <td key={Math.random()}>
+                  <ul key={Math.random()}>
+                    {activity.hour.map((d) => (
+                      <li key={Math.random()}>{d}</li>
+                    ))}
                   </ul>
-                </div>
-              </td>
-              <td>
-                <button
-                  onClick={() =>
-                    document.getElementById("editDialog").showModal()
-                  }
-                  className={style.editBtn}
-                >
-                  Edit
-                </button>
-              </td>
-            </tr>{" "}
+                </td>
+                <td key={Math.random()}>
+                  <Link
+                    key={Math.random()}
+                    to={`/adminDashboard/activity/edit/${activity.id}`}
+                  >
+                    <button key={Math.random()} className={style.editBtn}>
+                      Editar
+                    </button>
+                  </Link>
+                </td>
+                <td key={Math.random()}>
+                  <button
+                    onClick={() => {}}
+                    key={Math.random()}
+                    className={style.deleteBtn}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

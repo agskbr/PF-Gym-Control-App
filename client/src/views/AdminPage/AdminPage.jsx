@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getAllTrainers } from "../../store/actions";
+import { getActivity, getAllTrainers } from "../../store/actions";
 import style from "./AdminPage.module.css";
 import AdminCardView from "./components/AdminCardView/AdminCardView";
 import CustomModal from "./components/CustomModal/CustomModal";
@@ -11,8 +11,8 @@ export default function AdminPage() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllTrainers());
+    dispatch(getActivity());
   }, [dispatch]);
-
   return (
     <div className={style.principalContainer}>
       <SideBar />
