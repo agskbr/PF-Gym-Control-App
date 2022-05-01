@@ -55,16 +55,19 @@ export default function Buy() {
                 <div className={style.hour}>Horarios:{` ${hour} `}</div>
                 <div className={style.price}>Precio:{` $${price} `}</div>
                 <div className={style.capacity}>Capacidad:{` ${capacity} lugares disponibles `}</div>
-                {
-                    trainers?.map((trainer) => {
-                        return (
-                            <div className={style.trainers}>
-                                <div className={style.trainer}> {` ${trainer.name} `}</div>
-                            </div>
-                        )
-                    } 
-                    )
-                }
+                <div className={style.trainers}><p>{`Coachs: `}</p>
+
+                        {
+                            trainers?.map((trainer) => {
+                                return (
+                                        <div className={style.trainer}>{`${trainer.name}`}</div>
+                                )
+                            } 
+                            )
+                        }
+
+
+                </div>
 
                 <div className={style.botonera}>
                     <button className={style.elbo}>Buy plan</button>
