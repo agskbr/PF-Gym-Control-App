@@ -8,9 +8,11 @@ export default function CustomInput({
   type,
   labelError,
   min,
+  titleInput,
 }) {
   return (
     <div className={style.inputContainer}>
+      <span>{titleInput}</span>
       <input
         onChange={onChange}
         className={style.customInput}

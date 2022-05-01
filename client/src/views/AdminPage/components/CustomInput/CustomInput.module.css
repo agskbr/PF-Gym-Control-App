@@ -1,7 +1,7 @@
 .customInput {
   border: none;
   background-color: whitesmoke;
-  width: 180px;
+  width: 280px;
   margin-top: 10px;
   padding: 10px;
   font-family: sans-serif;
@@ -12,9 +12,9 @@
 }
 
 .inputContainer {
-  width: 200px;
   justify-content: space-around;
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
 }
 .inputContainer label {
@@ -22,6 +22,14 @@
   text-align: start;
   font-family: sans-serif;
   font-size: 12px;
+  
 }
 
+.inputContainer span {
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: grey;
+  padding: 10px;
+}
 
