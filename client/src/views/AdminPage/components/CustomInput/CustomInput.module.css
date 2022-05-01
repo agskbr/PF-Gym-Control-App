@@ -1,0 +1,35 @@
+.customInput {
+  border: none;
+  background-color: whitesmoke;
+  width: 280px;
+  margin-top: 10px;
+  padding: 10px;
+  font-family: sans-serif;
+  border-radius: 5px;
+}
+.customInput:focus {
+  outline: 1px solid #fe4f22;
+}
+
+.inputContainer {
+  justify-content: space-around;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.inputContainer label {
+  color: red;
+  text-align: start;
+  font-family: sans-serif;
+  font-size: 12px;
+  
+}
+
+.inputContainer span {
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: grey;
+  padding: 10px;
+}
+

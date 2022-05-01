@@ -1,6 +1,7 @@
 .dialogContainer {
   border: none;
   border-radius: 5px;
+  height: 80%;
   width: 70%;
   padding-bottom: 40px;
 }
@@ -27,18 +28,17 @@
   flex-direction: column;
   align-items: center;
 }
-
-.customInput {
-  border: none;
-  background-color: whitesmoke;
-  width: 180px;
-  margin-top: 10px;
-  padding: 10px;
+.contentDialog label {
+  font-size: 12px;
   font-family: sans-serif;
-  border-radius: 5px;
+  color: red;
+  text-align: start;
 }
-.customInput:focus {
-  outline: 1px solid #fe4f22;
+
+.textAreaContainer {
+  text-align: start;
+  display: flex;
+  flex-direction: column;
 }
 
 .customTextArea {
@@ -50,7 +50,7 @@
   margin-top: 10px;
   height: 80px;
   padding: 10px;
-  width: 180px;
+  width: 280px;
 }
 
 .customTextArea:focus {
@@ -73,3 +73,6 @@
 .createBtn:focus {
   outline: none;
 }
+
+
+

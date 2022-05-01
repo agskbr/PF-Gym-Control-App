@@ -1,45 +1,24 @@
-import React from 'react'; 
+import React, { useEffect } from 'react'; 
+import {useDispatch, useSelector} from 'react-redux';
+import { getAllTrainers } from '../../store/actions';
 import s from './AboutHome.module.css';
 //import video from '../../assets/180419_Boxing_A1_04.mp4';
-import t1 from '../../assets/trainer1.jpg';
-import t2 from '../../assets/trainer2.jpg';
-import t3 from '../../assets/trainer3.jpg';
-import t4 from '../../assets/trainer4.jpg';
 import Trainers from '../Trainers/Trainers';
+import Map from '../Map/Map';
+import credentialsMap from '../../credentialsMap';
+import {ImLocation2} from 'react-icons/im'
 
-
+const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credentialsMap.mapsKey}`
 
 export default function AboutHome() {
-    const entrenadores = [
-        {
-            id: 1,
-            nombre: "Carolina Fernandez",
-            img: t1,
-            especialidad: "Yoga",
-            experiencia: 6
-        },
-        {
-            id:2,
-            nombre: "Valeria Odon",
-            img: t2,
-            especialidad: "Personal Trainer",
-            experiencia: 4
-        },
-        {
-            id:3,
-            nombre: "Carlos Alarcon",
-            img: t3,
-            especialidad: "Personal Trainer",
-            experiencia: 8
-        },
-        {
-            id:4,
-            nombre: "Gaston Garcia",
-            img: t4,
-            especialidad: "Box",
-            experiencia: 5
-        }
-    ]
+  const dispatch = useDispatch();
+  const entrenadores = useSelector((state)=> state.trainers)
+  console.log(entrenadores)
+
+  useEffect(()=>{
+      dispatch(getAllTrainers())
+  },[dispatch])
+
   return (
     <main>
         <div className={s.aboutPage}>
@@ -67,14 +46,35 @@ export default function AboutHome() {
                     <div className={s.flexy}>
                         {entrenadores.map(e =>
                         <Trainers key={e.id}
-                            nombre={e.nombre}
-                            img={e.img}
-                            especialidad={e.especialidad}
-                            experiencia={e.experiencia}
+                            name={e.name}
+                            image={e.image}
+                            specialty={e.specialty}
+                            experience={e.experience}
                         />)}
                     </div>
                 </section>
+                <section className={s.aboutSection}>
+                    <h1 className={s.aboutHeading}>Encontranos en...</h1>
+                    <p className={s.aboutParagraph}>
+                                <ImLocation2 className={s.aboutMapIcon}/>
+                                Gral. Las Heras 837, Monte Grande.
+                            </p>
+                    <div className={s.encontranosFlex}>
+                        <div className={s.encontranosMapa}>
+                            
+                        </div>
+                        <div className={s.encontranosTexto}>
+                            <Map
+                                googleMapURL={mapURL}
+                                containerElement={<div style={{height:'400px'}}/>}
+                                mapElement={<div style={{height:'60%'}}/>}
+                                loadingElement={<p>Cargando</p>}
+                            />
+                        </div>
+                    </div>
+                </section>
             </div>
+
         </div>
     </main>
   )

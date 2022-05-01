@@ -1,0 +1,9 @@
+.cards{
+    z-index: 0;
+    grid-area: activities;
+    display: grid;
+    margin: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(400px, 1fr));
+}
+
