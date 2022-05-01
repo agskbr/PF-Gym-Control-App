@@ -29,7 +29,7 @@
         "video": "https://youtu.be/5IEL9iMVCxM",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-gap.jpg.webp",
         "price": 300,
-        "day": ["Martes", "jueves"],
+        "day": ["Martes", "Jueves"],
         "hour": [
             "14-16",
             "18-20"
@@ -95,7 +95,7 @@
         "video": "https://youtu.be/Rxd9pDZqZcU",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-yoga.jpg.webp",
         "price": 200,
-        "day": ["Martes", "jueves"],
+        "day": ["Martes", "Jueves"],
         "hour": [
             "14-16",
             "18-20"
@@ -161,7 +161,7 @@
         "video": "https://youtu.be/IPF6VPSRNCY",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-cardiobox.jpg.webp",
         "price": 300,
-        "day": ["Martes", "jueves"],
+        "day": ["Martes", "Jueves"],
         "hour": [
             "14-16",
             "18-20"
