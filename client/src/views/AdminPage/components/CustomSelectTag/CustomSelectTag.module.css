@@ -1,0 +1,52 @@
+.customSelectTag {
+  background-color: whitesmoke;
+  border: none;
+  width: 200px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  color: black;
+}
+.customSelectTag:focus {
+  outline: 1px solid #fe4f22;
+}
+.customSelectTag option {
+  font-family: sans-serif;
+  color: grey;
+}
+.selectedItemsContainer {
+  margin-top: 10px;
+  width: 100%;
+  height: 80px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.selectedItemsContainer li {
+  list-style: square;
+  color: #fe4f22;
+}
+
+.selectTagsContainer {
+  margin-top: 15px;
+  width: 200px;
+}
+.selectTagsContainer label {
+  color: red;
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+.itemContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.itemContainer li {
+  width: 90px;
+  text-align: start;
+}
+
+.deleteItemIcon:hover {
+  cursor: pointer;
+}
