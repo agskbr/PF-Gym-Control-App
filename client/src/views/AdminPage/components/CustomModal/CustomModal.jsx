@@ -1,13 +1,25 @@
 import React, { useState } from "react";
-import CustomInput from "../CustomInput/CustomInput.jsx";
 import { validateForm } from "../../../../utils/validateForm";
 import style from "./CustomModal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { createActivity } from "../../../../store/actions/index";
-
+import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
+import CustomInput from "../CustomInput/CustomInput.jsx";
+import Swal from "sweetalert";
 export default function CustomModal() {
   const dispatch = useDispatch();
   const { trainers } = useSelector((state) => state);
+
+  const daysOpt = [
+    "Lunes",
+    "Martes",
+    "Miércoles",
+    "Jueves",
+    "Viernes",
+    "Sábado",
+  ];
+  const hoursOpt = ["8-10", "10-12", "12-14", "14-16", "16-18", "18-20"];
+  const trainersOpt = trainers.map((trainer) => trainer.name);
 
   const [activity, setActivity] = useState({
     image: "",
@@ -48,11 +60,11 @@ export default function CustomModal() {
     });
   };
   return (
-    <dialog className={style.dialogContainer} id="dialogId">
+    <dialog className={style.dialogContainer} id="createDialog">
       <div className={style.headerDialog}>
         <button
           onClick={() => {
-            document.getElementById("dialogId").close();
+            document.getElementById("createDialog").close();
             setActivity({
               image: "",
               video: "",
@@ -137,68 +149,39 @@ export default function CustomModal() {
           labelError={errors.capacity}
         />
         <div className={style.selectTagsContainer}>
-          <select
-            onChange={handlerChangeSelectTag}
-            className={style.customSelectTag}
+          <CustomSelectTag
+            errorLabel={errors.day}
+            firstOpt="Seleccioná un dia"
+            handlerChangeSelectTag={handlerChangeSelectTag}
             name="day"
-          >
-            <option hidden>Selecciona el día</option>
-            <option value="Lunes">Lunes</option>
-            <option value="Martes">Martes</option>
-            <option value="Miercoles">Miercoles</option>
-            <option value="Jueves">Jueves</option>
-            <option value="Viernes">Viernes</option>
-            <option value="Sábado">Sábado</option>
-          </select>
-          <div className={style.selectedItemsContainer}>
-            <ul>
-              {activity.day.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <label htmlFor="day">{errors.day}</label>
-          <select
-            onChange={handlerChangeSelectTag}
-            className={style.customSelectTag}
+            options={daysOpt}
+            visualizeItems={activity.day}
+            setActivity={setActivity}
+            setErrors={setErrors}
+            activity={activity}
+          />
+          <CustomSelectTag
+            errorLabel={errors.hour}
+            firstOpt="Seleccioná un horario"
+            handlerChangeSelectTag={handlerChangeSelectTag}
             name="hour"
-          >
-            <option hidden>Selecciona horario</option>
-            <option value="8-10">08 a 10 AM</option>
-            <option value="10-12">10 a 12 AM</option>
-            <option value="12-14">12 a 14 PM</option>
-            <option value="14-16">14 a 16 PM</option>
-            <option value="16-18">16 a 18 PM</option>
-            <option value="18-20">18 a 20 PM</option>
-          </select>
-          <div className={style.selectedItemsContainer}>
-            <ul>
-              {activity.hour.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <label htmlFor="hour">{errors.hour}</label>
-          <select
-            onChange={handlerChangeSelectTag}
-            className={style.customSelectTag}
+            options={hoursOpt}
+            visualizeItems={activity.hour}
+            setActivity={setActivity}
+            setErrors={setErrors}
+            activity={activity}
+          />
+          <CustomSelectTag
+            errorLabel={errors.trainers}
+            firstOpt="Seleccioná un instructor"
+            handlerChangeSelectTag={handlerChangeSelectTag}
             name="trainers"
-          >
-            <option hidden>Selecciona entrenador</option>
-            {trainers.map((trainer) => (
-              <option key={trainer.id} value={trainer.name}>
-                {trainer.name}
-              </option>
-            ))}
-          </select>
-          <div className={style.selectedItemsContainer}>
-            <ul>
-              {activity.trainers.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <label htmlFor="trainers">{errors.trainers}</label>
+            options={trainersOpt}
+            visualizeItems={activity.trainers}
+            setActivity={setActivity}
+            setErrors={setErrors}
+            activity={activity}
+          />
         </div>
       </div>
       <button
@@ -212,13 +195,15 @@ export default function CustomModal() {
                 capacity: parseInt(activity.capacity),
               })
             );
-            document.getElementById("dialogId").close();
-            console.log({
-              ...activity,
-              price: parseInt(activity.price),
-              trainers: [],
-              capacity: parseInt(activity.capacity),
+
+            Swal({
+              title: "Actividad creada correctamente",
+              buttons: "Aceptar",
+              icon: "success",
             });
+
+            document.getElementById("createDialog").close();
+
             setActivity({
               image: "",
               video: "",
@@ -234,7 +219,7 @@ export default function CustomModal() {
         }}
         className={style.createBtn}
       >
-        Crear
+        Crear actividad
       </button>
     </dialog>
   );

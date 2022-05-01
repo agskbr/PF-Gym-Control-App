@@ -36,8 +36,9 @@
 }
 
 .textAreaContainer {
-  width: 200px;
   text-align: start;
+  display: flex;
+  flex-direction: column;
 }
 
 .customTextArea {
@@ -49,29 +50,13 @@
   margin-top: 10px;
   height: 80px;
   padding: 10px;
-  width: 180px;
+  width: 280px;
 }
 
 .customTextArea:focus {
   outline: 1px solid #fe4f22;
 }
 
-.customSelectTag {
-  background-color: whitesmoke;
-  border: none;
-  width: 200px;
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  color: black;
-}
-.customSelectTag:focus {
-  outline: 1px solid #fe4f22;
-}
-.customSelectTag option {
-  font-family: sans-serif;
-  color: grey;
-}
 .createBtn {
   border: none;
   border-radius: 5px;
@@ -89,24 +74,5 @@
   outline: none;
 }
 
-.selectedItemsContainer {
-  margin-top: 10px;
-  width: 100%;
-  height: 80px;
-  overflow: scroll;
-  overflow-x: hidden;
-}
-.selectedItemsContainer li {
-  list-style: square;
-  color: #fe4f22;
-}
 
-.selectTagsContainer {
-  text-align: start;
-  width: 200px;
-}
-.selectTagsContainer label {
-  color: red;
-  font-family: sans-serif;
-  font-size: 12px;
-}
+
