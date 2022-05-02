@@ -3,22 +3,6 @@ import React from 'react'
 import { useState, useEffect} from 'react';
 import classNames from 'classnames'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export default function Nav() {
 
     let [headerClasses, setHeaderClasses] = useState([]);
@@ -54,7 +38,6 @@ export default function Nav() {
     return (
         <header className={headerClasses}>
         <a href="#">
-            {/* <img className="logo" src="img/omnifood-logo.png" alt="Omnifood logo" /> */}
             <p>LOGO</p>
         </a>
         
