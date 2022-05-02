@@ -1,7 +1,7 @@
 import axios from "axios";
 import { GET_ALL_TRAINERS } from "../actions-type/index";
 
-const base_url = "http://localhost:3001";
+const base_url = "https://pfgymapp-2.herokuapp.com";
 
 const createActivity = (activity) => {
   return async () => {
@@ -79,22 +79,45 @@ export function getActivityById(payload) {
   };
 }
 
-export function filterByDay(payload) {
-  return async function (dispatch) {
-    dispatch({
-      type: "FILTER_BY_DAY",
-      payload,
-    });
-  };
+export function searchByName(name) {
+  return function(dispatch) {
+      dispatch({
+          type: 'SEARCH_BY_NAME',
+          payload: name
+      })
+  }
 }
 
-export function filterByHour(payload) {
-  return async function (dispatch) {
-    dispatch({
-      type: "FILTER_BY_HOUR",
-      payload,
-    });
-  };
+
+export function filterByDay(filterBy) {
+  return function(dispatch) {
+      console.log('action')
+      dispatch({
+          type: 'FILTER_BY_DAY', 
+          payload: filterBy,
+      })
+  }
+}
+// 
+export function orderActivities(orderBy) {
+return function(dispatch) {
+  console.log('action')
+  dispatch({
+    type: 'ORDER_ACTIVITIES',
+    payload: orderBy
+  }) 
+
+}
+}
+
+export function changePage(page) {
+	console.log('action')
+	return function (dispatch) {
+		dispatch({
+			type: 'CHANGE_PAGE',
+			payload: page,
+		})
+	}
 }
 
 export { createActivity, getAllTrainers, editActivity };

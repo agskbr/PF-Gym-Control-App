@@ -7,6 +7,7 @@ import {
 const initialState = {
   allActivities: [],
   activities: [],
+  page: [],
   trainers: [],
   detail: [],
   /* days: [],
@@ -32,6 +33,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         activities: action.payload,
         allActivities: action.payload,
+        page: action.payload.slice(0,3)
       };
 
     case 'GET_ACTIVITY_DETAIL':
@@ -40,36 +42,87 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         detail: action.payload,
       };
-
-
-    /* case 'GET_DAYS':
+  
+      case 'GET_ACTIVITY_DETAIL':
+        console.log(action.payload);
         return {
           ...state,
-          days: action.payload,
+          detail: action.payload,
         };
-    case 'GET_HOUR':
+
+      case 'SEARCH_BY_NAME':
+          return {
+            ...state, 
+            activities: state.allActivities.filter(act => act.name === action.payload.toLowerCase()),
+            page: state.allActivities.filter(act => act.name.toLowerCase() === action.payload.toLowerCase()).slice(0,3)
+          }
+      
+      case 'CHANGE_PAGE': 
           return {
             ...state,
-            hour: action.payload,
-          };
- */
-    case 'FILTER_BY_DAY': {
-        const allActiv = state.allActivities;
-        const filteredDay = 
-        action.payload === 'all'
-          ? allActiv
-          : allActiv.filter((activity) => activity.days.includes(action.payload));
-        return { ...state, activities: filteredDay };
-      }
+            page: state.activities.slice((action.payload - 1) * 3, action.payload * 3)
+          }
 
-    case 'FILTER_BY_HOUR': {
-        const allActiv = state.allActivities;
-        const filteredHour =
-          action.payload === 'all'
-            ? allActiv
-            : allActiv.filter((activity) => activity.hour.includes(action.payload));
-        return { ...state, activities: filteredHour };
-      }
+      case 'FILTER_BY_DAY':
+          if (action.payload === 'defaultFilter') {
+            return {
+              ...state, 
+              activities: state.allActivities,
+              page: state.allActivities.slice(0,3)
+            }
+          }
+         
+          return {
+              ...state,
+              activities: state.allActivities.filter(act => act.day.includes(action.payload[0].toUpperCase() + action.payload.slice(1))),
+              page: state.allActivities.filter(act => act.day.includes(action.payload[0].toUpperCase() + action.payload.slice(1))).slice(0,3)
+          }
+      
+      case 'ORDER_ACTIVITIES':
+        let orderedActivities = [...state.activities]
+
+        if (action.payload === 'defaultOrder') {
+          orderedActivities = [...state.activities]
+        }
+
+        if (action.payload === 'precio') {
+            orderedActivities = orderedActivities.sort( (a, b) => {
+              if ( a.price < b.price ){
+                  return -1;
+                }
+                if ( a.price > b.price ){
+                  return 1;
+                }
+                return 0;
+              }
+          )
+          }
+
+          if (action.payload === 'A-Z') {
+            orderedActivities = orderedActivities.sort( (a, b) => {
+              if ( a.name < b.name ){
+                  return -1;
+                }
+                if ( a.name > b.name ){
+                  return 1;
+                }
+                return 0;
+              }
+          )
+          }
+
+          console.log(state.activities)
+
+
+          return {
+            ...state, 
+            activities: orderedActivities,
+            page: orderedActivities.slice(0,3)
+          }
+      
+            
+          
+  
 
     default:
       return {
