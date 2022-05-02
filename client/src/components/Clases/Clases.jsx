@@ -4,7 +4,7 @@ import Search from "../Search/search";
 import Paginado from "../Paginado/paginado"
 import Filtrado from "../Filtrado/filtrado"
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -16,9 +16,6 @@ const Clases = () => {
 
 const dispatch = useDispatch();
 const allActivities = useSelector((state) => state.page);
-
-const days = useSelector((state) => state.days);
-const hour = useSelector((state) => state.hour);
 
 
 useEffect(() => {
