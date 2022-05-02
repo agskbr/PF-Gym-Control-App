@@ -1,31 +1,58 @@
 import './style.css'
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect} from 'react';
 import classNames from 'classnames'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default function Nav() {
 
-    const [headerClass, setHeaderClass] = useState('header')
-    const [mobileNav, setMobileNav] = useState(false)
+    let [headerClasses, setHeaderClasses] = useState([]);
+    let [scrollPosition, setScrollPosition] = useState(0);
 
-    function handleOpen(event) {
-        event.preventDefault()
-        if (headerClass === 'header') setHeaderClass('header nav-open')
-        else setHeaderClass('header')
+    useState(() => {
+        setHeaderClasses(classNames("header"));
+    }, []);
 
-        setMobileNav(!mobileNav)
-    }
+    const handleScroll = () => {
+        setScrollPosition(scrollPosition = window.scrollY);
+        
 
-    function handleClick(event) {
-        event.preventDefault()
-        if (headerClass === 'header') setHeaderClass('header nav-open')
-        else setHeaderClass('header')
+        if (scrollPosition < 10) {
+            return setHeaderClasses(headerClasses = ["header"]);
+            
+        } 
+        if (scrollPosition > 20) {
+            return setHeaderClasses(headerClasses = ["headerScrolled"]);
+        }
+    };
 
-        setMobileNav(!mobileNav)
-    }
+    
+    useEffect(() => {
+            
+            
+            window.addEventListener('scroll', handleScroll);
+            return () => window.removeEventListener('scroll', handleScroll);
+        }, []);
+
+    
 
     return (
-        <header className={headerClass}>
+        <header className={headerClasses}>
         <a href="#">
             {/* <img className="logo" src="img/omnifood-logo.png" alt="Omnifood logo" /> */}
             <p>LOGO</p>
@@ -33,15 +60,15 @@ export default function Nav() {
         
         <nav className="main-nav">
             <ul className="main-nav-list">
-                <li><a onClick={handleClick} className="main-nav-link" href="#section-how">Sobre Nosotros</a></li>
-                <li><a onClick={handleClick} className="main-nav-link" href="#section-meals">Precios</a></li>
-                <li><a onClick={handleClick} className="main-nav-link" href="#section-testimonials">Feedback</a></li>
-                <li><a onClick={handleClick} className="main-nav-link" href="#section-pricing">Clases</a></li>
-                <li><a onClick={handleClick} className="main-nav-link nav-cta" href="#section-cta">Pruébalo gratis</a></li>
+                <li><a className="main-nav-link" href="#section-how">Sobre Nosotros</a></li>
+                <li><a className="main-nav-link" href="#section-meals">Precios</a></li>
+                <li><a className="main-nav-link" href="#section-testimonials">Feedback</a></li>
+                <li><a className="main-nav-link" href="#section-pricing">Clases</a></li>
+                <li><a className="main-nav-link nav-cta" href="#section-cta">Pruébalo gratis</a></li>
             </ul>
         </nav>
 
-        <button className="btn-mobile-nav" onClick={handleOpen}>{!mobileNav ? 'Open' : 'Close'}</button>
+       {/*  <button className="btn-mobile-nav" >{!mobileNav ? 'Open' : 'Close'}</button> */}
        
     </header>
     )
