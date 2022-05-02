@@ -75,6 +75,14 @@ const loaderActivity = async () => {
                     capacity: el.capacity
                 },
             });
+            el.trainers.forEach(async (e) => {
+                const trainersIns = await Trainer.findOne({
+                    where: {
+                        name: e
+                    }
+                })
+                await trainersIns.addActivity(activityIns[0])
+            })
         });
         console.log('Actividades cargadas en la DB')
     }

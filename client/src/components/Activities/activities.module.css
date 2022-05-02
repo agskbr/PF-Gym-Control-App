@@ -2,8 +2,12 @@
     z-index: 0;
     grid-area: activities;
     display: grid;
-    margin: 2rem;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(400px, 1fr));
+   margin-left: 5vw;
+    margin-top: 5vh;
+    align-content: center;
+    justify-content: space-evenly;
+  
+    grid-template-columns: repeat(auto-fill, minmax(15vw, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(30vh, 1fr));
 }
 

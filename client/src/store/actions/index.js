@@ -1,12 +1,26 @@
 import axios from "axios";
-import { GET_ALL_TRAINERS } from "../actions-type/index";
+import {
+  GET_ALL_TRAINERS,
+  RECEIVED_POST,
+  REQUEST_POST,
+} from "../actions-type/index";
 
-const base_url = "http://localhost:3001";
+const base_url = "https://pfgymapp-2.herokuapp.com";
 
 const createActivity = (activity) => {
   return async () => {
     try {
       await axios.post(`${base_url}/activity`, activity);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+const editActivity = (activity, id) => {
+  return async () => {
+    try {
+      await axios.put(`${base_url}/activity/${id}`, activity);
     } catch (error) {
       console.log(error);
     }
@@ -23,16 +37,27 @@ const getAllTrainers = () => {
     }
   };
 };
+const requestPost = () => {
+  return {
+    type: REQUEST_POST,
+  };
+};
 
 export function getActivity() {
-	return function (dispatch) {
-		axios.get(`${base_url}/activity`).then((activity) =>
-			dispatch({
-				type: 'GET_ACTIVITY',
-				payload: activity.data,
-			})
-		);
-	};
+  return function (dispatch) {
+    axios
+      .get(`${base_url}/activity`)
+      .then((activity) =>
+        dispatch({
+          type: "GET_ACTIVITY",
+          payload: activity.data,
+        })
+      )
+      .then(() => {
+        dispatch({ type: RECEIVED_POST });
+      })
+      .catch((err) => console.log(err));
+  };
 }
 
 /* export function getDays() {
@@ -56,39 +81,56 @@ export function getHour() {
 } */
 
 export function getActivityById(payload) {
-	return async function (dispatch) {
-		try {
-			const activity = await axios.get(
-				`${base_url}/activity/` + payload
-			);
-			dispatch({
-				type: 'GET_ACTIVITY_DETAIL',
-				payload: activity.data[0],
-			});
-		} catch (err) {
-			console.log(err);
-		}
-	};
+  return async function (dispatch) {
+    try {
+      const activity = await axios.get(`${base_url}/activity/` + payload);
+      dispatch({
+        type: "GET_ACTIVITY_DETAIL",
+        payload: activity.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 }
 
-
-export function filterByDay(payload) {
-	return async function (dispatch) {
-		dispatch({
-			type: 'FILTER_BY_DAY',
-			payload,
-		});
-	};
+export function searchByName(name) {
+  return function (dispatch) {
+    dispatch({
+      type: "SEARCH_BY_NAME",
+      payload: name,
+    });
+  };
 }
 
-export function filterByHour(payload) {
-	return async function (dispatch) {
-		dispatch({
-			type: 'FILTER_BY_HOUR',
-			payload,
-		});
-	};
+export function filterByDay(filterBy) {
+  return function (dispatch) {
+    console.log("action");
+    dispatch({
+      type: "FILTER_BY_DAY",
+      payload: filterBy,
+    });
+  };
+}
+//
+export function orderActivities(orderBy) {
+  return function (dispatch) {
+    console.log("action");
+    dispatch({
+      type: "ORDER_ACTIVITIES",
+      payload: orderBy,
+    });
+  };
 }
 
+export function changePage(page) {
+  console.log("action");
+  return function (dispatch) {
+    dispatch({
+      type: "CHANGE_PAGE",
+      payload: page,
+    });
+  };
+}
 
-export { createActivity, getAllTrainers };
+export { createActivity, getAllTrainers, editActivity, requestPost };

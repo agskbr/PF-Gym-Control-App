@@ -1,32 +1,25 @@
 import style from "./clases.module.css";
 import Activities  from "../Activities/Activities";
+import Search from "../Search/search";
+import Paginado from "../Paginado/paginado"
+import Filtrado from "../Filtrado/filtrado"
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
 	getActivity,
-	getActivityById,
-   /*  getDays,
-    getHour, */
-	filterByDay,
-    filterByHour
 } from "../../store/actions"
 
 
 const Clases = () => {
 
 const dispatch = useDispatch();
-const allActivities = useSelector((state) => state.activities);
-
-const days = useSelector((state) => state.days);
-const hour = useSelector((state) => state.hour);
+const allActivities = useSelector((state) => state.page);
 
 
 useEffect(() => {
     dispatch(getActivity());
-    /* dispatch(getDays());
-    dispatch(getHour()); */
 }, [dispatch]);
 
 return (
@@ -46,7 +39,15 @@ return (
         </div>
         
         <div className={style.clases}>
+            <div className={style.navBar}>
+                    <Search />
+                    <Filtrado />
+            </div>
+            
             <Activities allActivities={allActivities}/>
+            <div className={style.paginado}>
+                <Paginado />
+            </div>
         </div>
 
     </div>

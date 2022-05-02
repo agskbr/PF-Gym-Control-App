@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getActivityById } from "../../../../store/actions/index.js";
+import { Link, useParams } from "react-router-dom";
+import {
+  editActivity,
+  getActivityById,
+  getAllTrainers,
+} from "../../../../store/actions/index.js";
 import { validateForm } from "../../../../utils/validateForm.js";
 import CustomInput from "../CustomInput/CustomInput.jsx";
 import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
 import style from "./EditActivity.module.css";
+import swal from "sweetalert";
 
 export default function EditActivity() {
   const { trainers, detail } = useSelector((state) => state);
@@ -13,15 +18,22 @@ export default function EditActivity() {
   const [activityToEdit, setActivityToEdit] = useState({});
   const dispatch = useDispatch();
   const daysOpt = [
-    "Lunes",
-    "Martes",
-    "Miércoles",
-    "Jueves",
-    "Viernes",
-    "Sábado",
+    { id: 1, name: "Lunes" },
+    { id: 2, name: "Martes" },
+    { id: 3, name: "Miércoles" },
+    { id: 4, name: "Jueves" },
+    { id: 5, name: "Viernes" },
+    { id: 6, name: "Sábado" },
   ];
-  const hoursOpt = ["8-10", "10-12", "12-14", "14-16", "16-18", "18-20"];
-  const trainersOpt = trainers.map((trainer) => trainer.name);
+  const hoursOpt = [
+    { id: 1, name: "8-10" },
+    { id: 2, name: "10-12" },
+    { id: 3, name: "12-14" },
+    { id: 4, name: "14-16" },
+    { id: 5, name: "16-18" },
+    { id: 6, name: "18-20" },
+  ];
+  const trainersOpt = trainers;
   const [errors, setErrors] = useState({
     image: "",
     video: "",
@@ -64,10 +76,11 @@ export default function EditActivity() {
 
   useEffect(() => {
     dispatch(getActivityById(id));
+    dispatch(getAllTrainers());
   }, [dispatch, id]);
   useEffect(() => {
     if (Object.values(detail).length) {
-      setActivityToEdit(detail[0]);
+      setActivityToEdit(detail);
     }
   }, [detail]);
 
@@ -82,7 +95,7 @@ export default function EditActivity() {
         name: activityToEdit.name,
         video: activityToEdit.video,
         description: activityToEdit.description,
-        price: activityToEdit.description,
+        price: activityToEdit.price,
       });
     }
   }, [activityToEdit]);
@@ -91,6 +104,9 @@ export default function EditActivity() {
     <div className={style.principalContainer}>
       <h3>Editar una actividad</h3>
       <div className={style.inputsContainer}>
+        <div className={style.imageContainer}>
+          <img src={activity.image} alt="actividad" />
+        </div>
         <CustomInput
           onChange={handlerChange}
           name="image"
@@ -184,14 +200,43 @@ export default function EditActivity() {
             setErrors={setErrors}
           />
         </div>
-        <button
-          onClick={() => {
-            setErrors(validateForm(activity));
-          }}
-          className={style.editBtn}
-        >
-          Editar actividad
-        </button>
+        <div className={style.buttonsContainer}>
+          <button
+            disabled={Object.values(errors).length}
+            onClick={() => {
+              setErrors(validateForm(activity));
+              if (Object.values(errors).length === 0) {
+                dispatch(editActivity(activity, id));
+                swal({
+                  closeOnEsc: false,
+                  closeOnClickOutside: false,
+                  buttons: "Aceptar",
+                  icon: "success",
+                  title: "Actividad editada correctamente",
+                });
+                setErrors({
+                  image: "",
+                  video: "",
+                  name: "",
+                  description: "",
+                  price: "",
+                  capacity: "",
+                  day: "",
+                  hour: "",
+                  trainers: "",
+                });
+              }
+            }}
+            className={
+              Object.values(errors).length
+                ? style.disabledEditBtn
+                : style.editBtn
+            }
+          >
+            Editar actividad
+          </button>
+          <Link className={style.link} to={"/adminDashboard"}>Terminar edición</Link>
+        </div>
       </div>
     </div>
   );

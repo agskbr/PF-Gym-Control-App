@@ -13,13 +13,15 @@
 }
 
 .itemOfSideBar {
-  width: 60%;
-  text-align: start;
+  display: flex;
+  justify-content: flex-start;
   padding-top: 10px;
   padding-bottom: 10px;
+  width: 100%;
 }
 
 .itemOfSideBar span {
   font-size: 18px;
   font-weight: 500;
+  padding-left: 20px;
 }

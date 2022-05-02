@@ -11,7 +11,7 @@ export default function Activity({ id, name, description, video,  image, price, 
             <div className={style.image}> 
             <div className={style.name}>{name}</div>
             
-            <img src={image} className={style.imagen} />
+            <img src={image} className={style.imagen} alt="esto es una imagen"/>
             {
                 day.map(day => (
                 <span className={style.day} key={day}>{` ${day}`}</span>
