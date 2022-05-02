@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getActivity, getAllTrainers } from "../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { getActivity, getAllTrainers, requestPost } from "../../store/actions";
 import style from "./AdminPage.module.css";
 import AdminCardView from "./components/AdminCardView/AdminCardView";
 import CustomModal from "./components/CustomModal/CustomModal";
@@ -8,8 +8,10 @@ import SideBar from "./components/SideBar/SideBar.jsx";
 import TopBar from "./components/TopBar/TopBar";
 
 export default function AdminPage() {
+  const { isLoading } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(requestPost());
     dispatch(getAllTrainers());
     dispatch(getActivity());
   }, [dispatch]);
@@ -18,7 +20,13 @@ export default function AdminPage() {
       <SideBar />
       <div className={style.columnContainer}>
         <TopBar />
-        <AdminCardView />
+        {isLoading ? (
+          <div className={style.loaderContainer}>
+            <span className={style.loader}></span>
+          </div>
+        ) : (
+          <AdminCardView />
+        )}
       </div>
       <CustomModal />
     </div>

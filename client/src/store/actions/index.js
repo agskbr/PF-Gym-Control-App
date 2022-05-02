@@ -1,5 +1,9 @@
 import axios from "axios";
-import { GET_ALL_TRAINERS } from "../actions-type/index";
+import {
+  GET_ALL_TRAINERS,
+  RECEIVED_POST,
+  REQUEST_POST,
+} from "../actions-type/index";
 
 const base_url = "https://pfgymapp-2.herokuapp.com";
 
@@ -33,15 +37,26 @@ const getAllTrainers = () => {
     }
   };
 };
+const requestPost = () => {
+  return {
+    type: REQUEST_POST,
+  };
+};
 
 export function getActivity() {
   return function (dispatch) {
-    axios.get(`${base_url}/activity`).then((activity) =>
-      dispatch({
-        type: "GET_ACTIVITY",
-        payload: activity.data,
+    axios
+      .get(`${base_url}/activity`)
+      .then((activity) =>
+        dispatch({
+          type: "GET_ACTIVITY",
+          payload: activity.data,
+        })
+      )
+      .then(() => {
+        dispatch({ type: RECEIVED_POST });
       })
-    );
+      .catch((err) => console.log(err));
   };
 }
 
@@ -80,44 +95,42 @@ export function getActivityById(payload) {
 }
 
 export function searchByName(name) {
-  return function(dispatch) {
-      dispatch({
-          type: 'SEARCH_BY_NAME',
-          payload: name
-      })
-  }
+  return function (dispatch) {
+    dispatch({
+      type: "SEARCH_BY_NAME",
+      payload: name,
+    });
+  };
 }
-
 
 export function filterByDay(filterBy) {
-  return function(dispatch) {
-      console.log('action')
-      dispatch({
-          type: 'FILTER_BY_DAY', 
-          payload: filterBy,
-      })
-  }
+  return function (dispatch) {
+    console.log("action");
+    dispatch({
+      type: "FILTER_BY_DAY",
+      payload: filterBy,
+    });
+  };
 }
-// 
+//
 export function orderActivities(orderBy) {
-return function(dispatch) {
-  console.log('action')
-  dispatch({
-    type: 'ORDER_ACTIVITIES',
-    payload: orderBy
-  }) 
-
-}
+  return function (dispatch) {
+    console.log("action");
+    dispatch({
+      type: "ORDER_ACTIVITIES",
+      payload: orderBy,
+    });
+  };
 }
 
 export function changePage(page) {
-	console.log('action')
-	return function (dispatch) {
-		dispatch({
-			type: 'CHANGE_PAGE',
-			payload: page,
-		})
-	}
+  console.log("action");
+  return function (dispatch) {
+    dispatch({
+      type: "CHANGE_PAGE",
+      payload: page,
+    });
+  };
 }
 
-export { createActivity, getAllTrainers, editActivity };
+export { createActivity, getAllTrainers, editActivity, requestPost };

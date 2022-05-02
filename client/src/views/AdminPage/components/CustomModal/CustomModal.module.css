@@ -57,11 +57,17 @@
   outline: 1px solid #fe4f22;
 }
 
+.createBtnContainer {
+  display: flex;
+  justify-content: center;
+}
 .createBtn {
   border: none;
   border-radius: 5px;
   background-color: #fe4f22;
   padding: 10px;
+  width: 150px;
+  font-size: 14px;
   color: white;
   font-family: sans-serif;
   margin-top: 20px;
@@ -73,6 +79,3 @@
 .createBtn:focus {
   outline: none;
 }
-
-
-
