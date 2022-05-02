@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   editActivity,
   getActivityById,
@@ -85,7 +85,6 @@ export default function EditActivity() {
   }, [detail]);
 
   useEffect(() => {
-
     if (Object.values(activityToEdit).length) {
       setActivity({
         trainers: activityToEdit.trainers.map((trainer) => trainer.name),
@@ -105,6 +104,9 @@ export default function EditActivity() {
     <div className={style.principalContainer}>
       <h3>Editar una actividad</h3>
       <div className={style.inputsContainer}>
+        <div className={style.imageContainer}>
+          <img src={activity.image} alt="actividad" />
+        </div>
         <CustomInput
           onChange={handlerChange}
           name="image"
@@ -198,38 +200,43 @@ export default function EditActivity() {
             setErrors={setErrors}
           />
         </div>
-        <button
-          disabled={Object.values(errors).length}
-          onClick={() => {
-            setErrors(validateForm(activity));
-            if (Object.values(errors).length === 0) {
-              dispatch(editActivity(activity, id));
-              swal({
-                closeOnEsc: false,
-                closeOnClickOutside: false,
-                buttons: "Aceptar",
-                icon: "success",
-                title: "Actividad editada correctamente",
-              });
-              setErrors({
-                image: "",
-                video: "",
-                name: "",
-                description: "",
-                price: "",
-                capacity: "",
-                day: "",
-                hour: "",
-                trainers: "",
-              });
+        <div className={style.buttonsContainer}>
+          <button
+            disabled={Object.values(errors).length}
+            onClick={() => {
+              setErrors(validateForm(activity));
+              if (Object.values(errors).length === 0) {
+                dispatch(editActivity(activity, id));
+                swal({
+                  closeOnEsc: false,
+                  closeOnClickOutside: false,
+                  buttons: "Aceptar",
+                  icon: "success",
+                  title: "Actividad editada correctamente",
+                });
+                setErrors({
+                  image: "",
+                  video: "",
+                  name: "",
+                  description: "",
+                  price: "",
+                  capacity: "",
+                  day: "",
+                  hour: "",
+                  trainers: "",
+                });
+              }
+            }}
+            className={
+              Object.values(errors).length
+                ? style.disabledEditBtn
+                : style.editBtn
             }
-          }}
-          className={
-            Object.values(errors).length ? style.disabledEditBtn : style.editBtn
-          }
-        >
-          Editar actividad
-        </button>
+          >
+            Editar actividad
+          </button>
+          <Link className={style.link} to={"/adminDashboard"}>Terminar edición</Link>
+        </div>
       </div>
     </div>
   );

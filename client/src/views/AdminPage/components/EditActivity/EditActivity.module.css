@@ -21,6 +21,11 @@
   border-radius: 5px;
   padding: 20px;
 }
+.imageContainer img {
+  object-fit: contain;
+  border-radius: 8px;
+  height: 140px;
+}
 .textAreaContainer {
   display: flex;
   flex-direction: column;
@@ -84,5 +89,19 @@
   padding: 10px;
   color: black;
   font-family: sans-serif;
+  margin-top: 20px;
+}
+
+.link {
+  border: none;
+  text-decoration: none;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: brown;
+  width: 150px;
+  padding: 10px;
+  color: white;
+  font-family: sans-serif;
+  font-size: 14px;
   margin-top: 20px;
 }
