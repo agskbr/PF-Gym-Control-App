@@ -6,6 +6,7 @@ import AboutHome from "./components/AboutHome/AboutHome";
 import Clases from "./components/Clases/Clases";
 import Buy from "./components/Buy/Buy";
 import EditActivity from "./views/AdminPage/components/EditActivity/EditActivity";
+import HomePage from "./views/homePage/homePage";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
         <Route path="/clases/:id" element={<Buy />} />
       </Routes> */}
 
-          <div id='home'>
+         {/*  <div id='home'>
             <Home />
           </div>
 
@@ -36,8 +37,9 @@ function App() {
 
           <div id='clases'>
                 <Clases />
-          </div>
+          </div> */}
         <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route path="/clases/:id" element={<Buy />} />
         <Route exact path="/adminDashboard" element={<AdminPage />} />
         <Route

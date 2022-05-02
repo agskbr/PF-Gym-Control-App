@@ -47,7 +47,7 @@ export default function Nav() {
                 <li><a className="main-nav-link" href="#section-meals">Precios</a></li>
                 <li><a className="main-nav-link" href="#section-testimonials">Feedback</a></li>
                 <li><a className="main-nav-link" href="#clases">Clases</a></li>
-                <li><a className="main-nav-link nav-cta" href="#section-cta">Pruébalo gratis</a></li>
+                <li><a className="main-nav-link nav-cta" href="/admindashboard">Administrar</a></li>
             </ul>
         </nav>
 
