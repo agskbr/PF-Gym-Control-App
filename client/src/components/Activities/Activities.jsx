@@ -17,7 +17,7 @@ const Activities = ({ allActivities }) => {
                     allActivities?.map((activity) => (
                         <Link
                         to={`/clases/${activity.id}`}
-                        style={{ textDecoration: 'none' }} >
+                        style={{ textDecoration: 'none' }} key={activity.id}>
 
                             <Activity key={activity.id} {...activity} />.
 
