@@ -1,6 +1,7 @@
 import React from "react";
 import CustomItemSideBar from "../CustomItemSideBar/CustomItemSideBar";
 import style from "./SideBar.module.css";
+import { FaUsers, FaDumbbell, FaClipboard } from "react-icons/fa";
 
 export default function SideBar() {
   return (
@@ -13,9 +14,13 @@ export default function SideBar() {
       </div>
       <div className={style.separator}></div>
       <div className={style.contentSideBar}>
-        <CustomItemSideBar name="Usuarios"/>
-        <CustomItemSideBar onClick={() => console.log("Change AdminCardView")} name="Clases"/>
-        <CustomItemSideBar name="Instructores"/>
+        <CustomItemSideBar icon={<FaUsers size={20} />} name="Usuarios" />
+        <CustomItemSideBar
+          icon={<FaDumbbell size={20} />}
+          onClick={() => console.log("Change AdminCardView")}
+          name="Clases"
+        />
+        <CustomItemSideBar icon={<FaClipboard size={20}/>} name="Instructores" />
       </div>
     </div>
   );
