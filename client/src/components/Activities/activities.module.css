@@ -2,8 +2,9 @@
     z-index: 0;
     grid-area: activities;
     display: grid;
-    margin: 2rem;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(400px, 1fr));
+    margin: 8vw;
+    margin-top: 5vh;
+    grid-template-columns: repeat(auto-fill, minmax(12vw, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(30vh, 1fr));
 }
 

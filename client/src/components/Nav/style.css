@@ -48,6 +48,7 @@ FONT SIZE SYSTEM (px)
     justify-content: space-between;
     align-items: center;
     background-color: #fdede9;
+    width: 92vw;
 
     /* Because header will be sticky, otherwise padding will do */
     height: 6.2rem;
@@ -56,9 +57,31 @@ FONT SIZE SYSTEM (px)
 
 }
 
+.headerScrolled {
+  position: fixed;
+  display: flex;
+  
+  justify-content: space-between;
+  align-items: center;
+ 
+  width: 92vw;
+  color: #000;
+  margin-top: 20px;
+  z-index: 1;
+
+  text-decoration: none;
+  height: 6.2rem;
+  padding: 0 4.8rem;
+  background: rgba(255, 254, 254, 0.9);
+}
+
 .logo {
-    height: 1.8rem;
-    width: 16.358rem;
+    height: 8vh;;
+    width: 10vw;
+    background-image: url('../../assets/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 /******************************/
