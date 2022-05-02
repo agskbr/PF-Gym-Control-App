@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { searchByName } from '../../store/actions'
 import { getActivity } from '../../store/actions'
+import style from "./search.module.css"
 
 export default function Search() {
 
@@ -32,7 +33,7 @@ export default function Search() {
 
     return (
         <form onSubmit={handleSubmit}>
-                <input value={search} name='name' placeholder='Search...' onChange={handleChange}></input>
+                <input value={search} name='name' placeholder='Search...' onChange={handleChange} className={style.search}></input>
         </form>
     )
 }

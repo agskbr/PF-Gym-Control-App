@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getActivityById } from '../../store/actions';
 import { useParams } from "react-router-dom";
+import Nav from "../Nav/nav";
 
 
 export default function Buy() {
@@ -35,8 +36,9 @@ export default function Buy() {
         
         return (
             <div className={style.background}>
-
+               <Nav />
                 <div className={style.container}>
+                     
                     <div className={style.name}>{name}</div>
                     <img className={style.image} src={image} ></img>
                     <div className={style.description}>{description}</div>

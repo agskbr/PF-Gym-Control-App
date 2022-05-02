@@ -40,7 +40,7 @@ const rootReducer = (state = initialState, action) => {
       console.log(action.payload);
       return {
         ...state,
-        detail: action.payload,
+        detail: action.payload[0],
       };
   
       case 'SEARCH_BY_NAME':
