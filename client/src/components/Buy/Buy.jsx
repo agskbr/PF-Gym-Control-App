@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getActivityById } from '../../store/actions';
 import { useParams } from "react-router-dom";
 import Nav from "../Nav/nav";
+import { Link } from 'react-router-dom';
 
 
 export default function Buy() {
@@ -61,8 +62,13 @@ export default function Buy() {
                 </div>
 
                 <div className={style.botonera}>
+
                     <button className={style.elbo}>Buy plan</button>
-                    <button className={style.elbo}>Add to cart</button>
+
+                    <Link to={"/"}>
+                        <button className={style.elbo} >Add to cart</button>
+                    </Link>
+
                 </div>
                 
                     

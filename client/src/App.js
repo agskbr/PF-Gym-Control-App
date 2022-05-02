@@ -9,13 +9,13 @@ function App() {
   return (
     <div className="App">
         <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/clases/:id" element={<Buy />} />
-        <Route exact path="/adminDashboard" element={<AdminPage />} />
-        <Route
-          path="/adminDashboard/activity/edit/:id"
-          element={<EditActivity />}
-        />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/clases/:id" element={<Buy />} />
+          <Route exact path="/adminDashboard" element={<AdminPage />} />
+          <Route
+            path="/adminDashboard/activity/edit/:id"
+            element={<EditActivity />}
+          />
       </Routes>
     </div>
   );
