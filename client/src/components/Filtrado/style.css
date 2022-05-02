@@ -15,16 +15,10 @@
     width: 230px;
     position:relative;
  }
- select {
-    background: #fff;
-    border: none;
-    font-size: 14px;
-    height: 30px;
-    width: 10vw;
- }
- select:focus{ outline: none;}
  
- .caja::after{
+ .filter-by-day:focus{ outline: none;}
+ 
+ .filter-by-day::after{
      content:"\025be";
      display:table-cell;
      padding-top:7px;

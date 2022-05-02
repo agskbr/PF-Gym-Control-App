@@ -37,7 +37,7 @@ export default function Nav() {
 
     return (
         <header className={headerClasses}>
-        <a href="#home">
+        <a href="/">
             <div className="logo"></div>
         </a>
         

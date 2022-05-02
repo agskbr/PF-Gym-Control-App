@@ -42,7 +42,7 @@ export default function Filtrado() {
                 <option value='domingo'>Domingo</option>
             </select>
 
-            <select onChange={handleOrderChange} className="order" id="order">
+            <select onChange={handleOrderChange} className="filter-by-day" id="order">
                 <option value='defaultOrder'> -- Ordenar -- </option>
                 <option value='precio'>Por precio</option>
                 <option value='A-Z'>A &rarr; Z</option>
