@@ -10,7 +10,10 @@ const getDetailsUser = async (dni) => {
         },
         include: {
             model: Activity,
-            attributes: ["name"]
+            attributes: ["name"],
+            through: {
+                attributes: [],
+            },
         }
     })
     return user;
@@ -20,7 +23,10 @@ const getAllUsers = async () => {
     const user = await User.findAll({
         include: {
             model: Activity,
-            attributes: ["name"]
+            attributes: ["name"],
+            through: {
+                attributes: [],
+            },
         }
     })
     return user;

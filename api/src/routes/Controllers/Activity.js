@@ -9,11 +9,17 @@ const activitysDbInfo = async () => {
         return await Activity.findAll({
             include: {
                 model: User,
-                attributes: ["name","lastName","dni"]
+                attributes: ["name","lastName","dni"],
+                through: {
+                    attributes: [],
+                },
             },
             include: {
                 model: Trainer,
-                attributes: ["name"]
+                attributes: ["name"],
+                through: {
+                    attributes: [],
+                },
             }
             
         })

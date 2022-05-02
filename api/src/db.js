@@ -58,8 +58,8 @@ const { Activity, User, Trainer, Activity_User} = sequelize.models; //traemos la
 Activity.belongsToMany(User, { through: Activity_User });
 User.belongsToMany(Activity, { through: Activity_User });
 
-Trainer.belongsToMany(Activity, { through: 'Trainer_Activity' });
-Activity.belongsToMany(Trainer, { through: 'Trainer_Activity' });
+Activity.belongsToMany(Trainer, { through: 'Activity-Trainer' });
+Trainer.belongsToMany(Activity, { through: 'Activity-Trainer' });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

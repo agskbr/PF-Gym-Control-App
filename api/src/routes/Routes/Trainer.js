@@ -64,7 +64,7 @@ router.delete ('/:id', async (req, res) => {
 
        trainerCreated.addActivity(ActDb)
       
-      return res.status(200).send("Coach created successfully!!!");
+      return res.status(200).send(trainerCreated);
     }
   
     catch(error){

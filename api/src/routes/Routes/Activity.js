@@ -3,21 +3,11 @@ const { Activity, Trainer } = require('../../db');
 const router = Router();
 const { activitysDbInfo, } = require('../Controllers/Activity');
 
-// const Activity = require('../../models/Activity');
 
-
-
-router.post("/", async (req,res) => {
+router.post("/", async (req,res, next) => {
     try{
         const { name, description, video, image, price, day, hour, capacity, trainers } = req.body
         
-        const actividad = await Activity.findOne({
-            where: {
-                name: name,
-            },
-        })
-
-        if (!actividad) {
             const newAct = await Activity.create({
                 name,
                 description,
@@ -26,21 +16,19 @@ router.post("/", async (req,res) => {
                 price,
                 day,
                 hour,
-                capacity
-            }) 
-        const trainerenc = await Trainer.findAll({
+                capacity,
+                
+            }); 
+
+        const trainerDb = await Trainer.findAll({
             where: {
                 name: trainers,}
-        })
-
-        if (trainerenc) {
-            newAct.addTrainer(trainerenc);
-        }
-
-            res.send (newAct)
-        }else return res.send(actividad)
+        });
+        await newAct.addTrainers(trainerDb);              
+        return res.status(200).send(newAct); 
+        
     } catch(err){
-        console.log(err)
+        next(err);
     }
 })
 
@@ -85,7 +73,7 @@ router.get ('/:id', async (req, res,) => {
                         id: id
                     }
             })
-            return res.status(200).json(act)
+            return res.status(200).json({cambiado: true})
         
         } catch (error) {
             next(error);

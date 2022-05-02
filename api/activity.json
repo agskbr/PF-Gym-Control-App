@@ -11,15 +11,9 @@
             "12-14",
             "16-18"
           ],
-        "capacity": 15,
-        "trainers":[
-          {
-          "name": "Juanse"
-          },
-          {
-            "name": "Yani"
-          }
-      ]
+        "capacity": 15
+        
+      
         
     },
     {
@@ -34,15 +28,8 @@
             "14-16",
             "18-20"
           ],
-        "capacity": 10,
-        "trainers":[
-          {
-          "name": "Juanse"
-          },
-          {
-            "name": "Yani"
-          }
-      ]
+        "capacity": 10
+        
     },
     {
         "id": 3,
@@ -56,15 +43,8 @@
             "12-14",
             "16-18"
           ],
-        "capacity": 15,
-        "trainers":[
-          {
-          "name": "Juanse"
-          },
-          {
-            "name": "Yani"
-          }
-      ]
+        "capacity": 15
+        
     },
     {
         "id": 4,
@@ -78,15 +58,8 @@
             "14-16",
             "18-20"
           ],
-        "capacity": 15,
-        "trainers":[
-          {
-          "name": "Juanse"
-          },
-          {
-            "name": "Yani"
-          }
-      ]
+        "capacity": 15
+        
     },
     {
         "id": 5,
@@ -100,15 +73,8 @@
             "14-16",
             "18-20"
           ],
-        "capacity": 10,
-        "trainers":[
-          {
-          "name": "Juanse"
-          },
-          {
-            "name": "Yani"
-          }
-      ]
+        "capacity": 10
+       
     },
     {
         "id": 6,
@@ -122,15 +88,8 @@
             "14-16",
             "18-20"
           ],
-        "capacity": 20,
-        "trainers":[
-          {
-          "name": "Juanse"
-          },
-          {
-            "name": "Yani"
-          }
-      ]
+        "capacity": 20
+       
     },
 
     {   "id": 7,
@@ -144,15 +103,8 @@
             "12-14",
             "16-18"
           ],
-        "capacity": 15,
-        "trainers":[
-          {
-          "name": "Juanse"
-          },
-          {
-            "name": "Yani"
-          }
-      ]
+        "capacity": 15
+        
     },
 
     {   "id": 8,
@@ -166,15 +118,8 @@
             "14-16",
             "18-20"
           ],
-        "capacity": 10,
-        "trainers":[
-          {
-          "name": "Juanse"
-          },
-          {
-            "name": "Yani"
-          }
-      ]
+        "capacity": 10
+        
     }
 
     
