@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { useState } from "react/cjs/react.development"
+import { useState }  from "react"
 import { filterByDay, orderActivities } from "../../store/actions"
 import './style.css'
 
@@ -37,7 +37,7 @@ export default function Filtrado() {
                 <option value='miercoles'>Miércoles</option>
                 <option value='jueves'>Jueves</option>
                 <option value='viernes'>Viernes</option>
-                <option value='sabado'>Sábado</option>
+                <option value='Sábado'>Sábado</option>
                 <option value='domingo'>Domingo</option>
             </select>
 

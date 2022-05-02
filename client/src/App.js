@@ -10,7 +10,6 @@ function App() {
     <div className="App">
         <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/index.html" element={<HomePage />} />
         <Route path="/clases/:id" element={<Buy />} />
         <Route exact path="/adminDashboard" element={<AdminPage />} />
         <Route
