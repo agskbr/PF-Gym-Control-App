@@ -37,16 +37,16 @@ export default function Nav() {
 
     return (
         <header className={headerClasses}>
-        <a href="/">
+        <a href="#home">
             <div className="logo"></div>
         </a>
         
         <nav className="main-nav">
             <ul className="main-nav-list">
-                <li><a className="main-nav-link" href="/about">Sobre Nosotros</a></li>
+                <li><a className="main-nav-link" href="#about">Sobre Nosotros</a></li>
                 <li><a className="main-nav-link" href="#section-meals">Precios</a></li>
                 <li><a className="main-nav-link" href="#section-testimonials">Feedback</a></li>
-                <li><a className="main-nav-link" href="#section-pricing">Clases</a></li>
+                <li><a className="main-nav-link" href="#clases">Clases</a></li>
                 <li><a className="main-nav-link nav-cta" href="#section-cta">Pruébalo gratis</a></li>
             </ul>
         </nav>

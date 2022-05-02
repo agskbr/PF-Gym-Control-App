@@ -11,9 +11,9 @@ function App() {
   return (
     <div className="App">
       {/* <Nav /> */}
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={[<Home />,
-                                  <AboutHome />,
+                                  <AboutHome id='about'/>,
                                   <Clases />,
                                   ]} />
         <Route path="/adminDashboard" element={<AdminPage />} />
@@ -24,7 +24,20 @@ function App() {
         <Route path="/about" element={<AboutHome />} />
         <Route path="/clases" element={<Clases />} />
         <Route path="/clases/:id" element={<Buy />} />
-      </Routes>
+      </Routes> */}
+
+      <div id='home'>
+        <Home />
+      </div>
+
+      <div id='about'>
+            <AboutHome />
+      </div>
+
+      <div id='clases'>
+            <Clases />
+      </div>
+
     </div>
   );
 }
