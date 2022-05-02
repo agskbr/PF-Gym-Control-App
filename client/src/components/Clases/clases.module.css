@@ -94,8 +94,8 @@
 }
 
 .navBar{
-    display: flexbox;
-    justify-content: space-between;
+    display: flex;
+    justify-content: space-evenly;
     align-items: center;
     align-content:center;
     background-color: #000000;

@@ -10,7 +10,7 @@
     margin-left: auto;
   }
   
- /*  button {
+  .number {
     height: 30px;
     width: 30px;
     border: none;
@@ -23,7 +23,7 @@
     cursor: pointer;
     font-size: 16px;
     color: #343a40;
-  } */
+  }
   
   .arrow {
     border: 1px solid #eb4e27;
