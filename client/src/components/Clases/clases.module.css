@@ -20,11 +20,13 @@
     background-color: #000000b9;
     border-radius: 15px;
     height: 85vh;
+    width: 25vw;
     margin: 5rem;
     display: grid;
     grid-template-areas: "sup  "
                          " inf ";
     grid-template-rows: 1fr 10vh;
+    justify-content: center;
 
 
 }
@@ -34,30 +36,30 @@
     opacity: 1;
     font-size: 8vw;
     color: white;
-    margin-top: -6vh;
+    margin-top: 0vh;
 }
 
 .info p:nth-child(2) {
     font-size: 3vw;
     top: 10rem;
     left: 7rem;
-    margin-top: 12vh;
+    margin-top: 15vh;
 }
 .info p:nth-child(3) {
     font-size: 1.5vw;
     color: #ff5e00;
-    margin-top: 19vh;
+    margin-top: 23vh;
 }
 
 .donWait{
     grid-area: inf;
     background-color:rgb(255, 255, 255);
-    height: 100%;
+    height: 8vh;
     display: flex;
     text-align: center;
     justify-content: center;
     justify-self: center;
-    line-height: 100px;
+    align-items: center;
     font-size: 2vw;
     width: 20vw;
     color: #ff0000;
@@ -66,14 +68,15 @@
 }
 
 .elButton{
-    font-size: 20px;
+    grid-area: sup;
+    font-size: 1.5vw;
     background-color: #ff5e00;
     color: #ffffff;
     margin-top: 200px;
     align-self: center;
     justify-self: center;
-    height: 100px;
-    width: 400px;
+    height: 9vh;
+    width: 18vw;
     border-radius: 15px;
 }
 .elButton:hover{
