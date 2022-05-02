@@ -48,7 +48,9 @@ return (
             </div>
             
             <Activities allActivities={allActivities}/>
-            <Paginado />
+            <div className={style.paginado}>
+                <Paginado />
+            </div>
         </div>
 
     </div>
