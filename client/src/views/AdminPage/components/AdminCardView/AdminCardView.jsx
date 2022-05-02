@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import style from "./AdminCardView.module.css";
 import { Link } from "react-router-dom";
@@ -10,6 +10,13 @@ export default function AdminCardView() {
     price: false,
   });
   const { activities } = useSelector((state) => state);
+  const [displayActivities, setDisplayActivities] = useState([]);
+  useEffect(() => {
+    if (activities) {
+      setDisplayActivities(activities);
+    }
+  }, [activities]);
+
   return (
     <div className={style.principalContainer}>
       <div className={style.titleAndAddBtn}>
@@ -59,22 +66,28 @@ export default function AdminCardView() {
                   {isAscendentOrder.price ? (
                     <FaArrowCircleDown
                       className={style.iconBtn}
-                      onClick={() =>
+                      onClick={() => {
                         setIsAscendentOrder({
                           ...isAscendentOrder,
                           price: !isAscendentOrder.price,
-                        })
-                      }
+                        });
+                        setDisplayActivities((state) =>
+                          state.sort((a, b) => a.price - b.price)
+                        );
+                      }}
                     />
                   ) : (
                     <FaArrowCircleUp
                       className={style.iconBtn}
-                      onClick={() =>
+                      onClick={() => {
                         setIsAscendentOrder({
                           ...isAscendentOrder,
                           price: !isAscendentOrder.price,
-                        })
-                      }
+                        });
+                        setDisplayActivities((state) =>
+                          state.sort((a, b) => b.price - a.price)
+                        );
+                      }}
                     />
                   )}
                 </div>
@@ -83,10 +96,12 @@ export default function AdminCardView() {
               <th>Image</th>
               <th>Days</th>
               <th>Hours</th>
+              <th>Capacity</th>
+              <th>Trainers</th>
             </tr>
           </thead>
           <tbody>
-            {activities.map((activity) => (
+            {displayActivities.map((activity) => (
               <tr key={activity.id}>
                 <td key={Math.random()}>{activity.id}</td>
                 <td key={Math.random()}>{activity.name}</td>
@@ -109,13 +124,22 @@ export default function AdminCardView() {
                 </td>
                 <td key={Math.random()}>
                   <ul key={Math.random()}>
-                    {activity.hour.map((d) => (
-                      <li key={Math.random()}>{d}</li>
+                    {activity.hour.map((h) => (
+                      <li key={Math.random()}>{h}</li>
+                    ))}
+                  </ul>
+                </td>
+                <td key={Math.random()}>{activity.capacity}</td>
+                <td key={Math.random()}>
+                  <ul key={activity.id}>
+                    {activity.trainers.map((t) => (
+                      <li key={Math.random()}>{t.name}</li>
                     ))}
                   </ul>
                 </td>
                 <td key={Math.random()}>
                   <Link
+                    className={style.linkStyle}
                     key={Math.random()}
                     to={`/adminDashboard/activity/edit/${activity.id}`}
                   >

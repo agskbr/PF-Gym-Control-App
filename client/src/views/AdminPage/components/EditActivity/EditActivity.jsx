@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import {
   editActivity,
   getActivityById,
+  getAllTrainers,
 } from "../../../../store/actions/index.js";
 import { validateForm } from "../../../../utils/validateForm.js";
 import CustomInput from "../CustomInput/CustomInput.jsx";
@@ -17,15 +18,22 @@ export default function EditActivity() {
   const [activityToEdit, setActivityToEdit] = useState({});
   const dispatch = useDispatch();
   const daysOpt = [
-    "Lunes",
-    "Martes",
-    "Miércoles",
-    "Jueves",
-    "Viernes",
-    "Sábado",
+    { id: 1, name: "Lunes" },
+    { id: 2, name: "Martes" },
+    { id: 3, name: "Miércoles" },
+    { id: 4, name: "Jueves" },
+    { id: 5, name: "Viernes" },
+    { id: 6, name: "Sábado" },
   ];
-  const hoursOpt = ["8-10", "10-12", "12-14", "14-16", "16-18", "18-20"];
-  const trainersOpt = trainers.map((trainer) => trainer.name);
+  const hoursOpt = [
+    { id: 1, name: "8-10" },
+    { id: 2, name: "10-12" },
+    { id: 3, name: "12-14" },
+    { id: 4, name: "14-16" },
+    { id: 5, name: "16-18" },
+    { id: 6, name: "18-20" },
+  ];
+  const trainersOpt = trainers;
   const [errors, setErrors] = useState({
     image: "",
     video: "",
@@ -68,6 +76,7 @@ export default function EditActivity() {
 
   useEffect(() => {
     dispatch(getActivityById(id));
+    dispatch(getAllTrainers());
   }, [dispatch, id]);
   useEffect(() => {
     if (Object.values(detail).length) {

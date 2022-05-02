@@ -1,7 +1,7 @@
 .principalContainer {
   height: 100%;
   width: 100%;
-  margin-top: 60px;
+  margin-top: 10px;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -36,9 +36,8 @@
 
 .cardLayout {
   margin-top: 20px;
-  height: 65vh;
-  width: 70vw;
-  border-radius: 5px;
+  height: 75vh;
+  width: 75vw;
   background-color: white;
   box-shadow: 10px 10px 25px grey;
   overflow: scroll;
@@ -53,10 +52,10 @@
   height: 120px;
 }
 .tableAdminView tbody tr {
-  border: 1px solid grey;
+  border: 1px solid #cdcccc;
 }
 .tableAdminView tr th {
-  border: 1px solid grey;
+  border: 1px solid #cdcccc;
 }
 .tableAdminView .tdDescription {
   width: 480px;
@@ -99,7 +98,9 @@
 .tdImageAndVideo {
   width: 120px;
 }
-
+.linkStyle {
+  text-decoration: none;
+}
 .editBtn {
   height: 30px;
   font-family: sans-serif;
@@ -117,6 +118,7 @@
 .editBtn:focus {
   outline: none;
 }
+
 .deleteBtn {
   height: 30px;
   padding: 8px;

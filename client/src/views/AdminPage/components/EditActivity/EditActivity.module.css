@@ -60,9 +60,11 @@
   border: none;
   border-radius: 5px;
   background-color: #fe4f22;
+  width: 150px;
   padding: 10px;
   color: white;
   font-family: sans-serif;
+  font-size: 14px;
   margin-top: 20px;
 }
 
@@ -77,6 +79,8 @@
   background-color: whitesmoke;
   border: none;
   border-radius: 5px;
+  font-size: 14px;
+  width: 150px;
   padding: 10px;
   color: black;
   font-family: sans-serif;

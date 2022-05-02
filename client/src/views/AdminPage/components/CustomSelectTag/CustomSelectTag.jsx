@@ -27,8 +27,8 @@ export default function CustomSelectTag({
       >
         <option hidden>{firstOpt}</option>
         {options.map((opt) => (
-          <option key={opt} value={opt}>
-            {opt}
+          <option key={opt.id} value={opt.name}>
+            {opt.name}
           </option>
         ))}
       </select>
