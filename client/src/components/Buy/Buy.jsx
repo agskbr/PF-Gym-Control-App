@@ -20,10 +20,9 @@ export default function Buy() {
         
     
     const {
-		id: idActivity,
+		
 		name,
 		description,
-		video,
 		image,
 		price,
 		day,
@@ -40,7 +39,7 @@ export default function Buy() {
                 <div className={style.container}>
                      
                     <div className={style.name}>{name}</div>
-                    <img className={style.image} src={image} ></img>
+                    <img className={style.image} src={image} alt="esto es otra imagen"></img>
                     <div className={style.description}>{description}</div>
                     
                 <div className={style.day}>Dias:{` ${day} `}</div>

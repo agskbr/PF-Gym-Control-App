@@ -18,7 +18,6 @@ export default function Filtrado() {
         event.preventDefault()
         setDay(event.target.value)
         dispatch(filterByDay(event.target.value))
-        console.log(event.target.value)
 
         const order = document.getElementById('order')
         order.selectedIndex = 0
