@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./TopBar.module.css";
 import notification from "../../../../assets/notification.png";
-import logoUser from "../../../../assets/user.png"
+import logoUser from "../../../../assets/logo.png"
 
 export default function TopBar() {
   return (

@@ -29,6 +29,8 @@
 .nameGym span {
   font-size: 20px;
   font-family: sans-serif;
+  font-weight: 600;
+  color: grey;
 }
 
 .separator {
@@ -47,3 +49,6 @@
   width: 100%;
 }
 
+.link {
+  width: 100%;
+}

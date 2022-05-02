@@ -1,8 +1,14 @@
 import React from "react";
 import CustomItemSideBar from "../CustomItemSideBar/CustomItemSideBar";
-import logoUser from "../../../../assets/user.png";
+import logoUser from "../../../../assets/logo.png";
+import { Link } from "react-router-dom";
 import style from "./SideBar.module.css";
-import { FaUsers, FaDumbbell, FaClipboard } from "react-icons/fa";
+import {
+  FaUsers,
+  FaDumbbell,
+  FaClipboard,
+  FaArrowCircleLeft,
+} from "react-icons/fa";
 
 export default function SideBar() {
   return (
@@ -12,7 +18,7 @@ export default function SideBar() {
           <img src={logoUser} alt="User" />
         </div>
         <div className={style.nameGym}>
-          <span>Nombre Gimnasio</span>
+          <span>Power Gym</span>
         </div>
       </div>
       <div className={style.separator}></div>
@@ -27,6 +33,12 @@ export default function SideBar() {
           icon={<FaClipboard size={20} />}
           name="Instructores"
         />
+        <Link className={style.link} to={"/"}>
+          <CustomItemSideBar
+            icon={<FaArrowCircleLeft size={20} />}
+            name="LogOut"
+          />
+        </Link>
       </div>
     </div>
   );
