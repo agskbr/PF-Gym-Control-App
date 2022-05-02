@@ -78,7 +78,7 @@ const loaderActivity = async () => {
             el.trainers.forEach(async (e) => {
                 const trainersIns = await Trainer.findOne({
                     where: {
-                        name: e.name
+                        name: e
                     }
                 })
                 await trainersIns.addActivity(activityIns[0])
