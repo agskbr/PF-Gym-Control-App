@@ -21,7 +21,7 @@
     "sweetalert": "^2.1.2",
     "web-vitals": "^0.2.4"
   },
-  "homepage": "https://pgym.coderbox.com.ar",
+  "homepage": ".",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -45,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.9.2"
   }
 }
