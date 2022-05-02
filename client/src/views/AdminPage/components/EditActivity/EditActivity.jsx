@@ -80,11 +80,12 @@ export default function EditActivity() {
   }, [dispatch, id]);
   useEffect(() => {
     if (Object.values(detail).length) {
-      setActivityToEdit(detail[0]);
+      setActivityToEdit(detail);
     }
   }, [detail]);
 
   useEffect(() => {
+
     if (Object.values(activityToEdit).length) {
       setActivity({
         trainers: activityToEdit.trainers.map((trainer) => trainer.name),
