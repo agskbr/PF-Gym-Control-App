@@ -76,8 +76,12 @@ FONT SIZE SYSTEM (px)
 }
 
 .logo {
-    height: 1.8rem;
-    width: 16.358rem;
+    height: 8vh;;
+    width: 10vw;
+    background-image: url('../../assets/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 /******************************/

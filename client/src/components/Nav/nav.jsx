@@ -38,7 +38,7 @@ export default function Nav() {
     return (
         <header className={headerClasses}>
         <a href="#">
-            <p>LOGO</p>
+            <div className="logo"></div>
         </a>
         
         <nav className="main-nav">
