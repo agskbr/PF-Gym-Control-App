@@ -7,10 +7,10 @@ const {
 const activitysDbInfo = async () => {
     try {
         return await Activity.findAll({
-            include: {
+            /* include: {
                 model: User,
                 attributes: ["name","lastName","dni"]
-            },
+            }, */
             include: {
                 model: Trainer,
                 attributes: ["name"]

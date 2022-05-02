@@ -12,14 +12,7 @@
             "16-18"
           ],
         "capacity": 15,
-        "trainers":[
-          {
-          "name": "Juanse"
-          },
-          {
-            "name": "Yani"
-          }
-      ]
+        "trainers":["Juanse","Yani"]
         
     },
     {
@@ -35,14 +28,7 @@
             "18-20"
           ],
         "capacity": 10,
-        "trainers":[
-          {
-          "name": "Juanse"
-          },
-          {
-            "name": "Yani"
-          }
-      ]
+        "trainers":["Juanse","Yani"]
     },
     {
         "id": 3,
@@ -57,14 +43,7 @@
             "16-18"
           ],
         "capacity": 15,
-        "trainers":[
-          {
-          "name": "Juanse"
-          },
-          {
-            "name": "Yani"
-          }
-      ]
+        "trainers":["Juanse","Yani"]
     },
     {
         "id": 4,
@@ -79,14 +58,7 @@
             "18-20"
           ],
         "capacity": 15,
-        "trainers":[
-          {
-          "name": "Juanse"
-          },
-          {
-            "name": "Yani"
-          }
-      ]
+        "trainers":["Juanse","Yani"]
     },
     {
         "id": 5,
@@ -101,14 +73,7 @@
             "18-20"
           ],
         "capacity": 10,
-        "trainers":[
-          {
-          "name": "Juanse"
-          },
-          {
-            "name": "Yani"
-          }
-      ]
+        "trainers":["Juanse","Yani"]
     },
     {
         "id": 6,
@@ -123,14 +88,7 @@
             "18-20"
           ],
         "capacity": 20,
-        "trainers":[
-          {
-          "name": "Juanse"
-          },
-          {
-            "name": "Yani"
-          }
-      ]
+        "trainers":["Juanse","Yani"]
     },
 
     {   "id": 7,
@@ -145,14 +103,7 @@
             "16-18"
           ],
         "capacity": 15,
-        "trainers":[
-          {
-          "name": "Juanse"
-          },
-          {
-            "name": "Yani"
-          }
-      ]
+        "trainers":["Juanse","Yani"]
     },
 
     {   "id": 8,
@@ -167,14 +118,7 @@
             "18-20"
           ],
         "capacity": 10,
-        "trainers":[
-          {
-          "name": "Juanse"
-          },
-          {
-            "name": "Yani"
-          }
-      ]
+        "trainers":["Juanse","Yani"]
     }
 
     
