@@ -9,11 +9,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
 	getActivity,
-	getActivityById,
-   /*  getDays,
-    getHour, */
-	filterByDay,
-    filterByHour
 } from "../../store/actions"
 
 
@@ -28,8 +23,6 @@ const hour = useSelector((state) => state.hour);
 
 useEffect(() => {
     dispatch(getActivity());
-    /* dispatch(getDays());
-    dispatch(getHour()); */
 }, [dispatch]);
 
 return (
@@ -49,10 +42,13 @@ return (
         </div>
         
         <div className={style.clases}>
-            <Search />
-            <Filtrado />
-            <Paginado />
+            <div className={style.navBar}>
+                    <Search />
+                    <Filtrado />
+            </div>
+            
             <Activities allActivities={allActivities}/>
+            <Paginado />
         </div>
 
     </div>

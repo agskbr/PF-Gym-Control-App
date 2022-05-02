@@ -86,4 +86,21 @@
     background-color: #ff670280;
     height: 85vh;
     margin: 5rem;
+    display: flex-box;
+
 }
+
+.navBar{
+    display: flexbox;
+    justify-content: space-between;
+    align-items: center;
+    align-content:center;
+    background-color: #000000;
+    height: 13vh;
+    width: 100%;
+    margin-top: 7vh;
+    color: #ffffff;
+    font-size: 2vw;
+    font-weight: bold;
+}
+
