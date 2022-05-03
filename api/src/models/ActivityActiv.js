@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
             type: DataTypes.ARRAY(DataTypes.STRING)//["22/3/22","23/3/22","25/3/22"]
         },
 
-        //en duda
+        /* //en duda
         state: {
             type: DataTypes.ENUM('Active', 'Inactive',),
             defaultValue: 'Active',
@@ -26,6 +26,6 @@ module.exports = (sequelize) => {
         //catidad de clases disponibles
         quantity: {
             type: DataTypes.INTEGER,
-        },
+        }, */
     });
 };
