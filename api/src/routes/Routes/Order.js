@@ -1,10 +1,12 @@
 const router = require('express').Router()
-const { Order, User } = require("../db.js");
 const {
     orederUpdate,
     allOrder,
     orderFilterId,
     orderUpdate} = require("../Controllers/Order");
+
+
+
 
 // finalizar compra
 router.put("/checkout/:id", async (req, res) => {
