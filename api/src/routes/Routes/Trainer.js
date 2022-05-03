@@ -1,81 +1,68 @@
 const { Trainer, Activity } = require("../../db");
 const { Router } = require('express');
 const router = Router();
-const {trainersDbInfo} = require('../Controllers/Trainer')
+const {
+  allTrainers,
+  trainerId,
+  trainerDelete,
+  trainerCreated
+} = require('../Controllers/Trainer');
 
 
 
 router.get("/", async (req, res) => {
-    const trainers = await trainersDbInfo();
+    const trainers = await allTrainers();
     trainers 
     ? res.status(200).send(trainers)
     : res.status(404).send("Usuario no encontrado");
 });
 
 
+
 router.get ('/:id', async (req, res,) => {
     const id = req.params.id;
-    const allTrainers = await trainersDbInfo();
-    if(id){
-        const trainer = await allTrainers.filter(el => el.id.toString() === id);
-        trainer.length
-        ? res.status(200).json(trainer)
-        : res.status(404).send("Trainer not found, try another one.");
-    }
-    })
+    const trainer_id = await trainerId(id);
+    if(trainer_id){
+        /* const trainer = await allTrainers.filter(el => el.id.toString() === id);
+        trainer.length ? */
+      res.status(200).json(trainer_id);
+    }else res.status(404).send("Trainer not found, try another one.");
+})
+
+
+
 
 router.delete ('/:id', async (req, res) => {    
-    const {id} = req.params;   
-     try {
-       await Trainer.destroy({   
-           where: {                                            
-             id : id,
-           }
-      })
-      res.status(200).send('deleted activity!!') 
-     } catch (error) {
-        console.log(error);
-     }
-   }) 
-
-   router.post('/', async (req, res, next) => {
-    try{
-      const { 
-        name, 
-        image,  
-        specialty, 
-        experience, 
-        createdInDb, 
-        activities,
-       } = req.body;
-
-       const trainerCreated = await Trainer.create({ 
-        name,
-        image,
-        specialty,
-        experience,
-        createdInDb,
-       });
-
-       const ActDb = await Activity.findAll({
-           where: {name: activities }
-
-       })
-
-       trainerCreated.addActivity(ActDb)
-      
-      return res.status(200).send("Coach created successfully!!!");
-    }
-  
-    catch(error){
-      next (error)
-    }
-  
-  })
+  const {id} = req.params;   
+  try {
+    await trainerDelete(id);
+    res.status(200).send('deleted activity!!') 
+  }catch (error) {
+    console.log(error);
+  }
+}) 
 
 
 
+router.post('/', async (req, res, next) => {
+  const {
+    name,
+    image,
+    specialty,
+    experience,
+    Activity
+  } = req.body;
+  try {
+    const trainer_Create = await trainerCreated(name,image,specialty,experience,Activity)
+    trainer_Create ?
+      res.status(200).send("Coach created successfully!!!") :
+      res.status(400).send("Coach not created")
+  }
+  catch(error){
+    next (error)
+  }
 
+})
 
 
 
