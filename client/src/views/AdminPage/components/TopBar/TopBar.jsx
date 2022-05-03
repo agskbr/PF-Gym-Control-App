@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./TopBar.module.css";
 import notification from "../../../../assets/notification.png";
+import logoUser from "../../../../assets/logo.png"
 
 export default function TopBar() {
   return (
@@ -13,7 +14,7 @@ export default function TopBar() {
           <img src={notification} alt="notificationIcon" />
           <div className={style.counterNotification}>5</div>
         </div>
-        <div className={style.logoUser}></div>
+        <div className={style.logoUser}><img src={logoUser} alt="User" /></div>
       </div>
     </div>
   );

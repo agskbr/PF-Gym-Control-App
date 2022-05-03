@@ -13,7 +13,7 @@ const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credential
 export default function AboutHome() {
   const dispatch = useDispatch();
   const entrenadores = useSelector((state)=> state.trainers)
-  console.log(entrenadores)
+  
 
   useEffect(()=>{
       dispatch(getAllTrainers())

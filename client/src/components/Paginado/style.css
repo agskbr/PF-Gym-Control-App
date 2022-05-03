@@ -1,0 +1,70 @@
+
+.pagination {
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 120px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .number {
+    height: 30px;
+    width: 30px;
+    border: none;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #343a40;
+  }
+  
+  .arrow {
+    border: 1px solid #eb4e27;
+  }
+  
+  .icon {
+    stroke-width: 4;
+  }
+  
+  .arrow:hover {
+    background-color: #eb4e27;
+  }
+  
+  .arrow:hover .icon {
+    stroke: white;
+  }
+  
+  .number:hover {
+    background-color: #eb4e27;
+    color: white;
+  }
+  
+  .icon {
+    height: 18px;
+    width: 18px;
+    stroke: #eb4e27;
+  }
+  
+  .hidden {
+    visibility: hidden;
+  }
+  
+  #id {
+    stroke: rgba(228, 228, 228, 0.541);
+    color: rgba(228, 228, 228, 0.541);
+    background-color: none;
+  }
+  
+  #disabled:hover {
+    stroke: rgba(228, 228, 228, 0.541);
+    color: rgba(228, 228, 228, 0.541);
+    background-color: none;
+  }
+  

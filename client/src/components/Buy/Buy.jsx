@@ -1,8 +1,10 @@
 import style from "./buy.module.css"
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getActivityById } from '../../store/actions';
 import { useParams } from "react-router-dom";
+import Nav from "../Nav/nav";
+import { Link } from 'react-router-dom';
 
 
 export default function Buy() {
@@ -19,10 +21,9 @@ export default function Buy() {
         
     
     const {
-		id: idActivity,
+		
 		name,
 		description,
-		video,
 		image,
 		price,
 		day,
@@ -35,22 +36,13 @@ export default function Buy() {
         
         return (
             <div className={style.background}>
-
+               <Nav />
                 <div className={style.container}>
+                     
                     <div className={style.name}>{name}</div>
-                    <img className={style.image} src={image} ></img>
+                    <img className={style.image} src={image} alt="esto es otra imagen"></img>
                     <div className={style.description}>{description}</div>
-                    {/* {
-                        day?.map((day) => {
-                            return (
-                                <div className={style.day}>
-                                    <div className={style.day}>{` ${day}`}</div>
-                                </div>
-                            )
-                        }
-                        )
-                    } */}
-
+                    
                 <div className={style.day}>Dias:{` ${day} `}</div>
                 <div className={style.hour}>Horarios:{` ${hour} `}</div>
                 <div className={style.price}>Precio:{` $${price} `}</div>
@@ -70,8 +62,13 @@ export default function Buy() {
                 </div>
 
                 <div className={style.botonera}>
+
                     <button className={style.elbo}>Buy plan</button>
-                    <button className={style.elbo}>Add to cart</button>
+
+                    <Link to={"/"}>
+                        <button className={style.elbo} >Add to cart</button>
+                    </Link>
+
                 </div>
                 
                     
