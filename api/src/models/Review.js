@@ -1,25 +1,29 @@
 const { DataTypes } = require('sequelize');
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
-module.exports = (sequelize) => {
-  // defino el modelo
-  sequelize.define('review', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-        allowNull: false
-      },
-    comment: {
-        type: DataTypes.TEXT,
-        allowNull: false
-    },
-    rating: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
-        values: ["0","1","2","3","4","5"]
-    }
 
-  });
-};
+module.exports = (sequelize) => {
+    sequelize.define('review', {
+        /* payState: {
+            type: DataTypes.ENUM("PAGO" , "NO-PAGO"),
+            defaultValue:"NO-PAGO"
+        },
+        payDay: {
+            type: DataTypes.DATE,
+            allowNull: true,
+        }, */
+        id: {
+            type: DataTypes.STRING,
+            defaultValue: DataTypes.UUIDV4,
+            allowNull: false,
+            primaryKey: true,
+        },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        rating:{
+            type: DataTypes.ENUM,
+            defaultValue: "5",
+            values: ["1","2","3","4","5"]
+        }
+    });
+}

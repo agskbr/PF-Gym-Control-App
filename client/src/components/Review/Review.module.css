@@ -1,0 +1,17 @@
+.reviewContainer{
+    background-color: #777;
+    margin-top: 0;
+}
+.reviewList{
+    padding-bottom: 2rem;
+    width: 95%; /* ver */
+    margin: 30px auto;
+    position: relative;
+}
+
+@media (min-width:800px){
+    .review-list{
+        width: 65%;
+        margin: auto;
+    }
+}

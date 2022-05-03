@@ -2,6 +2,7 @@ import './style.css'
 import React from 'react'
 import { useState, useEffect} from 'react';
 import classNames from 'classnames'
+import { Link } from 'react-router-dom';
 
 export default function Nav() {
 
@@ -47,7 +48,12 @@ export default function Nav() {
                 <li><a className="main-nav-link" href="#section-meals">Precios</a></li>
                 <li><a className="main-nav-link" href="#section-testimonials">Feedback</a></li>
                 <li><a className="main-nav-link" href="#clases">Clases</a></li>
-                <li><a className="main-nav-link nav-cta" href="/admindashboard">Administrar</a></li>
+                <li>
+                    <Link to={'/admindashboard'} className="main-nav-link nav-cta">
+                    <a className="main-nav-link nav-cta" >Administrar</a>
+                    </Link>
+                    
+                </li>
             </ul>
         </nav>
 

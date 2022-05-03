@@ -31,7 +31,7 @@
 }
 .titleAndAddBtn h4 {
   font-family: sans-serif;
-  color: #fe4f22;
+  color: white;
 }
 
 .cardLayout {
@@ -39,7 +39,6 @@
   height: 75vh;
   width: 75vw;
   background-color: white;
-  box-shadow: 10px 10px 25px grey;
   overflow: scroll;
 }
 .tableAdminView {

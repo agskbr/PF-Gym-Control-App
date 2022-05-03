@@ -235,7 +235,7 @@ export default function EditActivity() {
           >
             Editar actividad
           </button>
-          <Link className={style.link} to={"/adminDashboard"}>Terminar edición</Link>
+          <Link className={style.link} to={"/admindashboard"}>Terminar edición</Link>
         </div>
       </div>
     </div>
