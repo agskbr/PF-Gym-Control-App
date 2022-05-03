@@ -4,9 +4,9 @@
     --black-2 : rgb(26, 5, 5);
 }
 .reviewCardContainer{
-    min-height: 20em; 
+    /* min-height: 20em;  */
     width: 80%;
-    height: 65vh;
+    height: 50vh;
     padding: 2rem;
     margin: 3rem auto;
     display: flex;
@@ -21,8 +21,8 @@
     filter: brightness(100%);
 }
 .reviewCardImg{
-    height: 10rem;
-    width: 10rem;
+    height: 7rem;
+    width: 7rem;
     object-fit: cover;
     object-position: top;
     clip-path: circle(50%);
@@ -63,8 +63,8 @@
     .reviewCardContainer{
         width: 90vw;
        /*  min-width: 25rem; */
-        max-height: 65vh;
-        height: 100%;
+        /*max-height: 50vh;*/
+        height: 40vh;
         flex-direction: row;
         justify-content: center;
         align-items: center;
@@ -86,7 +86,7 @@
         font-size: 1.5rem;
     }
     .reviewCardRating{
-        font-size: 2.5rem;
+        font-size: 3.5rem;
     }
     .reviewCardContent{
         font-size: 1.2rem;
