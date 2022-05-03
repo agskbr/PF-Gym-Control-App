@@ -3,7 +3,9 @@ const {
     User
 } = require('../../db');
 
-const getDetailsUser = async (dni) => {
+
+
+const getUserDni = async (dni) => {
     const user = await User.findOne({
         where: {
             dni: dni
@@ -19,6 +21,8 @@ const getDetailsUser = async (dni) => {
     return user;
 }
 
+
+
 const getAllUsers = async () => {
     const user = await User.findAll({
         include: {
@@ -32,7 +36,41 @@ const getAllUsers = async () => {
     return user;
 }
 
+
+const filterUserEmail = async (email) => {
+    try {
+        return await User.findOne({
+            where: {
+                email: email,
+            },
+        })
+    } catch (error) {
+        return error;
+    }
+}
+
+
+const userCreate = async (name,lastName,email,age,phoneNumber,password,dni,image) => {
+    try {
+        return await User.create({
+            name: name,
+            lastName: lastName,
+            dni: dni,
+            email: email,
+            age: age,
+            phoneNumber: phoneNumber,
+            password: password,
+            image: image,
+        })
+    } catch (error) {
+        return error
+    }
+}
+
+
 module.exports = {
-    getDetailsUser,
-    getAllUsers
+    getUserDni,
+    getAllUsers,
+    filterUserEmail,
+    userCreate
 }

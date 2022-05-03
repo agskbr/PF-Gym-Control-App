@@ -1,5 +1,17 @@
 .principalContainer {
   display: flex;
+  position: relative;
+  background: conic-gradient(
+    from 140deg at -15% -60%,
+    #fe4f22 -10.7deg,
+    rgba(0, 0, 0, 0) 349.17deg,
+    #fe4f22 349.3deg,
+    rgba(0, 0, 0, 0) 709.17deg
+  );
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
 }
 .columnContainer {
   width: 100%;

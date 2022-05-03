@@ -1,43 +1,36 @@
 const { Router } = require('express');
-const { Activity, Trainer } = require('../../db');
 const router = Router();
-const { activitysDbInfo, } = require('../Controllers/Activity');
+const {
+    allActivity,
+    activityId,
+    createActivity,
+    activityUpd,
+    deleteActivity} = require('../Controllers/Activity');
 
 
-router.post("/", async (req,res, next) => {
+
+
+// const Activity = require('../../models/Activity');
+router.post("/", async (req,res) => {
     try{
         const { name, description, video, image, price, day, hour, capacity, trainers } = req.body
-        
-            const newAct = await Activity.create({
-                name,
-                description,
-                video,
-                image,
-                price,
-                day,
-                hour,
-                capacity,
-                
-            }); 
-
-        const trainerDb = await Trainer.findAll({
-            where: {
-                name: trainers,}
-        });
-        await newAct.addTrainers(trainerDb);              
-        return res.status(200).send(newAct); 
-        
+        const activityName = createActivity(name, description, video, image, price, day, hour, capacity, trainers);
+        if (activityName) {
+            res.send("actividad Creada");
+        }
+        res.send("actividad Creada");
     } catch(err){
         next(err);
     }
 })
 
 
+
 router.get("/", async (req,res) => {
     // ME GUARDO EL NAME QUE ME LLEGA POR QUERY PARA USARLO CUANDO LO NECESITE
     const {name} = req.query;
     try {
-        const allCards = await activitysDbInfo();
+        const allCards = await allActivity();
         if(name){
             const cardsName = allCards.filter(card => card.name.toLowerCase().includes(name.toLowerCase()));
             cardsName.length ? 
@@ -51,47 +44,42 @@ router.get("/", async (req,res) => {
     }
 })
 
-//--------- ver si esta ok esta ruta --------------------- falta activar el contolador getActivityInfo desde controllers
-//esperando a unir con json
+
+//obtener actividad por id
 router.get ('/:id', async (req, res,) => {
     const id = req.params.id;
-    const allActivities = await activitysDbInfo();
-    if(id){
-        const activity = await allActivities.filter(el => el.id.toString() === id);
-        activity.length
-        ? res.status(200).json(activity)
-        : res.status(404).send("Activity not found, try another one.");
+    const activity_Id = await activityId(id);
+    if(activity_Id){
+        /*const activity = await allActivities.filter(el => el.id.toString() === id);
+        activity.length ?*/
+        res.status(200).json(activity_Id);
+    }else res.status(404).send("Activity not found, try another one.");
+})
+
+
+//editar activityId
+router.put('/:id', async (req, res, next) => {
+    let {id} = req.params
+    let activity = req.body;
+    try {
+        const activity_Upd = activityUpd(id,activity);
+        res.status(200).json(activity_Upd);
+    } catch (error) {
+        next(error);
+    } 
+})
+
+
+
+
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        await deleteActivity(id)
+        res.status(200).send('deleted activity!!')
+    } catch (error) {
+        console.log(error);
     }
-    })
-
-    router.put('/:id', async (req, res, next) => {
-        let {id} = req.params
-        let activity = req.body;
-        try {
-            let act = await Activity.update(activity, {   
-                    where: {
-                        id: id
-                    }
-            })
-            return res.status(200).json({cambiado: true})
-        
-        } catch (error) {
-            next(error);
-        } 
-    })
-
-router.delete ('/:id', async (req, res) => {    
-const {id} = req.params;   
-try {
-    await Activity.destroy({   
-        where: {                                            
-            id : id,
-        }
-    })
-    res.status(200).send('deleted activity!!') 
-} catch (error) {
-    console.log(error);
-}
-}) 
+});
 
 module.exports = router;

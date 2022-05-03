@@ -14,43 +14,82 @@
 }
 
 .container{
+    border-radius: 10px;
+    margin-top: 5vh;
     background-color: rgba(0,0,0,0.5);
     width: 40vw;
-    height: 100%;
+    height: 80vh;
     display: grid; 
     grid-template-areas:    "  name     "
-                            "  trainers "
                             "  image    "
                             "  descr    "
                             "  day      "
                             "  hour     "
                             "  price    "
                             "  capa     "
+                            "  button   ";
     ;
     justify-content: center;
+  /*   align-content: center; */
 }
 
+
+.cardContainer{
+    background-color: transparent;
+    border: 1px solid #ccc;
+    perspective: 1000px; 
+    grid-area: image;
+    width: 30vw;
+    height: 50vh;
+    filter: grayscale(0%);
+    justify-self: center;
+}
+
+.cardContainer:hover{
+    transform: rotateY(180deg);
+}
+
+.cardContainer2{
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+
+
 .name{
+    text-align: left;
     grid-area: name;
     font-size: 2.5vw;
     color: rgb(221, 221, 221);
+    margin-left: 0vw;
+    align-self: center;
     
 }
 
 .image{
-    grid-area: image;
-    width: 100%;
+    width: 30vw;
+    height: 50vh;
     filter: grayscale(0%);
-    margin-top: -1vw;
+    justify-self: center;
+    backface-visibility: hidden;
+    position: absolute;
 }
+
+
 .description{
     background-color: rgba(0, 0, 0, 0.815);
-    grid-area: descr;
+    grid-area: image;
+    width: 70%;
     font-size: .8vw;
     color: rgb(221, 221, 221);
-    margin-top: -1vw;
-    align-self: center;
+    justify-content: center;
+    justify-self: center;
+    transform: rotateY(180deg);
+    position: absolute;
+    backface-visibility: hidden;
 }
+
+
 .day{
     grid-area: day;
     font-size: 1vw;
@@ -75,26 +114,26 @@
 }
 
 .trainers{
-    grid-area: trainers;
-    margin-top: -3vw;
+    grid-area: name;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: right;
     color: rgb(255, 81, 0);
-    font-size: 1vw;
+    font-size: 1.5rem;
+    margin-right: 0vw;
 }
 
 .trainer{
     margin-left: 1vw;
-    font-size: 1vw;
+    font-size: 1.5rem;
     color: rgb(255, 255, 255);
 }
 
 .botonera{
+    grid-area: button;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-top: -1vw;
 }
 
 .elbo{
@@ -110,3 +149,43 @@
     background-color: rgb(255, 38, 0);
     color: rgb(0, 0, 0);
 }
+
+.flipContainer {
+    grid-area: image;
+    background-color: transparent;
+    width:30vw;
+    height: 40vh;
+    border: 1px solid #ccc;
+    perspective: 1000px; 
+  }
+  .card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+  }
+  .flipContainer:hover .card {
+    transform: rotateY(180deg);
+  }
+  .front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+  }
+  .front {
+    color: rgb(0, 0, 0);
+    font-size: 4rem;
+    
+  }
+  .back {
+    background-color: #ff6600a4;
+    color: rgb(0, 0, 0);
+    transform: rotateY(180deg);
+  }
