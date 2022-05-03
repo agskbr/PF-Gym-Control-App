@@ -36,13 +36,6 @@ export default function Buy() {
                 <div className={style.container}>
                      
                     <div className={style.name}>{name}</div>
-
-                    {/* <div className={style.cardContainer}>
-                        <div className={style.container2}>
-                            <img className={style.image} src={image} alt="esto es otra imagen"></img>
-                            <div className={style.description}>{description}</div>
-                        </div>
-                    </div> */}
                      <div className={style.flipContainer}>
                         <div className={style.card}>
                             <img src={image} alt="img" className={style.front}></img>
