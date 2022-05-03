@@ -1,8 +1,11 @@
 const router = require('express').Router();
 const { Sequelize } = require("sequelize");
 const { Review, User, Activity } = require ('../../db');
+const { createReview } = require('../Controllers/Review');
 
-router.get("activity/:id/reviews", async (req,res) => {
+//get específico, el global me parecio innecesario
+
+router.get("activity/:id/review", async (req,res) => {
     try{
         const {id} = req.params;
         let reviews = await User.findByPk(id,{
@@ -16,21 +19,24 @@ router.get("activity/:id/reviews", async (req,res) => {
 });
 
 
-// router.post('/activity/:id/review', async (req,res,) =>{
-//     const {
-//         comment,
-//         rating,
-//         userId
-//     } = req.body;
-//     const {id} = req.params;
-    
-//     const {
-//         comment: comment,
-//         rating: rating,
-//         userId:userId
-//         activityId:activityId,
-//     } = req.body;
-//         console.log(req.body)
-//     const newReview = 
-        
-// });
+router.post('/activity/:id/review', async (req,res,) =>{
+    try{
+        const { description, rating } = req.body
+        const review = createReview(description, rating);
+        if(review){
+            res.send("Review created");
+        }
+        res.send("Review created")
+
+    } catch(err){
+        console.log(err)
+    }
+
+});
+
+
+
+
+
+
+module.exports = router;

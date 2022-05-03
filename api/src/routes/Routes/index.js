@@ -8,7 +8,7 @@ const activity = require ('./Activity')
 const recipes = require ('./Recipes')
 const user = require ('./User')
 const trainer = require ('./Trainer')
-// const review = require('./Review');
+const review = require('./Review');
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -20,6 +20,6 @@ router.use('/activity', activity)
 router.use('/recipes', recipes)
 router.use('/user', user)
 router.use('/trainer', trainer)
-// router.use('/reviews', reviews)
+router.use('/reviews', review)
 
 module.exports = router;
