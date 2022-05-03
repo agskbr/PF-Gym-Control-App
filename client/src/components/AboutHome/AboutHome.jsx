@@ -29,13 +29,13 @@ export default function AboutHome() {
                 <section className={s.aboutSection}>
                     <h1 className={s.aboutHeading}>Nosotros</h1>
                     <p className={s.aboutParagraph}>
-                        En GYM CONTROL podés encontrar múltiples entrenamientos y programaciones pensadas para que logres tus objetivos sin dejar de entrenar en grupo.
+                        En Power Gym podés encontrar múltiples entrenamientos y programaciones pensadas para que logres tus objetivos sin dejar de entrenar en grupo.
                     </p>
                     <p className={s.aboutParagraph}>
                         Contamos con un grupo de profesionales expertos, con gran experiencia y conocimientos que te ayudarán a estar en forma y a optimizar el proceso de transición.
                     </p>
                     <p className={s.aboutParagraph}>
-                        Ademas te ayudamos a optimizar tu ingesta nutricional ofreciendote una a
+                        Ademas te ayudamos a optimizar tu ingesta nutricional ofreciendote una a seccion donde podras buscar recetas que se ajusten a tus necesidades.
                     </p>
                 </section>
                 <section className={s.aboutSection}>
