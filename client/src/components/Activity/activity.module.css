@@ -28,6 +28,7 @@
 
 .card:hover{
     transform: scale(1.2);
+    filter: none;
 }
 .card:hover .imagen{
     border-radius: 10px;
