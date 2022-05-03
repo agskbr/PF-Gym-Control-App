@@ -69,7 +69,6 @@ const trainerCreated = async (name,image,specialty,experience,activity) => {
 }
 
 
-
 module.exports = {
     allTrainers,
     trainerId,
