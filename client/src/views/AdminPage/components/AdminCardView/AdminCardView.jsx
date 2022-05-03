@@ -141,7 +141,7 @@ export default function AdminCardView() {
                   <Link
                     className={style.linkStyle}
                     key={Math.random()}
-                    to={`/adminDashboard/activity/edit/${activity.id}`}
+                    to={`/admindashboard/activity/edit/${activity.id}`}
                   >
                     <button key={Math.random()} className={style.editBtn}>
                       Editar
