@@ -1,6 +1,9 @@
 .principalContainer {
   display: flex;
   position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background: conic-gradient(
     from 140deg at -15% -60%,
     #fe4f22 -10.7deg,
@@ -12,4 +15,17 @@
   width: 100vw;
   height: 100vh;
   background-color: black;
+}
+.principalContainer h2 {
+  color: white;
+}
+.signOutBtn {
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  width: 180px;
+}
+
+.signOutBtn:hover {
+  cursor: pointer;
 }
