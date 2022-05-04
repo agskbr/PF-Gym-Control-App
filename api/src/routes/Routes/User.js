@@ -41,7 +41,9 @@ router.post("/", async (req, res) =>{
         
     } catch (error) {
         console.log(error)
-        
+    }
+})
+
 
 //obtener usuario por email
 router.get("/:email", async (req,res) =>{
@@ -53,10 +55,9 @@ router.get("/:email", async (req,res) =>{
         } else res.send(usuarioEmail);
     }catch(err){
         res.send(err);
-
     }
+});
 
-})
 
 
 
@@ -101,5 +102,6 @@ router.put('/:id', async (req, res, next) => {
         next(error);
     } 
 })
+
 
 module.exports = router;
