@@ -37,6 +37,7 @@ export default function Buy() {
         trainers,
 	} = useSelector((state) => state.detail);
     
+    const activity = useSelector((state)=> state.detail)
    
 
     
@@ -86,7 +87,7 @@ export default function Buy() {
 
           
                 </div >
-                    <Cart />
+                    <Cart data={activity}/>
 
             </div >
         );
