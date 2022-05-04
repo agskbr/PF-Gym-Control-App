@@ -28,11 +28,19 @@ const allActivity = async () => {
         return await Activity.findAll({
             /* include: {
                 model: User,
+                attributes: ["name","lastName","dni"],
+                through: {
+                    attributes: [],
+                },
+            },
                 attributes: ["name","lastName","dni"]
             }, */
             include: {
                 model: Trainer,
-                attributes: ["name"]
+                attributes: ["name"],
+                through: {
+                    attributes: [],
+                },
             }
             
         })

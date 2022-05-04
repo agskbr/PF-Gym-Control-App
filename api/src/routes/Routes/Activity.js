@@ -23,7 +23,7 @@ router.post("/", async (req,res) => {
         }
         res.send("actividad Creada");
     } catch(err){
-        console.log(err)
+        next(err);
     }
 })
 
