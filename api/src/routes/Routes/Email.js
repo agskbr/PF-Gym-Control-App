@@ -34,22 +34,22 @@ router.post('/:emailType', async (req,res) => {
           to: req.body.user.email,
           subject: "Bienvenid@",
           html:
-            `<div id="container" style="width: 100%; font-family: sans-serif; font-weight: normal;">
-                    <div style="width: 100%; max-width: 700px; margin: auto;">
-                        <div style="background-color: #0E6655; text-align: center; padding: 0.7rem 0;">
-                            <h1 style="color: white; font-family: sans-serif; font-weight: normal;">Mates-Mati</h1>
+            `<div id="container" style="width: 100%; font-family: sans-serif; font-weight: normal; ">
+                    <div style="width: 100%; max-width: 700px; margin: auto; ">
+                        <div style="background-color: #eb4e27; text-align: center; padding: 0.7rem 0;">
+                            <h1 style="color: white; font-family: sans-serif; font-weight: normal;">Gym Control</h1>
                          </div>
                 
-              <div style="text-align: center; padding: 0 0.72rem; padding-top: 2.5rem; background-color:white">
-              <p style="color: #4f5154; margin-bottom: 1.4rem; font-size: 1rem;">&iexcl;
+              <div style="text-align: center; padding: 0 0.72rem; padding-top: 2.5rem;background-color: rgba(253,237,233,.98);">
+              <p style="color: black; margin-bottom: 1.4rem; font-size: 1rem;">&iexcl;
                                         Bienvenid@   ` +
             req.body.user.name +
             `  ` +
             req.body.user.lastname +
             `  !
             <hr>
-            <p>
-            Gracias por confiar en nosotr@s!</p>
+            <p style= "color: #eb4e27;" >
+            Gracias por contar con nosotr@s!</p>
             <hr>
             <small>En caso de cualquier inquietud, por favor contactanos en: gymcontrol12@gmail.com</small>`,
         };
@@ -60,13 +60,13 @@ router.post('/:emailType', async (req,res) => {
           to: req.body.user.email,
           subject: "Link para restaurar contraseña",
           html:
-            `<div id="container" style="width: 100%; font-family: sans-serif; font-weight: normal;">
-                    <div style="width: 100%; max-width: 700px; margin: auto;">
-                        <div style="background-color: #0E6655; text-align: center; padding: 0.7rem 0;">
-                            <h1 style="color: white; font-family: sans-serif; font-weight: normal;">Mates-Mati</h1>
-                         </div>
+            `<div id="container" style="width: 100%; font-family: sans-serif; font-weight: normal; ">
+            <div style="width: 100%; max-width: 700px; margin: auto; ">
+                <div style="background-color: #eb4e27; text-align: center; padding: 0.7rem 0;">
+                    <h1 style="color: white; font-family: sans-serif; font-weight: normal;">Gym Control</h1>
+                 </div>
                 
-              <div style="text-align: center; padding: 0 0.72rem; padding-top: 2.5rem; background-color:white">
+              <div style="text-align: center; padding: 0 0.72rem; padding-top: 2.5rem; background-color: rgba(253,237,233,.98)">
               <p style="color: #4f5154; margin-bottom: 1.4rem; font-size: 1rem;">&iexcl;
                                         Hola   ` +
             req.body.user.name +
@@ -80,7 +80,7 @@ router.post('/:emailType', async (req,res) => {
             `No compartir este link
             <hr>
             <p>
-            Gracias por confiar en nosotr@s!</p>
+            Gracias por contar con nosotr@s!</p>
             <hr>
             <small>En caso de cualquier inquietud, por favor contactanos en: gymcontrol12@gmail.com</small>`,
         };
@@ -90,13 +90,13 @@ router.post('/:emailType', async (req,res) => {
           from: UserMail,
           to: user.email,
           subject: "Estado de orden",
-          html: `<div id="container" style="width: 100%; font-family: sans-serif; font-weight: normal;">
-          <div style="width: 100%; max-width: 700px; margin: auto;">
-          <div style="background-color: #0E6655; text-align: center; padding: 0.7rem 0;">
-          <h1 style="color: white; font-family: sans-serif; font-weight: normal;">Mates-Mati</h1>
-          </div>
+          html: `<div id="container" style="width: 100%; font-family: sans-serif; font-weight: normal; ">
+          <div style="width: 100%; max-width: 700px; margin: auto; ">
+              <div style="background-color: #eb4e27; text-align: center; padding: 0.7rem 0;">
+                  <h1 style="color: white; font-family: sans-serif; font-weight: normal;">Gym Control</h1>
+               </div>
           
-          <div style="text-align: center; padding: 0 0.72rem; padding-top: 2.5rem; background-color:white">
+          <div style="text-align: center; padding: 0 0.72rem; padding-top: 2.5rem; background-color: rgba(253,237,233,.98)">
           <p style="color: #4f5154; margin-bottom: 1.4rem; font-size: 1rem;">&iexcl;
           Hola ${user.name}  ${user.lastname}  !
           <h3>Tu orden fue creada con éxito </h3>
@@ -107,7 +107,7 @@ router.post('/:emailType', async (req,res) => {
           <hr>
           <p> Si deseas ver los detalles de tu orden, por favor regrese a nuestra página!! </p>
           <p>
-          Gracias por confiar en nosotr@s</p>
+          Gracias por contar con nosotr@s</p>
           <hr>
           <small>En caso de cualquier inquietud, por favor contactanos en: gymcontrol12@gmail.com</small>
           `,
@@ -118,13 +118,12 @@ router.post('/:emailType', async (req,res) => {
           from: UserMail,
           to: user.email,
           subject: "Confirmación de compra",
-          html: `<div id="container" style="width: 100%; font-family: sans-serif; font-weight: normal;">
-          <div style="width: 100%; max-width: 700px; margin: auto;">
-          <div style="background-color: #0E6655; text-align: center; padding: 0.7rem 0;">
-          <h1 style="color: white; font-family: sans-serif; font-weight: normal;">Mates-Mati</h1>
-          </div>
-          
-          <div style="text-align: center; padding: 0 0.72rem; padding-top: 2.5rem; background-color:white">
+          html: `<div id="container" style="width: 100%; font-family: sans-serif; font-weight: normal; ">
+          <div style="width: 100%; max-width: 700px; margin: auto; ">
+              <div style="background-color: #eb4e27; text-align: center; padding: 0.7rem 0;">
+                  <h1 style="color: white; font-family: sans-serif; font-weight: normal;">Gym Control</h1>
+               </div>
+          <div style="text-align: center; padding: 0 0.72rem; padding-top: 2.5rem; background-color:rgba(253,237,233,.98)">
           <p style="color: #4f5154; margin-bottom: 1.4rem; font-size: 1rem;">&iexcl;
           Hola ${user.name}  ${user.lastname}  !
           <h3>Tu orden fue pagada con éxito </h3>
