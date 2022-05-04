@@ -5,21 +5,21 @@ const {
 
 
 
-const getUserDni = async (dni) => {
-    const user = await User.findOne({
-        where: {
-            dni: dni
-        },
-        include: {
-            model: Activity,
-            attributes: ["name"],
-            through: {
-                attributes: [],
-            },
-        }
-    })
-    return user;
-}
+// const getUserDni = async (dni) => {
+//     const user = await User.findOne({
+//         where: {
+//             dni: dni
+//         },
+//         include: {
+//             model: Activity,
+//             attributes: ["name"],
+//             through: {
+//                 attributes: [],
+//             },
+//         }
+//     })
+//     return user;
+// }
 
 
 
@@ -50,14 +50,14 @@ const filterUserEmail = async (email) => {
 }
 
 
-const userCreate = async (name,lastName,email,age,phoneNumber,password,dni,image) => {
+const userCreate = async (name,lastName,email,phoneNumber,password,image) => {
     try {
         return await User.create({
             name: name,
             lastName: lastName,
-            dni: dni,
+            // dni: dni,
             email: email,
-            age: age,
+            // age: age,
             phoneNumber: phoneNumber,
             password: password,
             image: image,
@@ -69,7 +69,7 @@ const userCreate = async (name,lastName,email,age,phoneNumber,password,dni,image
 
 
 module.exports = {
-    getUserDni,
+    // getUserDni,
     getAllUsers,
     filterUserEmail,
     userCreate

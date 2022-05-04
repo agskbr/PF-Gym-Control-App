@@ -9,9 +9,9 @@ const loaderUsers = async () => {
             return {
                 name: el.name,
                 lastName: el.lastName,
-                dni: el.dni,
+                // dni: el.dni,
                 email: el.email,
-                age: el.age,
+                // age: el.age,
                 phoneNumber: el.phoneNumber,
                 password: el.password,
                 image: el.image,
@@ -22,9 +22,9 @@ const loaderUsers = async () => {
                 where: {
                     name: el.name,
                     lastName: el.lastName,
-                    dni: el.dni,
+                    // dni: el.dni,
                     email: el.email,
-                    age: el.age,
+                    // age: el.age,
                     phoneNumber: el.phoneNumber,
                     password: el.password,
                     image: el.image,
@@ -59,11 +59,11 @@ const loaderActivity = async () => {
                 day: el.day,
                 hour: el.hour,
                 capacity: el.capacity,
-                trainer: el.trainer
+                trainers: el.trainers
             };
         });
         modelActivity.forEach(async (el) => {
-            await Activity.findOrCreate({
+            const activityIns = await Activity.findOrCreate({
                 where: {
                     name: el.name,
                     description: el.description,

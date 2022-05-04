@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Sequelize } = require("sequelize");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -18,21 +18,30 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    dni:{
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    // dni:{
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
     email: {
       type: DataTypes.STRING,
-      allowNull: true,
-    },
-    age: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
+      validate: {
+        isEmail: {
+          msg: 'No es una dirección de correo electrónico.'
+        }
+      },
+      allowNull: false,
+      unique: true
+    }, 
+
+    
+    // age: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: true,
+    // },
     phoneNumber: {
       type: DataTypes.STRING,
       allowNull: false,
+      
     },
     password: {
       type: DataTypes.STRING,
@@ -56,8 +65,13 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: true,
-    },
+      defaultValue: 'https://www.ibm.com/blogs/systems/mx-es/wp-content/themes/ibmDigitalDesign/assets/img/anonymous.jpg'
+   },
+  
+  // loginWithGoogle: {
+  //   type: DataTypes.BOOLEAN,
+  //   allowNull: false
+  // },
   }
   );
 };

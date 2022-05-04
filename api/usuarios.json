@@ -2,9 +2,7 @@
     {
         "name": "leonel",
         "lastName": "Messi",
-        "dni":"123456789",
         "email": "ecommercepf10@gmail.com",
-        "age": "25",
         "phoneNumber":"+543715248594",
         "password": "pasword",
         "image": "https://fcb-abj-pre.s3.amazonaws.com/img/jugadors/MESSI.jpg"
@@ -12,9 +10,7 @@
     {
         "name": "NombreUsuario2",
         "lastName": "apellidoUsuario2",
-        "dni":"00000002",
         "email": "usuario2@gmail.com",
-        "age": "25",
         "phoneNumber":"+543715240002",
         "password": "pasword",
         "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
@@ -22,9 +18,7 @@
     {
         "name": "NombreUsuario3",
         "lastName": "apellidoUsuario3",
-        "dni":"00000003",
         "email": "usuario3@gmail.com",
-        "age": "25",
         "phoneNumber":"+543715240003",
         "password": "pasword",
         "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
@@ -32,9 +26,7 @@
     {
         "name": "NombreUsuario4",
         "lastName": "apellidoUsuario4",
-        "dni":"00000004",
         "email": "usuario4@gmail.com",
-        "age": "25",
         "phoneNumber":"+543715240004",
         "password": "pasword",
         "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
@@ -42,9 +34,7 @@
     {
         "name": "NombreUsuario5",
         "lastName": "apellidoUsuario5",
-        "dni":"00000005",
         "email": "usuario5@gmail.com",
-        "age": "25",
         "phoneNumber":"+543715240005",
         "password": "pasword",
         "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
@@ -52,9 +42,7 @@
     {
         "name": "NombreUsuario6",
         "lastName": "apellidoUsuario6",
-        "dni":"00000006",
         "email": "usuario6@gmail.com",
-        "age": "25",
         "phoneNumber":"+543715240006",
         "password": "pasword",
         "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
@@ -62,9 +50,7 @@
     {
         "name": "NombreUsuario7",
         "lastName": "apellidoUsuario7",
-        "dni":"00000007",
         "email": "usuario7@gmail.com",
-        "age": "25",
         "phoneNumber":"+543715240007",
         "password": "pasword",
         "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
@@ -72,9 +58,7 @@
     {
         "name": "NombreUsuario8",
         "lastName": "apellidoUsuario8",
-        "dni":"00000008",
         "email": "usuario8@gmail.com",
-        "age": "25",
         "phoneNumber":"+543715240008",
         "password": "pasword",
         "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
@@ -82,9 +66,7 @@
     {
         "name": "NombreUsuario9",
         "lastName": "apellidoUsuario9",
-        "dni":"00000009",
         "email": "usuario9@gmail.com",
-        "age": "25",
         "phoneNumber":"+543715240009",
         "password": "pasword",
         "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
@@ -92,9 +74,7 @@
     {
         "name": "NombreUsuario10",
         "lastName": "apellidoUsuario10",
-        "dni":"00000010",
         "email": "usuario10@gmail.com",
-        "age": "25",
         "phoneNumber":"+543715240010",
         "password": "pasword",
         "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
@@ -102,9 +82,7 @@
     {
         "name": "NombreUsuario11",
         "lastName": "apellidoUsuario11",
-        "dni":"00000011",
-        "email": "usuario2@gmail.com",
-        "age": "25",
+        "email": "usuario11@gmail.com",
         "phoneNumber":"+543715240002",
         "password": "pasword",
         "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
@@ -112,19 +90,15 @@
     {
         "name": "NombreUsuario12",
         "lastName": "apellidoUsuario12",
-        "dni":"00000012",
         "email": "usuario12@gmail.com",
-        "age": "25",
         "phoneNumber":"+543715240012",
         "password": "pasword",
         "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
     },
     {
         "name": "NombreUsuario13",
-        "lastName": "apellidoUsuario3",
-        "dni":"00000013",
+        "lastName": "apellidoUsuario13",
         "email": "usuario13@gmail.com",
-        "age": "25",
         "phoneNumber":"+543715240013",
         "password": "pasword",
         "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
@@ -132,9 +106,7 @@
     {
         "name": "NombreUsuario14",
         "lastName": "apellidoUsuario14",
-        "dni":"00000014",
         "email": "usuario14@gmail.com",
-        "age": "25",
         "phoneNumber":"+543715240014",
         "password": "pasword",
         "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
@@ -142,9 +114,7 @@
     {
         "name": "NombreUsuario15",
         "lastName": "apellidoUsuario15",
-        "dni":"00000015",
         "email": "usuario15@gmail.com",
-        "age": "25",
         "phoneNumber":"+543715240015",
         "password": "pasword",
         "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
