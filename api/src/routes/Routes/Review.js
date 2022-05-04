@@ -24,7 +24,8 @@ router.get("activity/:id/review", async (req,res) => {
 router.post('/activity/review', async (req,res,) =>{
     try{
         const { description, rating, userId, activityId} = req.body
-        const review = createReview(description, rating, userId, activityId);
+        const review = await createReview(description, rating, userId, activityId);
+        console.log(userId)
         if(review){
             res.send("Review created");
         }
