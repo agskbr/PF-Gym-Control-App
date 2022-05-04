@@ -59,27 +59,6 @@ export function getActivity() {
       .catch((err) => console.log(err));
   };
 }
-
-/* export function getDays() {
-	return async function (dispatch) {
-		const days = await axios.get(`${base_url}/days`);
-		dispatch({
-			days: 'GET_DAYS',
-			payload: days.data,
-		});
-	};
-}
-
-export function getHour() {
-	return async function (dispatch) {
-		const hour = await axios.get(`${base_url}/hour`);
-		dispatch({
-			hour: 'GET_HOUR',
-			payload: hour.data,
-		});
-	};
-} */
-
 export function getActivityById(payload) {
   return async function (dispatch) {
     try {
