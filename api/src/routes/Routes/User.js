@@ -1,11 +1,13 @@
-const { User } = require("../../db");
+const { User, } = require("../../db");
 const { Router } = require('express');
 const router = Router();
 const {
-    getUserDni,
+    
     getAllUsers,
     filterUserEmail,
-    userCreate
+    userCreate,
+    userUpd,
+    userId
 } = require('../Controllers/User');
 
 
@@ -49,16 +51,27 @@ router.get("/", async (req, res) => {
 
 
 
-router.get("/:dni", async (req, res) => {
-    const { dni } = req.params;
-    if (dni) {
-        const userDni = await getUserDni(dni)
-        userDni ? res.status(200).send(userDni)
-        : res.status(404).send("Usuario no encontrado");
-    }
+router.get("/:id", async (req, res) => {
+    const id  = req.params.id
+        const user_Id = await userId(id);
+        if(user_Id){
+            res.status(200).json(user_Id)
+        }
+        else res.status(404).send("Usuario no encontrado");
+    
 });
 
 
 
+router.put('/:id', async (req, res, next) => {
+    let {id} = req.params
+    let user = req.body;
+    try {
+        const user_Upd = userUpd(id,user);
+        res.status(200).json(user_Upd);
+    } catch (error) {
+        next(error);
+    } 
+})
 
 module.exports = router;
