@@ -5,7 +5,10 @@ const {
     activityId,
     createActivity,
     activityUpd,
-    deleteActivity} = require('../Controllers/Activity');
+    deleteActivity,
+    activityDeleteTrainer,
+    activityAddTrainer
+} = require('../Controllers/Activity');
 
 
 
@@ -81,5 +84,34 @@ router.delete('/:id', async (req, res) => {
         console.log(error);
     }
 });
+
+
+router.delete("/:idActivity/deleteTrainer/:idTrainer", async (req, res, next) => {
+    const { idActivity, idTrainer } = req.params;
+    try {
+        const resp = await activityDeleteTrainer(idActivity, idTrainer)
+        resp?
+            res.status(200).send(`Se elimino al entrenador de la actividad`) :
+            res.status(400).send("error al eliminar entrenador")
+    } catch (error) {
+        res.send(error);
+    }
+});
+
+
+router.post("/:idActivity/addTrainer/:idTrainer", async (req, res, next) => {
+    const { idActivity, idTrainer } = req.params;
+    try {
+        const resp = await activityAddTrainer(idActivity, idTrainer)
+        resp?
+            res.status(200).send(`Se agrego el entrenador a la actividad`) :
+            res.status(400).send("error al agregar entrenador")
+    } catch (error) {
+        res.send(error);
+    }
+});
+
+
+
 
 module.exports = router;
