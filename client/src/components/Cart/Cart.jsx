@@ -7,26 +7,19 @@ import { addToCart } from "../../store/actions-cart";
 import { useEffect } from "react";
 
 
-addToCart(data)
+
 
 
 export default function Cart(data) {
 
-    useEffect(() => {
+    
+
+
+    /* const [state, dispatch] = useReducer(cartReducer, cartInitialState); */
+    
+   /*  useEffect(() => {
         dispatch(addToCart());
-    }, [dispatch]);
-
-
-    const {
-        id,
-        name,
-        image,
-        price,
-        capacity,
-    } = data;
-   
-    const [state, dispatch] = useReducer(cartReducer, cartInitialState);
-    const [cart] = state;
+    }, [dispatch]); */
 
     return (
         <div className={s.container}>
@@ -35,7 +28,7 @@ export default function Cart(data) {
             </div>
             <div className={s.cart}>
                 <div className={s.cartItem}>
-                    <ProductItem data={data} addToCart={addToCart}/>
+                    <ProductItem data={data} /* addToCart={addToCart} *//>
                 </div>
             </div>
         </div>

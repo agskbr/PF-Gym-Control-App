@@ -11,9 +11,12 @@ export default function ProductItem(data, addToCart) {
     } = data;
 
 
+    console.log(data.data.data);
+
     return (
         <div className={style.container}>
             product
+            {data.data.data.name}
         </div>
     );
 }
