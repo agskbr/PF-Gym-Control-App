@@ -8,6 +8,12 @@ const {
 } = require('../Controllers/User');
 
 
+router.get("/", async (req, res) => {
+    const users = await getAllUsers();
+    users ? res.status(200).send(users)
+    : res.status(404).send("Usuario no encontrado");
+});
+
 
 //obtener usuario por email
 router.get("/:email", async (req,res) =>{
@@ -22,24 +28,14 @@ router.get("/:email", async (req,res) =>{
     }
 })
 
-
-
-router.get("/", async (req, res) => {
-    const users = await getAllUsers();
-    users ? res.status(200).send(users)
-    : res.status(404).send("Usuario no encontrado");
-});
-
-
-
-router.get("/:dni", async (req, res) => {
+/* router.get("/:dni", async (req, res) => {
     const { dni } = req.params;
     if (dni) {
         const userDni = await getUserDni(dni)
         userDni ? res.status(200).send(userDni)
         : res.status(404).send("Usuario no encontrado");
     }
-});
+}); */
 
 
 
