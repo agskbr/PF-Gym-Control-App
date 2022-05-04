@@ -7,11 +7,11 @@
     background-repeat: no-repeat;
     filter: grayscale(10%);
     display: grid;
-    grid-template-areas:    "title     .     cart"
-                            "coachs  buy cart"
-                            ".     .      . ";
+    grid-template-areas:    "title     .     ."
+                            "coachs  buy    cart"
+                            ".     .            . ";
   grid-template-rows: 1fr 40vw 1fr;
-  grid-template-columns: 30vw 30vw 35vw;
+  grid-template-columns: 30vw 40vw 30vw;
 
 }
 
@@ -68,7 +68,7 @@ background-color: rgba(255, 92, 43, 0.795);
     border-radius: 10px;
     margin-top: 5vh;
     background-color: rgba(0,0,0,0.5);
-    width: 40vw;
+    width: 100%;
     height: 80vh;
     display: grid; 
     grid-template-areas:    "  name     "
@@ -228,11 +228,11 @@ background-color: rgba(255, 92, 43, 0.795);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1vw;
   }
   .front {
     color: rgb(0, 0, 0);
-    font-size: 4rem;
+    font-size: 1rem;
     
   }
   .back {

@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Nav from "../Nav/nav";
 import { Link } from 'react-router-dom';
 import { getAllTrainers } from '../../store/actions';
+import Cart from "../Cart/Cart";
 
 
 export default function Buy() {
@@ -56,9 +57,12 @@ export default function Buy() {
                             <img src={coach2[0]?.image} alt="coach" className={style.coachImage} />
                     </div>
                </div>
+
                 <div className={style.container}>
                      
                     <div className={style.name}>{name}</div>
+
+
                      <div className={style.flipContainer}>
                         <div className={style.card}>
                             <img src={image} alt="img" className={style.front}></img>
@@ -66,39 +70,24 @@ export default function Buy() {
                         </div>
                     </div> 
                     
-                <div className={style.day}>Dias:{` ${day} `}</div>
-                <div className={style.hour}>Horarios:{` ${hour} `}</div>
-                <div className={style.price}>Precio:{` $${price} `}</div>
-                <div className={style.capacity}>Capacidad:{` ${capacity} lugares disponibles `}</div>
-               {/*  <div className={style.trainers}><p>{`Coachs: `}</p>
+                    <div className={style.day}>Dias:{` ${day} `}</div>
+                    <div className={style.hour}>Horarios:{` ${hour} `}</div>
+                    <div className={style.price}>Precio:{` $${price} `}</div>
+                    <div className={style.capacity}>Capacidad:{` ${capacity} lugares disponibles `}</div>
 
-                        {
-                            trainers?.map((trainer) => {
-                                return (
-                                        <div className={style.trainer} key={trainer.image}>{`${trainer.name}`}</div>
-                                )
-                            } 
-                            )
-                        }
+                    <div className={style.botonera}>
 
+                        <button className={style.elbo}>Buy plan</button>
 
-                </div> */}
+                        <Link to={"/"}>
+                            <button className={style.elbo} >Add to cart</button>
+                        </Link>
 
-                <div className={style.botonera}>
+                    </div>
 
-                    <button className={style.elbo}>Buy plan</button>
-
-                    <Link to={"/"}>
-                        <button className={style.elbo} >Add to cart</button>
-                    </Link>
-
-                </div>
-                
-                    
-            
-                    
-            
+          
                 </div >
+                    <Cart />
 
             </div >
         );

@@ -1,0 +1,25 @@
+.container {
+    grid-area: cart;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 83%;
+    height: 88%;
+    padding: 0;
+    align-self: center;
+    justify-self: center;
+    background-color: #fafafad0;
+    border-radius: 10px;
+
+}
+
+.title{
+    font-size: 2vw;
+    color: rgb(148, 141, 141);
+    background-color:rgb(0, 0, 0);
+    width: 100%;
+    align-items: flex-start;
+    align-content: flex-start;
+    align-self: flex-start;
+
+}
