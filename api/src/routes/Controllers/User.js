@@ -5,21 +5,21 @@ const {
 
 
 
-const getUserDni = async (dni) => {
-    const user = await User.findOne({
-        where: {
-            dni: dni
-        },
-        include: {
-            model: Activity,
-            attributes: ["name"],
-            through: {
-                attributes: [],
-            },
-        }
-    })
-    return user;
-}
+// const getUserDni = async (dni) => {
+//     const user = await User.findOne({
+//         where: {
+//             dni: dni
+//         },
+//         include: {
+//             model: Activity,
+//             attributes: ["name"],
+//             through: {
+//                 attributes: [],
+//             },
+//         }
+//     })
+//     return user;
+// }
 
 
 
@@ -36,6 +36,21 @@ const getAllUsers = async () => {
     return user;
 }
 
+const userId = async (id) => {
+    try {
+        return await User.findOne({
+            where: {
+                id: id,
+            },
+            include: {
+                model: Activity,
+                attributes: ["name"]
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 const filterUserEmail = async (email) => {
     try {
@@ -50,14 +65,12 @@ const filterUserEmail = async (email) => {
 }
 
 
-const userCreate = async (name,lastName,email,age,phoneNumber,password,dni,image) => {
+const userCreate = async (name,lastName,email,phoneNumber,password,image) => {
     try {
         return await User.create({
             name: name,
             lastName: lastName,
-            dni: dni,
             email: email,
-            age: age,
             phoneNumber: phoneNumber,
             password: password,
             image: image,
@@ -68,9 +81,22 @@ const userCreate = async (name,lastName,email,age,phoneNumber,password,dni,image
 }
 
 
+const userUpd = async (id,user) => {
+    try {
+        return await User.update(user,{   
+            where: {
+                id: id
+            }
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports = {
-    getUserDni,
     getAllUsers,
     filterUserEmail,
-    userCreate
+    userCreate,
+    userUpd,
+    userId
 }
