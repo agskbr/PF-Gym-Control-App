@@ -9,15 +9,14 @@ const {
 
 
 
-
-router.post("/", async (req,res) =>{
+//obtener usuario por email
+router.get("/:email", async (req,res) =>{
     try{
-        const {name,lastName,email,age,phoneNumber,password,dni,image} = req.body
+        const {email} = req.params
         const usuarioEmail = await filterUserEmail(email)
         if (!usuarioEmail) {
-            const user_Create = await userCreate(name,lastName,email,age,phoneNumber,password,dni,image)
-            return res.send(user_Create)
-        } else return res.send(usuarioEmail);
+            res.send("no se encontro usuario por email")
+        } else res.send(usuarioEmail);
     }catch(err){
         res.send(err);
     }

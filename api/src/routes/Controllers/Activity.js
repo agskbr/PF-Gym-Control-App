@@ -108,7 +108,7 @@ const activityDeleteTrainer = async (idActivity, idTrainer) => {
     try {
         var activity = await Activity.findByPk(idActivity);
         var trainer = await Trainer.findByPk(idTrainer);
-        if (trainer && trainer) {
+        if (trainer && activity) {
             activity.removeTrainer(trainer);
             return true
         } else {
@@ -125,7 +125,7 @@ const activityAddTrainer = async (idActivity, idTrainer) => {
     try {
         var activity = await Activity.findByPk(idActivity);
         var trainer = await Trainer.findByPk(idTrainer);
-        if (trainer && trainer) {
+        if (trainer && activity) {
             activity.addTrainer(trainer);
             return true
         } else {
