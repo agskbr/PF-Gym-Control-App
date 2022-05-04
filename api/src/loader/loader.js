@@ -59,11 +59,11 @@ const loaderActivity = async () => {
                 day: el.day,
                 hour: el.hour,
                 capacity: el.capacity,
-                trainers: el.trainers
+                trainer: el.trainer
             };
         });
         modelActivity.forEach(async (el) => {
-            const activityIns = await Activity.findOrCreate({
+            await Activity.findOrCreate({
                 where: {
                     name: el.name,
                     description: el.description,
@@ -100,6 +100,7 @@ const loaderTrainer = async () => {
                 image: el.image,
                 specialty: el.specialty,
                 experience: el.experience,
+                activities: el.activities
             };
         });
         modelTrainer.forEach(async (el) => {
