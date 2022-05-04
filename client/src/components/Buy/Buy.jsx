@@ -43,7 +43,6 @@ export default function Buy() {
     let coach = entrenadores?.filter(e => e.name === trainers[0]?.name);
     let coach2 = entrenadores?.filter(e => e.name === trainers[1]?.name);
    
-    console.log(coach[0]?.image);
         
         return (
             <div className={style.background}>
