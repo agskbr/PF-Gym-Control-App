@@ -9,9 +9,9 @@ const loaderUsers = async () => {
             return {
                 name: el.name,
                 lastName: el.lastName,
-                dni: el.dni,
+                // dni: el.dni,
                 email: el.email,
-                age: el.age,
+                // age: el.age,
                 phoneNumber: el.phoneNumber,
                 password: el.password,
                 image: el.image,
@@ -22,9 +22,9 @@ const loaderUsers = async () => {
                 where: {
                     name: el.name,
                     lastName: el.lastName,
-                    dni: el.dni,
+                    // dni: el.dni,
                     email: el.email,
-                    age: el.age,
+                    // age: el.age,
                     phoneNumber: el.phoneNumber,
                     password: el.password,
                     image: el.image,
@@ -100,6 +100,7 @@ const loaderTrainer = async () => {
                 image: el.image,
                 specialty: el.specialty,
                 experience: el.experience,
+                activities: el.activities
             };
         });
         modelTrainer.forEach(async (el) => {
