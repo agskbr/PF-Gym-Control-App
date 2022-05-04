@@ -61,7 +61,7 @@ export default function Review() {
   return (
     <main className={s.reviewContainer}>
         <section className={s.reviewList}>
-            <h1># que dicen nuestros clientes</h1>
+            {/* <h1># que dicen nuestros clientes</h1> */}
             <div className={s.contenedorSlider}>
                 <div className={s.revierCarrousel}>
                     {
@@ -77,10 +77,15 @@ export default function Review() {
                     }
                 </div>
             </div>
-            <div>
-                <button onClick={previous}> <AiOutlineLeft/> </button>
-                <button onClick={next}> <AiOutlineRight/> </button>
-            </div>
+            <div className={s.reviewContainerButton}>
+                <div >
+                <p className={s.reviewButton} onClick={previous}> <AiOutlineLeft/> </p>
+                </div>
+                <div >
+                <p className={s.reviewButton}  onClick={next}> <AiOutlineRight/> </p>
+                </div>
+            </div>    
+            
         </section>
     </main>
   )

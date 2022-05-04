@@ -37,7 +37,7 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case 'GET_ACTIVITY_DETAIL':
-      console.log(action.payload);
+     
       return {
         ...state,
         detail: action.payload[0],
