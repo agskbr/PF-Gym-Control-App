@@ -1,0 +1,40 @@
+.formContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginBtn {
+  background-color: white;
+  box-shadow: 10px 10px 20px rgb(171, 171, 171);
+  border: none;
+  padding: 10px;
+  width: 180px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 5px;
+  font-family: sans-serif;
+}
+.loginBtn:hover {
+  cursor: pointer;
+}
+.googleBtn {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  box-shadow: 10px 10px 20px rgb(171, 171, 171);
+  border-radius: 100%;
+  border: none;
+}
+.googleBtn img {
+  width: 40px;
+  height: 40px;
+}
+.googleBtn:hover {
+  cursor: pointer;
+}

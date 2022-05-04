@@ -68,7 +68,8 @@ const createActivity = async (name, description, video, image, price, day, hour,
                 price,
                 day,
                 hour,
-                capacity
+                capacity,
+                trainers
             })
             const trainerenc = await Trainer.findAll({
                 where: {
@@ -110,12 +111,49 @@ const deleteActivity = async (id) => {
     }
 }
 
+//eliminar un trainer de una actividad
+const activityDeleteTrainer = async (idActivity, idTrainer) => {
+    try {
+        var activity = await Activity.findByPk(idActivity);
+        var trainer = await Trainer.findByPk(idTrainer);
+        if (trainer && activity) {
+            activity.removeTrainer(trainer);
+            return true
+        } else {
+            return false
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+//asignar un entrenador a una actividad 
+const activityAddTrainer = async (idActivity, idTrainer) => {
+    try {
+        var activity = await Activity.findByPk(idActivity);
+        var trainer = await Trainer.findByPk(idTrainer);
+        if (trainer && activity) {
+            activity.addTrainer(trainer);
+            return true
+        } else {
+            return false
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
 module.exports = {
     allActivity,
     activityId,
     createActivity,
     activityUpd,
-    deleteActivity
+    deleteActivity,
+    activityDeleteTrainer,
+    activityAddTrainer
 }
 
 

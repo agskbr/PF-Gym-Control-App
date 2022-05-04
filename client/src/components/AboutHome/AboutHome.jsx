@@ -5,10 +5,10 @@ import s from './AboutHome.module.css';
 //import video from '../../assets/180419_Boxing_A1_04.mp4';
 import Trainers from '../Trainers/Trainers';
 import Map from '../Map/Map';
-import credentialsMap from '../../credentialsMap';
+//import credentialsMap from '../../credentialsMap';
 import {ImLocation2} from 'react-icons/im'
 
-const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credentialsMap.mapsKey}`
+//const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credentialsMap.mapsKey}`
 
 export default function AboutHome() {
   const dispatch = useDispatch();
@@ -64,12 +64,7 @@ export default function AboutHome() {
                             
                         </div>
                         <div className={s.encontranosTexto}>
-                            <Map
-                                googleMapURL={mapURL}
-                                containerElement={<div style={{height:'400px'}}/>}
-                                mapElement={<div style={{height:'60%'}}/>}
-                                loadingElement={<p>Cargando</p>}
-                            />
+                            <Map/>
                         </div>
                     </div>
                 </section>
