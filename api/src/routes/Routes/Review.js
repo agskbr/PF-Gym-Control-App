@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Sequelize } = require("sequelize");
 const { Review, User, Activity } = require ('../../db');
+const { activityId } = require('../Controllers/Activity');
 const { createReview } = require('../Controllers/Review');
 
 //get específico, el global me parecio innecesario
@@ -19,10 +20,11 @@ router.get("activity/:id/review", async (req,res) => {
 });
 
 
-router.post('/activity/:id/review', async (req,res,) =>{
+
+router.post('/activity/review', async (req,res,) =>{
     try{
-        const { description, rating } = req.body
-        const review = createReview(description, rating);
+        const { description, rating, userId, activityId} = req.body
+        const review = createReview(description, rating, userId, activityId);
         if(review){
             res.send("Review created");
         }

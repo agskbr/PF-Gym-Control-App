@@ -1,21 +1,28 @@
 const { Review } = require('../../db');
 
 
-const createReview = async (description, rating) => {
+const createReview = async (description, rating, userId, activityId) => {
     try {
         const review = await Review.findOne({
             where: {
-                name: name,
+                userId: userId,
+                activityId:activityId
             },
         })
     
         if (!review) {
             const newReview = await Review.create({
                 description,
-                rating
+                rating,
+                activityId,
+                userId
             })
+            return newReview
 
-        } return newAct
+
+        }else{
+            return ("review ya existente")
+        }
 
     } catch (error) {
         console.log(error)
