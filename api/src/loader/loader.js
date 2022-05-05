@@ -17,11 +17,8 @@ const loaderUsers = async () => {
             return {
                 name: el.name,
                 lastName: el.lastName,
-                // dni: el.dni,
                 email: el.email,
-                // age: el.age,
                 phoneNumber: el.phoneNumber,
-                password: el.password,
                 image: el.image,
             };
         });
@@ -30,11 +27,8 @@ const loaderUsers = async () => {
                 where: {
                     name: el.name,
                     lastName: el.lastName,
-                    // dni: el.dni,
                     email: el.email,
-                    // age: el.age,
                     phoneNumber: el.phoneNumber,
-                    password: el.password,
                     image: el.image,
                 },
             });

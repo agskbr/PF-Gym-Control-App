@@ -41,14 +41,11 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true
     },
-    password: {
-      type: DataTypes.STRING,
+    
+    isadmin: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
-    // ? dejo estoy dos por las dudas que los utilicemos mas adelante. 
-    // isadmin: {
-    //   type: DataTypes.BOOLEAN,
-    //   defaultValue: false,
-    // },
     isUser: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
