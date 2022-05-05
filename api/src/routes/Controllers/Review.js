@@ -1,4 +1,8 @@
-const { Review, Activity, User } = require('../../db');
+const {
+    Review,
+    Activity,
+    User
+} = require('../../db');
 
 
 const createReview = async (description, rating, userId, activityId) => {
@@ -21,7 +25,7 @@ const createReview = async (description, rating, userId, activityId) => {
             return false
         }
     } catch (error) {
-        console.log(error)
+        return(error)
     }
 }
 
@@ -61,15 +65,24 @@ const reviewUpdate = async (id,review) => {
             }
         })
     } catch (error) {
-        console.log(error)
+        return(error)
     }
 }
 
+const allReviews = async () => {
+    try {
+        console.log("estoy dentro")
+        let reviews = await Review.findAll({include: ""})
+        return reviews
+    } catch (error) {
+        return(error)
+    }
+}
 
 module.exports = {
     createReview,
     reviewActivityId,
     reviewUserId,
-    reviewUpdate 
-
+    reviewUpdate,
+    allReviews
 }
