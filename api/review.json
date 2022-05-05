@@ -1,7 +1,7 @@
 [
     {
         "rating": "3",
-        "description": "pilates.. muy buena la actividad de hacer pilares",
+        "description": "pilates.. muy buena la actividad de hacer pilates",
         "userId": "2",
         "activityId":"3"
     },
@@ -37,7 +37,7 @@
 
     {
         "rating": "5",
-        "description": "me a poco voy quedando como la roca.",
+        "description": "de a poco voy quedando como la roca.",
         "userId": "5",
         "activityId":"2"
     },
