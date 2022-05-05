@@ -53,9 +53,23 @@ const reviewUserId = async (userId) => {
     }
 }
 
+const reviewUpdate = async (id,review) => {
+    try {
+        return await Review.update(review,{   
+            where: {
+                id: id
+            }
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 module.exports = {
     createReview,
     reviewActivityId,
-    reviewUserId
+    reviewUserId,
+    reviewUpdate 
+
 }
