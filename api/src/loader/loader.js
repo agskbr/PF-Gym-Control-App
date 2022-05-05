@@ -1,7 +1,15 @@
-const { Activity, User, Trainer } = require('../db');
 const activities = require('../../activity.json')
 const users = require('../../usuarios.json')
 const trainer = require('../../trainer.json')
+const review = require('../../review.json')
+const {
+    Activity,
+    User,
+    Trainer,
+    Review
+} = require('../db');
+
+
 
 const loaderUsers = async () => { 
     try {
@@ -121,8 +129,28 @@ const loaderTrainer = async () => {
     }
 }
 
+const louderReview = async () =>{
+    try {
+        review.forEach(async (el) => {
+            await Review.findOrCreate({
+                where: {
+                    rating: el.rating,
+                    description: el.description,
+                    userId: el.userId,
+                    activityId: el.activityId
+                },
+            });
+        })
+        console.log('Review cargados en la DB')
+    } catch (error) {
+        console.log('Error en la carga de Review a la DB')
+    }
+}
+
+
 module.exports = {
     loaderUsers,
     loaderActivity,
-    loaderTrainer
+    loaderTrainer,
+    louderReview
 }
