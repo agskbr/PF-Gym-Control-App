@@ -1,0 +1,35 @@
+.principalContainer {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.registerBtn {
+  margin-top: 20px;
+  background-color: white;
+  box-shadow: 10px 10px 20px rgb(171, 171, 171);
+  border: none;
+  padding: 10px;
+  width: 180px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 5px;
+  font-family: sans-serif;
+}
+.registerBtn:hover {
+  cursor: pointer;
+}
+
+.link {
+  font-family: sans-serif;
+  color: #fe4f22;
+  font-weight: 600;
+  text-decoration: none;
+}
+.link:hover {
+  cursor: pointer;
+}
