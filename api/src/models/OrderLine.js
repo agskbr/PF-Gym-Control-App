@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize')
 
 module.exports = (sequelize) => {
-    sequelize.define("orderline", {
+    sequelize.define("orderLine", {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,

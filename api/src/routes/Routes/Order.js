@@ -7,15 +7,13 @@ const {
 
 
 
-
+//?
 // finalizar compra
 router.put("/checkout/:id", async (req, res) => {
     const { state, totalPrice } = req.body;
     const { id } = req.params;
     try {
         const order = await orederUpdate(state, totalPrice, id);
-        //duda existecial que era lo que realmente devolvia el update
-        //comprobar 
         if (order) {
             res.send("Elemento actualizado");
         }

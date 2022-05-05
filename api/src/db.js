@@ -53,7 +53,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Activity, User, Trainer, Review, Order, Orderline } = sequelize.models; //traemos las tablas de los modelos
+const { Activity, User, Trainer, Review, Order, OrderLine } = sequelize.models; //traemos las tablas de los modelos
 
 Activity.belongsToMany(Trainer, { through: 'Activity-Trainer' });
 Trainer.belongsToMany(Activity, { through: 'Activity-Trainer' });
@@ -64,8 +64,8 @@ User.belongsToMany(Activity, { through: Review });
 User.hasMany(Order,);
 Order.belongsTo(User,);
 
-Activity.belongsToMany(Order, { through: Orderline });
-Order.belongsToMany(Activity, { through: Orderline });
+Activity.belongsToMany(Order, { through: OrderLine });
+Order.belongsToMany(Activity, { through: OrderLine });
 
 
 

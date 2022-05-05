@@ -1,6 +1,7 @@
 const {
     Order,
-    User
+    User,
+    Activity
 } = require('../../db');
 
 
@@ -28,12 +29,9 @@ const orederUpdate = async (state, totalPrice, id) => {
 const allOrder = async () => {
     try {
         const allOrder = await Order.findAll({
-            include: [
-            {
-                model: User,
-            },
-            ], 
+            include: [{model: User}], 
         })
+        console.log(allOrder)
         return allOrder;
     } catch (error) {
         console.log(error);
