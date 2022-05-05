@@ -3,9 +3,13 @@ import  s from './MyActivities.module.css'
 
 export default function MyActivities() {
   return (
-    <div className={s.myActivitiesContainer}>Mis Actividades</div>
-    <div>
-        <p>aca irian los detalles de las clases que el ue el usuario </p>
+    <div className={s.myActivitiesContainer}>
+      <h1>Mis Actividades</h1>
+      <div className={s.myActivitiesDetail}>
+        <p>aca irian los detalles de las clases que el usuario compre </p>
+      </div>
+      <button>Dejanos tu opinion</button>
     </div>
+    
   )
 }

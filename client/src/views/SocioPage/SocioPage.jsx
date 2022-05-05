@@ -18,7 +18,9 @@ export default function SocioPage() {
     <div className={style.principalContainer}>
       <h2>SocioPage</h2>
       <button className={style.signOutBtn} onClick={() => dispatch(userSignOut())}>SignOut</button>
+      <div>
       <MyActivities/>
+      </div>
     </div>
   );
 }
