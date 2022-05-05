@@ -1,11 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from "redux-persist";
+import storageSession from "redux-persist/lib/storage/session";
 import thunk from "redux-thunk";
-import { rootReducer } from "./reducer/index";
-import { loginReducer } from "./reducer/login-reducer";
+import reducer from "../store/reducer";
+/* import { loginReducer } from "./reducer/login-reducer"; */
+
+const storageConfig = {
+  key: "root",
+  storage: storageSession,
+  blacklist: ["NOMBRE", "AGN"]
+}
+const persistedReducer = persistReducer(storageConfig, reducer);
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   middleware: [thunk],
 });
 
-export { store };
+export const persistor = persistStore(store);
+export default store;
+

@@ -8,7 +8,7 @@ export default function Paginado() {
 
     const [currentValue, setCurrentValue] = useState(1)
 
-    let activities = useSelector(state => state.activities)
+    let activities = useSelector(state => state.pgym.activities)
     // let [[a]] = useSelector(state => state.pagina)
     
     let pages = Math.ceil(activities.length / 3);
