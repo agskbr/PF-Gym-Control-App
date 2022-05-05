@@ -9,6 +9,7 @@ const recipes = require ('./Recipes')
 const user = require ('./User')
 const trainer = require ('./Trainer')
 const mercadopago = require('./Mercadopago')
+const review = require('./Review')
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -21,5 +22,6 @@ router.use('/recipes', recipes)
 router.use('/user', user)
 router.use('/trainer', trainer)
 router.use('/mercadopago', mercadopago)
+router.use('/review', review)
 
 module.exports = router;
