@@ -20,6 +20,7 @@ const loaderUsers = async () => {
                 email: el.email,
                 phoneNumber: el.phoneNumber,
                 image: el.image,
+                isAdmin: el.isAdmin
             };
         });
         modelUsers.forEach(async (el) => {
@@ -30,6 +31,7 @@ const loaderUsers = async () => {
                     email: el.email,
                     phoneNumber: el.phoneNumber,
                     image: el.image,
+                    isAdmin: el.isAdmin
                 },
             });
             /* el.activity.forEach(async (e) => {

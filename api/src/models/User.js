@@ -42,12 +42,15 @@ module.exports = (sequelize) => {
       unique: true
     },
     
-    isadmin: {
+    isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+<<<<<<< Updated upstream
 
     // ?lo dejo por las dudas!!
+=======
+>>>>>>> Stashed changes
     // isUser: {
     //   type: DataTypes.BOOLEAN,
     //   defaultValue: true,

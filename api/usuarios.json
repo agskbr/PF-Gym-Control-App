@@ -1,107 +1,123 @@
 [
     {
-        "name": "leonel",
-        "lastName": "Messi",
-        "email": "ecommercepf10@gmail.com",
+        "name": "PF-GYM",
+        "lastName": "Grupo 14",
+        "email": "gymcontrol12@gmail.com",
         "phoneNumber":"+543715248594",
-        "image": "https://fcb-abj-pre.s3.amazonaws.com/img/jugadors/MESSI.jpg"
+        "image": "https://fcb-abj-pre.s3.amazonaws.com/img/jugadors/MESSI.jpg",
+        "isAdmin" : true
     },
     {
         "name": "NombreUsuario2",
         "lastName": "apellidoUsuario2",
         "email": "usuario2@gmail.com",
         "phoneNumber":"+543715240002",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "isAdmin" : false
     },
     {
         "name": "NombreUsuario3",
         "lastName": "apellidoUsuario3",
         "email": "usuario3@gmail.com",
         "phoneNumber":"+543715240003",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "isAdmin" : false
+        
     },
     {
         "name": "NombreUsuario4",
         "lastName": "apellidoUsuario4",
         "email": "usuario4@gmail.com",
         "phoneNumber":"+543715240004",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "isAdmin" : false
     },
     {
         "name": "NombreUsuario5",
         "lastName": "apellidoUsuario5",
         "email": "usuario5@gmail.com",
         "phoneNumber":"+543715240005",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "isAdmin" : false
     },
     {
         "name": "NombreUsuario6",
         "lastName": "apellidoUsuario6",
         "email": "usuario6@gmail.com",
         "phoneNumber":"+543715240006",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "isAdmin" : false
     },
     {
         "name": "NombreUsuario7",
         "lastName": "apellidoUsuario7",
         "email": "usuario7@gmail.com",
         "phoneNumber":"+543715240007",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "isAdmin" : false
     },
     {
         "name": "NombreUsuario8",
         "lastName": "apellidoUsuario8",
         "email": "usuario8@gmail.com",
         "phoneNumber":"+543715240008",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "isAdmin" : false
     },
     {
         "name": "NombreUsuario9",
         "lastName": "apellidoUsuario9",
         "email": "usuario9@gmail.com",
         "phoneNumber":"+543715240009",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "isAdmin" : false
     },
     {
         "name": "NombreUsuario10",
         "lastName": "apellidoUsuario10",
         "email": "usuario10@gmail.com",
         "phoneNumber":"+543715240010",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "isAdmin" : false
     },
     {
         "name": "NombreUsuario11",
         "lastName": "apellidoUsuario11",
         "email": "usuario11@gmail.com",
         "phoneNumber":"+543715240011",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "isAdmin" : false
     },
     {
         "name": "NombreUsuario12",
         "lastName": "apellidoUsuario12",
         "email": "usuario12@gmail.com",
         "phoneNumber":"+543715240012",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "isAdmin" : false
     },
     {
         "name": "NombreUsuario13",
         "lastName": "apellidoUsuario13",
         "email": "usuario13@gmail.com",
         "phoneNumber":"+543715240013",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "isAdmin" : false
     },
     {
         "name": "NombreUsuario14",
         "lastName": "apellidoUsuario14",
         "email": "usuario14@gmail.com",
         "phoneNumber":"+543715240014",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "isAdmin" : false
     },
     {
         "name": "NombreUsuario15",
         "lastName": "apellidoUsuario15",
         "email": "usuario15@gmail.com",
         "phoneNumber":"+543715240015",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "isAdmin" : false
     }
 ]
