@@ -17,12 +17,10 @@ const loaderUsers = async () => {
             return {
                 name: el.name,
                 lastName: el.lastName,
-                // dni: el.dni,
                 email: el.email,
-                // age: el.age,
                 phoneNumber: el.phoneNumber,
-                password: el.password,
                 image: el.image,
+                isAdmin: el.isAdmin
             };
         });
         modelUsers.forEach(async (el) => {
@@ -30,12 +28,10 @@ const loaderUsers = async () => {
                 where: {
                     name: el.name,
                     lastName: el.lastName,
-                    // dni: el.dni,
                     email: el.email,
-                    // age: el.age,
                     phoneNumber: el.phoneNumber,
-                    password: el.password,
                     image: el.image,
+                    isAdmin: el.isAdmin
                 },
             });
             /* el.activity.forEach(async (e) => {

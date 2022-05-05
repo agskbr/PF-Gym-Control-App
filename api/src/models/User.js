@@ -9,6 +9,10 @@ module.exports = (sequelize) => {
         autoIncrement:true,
         primaryKey: true
     },
+    uid:{
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -26,26 +30,21 @@ module.exports = (sequelize) => {
       },
       allowNull: false,
       unique: true
-    }, 
-
-    
+    },
     phoneNumber: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
     },
-    password: {
-      type: DataTypes.STRING,
-    },
-    // ? dejo estoy dos por las dudas que los utilicemos mas adelante. 
-    // isadmin: {
-    //   type: DataTypes.BOOLEAN,
-    //   defaultValue: false,
-    // },
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    // ?lo dejo por las dudas!!
+    // isUser: {
+    //   type: DataTypes.BOOLEAN,
+    //   defaultValue: true,
+    // },
     status:{
       type: DataTypes.ENUM("ACTIVO", "INACTIVO"),
       defaultValue:"ACTIVO"
@@ -57,13 +56,11 @@ module.exports = (sequelize) => {
     image: {
       type: DataTypes.STRING,
       defaultValue: 'https://www.ibm.com/blogs/systems/mx-es/wp-content/themes/ibmDigitalDesign/assets/img/anonymous.jpg'
-   },
-  
+    },
   // loginWithGoogle: {
   //   type: DataTypes.BOOLEAN,
   //   allowNull: false
   // },
-  }
-  );
+  });
 };
 

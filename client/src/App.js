@@ -6,6 +6,7 @@ import Buy from "./components/Buy/Buy";
 import EditActivity from "./views/AdminPage/components/EditActivity/EditActivity";
 import HomePage from "./views/homePage/homePage";
 import LoginPage from "./views/LoginPage/LoginPage";
+import RegisterPage from "./views/RegisterPage/RegisterPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/clases/:id" element={<Buy />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/admindashboard" element={<AdminPage />} />
         <Route
           path="/admindashboard/activity/edit/:id"

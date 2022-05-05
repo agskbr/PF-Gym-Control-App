@@ -2,7 +2,8 @@ const router = require('express').Router();
 const {
     createReview,
     reviewActivityId,
-    reviewUserId
+    reviewUserId,
+    reviewUpdate 
 } = require('../Controllers/Review');
 
 
@@ -47,6 +48,22 @@ router.get("/user/:id", async (req,res) => {
         console.log(error)
     }
 });
+
+router.put('/:id', async (req, res,) => {
+    try{
+    let id = req.params.id;
+    let activity  = req.body;
+    console.log(activity)
+    
+        const rew = await reviewUpdate(id,activity);
+        res.status(200).json(rew);
+    } catch (error) {
+        res.send(error)
+    } 
+    
+})
+
+
 
 //todas las review de todas las actividades, no se si seria necesario esta ruta
 // o esta hecha aun 

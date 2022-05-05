@@ -65,14 +65,14 @@ const filterUserEmail = async (email) => {
 }
 
 
-const userCreate = async (name,lastName,email,phoneNumber,password,image) => {
+const userCreate = async (uid, name,lastName,email,phoneNumber,image) => {
     try {
         return await User.create({
+            uid: uid,
             name: name,
             lastName: lastName,
             email: email,
             phoneNumber: phoneNumber,
-            password: password,
             image: image,
         })
     } catch (error) {
