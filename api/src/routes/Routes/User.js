@@ -9,7 +9,7 @@ const {
     userId
 } = require('../Controllers/User');
 
-
+ 
 router.get("/", async (req, res) => {
     const users = await getAllUsers();
     users ? res.status(200).send(users)
