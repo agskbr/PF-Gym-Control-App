@@ -93,10 +93,26 @@ const userUpd = async (id,user) => {
     }
 }
 
+
+
+const userDelete = async (id) => {
+    try {
+        return await User.destroy({   
+            where: {
+                id: id
+            }
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 module.exports = {
     getAllUsers,
     filterUserEmail,
     userCreate,
     userUpd,
-    userId
+    userId,
+    userDelete
 }

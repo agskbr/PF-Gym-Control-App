@@ -1,12 +1,12 @@
 const { Router } = require('express');
 const router = Router();
 const {
-    
     getAllUsers,
     filterUserEmail,
     userCreate,
     userUpd,
-    userId
+    userId,
+    userDelete
 } = require('../Controllers/User');
 
  
@@ -90,6 +90,17 @@ router.put('/:id', async (req, res, next) => {
         next(error);
     } 
 })
+
+router.delete('/:id', async (req, res, next) => {
+    let {id} = req.params
+    try {
+        await userDelete(id);
+        res.status(200).json("Usuario Eliminado");
+    } catch (error) {
+        next(error);
+    } 
+})
+
 
 
 module.exports = router;
