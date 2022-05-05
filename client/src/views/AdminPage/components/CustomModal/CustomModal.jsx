@@ -8,7 +8,7 @@ import CustomInput from "../CustomInput/CustomInput.jsx";
 import Swal from "sweetalert";
 export default function CustomModal() {
   const dispatch = useDispatch();
-  const { trainers } = useSelector((state) => state);
+  const { trainers } = useSelector((state) => state.pgym);
 
   const daysOpt = [
     { id: 1, name: "Lunes" },

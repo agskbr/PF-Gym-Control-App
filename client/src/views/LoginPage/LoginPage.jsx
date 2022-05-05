@@ -13,7 +13,7 @@ import CustomInput from "../AdminPage/components/CustomInput/CustomInput";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state);
+  const { user } = useSelector((state) => state.pgym);
   const [input, setInput] = useState({ email: "", password: "" });
   const [error, setError] = useState({ email: "", password: "" });
   const [recAccount, setRecAccount] = useState({ recEmail: "", error: "" });

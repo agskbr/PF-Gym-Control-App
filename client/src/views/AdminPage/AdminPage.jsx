@@ -8,7 +8,7 @@ import SideBar from "./components/SideBar/SideBar.jsx";
 import TopBar from "./components/TopBar/TopBar";
 
 export default function AdminPage() {
-  const { isLoading } = useSelector((state) => state);
+  const { isLoading } = useSelector((state) => state.pgym);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(requestPost());

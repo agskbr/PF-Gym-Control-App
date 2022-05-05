@@ -8,7 +8,7 @@ export default function Search() {
 
     let dispatch = useDispatch()
 
-    let activities = useSelector(state => state.allActivities)
+    let activities = useSelector(state => state.pgym.allActivities)
 
     const [search, setSearch] = useState('')
 
