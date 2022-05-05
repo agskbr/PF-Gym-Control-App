@@ -46,10 +46,12 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    isUser: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true,
-    },
+
+    // ?lo dejo por las dudas!!
+    // isUser: {
+    //   type: DataTypes.BOOLEAN,
+    //   defaultValue: true,
+    // },
     status:{
       type: DataTypes.ENUM("ACTIVO", "INACTIVO"),
       defaultValue:"ACTIVO"
