@@ -1,0 +1,52 @@
+[
+    {
+        "rating": "3",
+        "description": "pilates.. muy buena la actividad de hacer pilates",
+        "userId": "2",
+        "activityId":"3"
+    },
+
+    
+    {
+        "rating": "5",
+        "description": "muy buena actividad. 10/10",
+        "userId": "1",
+        "activityId":"3"
+    },
+
+    {
+        "rating": "1",
+        "description": "gap, no esperaba mucho pero igual logro decepcionarme.",
+        "userId": "3",
+        "activityId":"2"
+    },
+
+    {
+        "rating": "4",
+        "description": "de apoco me va fortaleciendo el body",
+        "userId": "2",
+        "activityId":"4"
+    },
+
+    {
+        "rating": "3",
+        "description": "yoga muy buena actividad.",
+        "userId": "4",
+        "activityId":"5"
+    },
+
+    {
+        "rating": "5",
+        "description": "de a poco voy quedando como la roca.",
+        "userId": "5",
+        "activityId":"2"
+    },
+
+    {
+        "rating": "3",
+        "description": "no esta mal.",
+        "userId": "6",
+        "activityId":"1"
+    }
+
+]
