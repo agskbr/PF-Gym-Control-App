@@ -9,7 +9,7 @@ export default function AdminCardView() {
     name: false,
     price: false,
   });
-  const { activities } = useSelector((state) => state);
+  const { activities } = useSelector((state) => state).pgym;
   const [displayActivities, setDisplayActivities] = useState([]);
   useEffect(() => {
     if (activities) {

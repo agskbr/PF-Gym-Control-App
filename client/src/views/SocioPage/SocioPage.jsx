@@ -7,7 +7,7 @@ import style from "./SocioPage.module.css";
 export default function SocioPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state);
+  const { user } = useSelector((state) => state.pgym);
   useEffect(() => {
     if (!user) {
       navigate("/");

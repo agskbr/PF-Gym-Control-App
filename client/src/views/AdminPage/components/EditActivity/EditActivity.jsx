@@ -13,7 +13,7 @@ import style from "./EditActivity.module.css";
 import swal from "sweetalert";
 
 export default function EditActivity() {
-  const { trainers, detail } = useSelector((state) => state);
+  const { trainers, detail } = useSelector((state) => state.pgym);
   const { id } = useParams();
   const [activityToEdit, setActivityToEdit] = useState({});
   const dispatch = useDispatch();
