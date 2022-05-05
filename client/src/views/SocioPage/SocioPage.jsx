@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userSignOut } from "../../store/actions/actions-login";
 import style from "./SocioPage.module.css";
+import MyActivities from "./components/MyActivities/MyActivities";
 
 export default function SocioPage() {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export default function SocioPage() {
     <div className={style.principalContainer}>
       <h2>SocioPage</h2>
       <button className={style.signOutBtn} onClick={() => dispatch(userSignOut())}>SignOut</button>
+      <MyActivities/>
     </div>
   );
 }
