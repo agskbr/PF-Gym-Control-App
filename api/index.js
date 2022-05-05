@@ -19,7 +19,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const { loaderUsers , loaderActivity, loaderTrainer} = require('./src/loader/loader')
+const { loaderUsers , loaderActivity, loaderTrainer, louderReview} = require('./src/loader/loader')
 //const  { userDb, orderDb, orderlineDb, review_productDb, reviewsDb} = require('./data.js')
 
 
@@ -30,6 +30,7 @@ conn.sync({ force: true }).then(() => {
     await loaderUsers();
     await loaderActivity();
     await loaderTrainer();
+    await louderReview();
 
     console.log('%s listening 3001 '); // eslint-disable-line no-console
   });

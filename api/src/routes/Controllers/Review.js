@@ -1,4 +1,4 @@
-const { Review } = require('../../db');
+const { Review, Activity, User } = require('../../db');
 
 
 const createReview = async (description, rating, userId, activityId) => {
@@ -9,7 +9,6 @@ const createReview = async (description, rating, userId, activityId) => {
                 activityId:activityId
             },
         })
-    
         if (!review) {
             const newReview = await Review.create({
                 description,
@@ -18,15 +17,45 @@ const createReview = async (description, rating, userId, activityId) => {
                 userId
             })
             return newReview
-
-
         }else{
-            return ("review ya existente")
+            return false
         }
-
     } catch (error) {
         console.log(error)
     }
 }
 
-module.exports = { createReview }
+
+const reviewActivityId = async (activityId) => {
+    try {
+        let reviews = await Review.findAll({
+            where: {
+                activityId: activityId,
+            },
+        })
+        return reviews 
+    } catch (error) {
+        return error
+    }
+}
+
+
+const reviewUserId = async (userId) => {
+    try {
+        let reviews = await Review.findAll({
+            where: {
+                userId: userId,
+            },
+        })
+        return reviews 
+    } catch (error) {
+        return false
+    }
+}
+
+
+module.exports = {
+    createReview,
+    reviewActivityId,
+    reviewUserId
+}
