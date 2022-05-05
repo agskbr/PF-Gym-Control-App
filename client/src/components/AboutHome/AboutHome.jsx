@@ -12,7 +12,7 @@ import {ImLocation2} from 'react-icons/im'
 
 export default function AboutHome() {
   const dispatch = useDispatch();
-  const entrenadores = useSelector((state)=> state.trainers)
+  const entrenadores = useSelector((state)=> state.pgym.trainers)
   
 
   useEffect(()=>{

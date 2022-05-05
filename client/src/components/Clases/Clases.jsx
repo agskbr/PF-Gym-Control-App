@@ -15,7 +15,7 @@ import {
 const Clases = () => {
 
 const dispatch = useDispatch();
-const allActivities = useSelector((state) => state.page);
+const allActivities = useSelector((state) => state.pgym.page);
 
 
 useEffect(() => {

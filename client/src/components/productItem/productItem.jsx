@@ -1,6 +1,6 @@
 import style from './productItem.module.css';
 
-export default function ProductItem(data, addToCart) {
+export default function ProductItem({data, addToCart}) {
 
     const {
         id,
@@ -16,7 +16,7 @@ export default function ProductItem(data, addToCart) {
     return (
         <div className={style.container}>
             product
-            {data.data.data.name}
+           {/*  {data.name} */}
         </div>
     );
 }

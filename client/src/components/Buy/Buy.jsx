@@ -17,7 +17,7 @@ export default function Buy() {
 		dispatch(getActivityById(id));
 	}, [dispatch]);
     
-    const entrenadores = useSelector((state)=> state.trainers)
+    const entrenadores = useSelector((state)=> state.pgym.trainers)
     
     useEffect(()=>{
         dispatch(getAllTrainers())
@@ -35,7 +35,7 @@ export default function Buy() {
 		hour,
 		capacity,
         trainers,
-	} = useSelector((state) => state.detail);
+	} = useSelector((state) => state.pgym.detail);
     
     const activity = useSelector((state)=> state.detail)
    
@@ -48,7 +48,7 @@ export default function Buy() {
         return (
             <div className={style.background}>
                <Nav />
-               <div className={style.coachsTitle}>Coachs</div>
+            {/*    <div className={style.coachsTitle}>Coachs</div>
                <div className={style.coachs}>
                      <div className={style.coach1}>
                             <img src={coach[0]?.image} alt="coach" className={style.coachImage} />
@@ -56,7 +56,7 @@ export default function Buy() {
                     <div className={style.coach2}>
                             <img src={coach2[0]?.image} alt="coach" className={style.coachImage} />
                     </div>
-               </div>
+               </div> */}
 
                 <div className={style.container}>
                      
@@ -87,7 +87,7 @@ export default function Buy() {
 
           
                 </div >
-                    <Cart data={activity}/>
+                    {/* <Cart data={activity}/> */}
 
             </div >
         );
