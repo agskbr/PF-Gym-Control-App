@@ -42,14 +42,19 @@ module.exports = (sequelize) => {
       unique: true
     },
     
-    isadmin: {
+    isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    isUser: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true,
-    },
+<<<<<<< Updated upstream
+
+    // ?lo dejo por las dudas!!
+=======
+>>>>>>> Stashed changes
+    // isUser: {
+    //   type: DataTypes.BOOLEAN,
+    //   defaultValue: true,
+    // },
     status:{
       type: DataTypes.ENUM("ACTIVO", "INACTIVO"),
       defaultValue:"ACTIVO"
