@@ -35,8 +35,8 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) =>{
 
     try {
-        const {name, lastName, email, phoneNumber, password, image} = req.body
-        const user_Create = await userCreate (name, lastName, email, phoneNumber, password, image)
+        const {uid, name, lastName, email, phoneNumber, password, image} = req.body
+        const user_Create = await userCreate (uid, name, lastName, email, phoneNumber, password, image)
         return res.send(user_Create)
         
     } catch (error) {
@@ -60,8 +60,6 @@ router.get("/:email", async (req,res) =>{
 
 
 
-
-
 router.get("/", async (req, res) => {
     const users = await getAllUsers();
     users ? res.status(200).send(users)
@@ -79,16 +77,6 @@ router.get("/:id", async (req, res) => {
         else res.status(404).send("Usuario no encontrado");
     
 });
-
-/* router.get("/:dni", async (req, res) => {
-    const { dni } = req.params;
-    if (dni) {
-        const userDni = await getUserDni(dni)
-        userDni ? res.status(200).send(userDni)
-        : res.status(404).send("Usuario no encontrado");
-    }
-}); */
-
 
 
 
