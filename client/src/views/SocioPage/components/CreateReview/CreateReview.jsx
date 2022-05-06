@@ -42,7 +42,7 @@ export default function CreateReaview() {
                 rating: 0
             })
             Swal.fire({
-                title: "Gracias por dejarnos",
+                title: "Gracias por dejarnos tu ",
                 icon: "success",
                 position: "center",
                 timer: 2000,
@@ -53,7 +53,51 @@ export default function CreateReaview() {
     }
 
   return (
-    <div className={s.CreateReviewContainer}>
+
+    <dialog id="reviewDialog" style={{ border: "none", height: "30vh" }}>
+        <div
+            style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
+            <div style={{ justifyContent: "flex-end", display: "flex" }}>
+                <button
+                onClick={() => document.getElementById("reviewDialog").close()}
+                >
+                x
+                </button>
+            </div>
+            <h4>Dejanos lo que pensas sobre nuestro servicio</h4>
+            <img 
+                src={logo} 
+                style={{ width: 100, objectFit: "cover" }}
+                alt="logo"
+            />
+            <div className={s.createReviewtitle}>
+                <h3>Power Gym</h3>
+            </div>
+            <textarea
+                name="review"
+                style={{ resize: "none" }}
+                placeholder="Agrega tu review aquí"
+            ></textarea>
+            <div>
+                <select name="rating" className={s.createReviewSelect}>
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
+                    <option value="">4</option>
+                    <option value="">5</option>
+                </select>
+            </div>
+        </div>
+      </dialog>
+
+
+    
+   /*  <div className={s.CreateReviewContainer}>
         <div className={s.createRevLogo}>
             <img 
                 src={logo} 
@@ -85,6 +129,6 @@ export default function CreateReaview() {
             <button onClick={handleSubmit}>Enviar</button>
             </div>
             
-    </div>
+    </div> */
   )
 }
