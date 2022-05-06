@@ -2,7 +2,7 @@ import s from "./cart.module.css";
 import { useReducer } from "react";
 import { cartInitialState, cartReducer } from "../../store/reducer/cartReducer";
 import { useDispatch } from "react-redux";
-import ProductItem from "../ProductItem/ProductItem";
+import ProductItem from "../productItem/productItem";
 import { addToCart } from "../../store/actions-cart";
 import { useEffect } from "react";
 

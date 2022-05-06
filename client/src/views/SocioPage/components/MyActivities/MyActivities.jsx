@@ -8,7 +8,7 @@ export default function MyActivities() {
       <div className={s.myActivitiesDetail}>
         <p>aca irian los detalles de las clases que el usuario compre </p>
       </div>
-      <button>Dejanos tu opinion</button>
+      <button> Dejanos tu opinion </button>
     </div>
     
   )
