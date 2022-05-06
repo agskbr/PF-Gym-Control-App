@@ -54,10 +54,25 @@ router.get("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     const {id} = req.params
     try {
-        await horaDiaDelete(id)
+        await horaDiaDelete2(id)
         res.status(200).json("HoraDia Eliminado");
     } catch (error) {
         console.log(error)
     }
 });
+
+router.put('/:id', async (req, res,)=> {
+    let {id} = req.params
+    let horaDia = req.body;
+    try {
+        const horaDia_Upd = horaDiaUpd(id,horaDia);
+        res.status(200).json(horaDia_Upd);  
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+
+module.exports = router;
+
 
