@@ -50,6 +50,7 @@ export default function LoginPage() {
           <button
             onClick={() => {
               dispatch(resetPassword(recAccount.recEmail));
+              document.getElementById("forgotPassDialog").close();
             }}
             className={style.sendBtn}
           >
