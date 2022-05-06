@@ -2,7 +2,7 @@
 //crear
 
 const router = require('express').Router();
-const {createOrderline, orderlineByOrderId} = require('../Controllers/Orderline.js')
+const {createOrderline, orderlineByOrderId, orderlineByActivityId} = require('../Controllers/Orderline.js')
 
 router.post('/', async (req,res,) =>{
     try {
@@ -17,6 +17,18 @@ router.post('/', async (req,res,) =>{
     }
 });
 
+router.get('/activity/:activityId', async(req,res) =>{
+    try {
+        const {activityId} = req.params
+        const orderlineActId = await orderlineByActivityId(activityId)
+        orderlineActId ?
+        res.send(orderlineActId)
+        : res.send("No se encontro orderline en la actividad")
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 router.get('/:orderId', async(req,res) =>{
     try {
         const {orderId} = req.params
@@ -28,5 +40,7 @@ router.get('/:orderId', async(req,res) =>{
         console.log(error)
     }
 })
+
+
 
 module.exports = router

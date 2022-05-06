@@ -13,7 +13,7 @@ const {
 //                 state: state,
 //                 totalPrice: totalPrice,
 //             },
-//             {
+//             {//
 //                 where:
 //                 {
 //                     id: id
