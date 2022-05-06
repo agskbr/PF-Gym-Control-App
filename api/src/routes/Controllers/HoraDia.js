@@ -93,7 +93,7 @@ const horaDiaIdUser = async (id) => {
     } catch (error) {
         console.log(error)
     }
-
+}
 
 
 
@@ -220,5 +220,4 @@ module.exports = {
     horaDiaUpd,
     updateHoraDia,
     removeUserHoraDia
-    }
 }
