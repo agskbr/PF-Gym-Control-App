@@ -23,8 +23,8 @@ const {
   loaderUsers,
   loaderActivity,
   loaderTrainer,
-  louderReview,
-  louderDiaHora
+  loaderReview,
+  loaderDiaHora
 } = require('./src/loader/loader')
 
 // Syncing all the models at once.
@@ -34,8 +34,8 @@ conn.sync({ force: true }).then(() => {
     await loaderUsers();
     await loaderActivity();
     await loaderTrainer();
-    await louderReview();
-    await louderDiaHora();
+    await loaderReview();
+    await loaderDiaHora();
 
     console.log('%s listening 3001 '); // eslint-disable-line no-console
   });
