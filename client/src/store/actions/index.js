@@ -3,6 +3,7 @@ import {
   GET_ALL_TRAINERS,
   RECEIVED_POST,
   REQUEST_POST,
+  GET_ALL_USERS,
 } from "../actions-type/index";
 
 const base_url = "https://pfgymapp-2.herokuapp.com";
@@ -11,6 +12,17 @@ const createActivity = (activity) => {
   return async () => {
     try {
       await axios.post(`${base_url}/activity`, activity);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+const getAllUsers = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${base_url}/user`);
+      dispatch({ type: GET_ALL_USERS, payload: data });
     } catch (error) {
       console.log(error);
     }
@@ -112,4 +124,10 @@ export function changePage(page) {
   };
 }
 
-export { createActivity, getAllTrainers, editActivity, requestPost };
+export {
+  createActivity,
+  getAllTrainers,
+  editActivity,
+  requestPost,
+  getAllUsers,
+};
