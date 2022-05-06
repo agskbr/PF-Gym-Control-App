@@ -209,3 +209,15 @@ const removeUserHoraDia = async (req, res) => {
     }
 }
 
+module.exports = {
+    allHoraDia,
+    allHoraDiaUser,
+    horaDiaCreate,
+    horaDiaId,
+    horaDiaIdUser,
+    horaDiaDelete,
+    horaDiaDelete2,
+    horaDiaUpd,
+    updateHoraDia,
+    removeUserHoraDia
+}
