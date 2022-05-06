@@ -1,5 +1,5 @@
-import React from 'react'
-import  s from './MyActivities.module.css'
+import React from "react";
+import s from "./MyActivities.module.css";
 
 export default function MyActivities() {
   return (
@@ -8,8 +8,14 @@ export default function MyActivities() {
       <div className={s.myActivitiesDetail}>
         <p>aca irian los detalles de las clases que el usuario compre </p>
       </div>
-      <button> Dejanos tu opinion </button>
+      <button
+        onClick={() => {
+          document.getElementById("reviewDialog").showModal();
+        }}
+      >
+        {" "}
+        Dejanos tu opinion{" "}
+      </button>
     </div>
-    
-  )
+  );
 }
