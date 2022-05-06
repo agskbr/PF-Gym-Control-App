@@ -2,13 +2,16 @@ const activities = require('../../activity.json')
 const users = require('../../usuarios.json')
 const trainer = require('../../trainer.json')
 const review = require('../../review.json')
+const diaHora = require('../../diaHora.json')
 const orderLine = require ('../../orderLine.json')
 const order = require ('../../Order.json')
+
 const {
     Activity,
     User,
     Trainer,
     Review,
+    DiaHora,
     Order,
     OrderLine
 } = require('../db');
@@ -18,17 +21,7 @@ const {
 
 const loaderUsers = async () => { 
     try {
-        const modelUsers = users.map((el) => {
-            return {
-                name: el.name,
-                lastName: el.lastName,
-                email: el.email,
-                phoneNumber: el.phoneNumber,
-                image: el.image,
-                isAdmin: el.isAdmin
-            };
-        });
-        modelUsers.forEach(async (el) => {
+        users.forEach(async (el) => {
             const userIns = await User.findOrCreate({
                 where: {
                     name: el.name,
@@ -39,14 +32,6 @@ const loaderUsers = async () => {
                     isAdmin: el.isAdmin
                 },
             });
-            /* el.activity.forEach(async (e) => {
-                const activityIns = await Activity.findOne({
-                    where: {
-                        name: e.name
-                    }
-                })
-                await activityIns.addUser(userIns[0])
-            }) */
         });
         console.log('Usuarios cargados en la DB')
     }
@@ -57,21 +42,7 @@ const loaderUsers = async () => {
 
 const loaderActivity = async () => {
     try {
-        const modelActivity = activities.map((el) => {
-            return {
-                id: el.id,
-                name: el.name,
-                description: el.description,
-                video: el.video,
-                image: el.image,
-                price: el.price,
-                day: el.day,
-                hour: el.hour,
-                capacity: el.capacity,
-                trainers: el.trainers
-            };
-        });
-        modelActivity.forEach(async (el) => {
+        activities.forEach(async (el) => {
             const activityIns = await Activity.findOrCreate({
                 where: {
                     name: el.name,
@@ -79,8 +50,6 @@ const loaderActivity = async () => {
                     video: el.video,
                     image: el.image,
                     price: el.price,
-                    day: el.day,
-                    hour: el.hour,
                     capacity: el.capacity
                 },
             });
@@ -102,17 +71,7 @@ const loaderActivity = async () => {
 
 const loaderTrainer = async () => {
     try {
-        const modelTrainer = trainer.map((el) => {
-            return {
-                id: el.id,
-                name: el.name,
-                image: el.image,
-                specialty: el.specialty,
-                experience: el.experience,
-                activities: el.activities
-            };
-        });
-        modelTrainer.forEach(async (el) => {
+        trainer.forEach(async (el) => {
             await Trainer.findOrCreate({
                 where: {
                 id: el.id,
@@ -184,11 +143,30 @@ const loaderOrderline = async () =>{
 }
 
 
+const loaderDiaHora = async () =>{
+    try {
+        diaHora.forEach(async (el) => {
+            await DiaHora.findOrCreate({
+                where: {
+                    day: el.day,
+                    hour: el.hour,
+                    capacity: el.capacity,
+                    activityId: el.activityId
+                },
+            });
+        })
+        console.log('diaHora cargados en la DB')
+    } catch (error) {
+        console.log('Error en la carga de diaHora a la DB')
+    }
+}
+
 module.exports = {
     loaderUsers,
     loaderActivity,
     loaderTrainer,
     loaderReview,
+    loaderDiaHora,
     loaderOrder,
-    loaderOrderline 
+    loaderOrderline
 }

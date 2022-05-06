@@ -19,8 +19,16 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const { loaderUsers , loaderActivity, loaderTrainer, loaderReview, loaderOrder, loaderOrderline } = require('./src/loader/loader')
-//const  { userDb, orderDb, orderlineDb, review_productDb, reviewsDb} = require('./data.js')
+
+const {
+  loaderUsers,
+  loaderActivity,
+  loaderTrainer,
+  loaderReview,
+  loaderDiaHora,
+  loaderOrder,
+  loaderOrderline
+} = require('./src/loader/loader')
 
 
 // Syncing all the models at once.
@@ -31,6 +39,7 @@ conn.sync({ force: true }).then(() => {
     await loaderActivity();
     await loaderTrainer();
     await loaderReview();
+    await loaderDiaHora();
     await loaderOrder();
     await loaderOrderline();
 

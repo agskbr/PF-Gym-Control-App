@@ -35,14 +35,6 @@ module.exports = (sequelize) => {
       allowNull: true
     },
 
-    day:{
-      type: DataTypes.ARRAY(DataTypes.STRING),
-    },
-
-    hour:{
-      type: DataTypes.ARRAY(DataTypes.STRING),
-    },
-
     capacity:{
       type: DataTypes.INTEGER,
       allowNull: true
