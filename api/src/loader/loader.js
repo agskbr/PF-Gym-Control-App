@@ -8,10 +8,11 @@ const {
     Activity,
     User,
     Trainer,
-    Review
+    Review,
+    Order,
+    OrderLine
 } = require('../db');
-const Order = require('../models/Order')
-const OrderLine = require('../models/OrderLine')
+
 
 
 
@@ -129,7 +130,7 @@ const loaderTrainer = async () => {
     }
 }
 
-const louderReview = async () =>{
+const loaderReview = async () =>{
     try {
         review.forEach(async (el) => {
             await Review.findOrCreate({
@@ -168,7 +169,7 @@ const loaderOrderline = async () =>{
         orderLine.forEach(async (el) => {
             await OrderLine.findOrCreate({
                 where: {
-                    unitprice: el.unitprice,
+                    unitPrice: el.unitPrice,
                     subtotal: el.subtotal,
                     quantity: el.quantity,
                     orderId: el.orderId,
@@ -187,7 +188,7 @@ module.exports = {
     loaderUsers,
     loaderActivity,
     loaderTrainer,
-    louderReview,
+    loaderReview,
     loaderOrder,
     loaderOrderline 
 }
