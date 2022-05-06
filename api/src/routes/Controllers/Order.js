@@ -85,12 +85,12 @@ const orderUserId = async (userId) => {
 }
 const createOrder = async (totalPrice, state, userId) => {
     try {
-        const review = await Order.findOne({
+        const order = await Order.findOne({
             where: {
                 userId: userId,
             },
         })
-        if (!review) {
+        if (!order) {
             const newOrder = await Order.create({
                 totalPrice,
                 state,

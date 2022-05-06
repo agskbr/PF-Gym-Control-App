@@ -2,12 +2,16 @@ const activities = require('../../activity.json')
 const users = require('../../usuarios.json')
 const trainer = require('../../trainer.json')
 const review = require('../../review.json')
+const orderLine = require ('../../orderLine.json')
+const order = require ('../../Order.json')
 const {
     Activity,
     User,
     Trainer,
     Review
 } = require('../db');
+const Order = require('../models/Order')
+const OrderLine = require('../models/OrderLine')
 
 
 
@@ -143,10 +147,47 @@ const louderReview = async () =>{
     }
 }
 
+const loaderOrder = async () =>{
+    try {
+        order.forEach(async (el) => {
+            await Order.findOrCreate({
+                where: {
+                    totalPrice: el.totalPrice,
+                    state: el.state,
+                    userId: el.userId,
+                },
+            });
+        })
+        console.log('Orders cargados en la DB')
+    } catch (error) {
+        console.log('Error en la carga de Orders a la DB')
+    }
+}
+const loaderOrderline = async () =>{
+    try {
+        orderLine.forEach(async (el) => {
+            await OrderLine.findOrCreate({
+                where: {
+                    unitprice: el.unitprice,
+                    subtotal: el.subtotal,
+                    quantity: el.quantity,
+                    orderId: el.orderId,
+                    activityId: el.activityId
+                },
+            });
+        })
+        console.log('OrdersLines cargados en la DB')
+    } catch (error) {
+        console.log('Error en la carga de OrdersLines a la DB')
+    }
+}
+
 
 module.exports = {
     loaderUsers,
     loaderActivity,
     loaderTrainer,
-    louderReview
+    louderReview,
+    loaderOrder,
+    loaderOrderline 
 }
