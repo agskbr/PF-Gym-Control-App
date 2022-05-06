@@ -4,23 +4,35 @@ import style from "./AdminCardView.module.css";
 import { Link } from "react-router-dom";
 import { FaArrowCircleUp, FaArrowCircleDown } from "react-icons/fa";
 
-export default function AdminCardView() {
+export default function AdminCardView({ type }) {
   const [isAscendentOrder, setIsAscendentOrder] = useState({
     name: false,
     price: false,
   });
-  const { activities } = useSelector((state) => state).pgym;
-  const [displayActivities, setDisplayActivities] = useState([]);
+  const { activities, trainers, users } = useSelector((state) => state.pgym);
+  const [keys, setKeys] = useState([]);
+  const [displayArray, setDisplayArray] = useState([]);
   useEffect(() => {
-    if (activities) {
-      setDisplayActivities(activities);
+    if (users.length && trainers.length && activities.length) {
+      if (type === "Usuarios") {
+        setDisplayArray([...users]);
+        setKeys([...Object.keys(users[0])]);
+      }
+      if (type === "Instructores") {
+        setDisplayArray([...trainers]);
+        setKeys(Object.keys(trainers[0]));
+      }
+      if (type === "Clases") {
+        setDisplayArray([...activities]);
+        setKeys(Object.keys(activities[0]));
+      }
     }
-  }, [activities]);
+  }, [activities, trainers, users, type]);
 
   return (
     <div className={style.principalContainer}>
       <div className={style.titleAndAddBtn}>
-        <h4>Actividades</h4>
+        <h4>{type}</h4>
         <button
           onClick={() => document.getElementById("createDialog").showModal()}
           className={style.addBtn}
@@ -32,7 +44,10 @@ export default function AdminCardView() {
         <table className={style.tableAdminView}>
           <thead>
             <tr>
-              <th>ID</th>
+              {keys.map((head) => (
+                <td key={head}>{head}</td>
+              ))}
+              {/* <th>ID</th>
               <th>
                 <div className={style.headWithFilterBtn}>
                   <span>Name</span>
@@ -97,11 +112,17 @@ export default function AdminCardView() {
               <th>Days</th>
               <th>Hours</th>
               <th>Capacity</th>
-              <th>Trainers</th>
+              <th>Trainers</th> */}
             </tr>
           </thead>
           <tbody>
-            {displayActivities.map((activity) => (
+            {displayArray.map((el) => (
+              <tr key={el.id}>
+                <td>{el.id}</td>
+                <td>{el.name}</td>
+              </tr>
+            ))}
+            {/* {displayArray.map((activity) => (
               <tr key={activity.id}>
                 <td key={Math.random()}>{activity.id}</td>
                 <td key={Math.random()}>{activity.name}</td>
@@ -158,7 +179,7 @@ export default function AdminCardView() {
                   </button>
                 </td>
               </tr>
-            ))}
+            ))} */}
           </tbody>
         </table>
       </div>

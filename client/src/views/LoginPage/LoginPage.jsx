@@ -22,8 +22,12 @@ export default function LoginPage() {
     dispatch(validateUserIsLogged());
   }, [dispatch]);
   useEffect(() => {
-    if (user?.uid) {
-      navigate("/sociodashboard");
+    if (user) {
+      if (user.uid !== "jUHKBpHJLkb9dso2TNOW5DZaU0w2") {
+        navigate("/sociodashboard");
+      }else {
+        navigate("/admindashboard")
+      }
     }
   }, [user, navigate]);
 

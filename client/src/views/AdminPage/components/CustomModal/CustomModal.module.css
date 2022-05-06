@@ -72,7 +72,17 @@
   font-family: sans-serif;
   margin-top: 20px;
 }
-
+.createDisabledBtn {
+  border: none;
+  border-radius: 5px;
+  background-color: grey;
+  padding: 10px;
+  width: 150px;
+  font-size: 14px;
+  color: white;
+  font-family: sans-serif;
+  margin-top: 20px;
+}
 .createBtn:hover {
   cursor: pointer;
 }
