@@ -19,7 +19,6 @@ export default function RegisterPage() {
 
   useEffect(() => {
     if (user) {
-      navigate("/sociodashboard");
     }
   }, [user, navigate]);
 
