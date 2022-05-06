@@ -1,4 +1,4 @@
-import {
+ import {
   LOGIN_WITH_GOOGLE,
   REGISTER_USER_WITH_EMAIL_AND_PASS,
   USER_SIGN_OUT,
@@ -6,7 +6,7 @@ import {
 } from "../actions-type";
 
 const initialState = {
-  user: {},
+  user: null,
 };
 
 const loginReducer = (state = initialState, action) => {

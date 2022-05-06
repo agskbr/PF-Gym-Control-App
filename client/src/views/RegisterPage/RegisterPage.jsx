@@ -18,7 +18,7 @@ export default function RegisterPage() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (user?.uid) {
+    if (user) {
       navigate("/sociodashboard");
     }
   }, [user, navigate]);
