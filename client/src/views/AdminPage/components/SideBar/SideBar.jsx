@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import CustomItemSideBar from "../CustomItemSideBar/CustomItemSideBar";
 import logoUser from "../../../../assets/logo.png";
+import { userSignOut } from "../../../../store/actions/actions-login";
 import { Link } from "react-router-dom";
 import style from "./SideBar.module.css";
 import {
@@ -9,8 +10,11 @@ import {
   FaClipboard,
   FaArrowCircleLeft,
 } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 
-export default function SideBar() {
+export default function SideBar({ setTypeOfCardView }) {
+  const dispatch = useDispatch();
+  const [selected, setSeletected] = useState("Usuarios");
   return (
     <div className={style.sideBarContainer}>
       <div className={style.headerSideBar}>
@@ -23,17 +27,40 @@ export default function SideBar() {
       </div>
       <div className={style.separator}></div>
       <div className={style.contentSideBar}>
-        <CustomItemSideBar icon={<FaUsers size={20} />} name="Usuarios" />
+        <CustomItemSideBar
+          icon={<FaUsers size={20} />}
+          selected={selected}
+          name="Usuarios"
+          onClick={() => {
+            setSeletected("Usuarios");
+            setTypeOfCardView("Usuarios");
+          }}
+        />
         <CustomItemSideBar
           icon={<FaDumbbell size={20} />}
-          onClick={() => console.log("Change AdminCardView")}
+          selected={selected}
+          onClick={() => {
+            setSeletected("Clases");
+            setTypeOfCardView("Clases");
+          }}
           name="Clases"
         />
         <CustomItemSideBar
           icon={<FaClipboard size={20} />}
           name="Instructores"
+          selected={selected}
+          onClick={() => {
+            setSeletected("Instructores");
+            setTypeOfCardView("Instructores");
+          }}
         />
-        <Link className={style.link} to={"/"}>
+        <Link
+          onClick={() => {
+            dispatch(userSignOut());
+          }}
+          className={style.link}
+          to={"/"}
+        >
           <CustomItemSideBar
             icon={<FaArrowCircleLeft size={20} />}
             name="LogOut"

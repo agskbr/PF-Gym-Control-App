@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { validateForm } from "../../../../utils/validateForm";
 import style from "./CustomModal.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,10 +6,9 @@ import { createActivity } from "../../../../store/actions/index";
 import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
 import CustomInput from "../CustomInput/CustomInput.jsx";
 import Swal from "sweetalert";
-export default function CustomModal() {
+export default function CustomModal({ type }) {
   const dispatch = useDispatch();
-  const { trainers } = useSelector((state) => state.pgym);
-
+  const { trainers, activities, users } = useSelector((state) => state.pgym);
   const daysOpt = [
     { id: 1, name: "Lunes" },
     { id: 2, name: "Martes" },
@@ -28,28 +27,46 @@ export default function CustomModal() {
   ];
   const trainersOpt = trainers;
 
-  const [activity, setActivity] = useState({
-    image: "",
-    video: "",
-    name: "",
-    description: "",
-    price: "",
-    trainers: [],
-    day: [],
-    hour: [],
-    capacity: "",
-  });
-  const [errors, setErrors] = useState({
-    image: "",
-    video: "",
-    name: "",
-    description: "",
-    price: "",
-    day: "",
-    hour: "",
-    capacity: "",
-    trainers: "",
-  });
+  const [activity, setActivity] = useState({});
+  const [errors, setErrors] = useState({});
+
+  const [displayInputs, setDisplayInputs] = useState([]);
+  const [keys, setKeys] = useState([]);
+
+  useEffect(() => {
+    if (users.length && trainers.length && activities.length) {
+      if (type === "Usuarios") {
+        setDisplayInputs([...users]);
+        setKeys(Object.keys(users[0]));
+      }
+      if (type === "Instructores") {
+        setDisplayInputs([...trainers]);
+        setKeys(Object.keys(trainers[0]));
+      }
+      if (type === "Clases") {
+        setDisplayInputs([...activities]);
+        setKeys(Object.keys(activities[0]));
+      }
+    }
+  }, [activities, trainers, users, type]);
+
+  useEffect(() => {
+    if (keys.length) {
+      keys.forEach((key) => {
+        setActivity((state) => {
+          if (Array.isArray(displayInputs[0][key])) {
+            return { ...state, [key]: [] };
+          } else if (typeof displayInputs[0][key] === "number") {
+            return { ...state, [key]: 0 };
+          } else {
+            return { ...state, [key]: "" };
+          }
+        });
+        setErrors((state) => ({ ...state, [key]: "" }));
+      });
+    }
+  }, [keys, displayInputs]);
+
   const handlerChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -66,42 +83,62 @@ export default function CustomModal() {
       [name]: [...activity[name], value],
     });
   };
+
   return (
     <dialog className={style.dialogContainer} id="createDialog">
       <div className={style.headerDialog}>
         <button
           onClick={() => {
             document.getElementById("createDialog").close();
-            setActivity({
-              image: "",
-              video: "",
-              name: "",
-              description: "",
-              price: "",
-              day: [],
-              hour: [],
-              trainers: [],
-              capacity: "",
-            });
-            setErrors({
-              image: "",
-              video: "",
-              name: "",
-              description: "",
-              price: "",
-              day: "",
-              hour: "",
-              capacity: "",
-            });
+            setActivity({});
+            setErrors({});
           }}
           className={style.closeBtn}
         >
           x
         </button>
       </div>
-      <h4>Crear una nueva actividad</h4>
+      <h4>{`Crear ${type}`}</h4>
       <div className={style.contentDialog}>
-        <CustomInput
+        {keys.map((input) =>
+          input !== "id" &&
+          input !== "description" &&
+          input !== "day" &&
+          input !== "trainers" &&
+          input !== "updatedAt" &&
+          input !== "createdAt" &&
+          input !== "createdInDb" &&
+          input !== "hour" ? (
+            <CustomInput
+              key={input}
+              name={input}
+              type={
+                typeof displayInputs[0][input] === "number" ? "number" : "text"
+              }
+              min={0}
+              onChange={handlerChange}
+              placeholder={input}
+              value={activity[input]}
+              labelError={errors[input]}
+            />
+          ) : null
+        )}
+        {keys.map((input) =>
+          input === "description" ? (
+            <div key={input} className={style.textAreaContainer}>
+              <textarea
+                value={activity.description}
+                onChange={handlerChange}
+                className={style.customTextArea}
+                name="description"
+                placeholder="Descripcion"
+              ></textarea>
+              <label htmlFor="description">{errors.description}</label>
+            </div>
+          ) : null
+        )}
+
+        {/* <CustomInput
           onChange={handlerChange}
           name="image"
           placeholder="Image"
@@ -125,18 +162,9 @@ export default function CustomModal() {
           type="text"
           placeholder="Nombre"
           labelError={errors.name}
-        />
-        <div className={style.textAreaContainer}>
-          <textarea
-            value={activity.description}
-            onChange={handlerChange}
-            className={style.customTextArea}
-            name="description"
-            placeholder="Descripcion"
-          ></textarea>
-          <label htmlFor="description">{errors.description}</label>
-        </div>
-        <CustomInput
+        /> */}
+
+        {/* <CustomInput
           name="price"
           value={activity.price}
           onChange={handlerChange}
@@ -154,9 +182,30 @@ export default function CustomModal() {
           placeholder="Capacidad"
           min="0"
           labelError={errors.capacity}
-        />
+        /> */}
         <div className={style.selectTagsContainer}>
-          <CustomSelectTag
+          {/* {keys.map((selectTag) =>
+            Array.isArray(displayInputs[0][selectTag]) ? (
+              <CustomSelectTag
+                activity={activity}
+                firstOpt={`Selecciona al menos 1 ${selectTag}`}
+                name={selectTag}
+                options={
+                  selectTag === "trainers"
+                    ? trainersOpt
+                    : selectTag === "day"
+                    ? daysOpt
+                    : selectTag === "hour"
+                    ? hoursOpt
+                    : null
+                }
+                setActivity={setActivity}
+                visualizeItems={}
+                handlerChangeSelectTag={handlerChangeSelectTag}
+              />
+            ) : null
+          )} */}
+          {/* <CustomSelectTag
             errorLabel={errors.day}
             firstOpt="Seleccioná un dia"
             handlerChangeSelectTag={handlerChangeSelectTag}
@@ -188,13 +237,14 @@ export default function CustomModal() {
             setActivity={setActivity}
             setErrors={setErrors}
             activity={activity}
-          />
+          /> */}
         </div>
       </div>
       <div className={style.createBtnContainer}>
         <button
+          disabled
           onClick={() => {
-            setErrors(validateForm(activity));
+            setErrors(validateForm(activity, type));
             if (Object.values(errors).length < 1) {
               dispatch(
                 createActivity({
@@ -209,20 +259,10 @@ export default function CustomModal() {
                 icon: "success",
               });
               document.getElementById("createDialog").close();
-              setActivity({
-                image: "",
-                video: "",
-                name: "",
-                description: "",
-                price: "",
-                day: [],
-                hour: [],
-                trainers: [],
-                capacity: "",
-              });
+              setActivity({});
             }
           }}
-          className={style.createBtn}
+          className={style.createDisabledBtn}
         >
           Crear actividad
         </button>
