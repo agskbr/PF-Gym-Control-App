@@ -91,7 +91,7 @@ const loaderTrainer = async () => {
     }
 }
 
-const louderReview = async () =>{
+const loaderReview = async () =>{
     try {
         review.forEach(async (el) => {
             await Review.findOrCreate({
@@ -110,7 +110,7 @@ const louderReview = async () =>{
 }
 
 
-const louderDiaHora = async () =>{
+const loaderDiaHora = async () =>{
     try {
         diaHora.forEach(async (el) => {
             await DiaHora.findOrCreate({
@@ -132,6 +132,6 @@ module.exports = {
     loaderUsers,
     loaderActivity,
     loaderTrainer,
-    louderReview,
-    louderDiaHora
+    loaderReview,
+    loaderDiaHora
 }
