@@ -119,7 +119,17 @@
           ],
         "capacity": 10,
         "trainers":["Juanse","Yani"]
-    }
-
-    
+    },
+    {
+      "id": 9,
+      "name": "Maquinas",
+      "description": "Incluye entrada libre para usar las maquinas",
+      "video": "",
+      "image": "",
+      "price": 200,
+      "day": ["Lunes", "Martes", "Miercoles","Jueves","Viernes","sabado"],
+      "hour": [],
+      "capacity": 100,
+      "trainers":[]
+  }
 ]

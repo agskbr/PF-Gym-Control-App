@@ -3,8 +3,16 @@ const {
     createReview,
     reviewActivityId,
     reviewUserId,
-    reviewUpdate 
+    reviewUpdate,
+    allReviews
 } = require('../Controllers/Review');
+
+
+//todas las review de todas las actividades
+router.get('/all', async (req,res) => {
+    const all_Reviews = await allReviews();
+    res.json(all_Reviews);
+});
 
 
 router.post('/activity', async (req,res,) =>{
@@ -49,6 +57,7 @@ router.get("/user/:id", async (req,res) => {
     }
 });
 
+//modificar review id
 router.put('/:id', async (req, res,) => {
     try{
     let id = req.params.id;
@@ -62,25 +71,6 @@ router.put('/:id', async (req, res,) => {
     } 
     
 })
-
-
-
-//todas las review de todas las actividades, no se si seria necesario esta ruta
-// o esta hecha aun 
-/* router.get("/activity ", async (req,res) => {
-    try{
-        let reviews = await Review.findAll({
-            include: {
-                model: User,
-                attributes: ["name"]
-            }
-        })
-        return res.send(reviews) 
-        }
-    catch(error){
-        console.log(error)
-    }
-}); */
 
 
 module.exports = router;

@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import s from './Review.module.css';
 import ReviewCard from '../ReviewCard/ReviewCard';
 import {AiOutlineRight} from 'react-icons/ai';
-import {AiOutlineLeft} from 'react-icons/ai'
-import r1 from '../../assets/trainer1.jpg'
+import {AiOutlineLeft} from 'react-icons/ai';
+import r1 from '../../assets/trainer1.jpg';
+import {useSelector} from 'react-redux';
 
 export default function Review() {
-
+    //const allReviews = useSelector()
     const data = [
         {
             id: 1,
