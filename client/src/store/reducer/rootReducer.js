@@ -1,18 +1,17 @@
 import {
   REQUEST_POST,
   RECEIVED_POST,
-  LOGIN_WITH_GOOGLE,
   GET_ALL_TRAINERS,
-  USER_SIGN_OUT,
+  GET_ALL_USERS,
 } from "../actions-type/index";
 
 export const initialState = {
   allActivities: [],
   activities: [],
+  users: [],
   page: [],
   trainers: [],
   detail: [],
-  user: {},
   /* days: [],
   hour: [], */
   isLoading: false,
@@ -20,20 +19,15 @@ export const initialState = {
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN_WITH_GOOGLE:
-      return {
-        ...state,
-        user: action.payload,
-      };
-    case USER_SIGN_OUT:
-      return {
-        ...state,
-        user: null,
-      };
     case GET_ALL_TRAINERS:
       return {
         ...state,
         trainers: action.payload,
+      };
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        users: action.payload,
       };
     case REQUEST_POST:
       return { ...state, isLoading: true };

@@ -9,7 +9,7 @@ import {
 import CustomInput from "../AdminPage/components/CustomInput/CustomInput";
 
 export default function RegisterPage() {
-  const { user } = useSelector((state) => state).pgym;
+  const { user } = useSelector((state) => state.login);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -18,7 +18,7 @@ export default function RegisterPage() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (user?.uid) {
+    if (user) {
       navigate("/sociodashboard");
     }
   }, [user, navigate]);
