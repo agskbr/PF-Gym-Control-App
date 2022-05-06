@@ -6,7 +6,7 @@ import {
 } from "../actions-type";
 
 const initialState = {
-  user: {},
+  user: null,
 };
 
 const loginReducer = (state = initialState, action) => {
