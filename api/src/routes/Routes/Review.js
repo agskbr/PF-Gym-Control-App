@@ -29,14 +29,14 @@ router.post('/activity', async (req,res,) =>{
 });
 
 
-//actividad espepcifica para una actividad
+//review especifica para una actividad
 router.get("/activity/:id", async (req,res) => {
     try{
         const {id} = req.params;
         const revActId = await reviewActivityId(id);
         revActId ?
             res.send(revActId) :
-            res.send(revActId);
+            res.send("no se econtro review en la actividad")
     }
     catch(error){
         console.log(error)
@@ -50,7 +50,7 @@ router.get("/user/:id", async (req,res) => {
         const revActId = await reviewUserId(id);
         revActId ?
             res.send(revActId) :
-            res.send("no se econtro review en la actividad")
+            res.send("no se econtro review en el user")
     }
     catch(error){
         console.log(error)
