@@ -19,9 +19,13 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const { loaderUsers , loaderActivity, loaderTrainer, louderReview} = require('./src/loader/loader')
-//const  { userDb, orderDb, orderlineDb, review_productDb, reviewsDb} = require('./data.js')
-
+const {
+  loaderUsers,
+  loaderActivity,
+  loaderTrainer,
+  louderReview,
+  louderDiaHora
+} = require('./src/loader/loader')
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
@@ -31,6 +35,7 @@ conn.sync({ force: true }).then(() => {
     await loaderActivity();
     await loaderTrainer();
     await louderReview();
+    await louderDiaHora();
 
     console.log('%s listening 3001 '); // eslint-disable-line no-console
   });
