@@ -50,20 +50,20 @@ router.get("/user/:id", async (req,res) => {
 
 
 
-//modificar estado orden 
-router.put("/checkout/:id", async (req, res) => {
-    const { state, totalPrice } = req.body;
-    const { id } = req.params;
-    try {
-        const order = await orederUpdate(state, totalPrice, id);
-        if (order) {
-            return res.send("Elemento actualizado");
-        }
-        res.status(400).send("Orden no encontrada");
-    } catch (error) {
-        return res.status(400).send({ data: error })
-    }
-});
+// //modificar estado orden 
+// router.put("/checkout/:id", async (req, res) => {
+//     const { state, totalPrice } = req.body;
+//     const { id } = req.params;
+//     try {
+//         const order = await orederUpdate(state, totalPrice, id);
+//         if (order) {
+//             return res.send("Elemento actualizado");
+//         }
+//         res.status(400).send("Orden no encontrada");
+//     } catch (error) {
+//         return res.status(400).send({ data: error })
+//     }
+// });
 
 
 //AllOrder
