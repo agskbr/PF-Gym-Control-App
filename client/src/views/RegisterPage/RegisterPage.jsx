@@ -19,7 +19,7 @@ export default function RegisterPage() {
 
   useEffect(() => {
     if (user) {
-     
+
     }
   }, [user, navigate]);
 
