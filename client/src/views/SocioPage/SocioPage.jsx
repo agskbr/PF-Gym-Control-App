@@ -7,7 +7,7 @@ import {
 } from "../../store/actions/actions-login";
 import style from "./SocioPage.module.css";
 import MyActivities from "./components/MyActivities/MyActivities";
-import CreateReaview from "./components/CreateReview/CreateReview";
+// import CreateReaview from "./components/CreateReview/CreateReview";
 
 export default function SocioPage() {
   const dispatch = useDispatch();
@@ -27,11 +27,40 @@ export default function SocioPage() {
   return (
     <div className={style.principalContainer}>
       <h2>SocioPage</h2>
-      <button className={style.signOutBtn} onClick={() => dispatch(userSignOut())}>SignOut</button>
+      <button
+        className={style.signOutBtn}
+        onClick={() => dispatch(userSignOut())}
+      >
+        SignOut
+      </button>
       <div>
-      <MyActivities/>
+        <MyActivities />
       </div>
-      <CreateReaview/>
+      {/* <CreateReaview/> */}
+
+      <dialog id="reviewDialog" style={{ border: "none", height: "30vh" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
+          <div style={{ justifyContent: "flex-end", display: "flex" }}>
+            <button
+              onClick={() => document.getElementById("reviewDialog").close()}
+            >
+              x
+            </button>
+          </div>
+          <h4>Dejanos lo que pensas sobre nuestro servicio</h4>
+          <textarea
+            name="review"
+            style={{ resize: "none" }}
+            placeholder="Agrega tu review aquí"
+          ></textarea>
+        </div>
+      </dialog>
     </div>
   );
 }
