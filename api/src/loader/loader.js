@@ -15,16 +15,6 @@ const {
 
 const loaderUsers = async () => { 
     try {
-        /* const modelUsers = users.map((el) => {
-            return {
-                name: el.name,
-                lastName: el.lastName,
-                email: el.email,
-                phoneNumber: el.phoneNumber,
-                image: el.image,
-                isAdmin: el.isAdmin
-            };
-        }); */
         users.forEach(async (el) => {
             const userIns = await User.findOrCreate({
                 where: {
@@ -54,18 +44,6 @@ const loaderUsers = async () => {
 
 const loaderActivity = async () => {
     try {
-        /* const modelActivity = activities.map((el) => {
-            return {
-                id: el.id,
-                name: el.name,
-                description: el.description,
-                video: el.video,
-                image: el.image,
-                price: el.price,
-                capacity: el.capacity,
-                trainers: el.trainers
-            };
-        }); */
         activities.forEach(async (el) => {
             const activityIns = await Activity.findOrCreate({
                 where: {
@@ -95,16 +73,6 @@ const loaderActivity = async () => {
 
 const loaderTrainer = async () => {
     try {
-        /* const modelTrainer = trainer.map((el) => {
-            return {
-                id: el.id,
-                name: el.name,
-                image: el.image,
-                specialty: el.specialty,
-                experience: el.experience,
-                activities: el.activities
-            };
-        }); */
         trainer.forEach(async (el) => {
             await Trainer.findOrCreate({
                 where: {
