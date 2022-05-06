@@ -220,4 +220,5 @@ module.exports = {
     horaDiaUpd,
     updateHoraDia,
     removeUserHoraDia
+    }
 }
