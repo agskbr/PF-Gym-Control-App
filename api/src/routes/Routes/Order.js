@@ -5,10 +5,12 @@ const {
     orderFilterId,
     orderUpdate} = require("../Controllers/Order");
 
+//para orden
+//hacer ruta para traer todas las ordenes de un usuario en especifico
+//crear orden
 
-
-//?
 // finalizar compra
+//revisar
 router.put("/checkout/:id", async (req, res) => {
     const { state, totalPrice } = req.body;
     const { id } = req.params;
@@ -35,7 +37,7 @@ router.get("/", async (req, res, next) => {
 });
 
 
-//orden por id
+//obtener orden por id
 router.get("/:id", async (req, res) => {
     const { id } = req.params;
     try {
@@ -50,7 +52,7 @@ router.get("/:id", async (req, res) => {
 });
 
 
-// id: num Order
+// modificar orden id: num Order
 router.put("/:id", async (req, res, next) => {
     const { state } = req.body;
     const { id } = req.params;

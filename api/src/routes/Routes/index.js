@@ -11,6 +11,7 @@ const trainer = require ('./Trainer')
 const mercadopago = require('./Mercadopago')
 const review = require('./Review')
 const order = require('./Order')
+const email = require('./Email')
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -25,5 +26,6 @@ router.use('/trainer', trainer)
 router.use('/mercadopago', mercadopago)
 router.use('/review', review)
 router.use('/order', order)
+router.use('/email', email)
 
 module.exports = router;
