@@ -69,10 +69,46 @@ const orderUpdate = async (state, id) => {
         console.log(error);
     }
 
-} 
+}
+
+const orderUserId = async (userId) => {
+    try {
+        let reviews = await Order.findAll({
+            where: {
+                userId: userId,
+            },
+        })
+        return reviews 
+    } catch (error) {
+        return error
+    }
+}
+const createOrder = async (totalPrice, state, userId) => {
+    try {
+        const review = await Order.findOne({
+            where: {
+                userId: userId,
+            },
+        })
+        if (!review) {
+            const newOrder = await Order.create({
+                totalPrice,
+                state,
+                userId
+            })
+            return newOrder
+        }else{
+            return false
+        }
+    } catch (error) {
+        return(error)
+    }
+}
 module.exports = {
     orederUpdate,
     allOrder,
     orderFilterId,
-    orderUpdate
+    orderUpdate,
+    orderUserId,
+    createOrder
 }

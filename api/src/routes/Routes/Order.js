@@ -3,7 +3,9 @@ const {
     orederUpdate,
     allOrder,
     orderFilterId,
-    orderUpdate} = require("../Controllers/Order");
+    orderUpdate,
+    orderUserId,
+    createOrder} = require("../Controllers/Order");
 
 //para orden
 //hacer ruta para traer todas las ordenes de un usuario en especifico
@@ -11,6 +13,63 @@ const {
 
 // finalizar compra
 //revisar
+
+// ruta para finalizar la compra del carrito-------------ADECUARLA A ORDER ... SACADA DE GITHUB
+// router.put("/checkout/:id", (req, res) => {
+//     const { state, totalPrice } = req.body;
+//     const { id } = req.params;
+//     Order.update(
+//       {
+//         state: state,
+//         totalPrice: totalPrice,
+//       },
+//       { where: { id: id } }
+//     )
+//       .then((value) => {
+//         const result = value[0];
+//         if (result) {
+//           return res.status(202).send("Element updated");
+//         }
+//         return res.status(400).send("Order not found!");
+//       })
+//       .catch((err) => {
+//         return res.send({ data: err }).status(400);
+//       });
+//   });
+
+//crear orden
+router.post("/", async (req,res) => {
+    try {
+        const { totalPrice, state, userId} = req.body
+        const order = await createOrder(totalPrice,state, userId);
+        if(order){
+            res.send("Order created");
+        }
+        res.send("Order not created")
+    } catch(err){
+        console.log(err.detail)
+    }
+
+})
+
+//obtener ordenes de un usuario específico
+router.get("/user/:id", async (req,res) => {
+    try{
+        const {id} = req.params;
+        const orderUser = await orderUserId(id);
+        revActId ?
+            res.send(orderUser) :
+            res.send("order of user not found")
+    }
+    catch(error){
+        console.log(error)
+    }
+
+})
+
+
+
+
 router.put("/checkout/:id", async (req, res) => {
     const { state, totalPrice } = req.body;
     const { id } = req.params;
