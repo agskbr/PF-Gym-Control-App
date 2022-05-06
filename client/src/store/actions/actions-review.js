@@ -6,7 +6,7 @@ const base_url = "http://localhost:3001";
 export const postReview = (review)=>{ // review = description, rating, userId, img??
     return async (dispatch)=> {
         try {
-            const {data} = await axios.post(`${base_url}/reviews`, review)
+            const {data} = await axios.post(`${base_url}/Review/activity`, review)
             return dispatch({
                 type:CREATE_REVIEW,
                 payload:data
