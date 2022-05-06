@@ -71,7 +71,6 @@ const reviewUpdate = async (id,review) => {
 
 const allReviews = async () => {
     try {
-        console.log("estoy dentro")
         let reviews = await Review.findAll({include: ""})
         return reviews
     } catch (error) {
