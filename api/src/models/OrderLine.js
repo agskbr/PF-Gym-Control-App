@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
             primaryKey: true,
         },
 
-        unitprice:{
+        unitPrice:{
             type: DataTypes.DECIMAL(9, 2),
             allowNull: false,
         },
