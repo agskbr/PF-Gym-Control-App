@@ -13,7 +13,7 @@ import CustomInput from "../AdminPage/components/CustomInput/CustomInput";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.pgym);
+  const { user } = useSelector((state) => state.login);
   const [input, setInput] = useState({ email: "", password: "" });
   const [error, setError] = useState({ email: "", password: "" });
   const [recAccount, setRecAccount] = useState({ recEmail: "", error: "" });
@@ -50,6 +50,7 @@ export default function LoginPage() {
           <button
             onClick={() => {
               dispatch(resetPassword(recAccount.recEmail));
+              document.getElementById("forgotPassDialog").close();
             }}
             className={style.sendBtn}
           >

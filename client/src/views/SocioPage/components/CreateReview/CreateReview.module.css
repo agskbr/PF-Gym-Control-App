@@ -1,0 +1,29 @@
+.CreateReviewContainer{
+    background-color: black;
+    color: whitesmoke;
+    width: 50vw;
+    height: 100vh;
+    border: solid 1px whitesmoke;
+    border-radius: 2rem;
+    /* display: grid;
+    grid-template-columns: repeat(2, 1fr); */
+    padding: 1rem;
+    font-size: 20px;
+    
+}
+
+.createReviewTextarea{
+    width: 90%;
+    height: 80%;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    background-color: rgb(168, 167, 167);
+    font-size: 15px;
+    color: black;
+}
+.createReviewSelect{
+    width: 90%;
+    background-color: rgb(168, 167, 167);
+    color: black;
+    
+}

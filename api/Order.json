@@ -1,0 +1,27 @@
+[
+    {
+        "totalPrice": "30",
+        "state": "Created",
+        "userId": "2"
+    },
+    {
+        "totalPrice": "100",
+        "state": "Canceled",
+        "userId": "3"
+    },
+    {
+        "totalPrice": "50",
+        "state": "Complete",
+        "userId": "1"
+    },
+    {
+        "totalPrice": "60",
+        "state": "Complete",
+        "userId": "4"
+    },
+    {
+        "totalPrice": "80",
+        "state": "Complete",
+        "userId": "6"
+    }
+]
