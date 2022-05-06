@@ -104,11 +104,26 @@ const createOrder = async (totalPrice, state, userId) => {
         return(error)
     }
 }
+
+const deleteOrder = async (id) => {
+    try {
+        await Order.destroy({   
+            where: {                                            
+                id : id,
+            }
+        })
+    } catch (error) {
+        return error
+    }
+}
+
+
 module.exports = {
     orederUpdate,
     allOrder,
     orderFilterId,
     orderUpdate,
     orderUserId,
-    createOrder
+    createOrder,
+    deleteOrder
 }

@@ -5,7 +5,8 @@ const {
     orderFilterId,
     orderUpdate,
     orderUserId,
-    createOrder} = require("../Controllers/Order");
+    createOrder,
+    deleteOrder} = require("../Controllers/Order");
 
 //para orden
 //hacer ruta para traer todas las ordenes de un usuario en especifico
@@ -14,28 +15,7 @@ const {
 // finalizar compra
 //revisar
 
-// ruta para finalizar la compra del carrito-------------ADECUARLA A ORDER ... SACADA DE GITHUB
-// router.put("/checkout/:id", (req, res) => {
-//     const { state, totalPrice } = req.body;
-//     const { id } = req.params;
-//     Order.update(
-//       {
-//         state: state,
-//         totalPrice: totalPrice,
-//       },
-//       { where: { id: id } }
-//     )
-//       .then((value) => {
-//         const result = value[0];
-//         if (result) {
-//           return res.status(202).send("Element updated");
-//         }
-//         return res.status(400).send("Order not found!");
-//       })
-//       .catch((err) => {
-//         return res.send({ data: err }).status(400);
-//       });
-//   });
+
 
 //crear orden
 router.post("/", async (req,res) => {
@@ -43,11 +23,12 @@ router.post("/", async (req,res) => {
         const { totalPrice, state, userId} = req.body
         const order = await createOrder(totalPrice,state, userId);
         if(order){
-            res.send("Order created");
+            return res.send("Order created");
+        }else{
+            return res.send("Order not created")  
         }
-        res.send("Order not created")
     } catch(err){
-        console.log(err.detail)
+        console.log(err)
     }
 
 })
@@ -69,18 +50,18 @@ router.get("/user/:id", async (req,res) => {
 
 
 
-
+//modificar estado orden 
 router.put("/checkout/:id", async (req, res) => {
     const { state, totalPrice } = req.body;
     const { id } = req.params;
     try {
         const order = await orederUpdate(state, totalPrice, id);
         if (order) {
-            res.send("Elemento actualizado");
+            return res.send("Elemento actualizado");
         }
         res.status(400).send("Orden no encontrada");
     } catch (error) {
-        res.status(400).send({ data: error })
+        return res.status(400).send({ data: error })
     }
 });
 
@@ -102,9 +83,9 @@ router.get("/:id", async (req, res) => {
     try {
         const order_Filter = await orderFilterId(id);
         if (order_Filter) {
-            res.status(200).json(order_Filter);
+            return res.status(200).json(order_Filter);
         }
-        res.status(400).send("orden no encotrada");    
+        return res.status(400).send("orden no encotrada");    
     } catch (error) {
         res.status(400).send({ data: error });
     }
@@ -118,12 +99,25 @@ router.put("/:id", async (req, res, next) => {
     try {
         const order_upd = await orderUpdate(state,id)
         if (order_upd) {
-            res.status(202).send("Elemento actualizado");
+            return res.status(202).send("Elemento actualizado");
         }
-            res.status(400).send("Orden o encontrada");
+            return res.status(400).send("Orden o encontrada");
     } catch (error) {
         res.status(400).send(error);
     }
 });
+
+//eliminar orden
+
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        await deleteOrder(id)
+        res.status(200).send('Order deleted!!')
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 
 module.exports = router;
