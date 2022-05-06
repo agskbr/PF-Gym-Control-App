@@ -5,27 +5,6 @@ const {
 } = require('../../db');
 
 
-
-const orederUpdate = async (state, totalPrice, id) => {
-    try {
-        const orderUpd = await Order.update(
-            {
-                state: state,
-                totalPrice: totalPrice,
-            },
-            {
-                where:
-                {
-                    id: id
-                }
-            }
-        )
-        return orderUpd;
-    } catch (error) {
-        console.log(error);
-    }
-}
-
 const allOrder = async () => {
     try {
         const allOrder = await Order.findAll({
@@ -119,7 +98,6 @@ const deleteOrder = async (id) => {
 
 
 module.exports = {
-    orederUpdate,
     allOrder,
     orderFilterId,
     orderUpdate,

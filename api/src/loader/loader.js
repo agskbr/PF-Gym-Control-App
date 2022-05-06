@@ -32,14 +32,6 @@ const loaderUsers = async () => {
                     isAdmin: el.isAdmin
                 },
             });
-            /* el.activity.forEach(async (e) => {
-                const activityIns = await Activity.findOne({
-                    where: {
-                        name: e.name
-                    }
-                })
-                await activityIns.addUser(userIns[0])
-            }) */
         });
         console.log('Usuarios cargados en la DB')
     }
@@ -152,43 +144,6 @@ const loaderOrderline = async () =>{
 
 
 const loaderDiaHora = async () =>{
-    try {
-        diaHora.forEach(async (el) => {
-            await DiaHora.findOrCreate({
-                where: {
-                    day: el.day,
-                    hour: el.hour,
-                    capacity: el.capacity,
-                    activityId: el.activityId
-                },
-            });
-        })
-        console.log('diaHora cargados en la DB')
-    } catch (error) {
-        console.log('Error en la carga de diaHora a la DB')
-    }
-}
-
-const loaderOrder = async () =>{
-    try {
-        diaHora.forEach(async (el) => {
-            await DiaHora.findOrCreate({
-                where: {
-                    day: el.day,
-                    hour: el.hour,
-                    capacity: el.capacity,
-                    activityId: el.activityId
-                },
-            });
-        })
-        console.log('diaHora cargados en la DB')
-    } catch (error) {
-        console.log('Error en la carga de diaHora a la DB')
-    }
-}
-
-
-const loaderOrderLine = async () =>{
     try {
         diaHora.forEach(async (el) => {
             await DiaHora.findOrCreate({
