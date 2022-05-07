@@ -2,6 +2,11 @@ import style from "./SocioPage.module.css";
 import MyActivities from "./components/MyActivities/MyActivities";
 import SideBar from "./components/Sidebar/SideBar";
 import CenterDynamicView from "./components/CenterDynamicView/CenterDynamicView";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { validateUserIsLogged , userSignOut} from "../../store/actions/actions-login";
+
 
 export default function SocioPage() {
 
@@ -22,7 +27,7 @@ export default function SocioPage() {
 
   return (
     <div className={style.principalContainer}>
-      <SideBar itemSelected={itemSelected} setItemSelected={setItemSelected} />
+     {/*  <SideBar itemSelected={itemSelected} setItemSelected={setItemSelected} /> */}
       <div className={style.centerViewContainer}>
         <button
           className={style.signOutBtn}
@@ -31,10 +36,10 @@ export default function SocioPage() {
           SignOut
         </button>
         <br />
-        <CenterDynamicView
+        {/* <CenterDynamicView
           itemSelected={itemSelected}
           contentOfCard={<div>Hola</div>}
-        />
+        /> */}
       </div>
 
       {/*  <div>
