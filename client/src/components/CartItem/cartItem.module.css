@@ -1,0 +1,66 @@
+.container{
+    box-shadow: 0 0 1rem rgba(0,0,0,0.5);
+    height: 5vh;
+    padding: 1rem;
+    margin: 1vh;
+    display: grid;
+    grid-template-areas: "content  button";
+    grid-template-columns: 1fr 5vw;
+
+}
+
+.contentContainer{
+    grid-area: content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container h4{
+    grid-area: content;
+    margin-left: 1rem;
+}
+
+.container h5{
+    grid-area: content;
+    margin-left: 1rem;
+}
+
+.container h6{
+    grid-area: content;
+    margin-left: 1rem;
+}
+.buttonsContainer{
+    grid-area: button;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 5vh;
+}
+
+
+.buttonsContainer button{
+    background-image: url("../../assets/del.ico");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 2vw;
+    height: 2vh;
+    margin-left: .5rem;
+    background-color: transparent;
+    border: none;
+    align-self: center;
+    margin-top: 1.5vh;
+    transition: ease-in-out 0.2s;
+}
+
+.buttonsContainer button:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+
+
+    
+}
+
+
