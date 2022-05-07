@@ -1,9 +1,9 @@
 .principalContainer {
   display: flex;
   position: relative;
-  justify-content: center;
+  /* justify-content: flex-start;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   background: conic-gradient(
     from 140deg at -15% -60%,
     #fe4f22 -10.7deg,
@@ -16,6 +16,8 @@
   height: 100vh;
   background-color: black;
 }
+
+
 .principalContainer h2 {
   color: white;
 }
