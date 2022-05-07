@@ -78,9 +78,6 @@ export default function SideBar(){
             </NavLink>
           ))
         }
-        <button>
-        <GoSignOut/>
-        </button>
       </div>
       {/* <main>{children}</main> */}
     </div>
