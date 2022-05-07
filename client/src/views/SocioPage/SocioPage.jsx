@@ -10,10 +10,12 @@ import style from "./SocioPage.module.css";
 //import CreateReaview from "./components/CreateReview/CreateReview";
 import SideBar from "./components/Sidebar/SideBar";
 
+
 export default function SocioPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.login);
+  
 
   useEffect(() => {
     dispatch(validateUserIsLogged());
@@ -24,6 +26,8 @@ export default function SocioPage() {
       navigate("/login");
     }
   }, [user, navigate]);
+
+  
 
   return (
     <div className={style.principalContainer}>
@@ -36,6 +40,8 @@ export default function SocioPage() {
           SignOut
         </button>
       </div>
+
+      
       
      {/*  <div>
         <MyActivities />
