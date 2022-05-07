@@ -1,0 +1,7 @@
+.centerDynamicContainer {
+  width: 80vw;
+  background-color: white;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
