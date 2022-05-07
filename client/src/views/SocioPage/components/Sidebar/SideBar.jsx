@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import s from './SideBar.module.css';
 import {AiFillHome} from 'react-icons/ai';
 import {CgGym} from 'react-icons/cg'; 
@@ -8,11 +8,26 @@ import {BsCartFill} from 'react-icons/bs';
 import {GoSignOut} from 'react-icons/go'
 import logo from '../../../../assets/logo.png'
 import {NavLink} from 'react-router-dom'
-
+import { useDispatch, useSelector} from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {userSignOut, validateUserIsLogged} from '../../../../store/actions/actions-login';
 
 export default function SideBar(){
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen]= useState(false);
   const toggle= ()=> setIsOpen(!isOpen);
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.login);
+
+  useEffect(() => {
+    dispatch(validateUserIsLogged());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (user === null) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
   const menuItem = [
     {
@@ -42,7 +57,9 @@ export default function SideBar(){
     },
     {
         name:"SignOut",
-        icon: <GoSignOut/>,
+        icon: <GoSignOut
+         onClick={() => dispatch(userSignOut())}
+              />,
         path:"/",
     }
   ]
@@ -61,6 +78,9 @@ export default function SideBar(){
             </NavLink>
           ))
         }
+        <button>
+        <GoSignOut/>
+        </button>
       </div>
       {/* <main>{children}</main> */}
     </div>
