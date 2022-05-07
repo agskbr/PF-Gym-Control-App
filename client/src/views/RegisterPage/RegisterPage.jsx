@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "./RegisterPage.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { requestPost } from "../../store/actions/index";
 import {
   registerUserWithEmailAndPass,
   validateUserIsLogged,
@@ -10,10 +11,12 @@ import CustomInput from "../AdminPage/components/CustomInput/CustomInput";
 
 export default function RegisterPage() {
   const { user } = useSelector((state) => state.login);
+  const { isLoading } = useSelector((state) => state.pgym);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(requestPost());
     dispatch(validateUserIsLogged());
   }, [dispatch]);
 
@@ -73,7 +76,9 @@ export default function RegisterPage() {
     return err;
   };
 
-  return (
+  return isLoading ? (
+    <div>Loading</div>
+  ) : (
     <div className={style.principalContainer}>
       <h3>Regístrate</h3>
 

@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPass,
   validateUserIsLogged,
 } from "../../store/actions/actions-login";
+import { requestPost } from "../../store/actions/index";
 import googleLogo from "../../assets/google-logo.png";
 import style from "./LoginPage.module.css";
 import CustomInput from "../AdminPage/components/CustomInput/CustomInput";
@@ -14,19 +15,20 @@ import CustomInput from "../AdminPage/components/CustomInput/CustomInput";
 export default function LoginPage() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.login);
+  const { isLoading } = useSelector((state) => state.pgym);
   const [input, setInput] = useState({ email: "", password: "" });
-  const [error, setError] = useState({ email: "", password: "" });
-  const [recAccount, setRecAccount] = useState({ recEmail: "", error: "" });
+  const [recAccount, setRecAccount] = useState({ recEmail: "" });
   const navigate = useNavigate();
   useEffect(() => {
+    dispatch(requestPost());
     dispatch(validateUserIsLogged());
   }, [dispatch]);
   useEffect(() => {
     if (user) {
       if (user.uid !== "jUHKBpHJLkb9dso2TNOW5DZaU0w2") {
         navigate("/sociodashboard");
-      }else {
-        navigate("/admindashboard")
+      } else {
+        navigate("/admindashboard");
       }
     }
   }, [user, navigate]);
@@ -36,7 +38,9 @@ export default function LoginPage() {
     const value = e.target.value;
     setInput({ ...input, [name]: value });
   };
-  return (
+  return isLoading ? (
+    <div className={style.isLoadingCustom}>Loading</div>
+  ) : (
     <div className={style.formContainer}>
       <h3>Inicia sesión</h3>
       <dialog className={style.forgotDialog} id="forgotPassDialog">
@@ -49,7 +53,6 @@ export default function LoginPage() {
               setRecAccount({ ...recAccount, [e.target.name]: e.target.value });
             }}
             placeholder="Dirección de correo"
-            labelError={recAccount.error}
           />
           <button
             onClick={() => {
