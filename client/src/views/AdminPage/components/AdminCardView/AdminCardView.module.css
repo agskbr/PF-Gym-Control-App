@@ -44,7 +44,7 @@
 .tableAdminView {
   table-layout: auto;
   border-collapse: collapse;
-  width: 200%;
+  width: max-content;
 }
 .tableAdminView tbody tr td {
   padding: 10px;
@@ -56,12 +56,19 @@
 .tableAdminView tr th {
   border: 1px solid #cdcccc;
 }
-.tableAdminView .tdDescription {
+.tdDescription {
   width: 480px;
   text-align: justify;
 }
-.tableAdminView .tdDescription {
-  text-align: justify;
+.tdImageAndVideo {
+  width: 160px;
+}
+
+.tdStandard {
+  width: 180px;
+}
+.tdArray {
+  width: 200px;
 }
 
 .headerOfCard {
@@ -94,9 +101,6 @@
   flex-direction: column;
 }
 
-.tdImageAndVideo {
-  width: 120px;
-}
 .linkStyle {
   text-decoration: none;
 }
@@ -133,4 +137,22 @@
 }
 .deleteBtn:focus {
   outline: none;
+}
+
+@media screen and (max-width: 1050px) {
+  .cardLayout {
+    width: 70vw;
+    height: 75vh;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .cardLayout {
+    width: 85vw;
+  }
+  .addBtn {
+    background-color: white;
+    color: #fe4f22;
+    font-weight: bold;
+  }
 }

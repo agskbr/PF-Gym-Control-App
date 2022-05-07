@@ -16,9 +16,10 @@ import {
   VALIDATE_USER_IS_LOGGED,
   REGISTER_USER_WITH_EMAIL_AND_PASS,
   SIGN_IN_USER,
+  RECEIVED_POST,
 } from "../actions-type";
 
-const base_url = "http://localhost:3001";
+const base_url = "https://pfgymapp-2.herokuapp.com";
 
 const registerUserWithEmailAndPass = (
   email,
@@ -36,15 +37,19 @@ const registerUserWithEmailAndPass = (
       );
       const userToDB = {
         uid: userCredential.user.uid,
+        email: email,
         name,
         lastName,
         phoneNumber,
+        image: "",
       };
       await axios.post(`${base_url}/user`, userToDB);
+
       dispatch({
         type: REGISTER_USER_WITH_EMAIL_AND_PASS,
         payload: userCredential,
       });
+      dispatch({ type: RECEIVED_POST });
       swal({
         buttons: "Aceptar",
         icon: "success",
@@ -70,6 +75,7 @@ const signInWithEmailAndPass = (email, password) => {
         password
       );
       dispatch({ type: SIGN_IN_USER, payload: userCredential });
+      dispatch({ type: RECEIVED_POST });
     } catch (error) {
       console.log(error);
       swal({
@@ -129,8 +135,10 @@ const validateUserIsLogged = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         dispatch({ type: VALIDATE_USER_IS_LOGGED, payload: user });
+        dispatch({ type: RECEIVED_POST });
       } else {
         dispatch({ type: VALIDATE_USER_IS_LOGGED, payload: null });
+        dispatch({ type: RECEIVED_POST });
       }
     });
   };
