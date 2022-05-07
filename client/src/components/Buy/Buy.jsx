@@ -7,10 +7,13 @@ import Nav from "../Nav/nav";
 import { Link } from 'react-router-dom';
 import { getAllTrainers } from '../../store/actions';
 import Cart from "../Cart/Cart";
+import { addToCart } from "../../store/actions/actionsCart";
+
 
 
 export default function Buy() {
 
+    const state = useSelector(state => state);
     const dispatch = useDispatch();
 	let { id } = useParams();
 	useEffect(() => {
@@ -23,7 +26,7 @@ export default function Buy() {
         dispatch(getAllTrainers())
     },[dispatch])
     
-    
+
     
     const {
         id: activityId,
@@ -37,12 +40,13 @@ export default function Buy() {
         trainers,
 	} = useSelector((state) => state.pgym.detail);
     
-    const activity = useSelector((state)=> state.detail)
+    const activity = useSelector((state)=> state.pgym.detail)
+   
    
 
     
-    let coach = entrenadores?.filter(e => e.name === trainers[0]?.name);
-    let coach2 = entrenadores?.filter(e => e.name === trainers[1]?.name);
+    /* let coach = entrenadores?.filter(e => e.name === trainers[0]?.name);
+    let coach2 = entrenadores?.filter(e => e.name === trainers[1]?.name); */
    
         
         return (
@@ -76,18 +80,19 @@ export default function Buy() {
                     <div className={style.capacity}>Capacidad:{` ${capacity} lugares disponibles `}</div>
 
                     <div className={style.botonera}>
-
-                        <button className={style.elbo}>Buy plan</button>
-
-                        <Link to={"/"}>
-                            <button className={style.elbo} >Add to cart</button>
+                        <Link to="/#clases">
+                            <button className={style.elbo}>Buy plan</button>
                         </Link>
+
+                        
+                            <button className={style.elbo} onClick={() => dispatch(addToCart(state.pgym.detail.id))} >Add to cart</button>
+                        
 
                     </div>
 
           
                 </div >
-                    {/* <Cart data={activity}/> */}
+                    <Cart data={activity}/>
 
             </div >
         );
