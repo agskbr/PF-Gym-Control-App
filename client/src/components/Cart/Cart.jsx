@@ -3,7 +3,7 @@ import { useReducer } from "react";
 import { cartInitialState, cartReducer } from "../../store/reducer/cartReducer";
 import { useDispatch } from "react-redux";
 
-import { addToCart } from "../../store/actions-cart";
+import { addToCart } from "../../store/actions/actionsCart";
 import { useEffect } from "react";
 
 

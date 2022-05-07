@@ -1,4 +1,4 @@
-import { TYPES } from "../actions-cart"
+import { ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART, CLEAR_CART } from "../actions-type/index.js";
 
 
 
@@ -12,25 +12,25 @@ export const cartInitialState = {
 
 export function cartReducer(state = cartInitialState, action) {
     switch (action.type) {
-        case TYPES.ADD_TO_CART:
+        case ADD_TO_CART:
             return {
                 ...state,
                 products: state.products,
                 cart: [...state.cart, action.payload]
             }
-        case TYPES.REMOVE_ONE_FROM_CART:
+        case REMOVE_ONE_FROM_CART:
             return {
                 ...state,
                 products: state.products,
                 cart: state.cart.filter(product => product.id !== action.payload)
             }
-        case TYPES.REMOVE_ALL_FROM_CART:
+        case REMOVE_ALL_FROM_CART:
             return {
                 ...state,
                 products: state.products,
                 cart: []
             }
-        case TYPES.CLEAR_CART:
+        case CLEAR_CART:
             return {
                 ...state,
                 products: state.products,

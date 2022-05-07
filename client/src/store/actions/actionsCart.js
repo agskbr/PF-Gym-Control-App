@@ -8,7 +8,7 @@ import {
   REMOVE_ALL_FROM_CART,
   REMOVE_ONE_FROM_CART,
   TOTAL_CART,
-} from "../../types";
+} from "../actions-type";
 
 
 
