@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -9,8 +9,10 @@ import style from "./SocioPage.module.css";
 //import MyActivities from "./components/MyActivities/MyActivities";
 //import CreateReaview from "./components/CreateReview/CreateReview";
 import SideBar from "./components/Sidebar/SideBar";
+import CenterDynamicView from "./components/CenterDynamicView/CenterDynamicView";
 
 export default function SocioPage() {
+  const [itemSelected, setItemSelected] = useState("Mi Perfil");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.login);
@@ -27,22 +29,25 @@ export default function SocioPage() {
 
   return (
     <div className={style.principalContainer}>
-      <SideBar/>
-      <div>
+      <SideBar itemSelected={itemSelected} setItemSelected={setItemSelected} />
+      <div className={style.centerViewContainer}>
         <button
           className={style.signOutBtn}
           onClick={() => dispatch(userSignOut())}
         >
           SignOut
         </button>
+        <br />
+        <CenterDynamicView
+          itemSelected={itemSelected}
+          contentOfCard={<div>Hola</div>}
+        />
       </div>
-      
-     {/*  <div>
+
+      {/*  <div>
         <MyActivities />
       </div>
       <CreateReaview/> */}
-      
-      
     </div>
   );
 }

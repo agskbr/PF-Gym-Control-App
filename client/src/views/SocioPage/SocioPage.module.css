@@ -17,6 +17,14 @@
   background-color: black;
 }
 
+.centerViewContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 
 .principalContainer h2 {
   color: white;
