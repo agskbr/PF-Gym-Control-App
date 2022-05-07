@@ -27,7 +27,7 @@ export default function SocioPage() {
 
   return (
     <div className={style.principalContainer}>
-      <SideBar/>
+      <SideBar />
       <div>
         <button
           className={style.signOutBtn}
@@ -36,13 +36,11 @@ export default function SocioPage() {
           SignOut
         </button>
       </div>
-      
-     {/*  <div>
+
+      {/*  <div>
         <MyActivities />
       </div>
       <CreateReaview/> */}
-      
-      
     </div>
   );
 }
