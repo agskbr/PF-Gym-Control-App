@@ -84,34 +84,34 @@ const diaHoraId = async (id) => {
 
 
 // para eliminar el evento
-const horaDiaDelete = async (day, hour) => {
-    try {
-        const horaDia = await HoraDia.findOne({
-            where: {
-                day: day,
-                hour: hour,
-            },
-        })
-        if (horaDia) {
-            const deleteHoraDia = await HoraDia.destroy({
-                where: {
-                    day: day,
-                    hour: hour,
-                }
-            })
-            return deleteHoraDia
-        }else{
-            return false
-        }
-    } catch (error) {
-        console.log(error)
-    }
-}
+// const horaDiaDelete = async (day, hour) => {
+//     try {
+//         const horaDia = await HoraDia.findOne({
+//             where: {
+//                 day: day,
+//                 hour: hour,
+//             },
+//         })
+//         if (horaDia) {
+//             const deleteHoraDia = await HoraDia.destroy({
+//                 where: {
+//                     day: day,
+//                     hour: hour,
+//                 }
+//             })
+//             return deleteHoraDia
+//         }else{
+//             return false
+//         }
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
 // para eliminar un evento 2 opcion
-const horaDiaDelete2 = async (id) => {
+const deleteDiaHora = async (id) => {
     try {
-        return await HoraDia.destroy({
+        await DiaHora.destroy({
             where: {
                 id: id,
             }
@@ -125,7 +125,7 @@ const horaDiaDelete2 = async (id) => {
 
 const horaDiaUpd = async (id,horaDia) => {
     try {
-        return await HoraDia.update(horaDia,{
+        return await DiaHora.update(horaDia,{
             where: {
                 id: id,
             }
@@ -137,11 +137,11 @@ const horaDiaUpd = async (id,horaDia) => {
 
 // actualizar turno de usuario. esto seria cada vez que el usuario quiera acceder a un turno
 const updateHoraDia = async (req, res) => { 
-    const { idUser, idHoraDia} = req.body;
+    const { idUser, idDiaHora} = req.body;
     try {
-        let horaDia = await HoraDia.findOne({
+        let diaHora = await DiaHora.findOne({
             where: {
-                id: idHoraDia,
+                id: idDiaHora,
             },
         })
         let addUser = await User.findOne({
@@ -149,14 +149,14 @@ const updateHoraDia = async (req, res) => {
                 id: idUser,
             },
         })
-        await horaDia.addUser(addUser);
-        horaDia.save();
-        console.log(horaDia.users.length)
-        let newAvailability = horaDia.capacity - (horaDia.users.length + 1);
+        await diaHora.addUser(addUser);
+        diaHora.save();
+        console.log(diaHora.users.length)
+        let newAvailability = diaHora.capacity - (diaHora.users.length + 1);
         console.log(newAvailability);
-        horaDia.availability = newAvailability;
-        horaDia.save();
-        return res.json(horaDia);
+        diaHora.availability = newAvailability;
+        diaHora.save();
+        return res.json(diaHora);
     } catch (error) {
         console.log(error)
     }
@@ -164,17 +164,17 @@ const updateHoraDia = async (req, res) => {
 
 // quitar un turno al usuario. esto seria para que se muestre habilitado o no la clase
 const removeUserHoraDia = async (req, res) => {
-    const { userId, horadiaId } = req.params
+    const { userId, diaHoraId } = req.params
     try {
         let turno = await tablaintermedia.findOne({
             where: {
-                horadiaId: parseInt(horadiaId),
+                diaHoraId: parseInt(diaHoraId),
                 userId: userId
             },
         })
-        let horadia = await horaDia.findOne({
+        let diaHora = await horaDia.findOne({
             where: {
-                id: horadiaId
+                id: diaHoraId
             },
             include: {
                 model: User,
@@ -184,9 +184,9 @@ const removeUserHoraDia = async (req, res) => {
                 },
             }
         })
-        horadia.availability = horadia.availability + 1
+        diaHora.availability = diaHora.availability + 1
         turno.destroy()
-        horadia.save()
+        diaHora.save()
         return res.json({
             message: "turno eliminado"
         })
@@ -200,8 +200,7 @@ module.exports = {
     // allHoraDiaUser,
     createDiaHora,
     diaHoraId,
-    horaDiaDelete,
-    horaDiaDelete2,
+    deleteDiaHora,
     horaDiaUpd,
     updateHoraDia,
     removeUserHoraDia

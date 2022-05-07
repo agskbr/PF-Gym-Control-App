@@ -4,8 +4,7 @@ const{
     allDiaHora,
     createDiaHora,
     diaHoraId,
-    horaDiaDelete,
-    horaDiaDelete2,
+    deleteDiaHora,
     horaDiaUpd,
     updateHoraDia,
     removeUserHoraDia
@@ -62,7 +61,7 @@ router.get("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     const {id} = req.params
     try {
-        await horaDiaDelete2(id)
+        await deleteDiaHora(id)
         res.status(200).json("HoraDia Eliminado");
     } catch (error) {
         console.log(error)
