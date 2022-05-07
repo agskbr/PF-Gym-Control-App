@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./MyActivities.module.css";
 import {BsFillArrowDownCircleFill} from 'react-icons/bs'
+import CreateReview from '../CreateReview/CreateReview'
 
 export default function MyActivities() {
   const ordenes = [
@@ -67,7 +68,7 @@ export default function MyActivities() {
          </tbody>
         </table>
       </div>
-      
+      <CreateReview/>
     </div>
   );
 }
