@@ -47,9 +47,6 @@ router.get("/user/:id", async (req,res) => {
     }
 
 })
-
-
-
 // //modificar estado orden 
 // router.put("/checkout/:id", async (req, res) => {
 //     const { state, totalPrice } = req.body;

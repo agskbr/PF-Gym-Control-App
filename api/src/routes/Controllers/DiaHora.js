@@ -1,70 +1,72 @@
 const {
-    HoraDia,
+    DiaHora,
     Activity,
     User
 } = require('../../db');
 
 
 // traigo los dias y horas con sus acividades
-const allHoraDia = async () => {
-        const allHoraDia = await HoraDia.findAll({
+const allDiaHora = async () => {
+    try {
+        const allDia = await DiaHora.findAll({
+            // include: [{model: Activity}], 
             include: {
                 model: Activity,
-                attributes: ["name"],
-                through: {
-                    attributes: [],
-                },
+                attributes: ["name", "image"]
             }
         })
-        return allHoraDia;
+        return allDia;
+    } catch (error) {
+        console.log(error);
+    }
 }
+        
 
 // traigo los dias y horas con sus usuarios
-const allHoraDiaUser = async () => {
-    const allHoraDiaUser = await HoraDia.findAll({
-        include: {
-            model: User,
-            attributes: ["name"],
-            through: {
-                attributes: [],
-            },
-        }
-    })
-    return allHoraDiaUser;
-}
+// const allHoraDiaUser = async (userId) => {
+
+//     try {
+//         let allHoraDiaUser = await HoraDia.findAll({
+//             where: {
+//                 userId: userId,
+//             },
+//         })
+//         return allHoraDiaUser 
+//     } catch (error) {
+//         return error
+//     }
+// }
 
 
 // para crear un nuevo evento
 
-const horaDiaCreate = async (days, hour,capacity,availability, activities) => {
+const createDiaHora = async (day, hour,capacity, activityId) => {
     try {
-        const horaDia = await HoraDia.findOne({
+        const dia = await DiaHora.findOne({
             where: {
-                days: days,
-                hour: hour,
+                activityId: activityId
             },
         })
-        if (!horaDia) {
-            const newHoraDia = await HoraDia.create({
-                days,
+        if (dia) {
+            const newHoraDia = await DiaHora.create({
+                day,
                 hour,
                 capacity,
-                availability,
-                activities
+                activityId
             })
-            return newHoraDia
-        }else{
+            return newHoraDia;
+        } else {
             return false
         }
     } catch (error) {
-        console.log(error)
-    }
+        console.log(error);
+}
 }
 
 // para buscar un evento con sus actividades
-const horaDiaId = async (id) => {
+const diaHoraId = async (id) => {
     try {
-        return await HoraDia.findOne({
+        return await DiaHora.findOne({
             where: {
                 id: id,
             },
@@ -77,39 +79,23 @@ const horaDiaId = async (id) => {
         console.log(error)
     }
 }
-
-// para buscar un evento con sus usuarios
-const horaDiaIdUser = async (id) => {
-    try {
-        return await HoraDia.findOne({
-            where: {
-                id: id,
-            },
-            include: {
-                model: User,
-                attributes: ["name"]
-            }
-        })
-    } catch (error) {
-        console.log(error)
-    }
 
 
 
 
 // para eliminar el evento
-const horaDiaDelete = async (days, hour) => {
+const horaDiaDelete = async (day, hour) => {
     try {
         const horaDia = await HoraDia.findOne({
             where: {
-                days: days,
+                day: day,
                 hour: hour,
             },
         })
         if (horaDia) {
             const deleteHoraDia = await HoraDia.destroy({
                 where: {
-                    days: days,
+                    day: day,
                     hour: hour,
                 }
             })
@@ -210,11 +196,10 @@ const removeUserHoraDia = async (req, res) => {
 }
 
 module.exports = {
-    allHoraDia,
-    allHoraDiaUser,
-    horaDiaCreate,
-    horaDiaId,
-    horaDiaIdUser,
+    allDiaHora,
+    // allHoraDiaUser,
+    createDiaHora,
+    diaHoraId,
     horaDiaDelete,
     horaDiaDelete2,
     horaDiaUpd,
