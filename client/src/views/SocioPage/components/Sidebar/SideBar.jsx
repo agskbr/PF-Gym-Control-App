@@ -1,17 +1,34 @@
-import React, { useState } from "react";
-import s from "./SideBar.module.css";
-import { AiFillHome } from "react-icons/ai";
-import { CgGym } from "react-icons/cg";
-import { GiChickenOven } from "react-icons/gi";
-import { FaUserCircle } from "react-icons/fa";
-import { BsCartFill } from "react-icons/bs";
-import { GoSignOut } from "react-icons/go";
-import logo from "../../../../assets/logo.png";
-import { NavLink } from "react-router-dom";
 
-export default function SideBar({ itemSelected, setItemSelected }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
+import React, { useState, useEffect  } from 'react';
+import s from './SideBar.module.css';
+import {AiFillHome} from 'react-icons/ai';
+import {CgGym} from 'react-icons/cg'; 
+import {GiChickenOven} from 'react-icons/gi';
+import {FaUserCircle} from 'react-icons/fa';
+import {BsCartFill} from 'react-icons/bs';
+import {GoSignOut} from 'react-icons/go'
+import logo from '../../../../assets/logo.png'
+import {NavLink} from 'react-router-dom'
+import { useDispatch, useSelector} from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {userSignOut, validateUserIsLogged} from '../../../../store/actions/actions-login';
+
+export default function SideBar(){
+  const dispatch = useDispatch();
+  const [isOpen, setIsOpen]= useState(false);
+  const toggle= ()=> setIsOpen(!isOpen);
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.login);
+
+  useEffect(() => {
+    dispatch(validateUserIsLogged());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (user === null) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
   const menuItem = [
     {
@@ -39,12 +56,14 @@ export default function SideBar({ itemSelected, setItemSelected }) {
       icon: <BsCartFill />,
       path: "#/miscompras",
     },
-    // {
-    //   name: "SignOut",
-    //   icon: <GoSignOut />,
-    //   path: "/",
-    // },
-  ];
+    {
+        name:"SignOut",
+        icon: <GoSignOut
+         onClick={() => dispatch(userSignOut())}
+              />,
+        path:"/",
+    }
+  ]
   return (
     <div className={s.sideBarUserContainer}>
       <div

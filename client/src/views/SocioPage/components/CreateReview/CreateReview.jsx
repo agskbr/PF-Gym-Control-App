@@ -10,7 +10,7 @@ import logo from '../../../../assets/logo.png'
 export default function CreateReaview(props) {
 
     const dispatch = useDispatch();
-    const activities = useSelector((state)=>state.pgym.allActivities)
+    const activities = useSelector((state)=>state.pgym.allActivities);
 
     const [errors, setErrors] = useState({})
 
@@ -85,7 +85,7 @@ export default function CreateReaview(props) {
 
   return (
 
-    <dialog id="reviewDialog" style={{ border: "none", height: "60vh" }}>
+    <dialog id="reviewDialog" style={{ border: "none", height: "60vh"}}>
         <div
             style={{
             display: "flex",
@@ -108,7 +108,7 @@ export default function CreateReaview(props) {
             />
             <div className={s.createReviewtitle}>
                 <h3>Power Gym</h3>
-                <h4>Dejanos lo que pensas sobre nuestro servicio</h4>
+                <h4>¿Estas conforme son nuestro servicio? Dejanos tu opinion</h4>
             </div>
             
             <textarea

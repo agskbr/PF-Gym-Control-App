@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import {
-  userSignOut,
-  validateUserIsLogged,
-} from "../../store/actions/actions-login";
 import style from "./SocioPage.module.css";
-//import MyActivities from "./components/MyActivities/MyActivities";
-//import CreateReaview from "./components/CreateReview/CreateReview";
+import MyActivities from "./components/MyActivities/MyActivities";
 import SideBar from "./components/Sidebar/SideBar";
 import CenterDynamicView from "./components/CenterDynamicView/CenterDynamicView";
 
 export default function SocioPage() {
+
   const [itemSelected, setItemSelected] = useState("Mi Perfil");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -48,6 +41,4 @@ export default function SocioPage() {
         <MyActivities />
       </div>
       <CreateReaview/> */}
-    </div>
-  );
 }
