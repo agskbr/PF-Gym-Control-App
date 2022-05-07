@@ -53,37 +53,37 @@ router.post('/:emailType', async (req,res) => {
             <hr>
             <small>En caso de cualquier inquietud, por favor contactanos en: gymcontrol12@gmail.com</small>`,
         };
-    }
-    else if (emailType === "forgotPassword") {
-        mailOptions = {
-          from: UserMail,
-          to: req.body.user.email,
-          subject: "Link para restaurar contraseña",
-          html:
-            `<div id="container" style="width: 100%; font-family: sans-serif; font-weight: normal; ">
-            <div style="width: 100%; max-width: 700px; margin: auto; ">
-                <div style="background-color: #eb4e27; text-align: center; padding: 0.7rem 0;">
-                    <h1 style="color: white; font-family: sans-serif; font-weight: normal;">Gym Control</h1>
-                 </div>
+    // }
+    // else if (emailType === "forgotPassword") {
+    //     mailOptions = {
+    //       from: UserMail,
+    //       to: req.body.user.email,
+    //       subject: "Link para restaurar contraseña",
+    //       html:
+    //         `<div id="container" style="width: 100%; font-family: sans-serif; font-weight: normal; ">
+    //         <div style="width: 100%; max-width: 700px; margin: auto; ">
+    //             <div style="background-color: #eb4e27; text-align: center; padding: 0.7rem 0;">
+    //                 <h1 style="color: white; font-family: sans-serif; font-weight: normal;">Gym Control</h1>
+    //              </div>
                 
-              <div style="text-align: center; padding: 0 0.72rem; padding-top: 2.5rem; background-color: rgba(253,237,233,.98)">
-              <p style="color: #4f5154; margin-bottom: 1.4rem; font-size: 1rem;">&iexcl;
-                                        Hola   ` +
-            req.body.user.name +
-            `  ` +
-            req.body.user.lastname +
-            `  !` +
-            `Este es su enlace para la recuperación de contraseña, recuerde que es de un solo uso` +
-            `http://localhost:3000/users/forgotPassword/?` +
-            req.body.user.emailHashed +
-            ` ` +
-            `No compartir este link
-            <hr>
-            <p>
-            Gracias por contar con nosotr@s!</p>
-            <hr>
-            <small>En caso de cualquier inquietud, por favor contactanos en: gymcontrol12@gmail.com</small>`,
-        };
+    //           <div style="text-align: center; padding: 0 0.72rem; padding-top: 2.5rem; background-color: rgba(253,237,233,.98)">
+    //           <p style="color: #4f5154; margin-bottom: 1.4rem; font-size: 1rem;">&iexcl;
+    //                                     Hola   ` +
+    //         req.body.user.name +
+    //         `  ` +
+    //         req.body.user.lastname +
+    //         `  !` +
+    //         `Este es su enlace para la recuperación de contraseña, recuerde que es de un solo uso` +
+    //         `http://localhost:3000/users/forgotPassword/?` +
+    //         req.body.user.emailHashed +
+    //         ` ` +
+    //         `No compartir este link
+    //         <hr>
+    //         <p>
+    //         Gracias por contar con nosotr@s!</p>
+    //         <hr>
+    //         <small>En caso de cualquier inquietud, por favor contactanos en: gymcontrol12@gmail.com</small>`,
+    //     };
       } else if (emailType === "orderCreated") {
         const { user, info } = req.body;
         mailOptions = {
