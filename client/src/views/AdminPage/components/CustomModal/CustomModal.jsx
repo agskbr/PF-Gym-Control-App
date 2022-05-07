@@ -70,7 +70,7 @@ export default function CustomModal({ type }) {
   const handlerChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setErrors(validateForm({ ...activity, [name]: value }));
+    setErrors(validateForm({ ...activity, [name]: value }, type));
     setActivity((state) => ({ ...state, [name]: value }));
   };
   const handlerChangeSelectTag = (event) => {
@@ -90,8 +90,8 @@ export default function CustomModal({ type }) {
         <button
           onClick={() => {
             document.getElementById("createDialog").close();
-            setActivity({});
-            setErrors({});
+            // setActivity({});
+            // setErrors({});
           }}
           className={style.closeBtn}
         >
@@ -102,7 +102,9 @@ export default function CustomModal({ type }) {
       <div className={style.contentDialog}>
         {keys.map((input) =>
           input !== "id" &&
+          input !== "uid" &&
           input !== "description" &&
+          input !== "status" &&
           input !== "day" &&
           input !== "trainers" &&
           input !== "updatedAt" &&
@@ -112,13 +114,11 @@ export default function CustomModal({ type }) {
             <CustomInput
               key={input}
               name={input}
-              type={
-                typeof displayInputs[0][input] === "number" ? "number" : "text"
-              }
+              type="text"
               min={0}
               onChange={handlerChange}
               placeholder={input}
-              value={activity[input]}
+              value={activity[input] || ""}
               labelError={errors[input]}
             />
           ) : null
@@ -242,27 +242,26 @@ export default function CustomModal({ type }) {
       </div>
       <div className={style.createBtnContainer}>
         <button
-          disabled
           onClick={() => {
             setErrors(validateForm(activity, type));
-            if (Object.values(errors).length < 1) {
-              dispatch(
-                createActivity({
-                  ...activity,
-                  price: parseInt(activity.price),
-                  capacity: parseInt(activity.capacity),
-                })
-              );
+            if (Object.values(errors).length === 0) {
+              // dispatch(
+              //   createActivity({
+              //     ...activity,
+              //     price: parseInt(activity.price),
+              //     capacity: parseInt(activity.capacity),
+              //   })
+              // );
               Swal({
                 title: "Actividad creada correctamente",
                 buttons: "Aceptar",
                 icon: "success",
               });
               document.getElementById("createDialog").close();
-              setActivity({});
+              // setActivity({});
             }
           }}
-          className={style.createDisabledBtn}
+          className={style.createBtn}
         >
           Crear actividad
         </button>
