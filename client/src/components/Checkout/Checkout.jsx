@@ -1,6 +1,9 @@
 import style from './checkout.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from '../CartItem/CartItem';
+import { validateUserIsLogged } from "../../store/actions/actions-login";
+import { useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 //Import para validar usuario --- checkear firebase
 /* import {useAuth0} from "@auth0/auth0-react" */
@@ -13,8 +16,20 @@ import CartItem from '../CartItem/CartItem';
 
 
 export default function Checkout(activity) {
-    const state = useSelector(state => state);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { user } = useSelector((state) => state.login);
+    useEffect(() => {
+        dispatch(validateUserIsLogged());
+      }, [dispatch]);
+      useEffect(() => {
+        if(!user) {
+          navigate("/login")
+        }
+      }, [user, navigate]);
+
+
+    const state = useSelector(state => state);
     const {cart} = state.cart;
     const cartCheckOut = useSelector(state => state.cart);
     const totalCart = cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -37,7 +52,7 @@ export default function Checkout(activity) {
             /* await axios.get(USER_LOAD + idCart.id + '/cart'); */
             /* let check = {state:'Processing', totalPrice: totalCart}
             await axios.put('/orders/checkout/' + idCart.id, check); */
-            
+                                                //userID
            /*  let email = {
                 user: {
                     name: userState?.name,
