@@ -41,4 +41,6 @@ export default function SocioPage() {
         <MyActivities />
       </div>
       <CreateReaview/> */}
+    </div>
+  );
 }
