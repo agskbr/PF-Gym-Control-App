@@ -3,7 +3,7 @@
   background-color: transparent;
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 70%;
+  width: 100%;
 }
 .itemBtn:hover {
   cursor: pointer;
@@ -18,6 +18,22 @@
   padding-top: 10px;
   padding-bottom: 10px;
   width: 100%;
+}
+.itemSelectedOfSideBar {
+  transition: all 200ms ease;
+  padding-left: 10px;
+  border-radius: 5px;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #fe4f22;
+}
+.itemSelectedOfSideBar span {
+  font-size: 18px;
+  font-weight: 500;
+  padding-left: 20px;
 }
 
 .itemOfSideBar span {
