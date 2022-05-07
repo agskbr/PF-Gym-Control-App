@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import s from './Review.module.css';
 import ReviewCard from '../ReviewCard/ReviewCard';
-import {AiOutlineRight} from 'react-icons/ai';
-import {AiOutlineLeft} from 'react-icons/ai';
-import r1 from '../../assets/trainer1.jpg';
-import {useSelector} from 'react-redux';
+//import {AiOutlineRight} from 'react-icons/ai';
+//import {AiOutlineLeft} from 'react-icons/ai';
+import {useDispatch, useSelector} from 'react-redux';
+import {getAllReviews} from '../../store/actions/actions-review';
 
 export default function Review() {
-    //const allReviews = useSelector()
-    const data = [
+    const dispatch = useDispatch();
+    /* const data = [
         {
             id: 1,
             review: "MUY LINDO GIMNASIO. SUPER EQUIPADO Y CON LOS MEJORES PROFEOSER",
@@ -37,27 +37,31 @@ export default function Review() {
             rating: 4.5,
             image: r1 
         }
-    ]
+    ] */
+    const allReviews = useSelector((state)=>state.review.reviews)
+    console.log("aca", allReviews)
+
     const [selectedIndex, setSelectedIndex] = useState(0);
-    const [selectedReview, setSelectedReview]= useState(data[0]);
+    const [selectedReview, setSelectedReview]= useState(allReviews[0]);
     const currentReview = selectedReview;
+    console.log("uno", currentReview)
 
     const previous = ()=> {
         const condition = selectedIndex > 0;
-        const nextIndex = condition ? selectedIndex - 1 : data.length -1;
-        setSelectedReview(data[nextIndex]);
+        const nextIndex = condition ? selectedIndex - 1 : allReviews.length -1;
+        setSelectedReview(allReviews[nextIndex]);
         setSelectedIndex(nextIndex);
     };
 
     const next = ()=> {
-        const condition = selectedIndex < data.length -1;
+        const condition = selectedIndex < allReviews.length -1;
         const nextIndex = condition ? selectedIndex + 1 : 0;
-        setSelectedReview(data[nextIndex]);
+        setSelectedReview(allReviews[nextIndex]);
         setSelectedIndex(nextIndex);
-    }
+    } 
     useEffect(()=>{
-
-    })
+      dispatch(getAllReviews())
+    }, [dispatch]) 
 
   return (
     <main className={s.reviewContainer}>
@@ -65,27 +69,26 @@ export default function Review() {
             {/* <h1># que dicen nuestros clientes</h1> */}
             <div className={s.contenedorSlider}>
                 <div className={s.revierCarrousel}>
-                    {
-                        Object.keys(currentReview).length > 0 ? (
-                            <ReviewCard
-                                key={currentReview.id}
-                                name={currentReview.name}
-                                review={currentReview.review}
-                                rating={currentReview.rating}
-                                image={currentReview.image}
+                   {
+                       allReviews ? allReviews.map(r => 
+                        <ReviewCard
+                            key={r.id}
+                            description={r.description}
+                            rating={r.rating}
+                            id= {r.userId}
                             />
-                        ): <p>error</p>
-                    }
+                    ): <p>error</p>
+                   }
                 </div>
             </div>
-            <div className={s.reviewContainerButton}>
+          {/*   <div className={s.reviewContainerButton}>
                 <div >
                 <p className={s.reviewButton} onClick={previous}> <AiOutlineLeft/> </p>
                 </div>
                 <div >
                 <p className={s.reviewButton}  onClick={next}> <AiOutlineRight/> </p>
                 </div>
-            </div>    
+            </div>     */}
             
         </section>
     </main>

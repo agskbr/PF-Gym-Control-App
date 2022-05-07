@@ -10,7 +10,22 @@ import logo from '../../../../assets/logo.png'
 export default function CreateReaview() {
 
     const dispatch = useDispatch();
-    //verificar si esta logueado para hacer la review
+
+    const [errors, setErrors] = useState({})
+
+    /***validaciones */
+    function validate (input){
+        let errors = {};
+
+        if(!input.description){
+            errors.description = "debes completar tu reseña"
+        }
+        if(!input.rating){
+            errors.rating = "debes seleccionar una opcion"
+        }
+        return errors;
+    }
+
     const [input, setInput] = useState({
         description:"",
         rating: 0
@@ -19,13 +34,28 @@ export default function CreateReaview() {
     function handleChange(e){
         setInput({
             ...input,
-            [e.target.name]: e.target.value
+            description: e.target.value
         });
+        setErrors(validate({
+            ...input,
+            description: e.target.value
+        }));
+    }
+
+    function handleSelect(e){
+        setInput({
+            ...input,
+            rating: e.target.value
+        });
+        setErrors(validate({
+            ...input,
+            rating: e.target.value
+        }))
     }
 
     function handleSubmit(e){
         e.preventDefault()
-        if(input.rating < 1){
+        if(!input.rating ){
             Swal.fire({
                 title: "Debes ingresar un valor",
                 icon:"warning",
@@ -54,7 +84,7 @@ export default function CreateReaview() {
 
   return (
 
-    <dialog id="reviewDialog" style={{ border: "none", height: "30vh" }}>
+    <dialog id="reviewDialog" style={{ border: "none", height: "60vh" }}>
         <div
             style={{
             display: "flex",
@@ -69,66 +99,36 @@ export default function CreateReaview() {
                 x
                 </button>
             </div>
-            <h4>Dejanos lo que pensas sobre nuestro servicio</h4>
+            
             <img 
                 src={logo} 
-                style={{ width: 100, objectFit: "cover" }}
+                style={{ width: 100, objectFit: "cover", justifyContent: "center"}}
                 alt="logo"
             />
             <div className={s.createReviewtitle}>
                 <h3>Power Gym</h3>
-            </div>
-            <textarea
-                name="review"
-                style={{ resize: "none" }}
-                placeholder="Agrega tu review aquí"
-            ></textarea>
-            <div>
-                <select name="rating" className={s.createReviewSelect}>
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                </select>
-            </div>
-        </div>
-      </dialog>
-
-
-    
-   /*  <div className={s.CreateReviewContainer}>
-        <div className={s.createRevLogo}>
-            <img 
-                src={logo} 
-                style={{ width: 100, objectFit: "cover" }}
-                alt="logo"
-            />
-            <div className={s.createReviewtitle}>
-              <h3>Power Gym</h3>
-            </div>
-        </div>
-
-        <div>
-            <textarea
-                value={input.description}
-                onChange={handleChange}
-                placeholder="Dejanos tu opinion"
-                name="description"
-                className={s.createReviewTextarea}
-            />
-            <div>
-                <select name="rating" className={s.createReviewSelect}>
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                </select>
-            </div>
-            <button onClick={handleSubmit}>Enviar</button>
+                <h4>Dejanos lo que pensas sobre nuestro servicio</h4>
             </div>
             
-    </div> */
+            <textarea
+                name="description"
+                style={{ resize: "none" }}
+                placeholder="Agrega tu review aquí"
+                onChange={handleChange}
+            ></textarea>
+            {errors.description && (<span className={s.reviewErrors}>{errors.description}</span>)}
+            <div>
+                <select name="rating" className={s.createReviewSelect} onChange={handleSelect}>
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
+                    <option value="">4</option>
+                    <option value="">5</option>
+                </select>
+            </div>
+            {errors.rating && (<span className={s.reviewErrors}>{errors.rating}</span>)}
+            <button onClick={handleSubmit}>Enviar</button>
+        </div>
+      </dialog>
   )
 }

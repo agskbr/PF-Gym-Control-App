@@ -3,10 +3,10 @@ import {CREATE_REVIEW, GET_ALL_REVIEWS,} from '../actions-type/index';
 
 const base_url = "http://localhost:3001";
 
-export const postReview = (review)=>{ // review = description, rating, userId, img??
+export const postReview = (payload)=>{ // review = description, rating, userId, img??
     return async (dispatch)=> {
         try {
-            const {data} = await axios.post(`${base_url}/Review/activity`, review)
+            const {data} = await axios.post(`${base_url}/review/activity`, payload)
             return dispatch({
                 type:CREATE_REVIEW,
                 payload:data
@@ -20,7 +20,7 @@ export const postReview = (review)=>{ // review = description, rating, userId, i
 export const getAllReviews = ()=> {
     return async (dispatch)=> {
         try {
-            const {data} = await axios.get(`${base_url}/reviews`)
+            const {data} = await axios.get(`${base_url}/review/all`)
             return dispatch({
                 type: GET_ALL_REVIEWS,
                 payload: data
