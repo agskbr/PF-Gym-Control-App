@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import s from "./MyActivities.module.css";
 import {BsFillArrowDownCircleFill} from 'react-icons/bs'
 import CreateReview from '../CreateReview/CreateReview'
+import { getActivity } from "../../../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function MyActivities() {
+  const dispatch = useDispatch();
+  const actividades= useSelector((state)=> state.pgym.allActivities);
+  //console.log("soy actividades", actividades)
+  const myActiv = actividades.find((a)=> a.name === "BodyCombat");
+  console.log("MY", myActiv);
+
   const ordenes = [
     {
       id: 1,
-      ordenCompra: "0001",
-      estado:"completa",
+      imagen:"",
+      fecha: "15/05/2022",
+      clase:"Yoga",
       comprobante:"pdf",
       descargar: <BsFillArrowDownCircleFill/>
     },
@@ -29,6 +38,10 @@ export default function MyActivities() {
     
   ]
 
+  useEffect(()=>{
+    dispatch(getActivity())
+  },[dispatch])
+
   return (
     <div className={s.userPrincipalContainer}>
       
@@ -48,26 +61,26 @@ export default function MyActivities() {
         <table>
          <thead>
           <tr>
-              <th>Id</th>
-              <th>Orden de compra N°</th>
-              <th>Estado</th>
-              <th>Comprobante</th>
-              <th>Descargar</th>
+              <th>Avtividad</th>
+              <th>Imagen</th>
+              <th>Horario</th>
+              <th>Dia</th>
+              <th>Renovar Suscripcion</th>
             </tr>
          </thead>
          <tbody>
-           {ordenes.map((orden)=>(
              <tr>
-               <td>{orden.id}</td>
-               <td>{orden.ordenCompra}</td>
-               <td>{orden.estado}</td>
-               <td>{orden.comprobante}</td>
-               <td>{orden.descargar}</td>
+               <td>{}</td>
+               <td>{}</td>
+               <td>{}</td>
+               <td>{}</td>
+               <td></td>
+
              </tr>
-           ))}
+           
          </tbody>
         </table>
-      </div>
+      </div> 
       <CreateReview/>
     </div>
   );
