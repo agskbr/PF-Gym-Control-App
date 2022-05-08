@@ -6,10 +6,21 @@ const {
     userCreate,
     userUpd,
     userId,
-    userDelete
+    userDelete,
+    userIsAdmin
 } = require('../Controllers/User');
 
- 
+router.get("/isAdmin", async (req, res) => {
+    try {
+        const { id } = req.body
+        const isAdmin = await userIsAdmin(id);
+        res.send(isAdmin.isAdmin)
+    } catch (error) {
+        res.send(error);
+    }
+});
+
+
 router.get("/", async (req, res) => {
     const users = await getAllUsers();
     users ? res.status(200).send(users)
