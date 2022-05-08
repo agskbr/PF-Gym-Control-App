@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import s from './Review.module.css';
 import ReviewCard from '../ReviewCard/ReviewCard';
-//import {AiOutlineRight} from 'react-icons/ai';
-//import {AiOutlineLeft} from 'react-icons/ai';
+import {AiOutlineRight} from 'react-icons/ai';
+import {AiOutlineLeft} from 'react-icons/ai';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllReviews} from '../../store/actions/actions-review';
 
@@ -63,34 +63,34 @@ export default function Review() {
       dispatch(getAllReviews())
     }, [dispatch]) 
 
-  return (
+  return currentReview? (
     <main className={s.reviewContainer}>
         <section className={s.reviewList}>
             {/* <h1># que dicen nuestros clientes</h1> */}
             <div className={s.contenedorSlider}>
                 <div className={s.revierCarrousel}>
                    {
-                       allReviews ? allReviews.map(r => 
+                       currentReview? (
                         <ReviewCard
-                            key={r.id}
-                            description={r.description}
-                            rating={r.rating}
-                            id= {r.userId}
+                            key={currentReview.id}
+                            description={currentReview.description}
+                            rating={currentReview.rating}
+                            id= {currentReview.userId}
                             />
-                    ): <p>error</p>
+                    ): <p>isloading</p>
                    }
                 </div>
             </div>
-          {/*   <div className={s.reviewContainerButton}>
+            <div className={s.reviewContainerButton}>
                 <div >
                 <p className={s.reviewButton} onClick={previous}> <AiOutlineLeft/> </p>
                 </div>
                 <div >
                 <p className={s.reviewButton}  onClick={next}> <AiOutlineRight/> </p>
                 </div>
-            </div>     */}
+            </div>    
             
         </section>
     </main>
-  )
+  ): <p>error</p>
 }
