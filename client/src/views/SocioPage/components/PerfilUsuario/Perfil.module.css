@@ -43,6 +43,7 @@
  .perfilUserName img{
      height: 10ex;
      width: 10ex;
+     border-radius: 100%;
  }
  .perfilUserName{
      display:block;
