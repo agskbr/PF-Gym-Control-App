@@ -7,6 +7,8 @@ import EditActivity from "./views/AdminPage/components/EditActivity/EditActivity
 import HomePage from "./views/homePage/homePage";
 import LoginPage from "./views/LoginPage/LoginPage";
 import RegisterPage from "./views/RegisterPage/RegisterPage";
+import Checkout from "./components/Checkout/Checkout";
+import Perfil from "./views/SocioPage/components/PerfilUsuario/Perfil"
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           element={<EditActivity />}
         />
         <Route path="/sociodashboard" element={<SocioPage />} />
+        <Route path="/checkout" element={<Checkout/>}/>
+        <Route path="/miperfil" element={<Perfil/>}/>
       </Routes>
     </div>
   );
