@@ -3,10 +3,10 @@ const { Activity, Review, User, Order } = require("../../db");
 const nodemailer = require("nodemailer");
 const hbs = require("nodemailer-express-handlebars");
 //const {USER_MAIL, USER_PASS} = process.env;
-//const UserMail = "gymcontrol12@gmail.com"
-const UserMail = "admin.pgym@coderbox.com.ar"
-//const Pass = "Proyectofinal2022"
-const Pass = "Admin12345678"
+const UserMail = "gymcontrol12@gmail.com"
+//const UserMail = "admin.pgym@coderbox.com.ar"
+const Pass = "Proyectofinal2022"
+//const Pass = "Admin12345678"
 
 //turn on less security app
 // transporter = dependiendo de si se usa smt, necesitas crear una conexion
