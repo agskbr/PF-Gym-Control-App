@@ -12,7 +12,7 @@ export default function Perfil() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.login);
-  console.log(user);
+  console.log(user.photoURL);
   useEffect(() => {
     dispatch(validateUserIsLogged());
   }, [dispatch]);
@@ -30,7 +30,9 @@ export default function Perfil() {
           <div className={style.userImg}>
             <img
               src={
-                "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+                user.photoURL
+                  ? user.photoURL
+                  : "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
               }
             />
           </div>
