@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import style from "./AdminCardView.module.css";
 import { Link } from "react-router-dom";
-import { FaArrowCircleUp, FaArrowCircleDown } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 
 export default function AdminCardView({ type }) {
   // const [isAscendentOrder, setIsAscendentOrder] = useState({
@@ -93,6 +93,13 @@ export default function AdminCardView({ type }) {
                   }
                   return null;
                 })}
+                <td>
+                  <Link
+                    to={`/admindashboard/${type.toLowerCase()}/edit/${el.id}`}
+                  >
+                    <FaEdit size={20} color={"#fe4f22"} />
+                  </Link>
+                </td>
               </tr>
             ))}
           </tbody>
