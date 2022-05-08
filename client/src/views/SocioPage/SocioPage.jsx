@@ -9,6 +9,7 @@ import style from "./SocioPage.module.css";
 //import MyActivities from "./components/MyActivities/MyActivities";
 //import CreateReaview from "./components/CreateReview/CreateReview";
 import SideBar from "./components/Sidebar/SideBar";
+import Recetas from "./components/Recetas/Recetas";
 
 
 export default function SocioPage() {
@@ -40,8 +41,9 @@ export default function SocioPage() {
           SignOut
         </button>
       </div>
-
-      
+      <div>
+      <Recetas/>
+      </div>
       
      {/*  <div>
         <MyActivities />

@@ -1,0 +1,43 @@
+.div{
+    background-color: #e0c8a89a;
+    padding: 1rem;
+    overflow: hidden;
+    margin: 10px 0px;
+    width: 30%;
+    float: left;
+}
+
+.imagen{
+    height: 150px;
+    width: 50%;
+    border-radius: 10px;
+}
+
+.Card {
+    float: left;
+    color: white;
+    overflow: hidden;
+    margin-left: 20px;
+    margin-top: 25px;
+    width: 32%;
+    background-color: #5250505d;
+    backdrop-filter: blur(6px);
+    border-radius: 18px;
+    box-shadow: rgba(110, 110, 117, 0.2) 0px 7px 29px 0px;
+    border: 1px solid black;
+    
+    
+  }
+  
+  .Card:hover {
+    background: rgb(255, 79, 5);
+    background: linear-gradient(
+      63deg,
+      rgba(255, 79, 5, 1) 4%,
+      rgba(254, 85, 7, 1) 9%,
+      rgba(241, 183, 33, 1) 86%,
+      rgba(116, 105, 100, 1) 98%
+    );
+    cursor: pointer;
+  }
+  

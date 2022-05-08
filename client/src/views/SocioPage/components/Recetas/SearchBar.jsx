@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {getNameRecipe} from '../../store/actions-recipes/recipes';
+import {getNameRecipe} from '../../../../store/actions-recipes/recipes';
 
 
 

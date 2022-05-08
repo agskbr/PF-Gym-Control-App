@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes } from "../../store/actions-recipes/recipes";
-import SearchBar from "../../components/SearchRecipes/SearchBar";
-import Paginado from "./components/Paginado/Paginado";
+import { getRecipes } from "../../../../store/actions-recipes/recipes";
+import SearchBar from "./SearchBar";
+import Paginado from "./Paginado";
+import Card from "./Card";
 
 export default function SocioPage() {
     const dispatch = useDispatch();
@@ -17,16 +18,14 @@ export default function SocioPage() {
         setCurrentPage(pageNumber)
     }
 
-
-
-useEffect(() => {
+    useEffect(() => {
     dispatch(getRecipes());
-}, [dispatch]);
+    }, [dispatch]);
 
-function handleClick(e){
+    function handleClick(e){
     e.preventDefault();
     dispatch(getRecipes());
-}
+    }
 
     return (
         <div>
@@ -48,6 +47,15 @@ function handleClick(e){
     currentRecipes?.map((el) => {
         return(
         <div key={el.id}>
+               <Card 
+               image={el.img? el.img : el.image} 
+               name={el.name} 
+               diets={el.diets} 
+               key={el.id} 
+               id={el.id}
+                   
+               />  
+
         </div>
         )
     })
