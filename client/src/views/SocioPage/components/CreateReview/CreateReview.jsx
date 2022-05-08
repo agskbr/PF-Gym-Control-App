@@ -1,97 +1,138 @@
-import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import { postReview } from '../../../../store/actions/actions-review';
 import s from './CreateReview.module.css';
 import Swal from "sweetalert";
 import logo from '../../../../assets/logo.png'
+import {getActivity} from '../../../../store/actions/index'
+import {FaStar} from 'react-icons/fa'
 
 
+const colors = {
+    orange: "#FFBA5A",
+    grey: "#a9a9a9"
+}
 
-export default function CreateReaview(props) {
 
+export default function CreateReaview() {
+
+    const [errors, setErrors]= useState({});
     const dispatch = useDispatch();
-    //const activities = useSelector((state)=>state.pgym.allActivities);
-
-    const [errors, setErrors] = useState({})
-
-    /***validaciones */
-    function validate (input){
-        let errors = {};
-
-        if(!input.description){
-            errors.description = "debes completar tu reseña"
-        }
-        if(!input.rating){
-            errors.rating = "debes seleccionar una opcion"
-        }
-        return errors;
-    }
-
-    const [input, setInput] = useState({
-        description:"",
-        rating: 0
-    })
+    const allActivities = useSelector((state)=>state.pgym.allActivities);
+    console.log("activ", allActivities)
+   
     
-    function handleChange(e){
-        setInput({
-            ...input,
-            description: e.target.value
-        });
-        setErrors(validate({
-            ...input,
-            description: e.target.value
-        }));
+    const stars= Array(5).fill(0);
+    const [currentValue, setCurrentValue] = useState(0);
+    const [hoverValue, setHoverValue]= useState(undefined);
+    const [ input, setInput]= useState({
+        rating: 0,
+        description:"",
+        activityId: 0,  /* ver */
+        userId: "",
+        name:""
+    })
+
+    function validaciones(input){
+        let errors = {}
+
+        if(!input.rating){
+            errors.rating= "debes seleccionar un valor";
+        };
+        if(!input.description){
+            errors.description="por favor ingresa una reseña"
+        };
+        if(!input.name){
+            errors.name= "debes seleccionar una actividad"
+        };
+        return errors
     }
 
-    function handleSelect(e){
+    
+
+    const handleClick = value => { //rating
+        setCurrentValue(value)
         setInput({
             ...input,
-            rating: e.target.value
-        });
-        setErrors(validate({
+            rating:value
+        })
+        setErrors(validaciones({
             ...input,
-            rating: e.target.value
+            rating:value,
+        }))
+    };
+
+    const handleMouseOver = value => {
+        setHoverValue(value)
+    };
+    const handleMouseLeave = ()=>{
+        setHoverValue(undefined)
+    };
+
+    const handleChange = (e)=>{ //textarea>> description
+        setInput({
+            ...input,
+            description: e.target.value
+        })
+        setErrors(validaciones({
+            ...input,
+            description:e.target.value
+        }))
+    }
+    const handleSelect = (e)=>{//actividad
+        setInput({
+            ...input,
+            name: e.target.value,
+            
+        });
+        setErrors(validaciones({
+            ...input,
+            name:e.target.value
         }))
     }
 
-    function handleSubmit(e){
+   const handleSubmit = (e) => { //button
         e.preventDefault()
-        if(!input.rating ){
-            Swal.fire({
-                title: "Debes ingresar un valor",
-                icon:"warning",
+        if(Object.keys(errors).length !== 0){
+            Swal({
+                title:"Debes completar todos los campos, para poder realizar la reseña.",
+                icon: "warning",
                 position:"center",
                 timer:2000,
                 showConfirmButton:false,
-                timeProgressBar:true,
+                timerProgressBar:true,
             });
-            return;
         }else{
-            dispatch(postReview(input)) //deberia pasar el iduser??
+            dispatch(postReview(input))
             setInput({
+                rating: 0,
                 description:"",
-                rating: 0
+                activityId: "",  /* ver */
+                userId: "",
+                name:""
             })
-            Swal.fire({
-                title: "Gracias por dejarnos tu ",
-                icon: "success",
+            Swal({
+                title:"Reseña enviada correctamente",
+                buttons:"aceptar",
+                icon:"success",
                 position: "center",
                 timer: 2000,
                 showConfirmButton: false,
                 timerProgressBar: true,
             })
         }
+        /* deberia recibir po prop userId y activityId */
     }
 
-  return (
+    useEffect(()=>{
+        dispatch(getActivity())
+    },[dispatch])
 
-    <dialog id="reviewDialog" style={{ border: "none", height: "60vh"}}>
+  return allActivities ? (
+
+    <dialog id="reviewDialog" style={{ border: "none", height: "85vh"}}>
         <div
-            style={{
-            display: "flex",
-            justifyContent: "center",
-            flexDirection: "column",
-          }}
+            style={styles.container}
         >
             <div style={{ justifyContent: "flex-end", display: "flex" }}>
                 <button
@@ -110,26 +151,94 @@ export default function CreateReaview(props) {
                 <h3>Power Gym</h3>
                 <h4>¿Estas conforme son nuestro servicio? Dejanos tu opinion</h4>
             </div>
-            
-            <textarea
-                name="description"
-                style={{ resize: "none" }}
-                placeholder="Agrega tu review aquí"
-                onChange={handleChange}
-            ></textarea>
-            {errors.description && (<span className={s.reviewErrors}>{errors.description}</span>)}
             <div>
-                <select name="rating" className={s.createReviewSelect} onChange={handleSelect}>
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
+                <h6> ¿Que servicio vas a calificar? </h6>
+                <select 
+                    name="activityId" 
+                    id="activityId"
+                    key="activityId"
+                    onClick={handleSelect}
+                    className={s.CreateReaviewSelect}
+                    >
+                {
+                    allActivities? allActivities.map((activity, index) => (
+                        <option 
+                            key={activity.id} 
+                            name={activity.name}
+                            value={index}
+                            
+                        >
+                            {activity.name}
+                        </option>
+                    )): <p></p>
+                }
                 </select>
             </div>
-            {errors.rating && (<span className={s.reviewErrors}>{errors.rating}</span>)}
-            <button onClick={handleSubmit}>Enviar</button>
+            <h6>Dejanos tu opinion...</h6>
+            <form
+                className={s.CreateReaviewForm}
+                onSubmit
+            >
+               <div style={styles.stars}>
+                    {
+                        stars.map((_, index)=> {
+                            return (
+                                <FaStar
+                                    key={index}
+                                    size={24}
+                                    style={{
+                                        marginRight:10,
+                                        cursor: "pointer"
+                                    }}
+                                    color={( hoverValue || currentValue) > index ? colors.orange : colors.grey}
+                                    onClick={()=> handleClick(index + 1)}
+                                    onMouseOver={()=> handleMouseOver(index + 1)}
+                                    onMouseLeave= {handleMouseLeave}
+                                />
+                            )
+                        })
+                    }
+               </div>
+               <div>
+                <textarea
+                        placeholder='Dejanos tu comentario'
+                        style={styles.textarea}
+                        onChange={handleChange}
+                />
+               </div>
+               
+                <button 
+                    style={styles.button}
+                    onClick={(e)=> handleSubmit(e)}
+                >
+                    Enviar
+                </button>
+
+            </form>
+            
         </div>
       </dialog>
-  )
+  ): <></>
+}
+
+const styles = {
+    container: {
+        display:"flex",
+        flexDirection: "column",
+        alignItems:"center"
+    },
+    textarea: {
+        border: "1px solid #a9a9a9",
+        borderRadius: 5,
+        with:300,
+        margin: "20px 0",
+        minHeight: 100,
+        padding:10
+    },
+    button:{
+        border: "1px solid #a9a9a9",
+        borderRadius: 5,
+        with:300,
+        padding:10
+    }
 }
