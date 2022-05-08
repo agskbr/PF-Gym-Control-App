@@ -26,12 +26,12 @@ export default function SocioPage() {
     <div className={style.principalContainer}>
       <SideBar itemSelected={itemSelected} setItemSelected={setItemSelected} />
       <div className={style.centerViewContainer}>
-        <button
+     {/*    <button
         className={style.signOutBtn}
         onClick={()=> dispatch(userSignOut())}
         >
             signOut
-        </button>
+        </button> */}
         <CenterDynamicView
           itemSelected={itemSelected}
           contentOfCard={<div>Hola</div>}
