@@ -1,24 +1,31 @@
+//data by pgym reducer
 const CREATE_ACTIVITY = "CREATE_ACTIVITY";
 const GET_ALL_TRAINERS = "GET_ALL_TRAINERS";
 const GET_ALL_USERS = "GET_ALL_USERS";
+const REQUEST_POST = "REQUEST_POST";
+const RECEIVED_POST = "RECEIVED_POST";
+//-----------------
+
+//data by review reducer
+const GET_ALL_REVIEWS = "GET_ALL_REVIEWS";
+const CREATE_REVIEW = "CREATE_REVIEW";
+//-----------------
+
+//Data by login reducer
+const USER_IS_ADMIN = "USER_IS_ADMIN";
 const LOGIN_WITH_GOOGLE = "LOGIN_WITH_GOOGLE";
 const VALIDATE_USER_IS_LOGGED = "VALIDATE_USER_IS_LOGGED";
 const REGISTER_USER_WITH_EMAIL_AND_PASS = "REGISTER_USER_WITH_EMAIL_AND_PASS";
 const SIGN_IN_USER = "SIGN_IN_USER";
 const USER_SIGN_OUT = "USER_SIGN_OUT";
-const REQUEST_POST = "REQUEST_POST";
-const RECEIVED_POST = "RECEIVED_POST";
-const CREATE_REVIEW = "CREATE_REVIEW";
-const GET_ALL_REVIEWS = "GET_ALL_REVIEWS";
+//-----------------
 
-
-    
-// SHOPPING CART  
-export const  ADD_TO_CART = "ADD_TO_CART";
-export const  REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
-export const  REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
-export const  CLEAR_CART = "CLEAR_CART";
-export const  TOTAL_CART = "TOTAL_CART";
+// SHOPPING CART
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
+export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
+export const CLEAR_CART = "CLEAR_CART";
+export const TOTAL_CART = "TOTAL_CART";
 // END SHOPPING CART
 
 export {
@@ -34,4 +41,5 @@ export {
   CREATE_REVIEW,
   GET_ALL_USERS,
   GET_ALL_REVIEWS,
+  USER_IS_ADMIN,
 };

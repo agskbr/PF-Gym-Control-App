@@ -1,37 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginWithGoogle,
   resetPassword,
   signInWithEmailAndPass,
-  validateUserIsLogged,
 } from "../../store/actions/actions-login";
-import { requestPost } from "../../store/actions/index";
 import googleLogo from "../../assets/google-logo.png";
 import style from "./LoginPage.module.css";
 import CustomInput from "../AdminPage/components/CustomInput/CustomInput";
+import Loader from "../../components/Loader/Loader";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.login);
   const { isLoading } = useSelector((state) => state.pgym);
   const [input, setInput] = useState({ email: "", password: "" });
   const [recAccount, setRecAccount] = useState({ recEmail: "" });
-  const navigate = useNavigate();
-  useEffect(() => {
-    dispatch(requestPost());
-    dispatch(validateUserIsLogged());
-  }, [dispatch]);
-  useEffect(() => {
-    if (user) {
-      if (user.uid !== "jUHKBpHJLkb9dso2TNOW5DZaU0w2") {
-        navigate("/sociodashboard");
-      } else {
-        navigate("/admindashboard");
-      }
-    }
-  }, [user, navigate]);
 
   const handlerChange = (e) => {
     const name = e.target.name;
@@ -39,7 +23,7 @@ export default function LoginPage() {
     setInput({ ...input, [name]: value });
   };
   return isLoading ? (
-    <div className={style.isLoadingCustom}>Loading</div>
+    <Loader />
   ) : (
     <div className={style.formContainer}>
       <h3>Inicia sesión</h3>

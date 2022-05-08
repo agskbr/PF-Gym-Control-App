@@ -1,38 +1,25 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import AdminPage from "./views/AdminPage/AdminPage.jsx";
-import SocioPage from "./views/SocioPage/SocioPage.jsx";
-import Buy from "./components/Buy/Buy";
-import EditActivity from "./views/AdminPage/components/EditActivity/EditActivity";
-import HomePage from "./views/homePage/homePage";
-import LoginPage from "./views/LoginPage/LoginPage";
-import RegisterPage from "./views/RegisterPage/RegisterPage";
-import Checkout from "./components/Checkout/Checkout";
+import { AunthenticatedRoutes, UnAuthenticatedRoutes } from "./Rols";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { validateUserIsLogged } from "./store/actions/actions-login";
+import { requestPost } from "./store/actions";
 
 function App() {
   const dispatch = useDispatch();
+  const { user, isAdmin } = useSelector((state) => state.login);
   useEffect(() => {
+    dispatch(requestPost());
     dispatch(validateUserIsLogged());
-  } , [dispatch]);
-  
+  }, [dispatch]);
+
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/clases/:id" element={<Buy />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/admindashboard" element={<AdminPage />} />
-        <Route
-          path="/admindashboard/activity/edit/:id"
-          element={<EditActivity />}
-        />
-        <Route path="/sociodashboard" element={<SocioPage />} />
-        <Route path="/checkout" element={<Checkout/>}/>
-      </Routes>
+      {user ? (
+        <AunthenticatedRoutes isAdmin={isAdmin} />
+      ) : (
+        <UnAuthenticatedRoutes user={user} />
+      )}
     </div>
   );
 }
