@@ -7,14 +7,11 @@ import {useDispatch, useSelector} from 'react-redux';
 
 export default function ReviewCard ({rating, description, id}) {
   
-
-  console.log("id", id)
   const dispatch = useDispatch();
   const allUsers = useSelector((state)=> state.pgym.users)
-  console.log("usuarios", allUsers)
   
   const user = allUsers.find((u)=>u.id === id)
-  console.log("soy yo", user)
+  //console.log("soy yo", user)
   
   useEffect(()=>{
     dispatch(getAllUsers())

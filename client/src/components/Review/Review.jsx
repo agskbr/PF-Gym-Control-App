@@ -39,7 +39,7 @@ export default function Review() {
         }
     ] */
     const allReviews = useSelector((state)=>state.review.reviews)
-    console.log("aca", allReviews)
+   // console.log("aca", allReviews)
 
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [selectedReview, setSelectedReview]= useState(allReviews[0]);

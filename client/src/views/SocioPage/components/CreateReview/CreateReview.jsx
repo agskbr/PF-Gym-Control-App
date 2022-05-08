@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import { postReview } from '../../../../store/actions/actions-review';
 import s from './CreateReview.module.css';
 import Swal from "sweetalert";
@@ -10,7 +10,7 @@ import logo from '../../../../assets/logo.png'
 export default function CreateReaview(props) {
 
     const dispatch = useDispatch();
-    const activities = useSelector((state)=>state.pgym.allActivities);
+    //const activities = useSelector((state)=>state.pgym.allActivities);
 
     const [errors, setErrors] = useState({})
 
