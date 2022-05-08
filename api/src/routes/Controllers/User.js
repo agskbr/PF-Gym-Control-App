@@ -107,6 +107,24 @@ const userDelete = async (id) => {
     }
 }
 
+const userIsAdmin = async (id) => {
+        const UserUid = await User.findOne({   
+            where: {
+                uid: id
+            }
+        })
+        if (UserUid) {
+            return UserUid
+        } else {
+            const UserId = await User.findOne({   
+                where: {
+                    id: id
+                } 
+            })
+            return UserId;
+        }
+}
+
 
 module.exports = {
     getAllUsers,
@@ -114,5 +132,6 @@ module.exports = {
     userCreate,
     userUpd,
     userId,
-    userDelete
+    userDelete,
+    userIsAdmin
 }

@@ -18,19 +18,10 @@ const {
 
 const loaderUsers = async () => { 
     try {
-        const modelUsers = users.map((el) => {
-            return {
-                name: el.name,
-                lastName: el.lastName,
-                email: el.email,
-                phoneNumber: el.phoneNumber,
-                image: el.image,
-                isAdmin: el.isAdmin
-            };
-        });
-        modelUsers.forEach(async (el) => {
+        users.forEach(async (el) => {
             const userIns = await User.findOrCreate({
                 where: {
+                    uid: el.uid ? el.uid : null,
                     name: el.name,
                     lastName: el.lastName,
                     email: el.email,
@@ -57,21 +48,7 @@ const loaderUsers = async () => {
 
 const loaderActivity = async () => {
     try {
-        const modelActivity = activities.map((el) => {
-            return {
-                id: el.id,
-                name: el.name,
-                description: el.description,
-                video: el.video,
-                image: el.image,
-                price: el.price,
-                day: el.day,
-                hour: el.hour,
-                capacity: el.capacity,
-                trainers: el.trainers
-            };
-        });
-        modelActivity.forEach(async (el) => {
+        activities.forEach(async (el) => {
             const activityIns = await Activity.findOrCreate({
                 where: {
                     name: el.name,
@@ -102,17 +79,7 @@ const loaderActivity = async () => {
 
 const loaderTrainer = async () => {
     try {
-        const modelTrainer = trainer.map((el) => {
-            return {
-                id: el.id,
-                name: el.name,
-                image: el.image,
-                specialty: el.specialty,
-                experience: el.experience,
-                activities: el.activities
-            };
-        });
-        modelTrainer.forEach(async (el) => {
+        trainer.forEach(async (el) => {
             await Trainer.findOrCreate({
                 where: {
                 id: el.id,
