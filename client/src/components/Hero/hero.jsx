@@ -12,7 +12,7 @@ export default function Hero() {
                         <a href="#" className="btn-main">Empezar</a>
                     </div>
                     <div className="hero-login">
-                        <p className="login-text">¿Ya eres miembro? <a href="#" className="login-link">Entra a tu cuenta</a></p>
+                        <p className="login-text">¿Ya eres miembro? <a href="/login" className="login-link">Entra a tu cuenta</a></p>
                     </div>
                 </div>
         </section> 

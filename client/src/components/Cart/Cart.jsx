@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../CartItem/CartItem";
 import { addToCart, removeFromCart, clearCart } from "../../store/actions/actionsCart";
 import { Link } from "react-router-dom";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 
 
@@ -20,7 +21,7 @@ export default function Cart(activity) {
             <div className={s.title}>
                 Cart
             </div>
-            <div className={s.cartContainer}>
+            <div className={s.cartContainer} >
                 <div className={s.cartItem}>
                     {
                         cart?.map((item, index) => (
@@ -30,6 +31,10 @@ export default function Cart(activity) {
                 </div>
                 {/* <button onClick={()=> dispatch(clearCart)}>limpiar carrito</button> */}
             </div>
+
+            <div className={s.cartFinal} >
+            </div>
+
             <div className={s.total}>
                 <h4>Total: ${cart.reduce((total, item) => total + item.price * item.quantity, 0)}</h4>
             </div>

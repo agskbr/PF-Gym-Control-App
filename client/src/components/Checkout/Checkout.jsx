@@ -34,6 +34,8 @@ export default function Checkout(activity) {
     const cartCheckOut = useSelector(state => state.cart);
     const totalCart = cart.reduce((total, item) => total + item.price * item.quantity, 0);
     const products = {orderBody: cartCheckOut};
+    const name = "pepito";  
+    const lastname = "carabajal";
 
     // Validacion de usuario
     /* const userState = useSelector(state => state.user[0]) */
@@ -55,13 +57,16 @@ export default function Checkout(activity) {
             /* await axios.get(USER_LOAD + idCart.id + '/cart'); */
             /* let check = {state:'Processing', totalPrice: totalCart}
             await axios.put('/orders/checkout/' + idCart.id, check); */
-            let check = {state:'Processing', totalPrice: totalCart}
+
+
+            //!  ACTIVAR ENVIO DE EMAIL
+            /* let check = {state:'Processing', totalPrice: totalCart}
             await axios.post(BASE_URL + '/order/', check);
                                                 //userID
-            /* let email = {
+            let email = {
                 user: {
-                    name: user?.name,
-                    lastname: user?.lastname,
+                    name: name,
+                    lastname: lastname,
                     email: user?.email
                 },
                 info: {
@@ -69,7 +74,9 @@ export default function Checkout(activity) {
                     totalPrice: totalCart
                 }
             }
-            let resEmail = await axios.post('sendEmail/orderCreated', email) */
+            let resEmail = await axios.post(BASE_URL +'/email/orderCreated', email) */
+            //! --------------------------------------------------------
+
            /*  let cartMercadoPago = products.orderBody;
             let mercadoPagoRes = await axios.post(POST_MERCADOPAGO , cartMercadoPago)
             window.open(mercadoPagoRes.data, '_blank')
