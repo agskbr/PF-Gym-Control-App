@@ -8,17 +8,17 @@ import {FaUserCircle} from 'react-icons/fa';
 import {BsCartFill} from 'react-icons/bs';
 import {GoSignOut} from 'react-icons/go'
 import logo from '../../../../assets/logo.png'
-import {NavLink} from 'react-router-dom'
 import { useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {userSignOut, validateUserIsLogged} from '../../../../store/actions/actions-login';
 
-export default function SideBar(){
+export default function SideBar({itemSelected, setItemSelected}){
   const dispatch = useDispatch();
   const [isOpen, setIsOpen]= useState(false);
   const toggle= ()=> setIsOpen(!isOpen);
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.login);
+  
 
   useEffect(() => {
     dispatch(validateUserIsLogged());
@@ -82,11 +82,11 @@ export default function SideBar(){
         {menuItem.map((item, index) => (
           <a
             href={item.path}
-            onClick={() => setItemSelected(item.name)}
+            onClick={() => setItemSelected(item.name)} 
             key={index}
           >
             <div
-              className={itemSelected === item.name ? s.active : s.sideBarIcon}
+              className={itemSelected === item.name ? s.active : s.sideBarIcon} 
             >
               {item.icon}
             </div>
@@ -99,7 +99,6 @@ export default function SideBar(){
           </a>
         ))}
       </div>
-      {/* <main>{children}</main> */}
     </div>
   );
 }
