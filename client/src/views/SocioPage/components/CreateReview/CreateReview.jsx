@@ -19,7 +19,7 @@ export default function CreateReaview() {
     const [errors, setErrors]= useState({});
     const dispatch = useDispatch();
     const allActivities = useSelector((state)=>state.pgym.allActivities);
-    console.log("TTT", allActivities)
+
    
     
     const stars= Array(5).fill(0);
