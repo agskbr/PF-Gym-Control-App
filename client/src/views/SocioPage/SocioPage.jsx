@@ -1,17 +1,17 @@
 import style from "./SocioPage.module.css";
 import MyActivities from "./components/MyActivities/MyActivities";
 import SideBar from "./components/Sidebar/SideBar";
-import CenterDynamicView from "./components/CenterDynamicView/CenterDynamicView";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import CenterDynamicView from "./components/CenterDynamicView/CenterDynamicView"
+import { useState, useEffect  } from 'react';
+import { useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { validateUserIsLogged , userSignOut} from "../../store/actions/actions-login";
+import {userSignOut, validateUserIsLogged} from '../../store/actions/actions-login';
 
 
 export default function SocioPage() {
-
   const [itemSelected, setItemSelected] = useState("Mi Perfil");
   const dispatch = useDispatch();
+  const [itemSelected, setItemSelected] = useState("Mi Perfil")
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.login);
 
@@ -30,23 +30,16 @@ export default function SocioPage() {
       <SideBar itemSelected={itemSelected} setItemSelected={setItemSelected} />
       <div className={style.centerViewContainer}>
         <button
-          className={style.signOutBtn}
-          onClick={() => dispatch(userSignOut())}
+        className={style.signOutBtn}
+        onClick={()=> dispatch(userSignOut())}
         >
-          SignOut
+            signOut
         </button>
-        <br />
         <CenterDynamicView
           itemSelected={itemSelected}
           contentOfCard={<div>Hola</div>}
         />
       </div>
-
-
-       <div>
-        <MyActivities />
-      </div>
-      {/* <CreateReaview/> */}
     </div>
   );
 }
