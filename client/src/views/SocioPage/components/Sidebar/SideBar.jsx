@@ -59,6 +59,7 @@ export default function SideBar({itemSelected, setItemSelected}){
     {
         name:"SignOut",
         icon: <GoSignOut/>,
+        path: "/",
         
     }
   ]
