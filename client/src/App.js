@@ -8,8 +8,16 @@ import HomePage from "./views/homePage/homePage";
 import LoginPage from "./views/LoginPage/LoginPage";
 import RegisterPage from "./views/RegisterPage/RegisterPage";
 import Checkout from "./components/Checkout/Checkout";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { validateUserIsLogged } from "./store/actions/actions-login";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(validateUserIsLogged());
+  } , [dispatch]);
+  
   return (
     <div className="App">
       <Routes>
