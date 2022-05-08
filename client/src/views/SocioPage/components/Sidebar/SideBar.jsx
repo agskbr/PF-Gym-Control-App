@@ -58,10 +58,8 @@ export default function SideBar({itemSelected, setItemSelected}){
     },
     {
         name:"SignOut",
-        icon: <GoSignOut
-         onClick={() => dispatch(userSignOut())}
-              />,
-        path:"/",
+        icon: <GoSignOut/>,
+        
     }
   ]
   return (
@@ -82,7 +80,12 @@ export default function SideBar({itemSelected, setItemSelected}){
         {menuItem.map((item, index) => (
           <a
             href={item.path}
-            onClick={() => setItemSelected(item.name)} 
+            onClick={() => {
+              if(item.name === "SignOut"){
+                return dispatch(userSignOut());
+              }
+              setItemSelected(item.name)
+            }} 
             key={index}
             className={s.sideBarLink} 
             activeClassname="active"
