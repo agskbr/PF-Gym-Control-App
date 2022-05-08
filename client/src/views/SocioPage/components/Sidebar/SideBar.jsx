@@ -39,7 +39,7 @@ export default function SideBar({itemSelected, setItemSelected}){
     {
       name: "Home",
       icon: <AiFillHome />,
-      path: "#/",
+      path: "/",
     },
     {
       name: "Actividades",
@@ -67,11 +67,11 @@ export default function SideBar({itemSelected, setItemSelected}){
   return (
     <div className={s.sideBarUserContainer}>
       <div
-        style={{ width: isOpen ? "250px" : "50px" }}
+        style={{ width: isOpen ? "200px" : "55px" }}
         className={s.sideBarUser}
       >
         <div className={s.sideBarLogo}>
-          <img src={logo} alt="logo" width={30} onClick={toggle} />
+          <img src={logo} alt="logo" width={37} onClick={toggle} />
           <h1
             style={{ display: isOpen ? "block" : "none" }}
             className={s.sideBarTitle}
@@ -84,9 +84,11 @@ export default function SideBar({itemSelected, setItemSelected}){
             href={item.path}
             onClick={() => setItemSelected(item.name)} 
             key={index}
+            className={s.sideBarLink} 
+            activeClassname="active"
           >
             <div
-              className={itemSelected === item.name ? s.active : s.sideBarIcon} 
+              className={s.sideBarIcon} 
             >
               {item.icon}
             </div>
