@@ -1,5 +1,4 @@
 import style from "./SocioPage.module.css";
-import MyActivities from "./components/MyActivities/MyActivities";
 import SideBar from "./components/Sidebar/SideBar";
 import CenterDynamicView from "./components/CenterDynamicView/CenterDynamicView"
 import { useState, useEffect  } from 'react';
@@ -11,7 +10,6 @@ import {userSignOut, validateUserIsLogged} from '../../store/actions/actions-log
 export default function SocioPage() {
   const [itemSelected, setItemSelected] = useState("Mi Perfil");
   const dispatch = useDispatch();
-  const [itemSelected, setItemSelected] = useState("Mi Perfil")
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.login);
 
@@ -29,12 +27,12 @@ export default function SocioPage() {
     <div className={style.principalContainer}>
       <SideBar itemSelected={itemSelected} setItemSelected={setItemSelected} />
       <div className={style.centerViewContainer}>
-        <button
+     {/*    <button
         className={style.signOutBtn}
         onClick={()=> dispatch(userSignOut())}
         >
             signOut
-        </button>
+        </button> */}
         <CenterDynamicView
           itemSelected={itemSelected}
           contentOfCard={<div>Hola</div>}

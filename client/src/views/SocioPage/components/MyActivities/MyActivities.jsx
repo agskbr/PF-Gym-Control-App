@@ -4,13 +4,15 @@ import s from "./MyActivities.module.css";
 import CreateReview from '../CreateReview/CreateReview'
 import { getActivity } from "../../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
+import {BsFillCheckCircleFill} from 'react-icons/bs'
 
 export default function MyActivities() {
   const dispatch = useDispatch();
   const actividades= useSelector((state)=> state.pgym.allActivities);
   //console.log("soy actividades", actividades)
   const myActiv = actividades.find((a)=> a.name === "BodyCombat");
-  console.log("MY", myActiv);
+  const yoga= actividades.find((a)=> a.name === "Yoga")
+  console.log("MY", yoga);
 /* 
   const ordenes = [
     {
@@ -57,30 +59,42 @@ export default function MyActivities() {
           Dejanos tu opinion{" "}
         </button>
       </div>
-      <div className={s.userCardLayout}>
-        <table>
-         <thead>
-          <tr>
-              <th>Avtividad</th>
-              <th>Imagen</th>
-              <th>Horario</th>
-              <th>Dia</th>
-              <th>Renovar Suscripcion</th>
-            </tr>
-         </thead>
-         <tbody>
-             <tr>
-               <td>{}</td>
-               <td>{}</td>
-               <td>{}</td>
-               <td>{}</td>
-               <td></td>
-
-             </tr>
-           
-         </tbody>
-        </table>
-      </div> 
+      {
+        myActiv ? (
+          <div className={s.userCardLayout}>
+          <table>
+           <thead>
+            <tr>
+                <th>Actividad</th>
+                <th>Dias</th>
+                <th>Horario</th>
+                <th>Renovar Suscripcion</th>
+              </tr>
+           </thead>
+           <tbody>
+               <tr>
+                 <td>{myActiv.name}</td>
+                 <td>{myActiv.day[0]}</td>
+                 <td>{myActiv.hour[0]}</td>
+                 <td>
+                   <BsFillCheckCircleFill/>
+                 </td>
+               </tr>
+               <tr>
+                 <td>{yoga.name}</td>
+                 <td>{yoga.day[0]}</td>
+                 <td>{yoga.hour[0]}</td>
+                 <td>
+                   <BsFillCheckCircleFill/>
+                 </td>
+               </tr>
+             
+           </tbody>
+          </table>
+        </div>
+        ): <p>err</p>
+      }
+      
       <CreateReview/>
     </div>
   );
