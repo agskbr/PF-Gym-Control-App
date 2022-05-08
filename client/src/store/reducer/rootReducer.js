@@ -46,7 +46,7 @@ export const rootReducer = (state = initialState, action) => {
     case "GET_ACTIVITY_DETAIL":
       return {
         ...state,
-        detail: action.payload[0],
+        detail: action.payload,
       };
 
     case "SEARCH_BY_NAME":

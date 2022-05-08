@@ -1,15 +1,14 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import {
-  userSignOut,
-  validateUserIsLogged,
-} from "../../store/actions/actions-login";
 import style from "./SocioPage.module.css";
-import MyActivities from "./components/MyActivities/MyActivities";
-import CreateReaview from "./components/CreateReview/CreateReview";
+import SideBar from "./components/Sidebar/SideBar";
+import CenterDynamicView from "./components/CenterDynamicView/CenterDynamicView"
+import { useState, useEffect  } from 'react';
+import { useDispatch, useSelector} from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {userSignOut, validateUserIsLogged} from '../../store/actions/actions-login';
+
 
 export default function SocioPage() {
+  const [itemSelected, setItemSelected] = useState("Mi Perfil");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.login);
@@ -20,25 +19,25 @@ export default function SocioPage() {
 
   useEffect(() => {
     if (user === null) {
-      navigate("/login");
+      navigate("/");
     }
   }, [user, navigate]);
 
   return (
     <div className={style.principalContainer}>
-      <h2>SocioPage</h2>
-      <button
+      <SideBar itemSelected={itemSelected} setItemSelected={setItemSelected} />
+      <div className={style.centerViewContainer}>
+        {/* <button
         className={style.signOutBtn}
-        onClick={() => dispatch(userSignOut())}
-      >
-        SignOut
-      </button>
-      <div>
-        <MyActivities />
+        onClick={()=> dispatch(userSignOut())}
+        >
+            signOut
+        </button> */}
+        <CenterDynamicView
+          itemSelected={itemSelected}
+          contentOfCard={<div>Hola</div>}
+        />
       </div>
-      <CreateReaview/>
-
-      
     </div>
   );
 }

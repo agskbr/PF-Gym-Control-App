@@ -5,6 +5,14 @@
   align-items: center;
   height: 100vh;
 }
+
+.isLoadingCustom {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .forgotDialog {
   border: none;
   width: 40vw;

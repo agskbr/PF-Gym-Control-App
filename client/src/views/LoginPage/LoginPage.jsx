@@ -1,42 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginWithGoogle,
   resetPassword,
   signInWithEmailAndPass,
-  validateUserIsLogged,
 } from "../../store/actions/actions-login";
 import googleLogo from "../../assets/google-logo.png";
 import style from "./LoginPage.module.css";
 import CustomInput from "../AdminPage/components/CustomInput/CustomInput";
+import Loader from "../../components/Loader/Loader";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.login);
+  const { isLoading } = useSelector((state) => state.pgym);
   const [input, setInput] = useState({ email: "", password: "" });
-  const [error, setError] = useState({ email: "", password: "" });
-  const [recAccount, setRecAccount] = useState({ recEmail: "", error: "" });
-  const navigate = useNavigate();
-  useEffect(() => {
-    dispatch(validateUserIsLogged());
-  }, [dispatch]);
-  useEffect(() => {
-    if (user) {
-      if (user.uid !== "jUHKBpHJLkb9dso2TNOW5DZaU0w2") {
-        navigate("/sociodashboard");
-      }else {
-        navigate("/admindashboard")
-      }
-    }
-  }, [user, navigate]);
+  const [recAccount, setRecAccount] = useState({ recEmail: "" });
 
   const handlerChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setInput({ ...input, [name]: value });
   };
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className={style.formContainer}>
       <h3>Inicia sesión</h3>
       <dialog className={style.forgotDialog} id="forgotPassDialog">
@@ -49,7 +37,6 @@ export default function LoginPage() {
               setRecAccount({ ...recAccount, [e.target.name]: e.target.value });
             }}
             placeholder="Dirección de correo"
-            labelError={recAccount.error}
           />
           <button
             onClick={() => {

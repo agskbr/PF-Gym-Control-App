@@ -1,31 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./RegisterPage.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  registerUserWithEmailAndPass,
-  validateUserIsLogged,
-} from "../../store/actions/actions-login";
+import { registerUserWithEmailAndPass } from "../../store/actions/actions-login";
 import CustomInput from "../AdminPage/components/CustomInput/CustomInput";
+import Loader from "../../components/Loader/Loader";
 
 export default function RegisterPage() {
-  const { user } = useSelector((state) => state.login);
-  const navigate = useNavigate();
+  const { isLoading } = useSelector((state) => state.pgym);
+
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(validateUserIsLogged());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (user) {
-      if (user.uid !== "jUHKBpHJLkb9dso2TNOW5DZaU0w2") {
-        navigate("/sociodashboard");
-      } else {
-        navigate("/admindashboard");
-      }
-    }
-  }, [user, navigate]);
 
   const [input, setInput] = useState({
     name: "",
@@ -73,7 +57,9 @@ export default function RegisterPage() {
     return err;
   };
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className={style.principalContainer}>
       <h3>Regístrate</h3>
 

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import {
   googleAuthProvider,
@@ -16,9 +17,11 @@ import {
   VALIDATE_USER_IS_LOGGED,
   REGISTER_USER_WITH_EMAIL_AND_PASS,
   SIGN_IN_USER,
+  RECEIVED_POST,
+  USER_IS_ADMIN,
 } from "../actions-type";
 
-const base_url = "http://localhost:3001";
+const base_url = "https://pfgymapp-2.herokuapp.com";
 
 const registerUserWithEmailAndPass = (
   email,
@@ -36,15 +39,19 @@ const registerUserWithEmailAndPass = (
       );
       const userToDB = {
         uid: userCredential.user.uid,
+        email: email,
         name,
         lastName,
         phoneNumber,
+        image: "",
       };
       await axios.post(`${base_url}/user`, userToDB);
+
       dispatch({
         type: REGISTER_USER_WITH_EMAIL_AND_PASS,
         payload: userCredential,
       });
+      dispatch({ type: RECEIVED_POST });
       swal({
         buttons: "Aceptar",
         icon: "success",
@@ -70,6 +77,7 @@ const signInWithEmailAndPass = (email, password) => {
         password
       );
       dispatch({ type: SIGN_IN_USER, payload: userCredential });
+      dispatch({ type: RECEIVED_POST });
     } catch (error) {
       console.log(error);
       swal({
@@ -126,11 +134,30 @@ const loginWithGoogle = () => {
 
 const validateUserIsLogged = () => {
   return (dispatch) => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
-        dispatch({ type: VALIDATE_USER_IS_LOGGED, payload: user });
+        try {
+          const { data } = await axios.post(
+            `http://localhost:3001/user/isAdmin`,
+            {
+              id: user.uid,
+            }
+          );
+          dispatch({ type: USER_IS_ADMIN, payload: data });
+          dispatch({
+            type: VALIDATE_USER_IS_LOGGED,
+            payload: user,
+          });
+          dispatch({ type: RECEIVED_POST });
+        } catch (error) {
+          swal({
+            title: "Algo salió mal, intenta nuevamente más tarde" + error,
+            buttons: "Aceptar",
+          });
+        }
       } else {
         dispatch({ type: VALIDATE_USER_IS_LOGGED, payload: null });
+        dispatch({ type: RECEIVED_POST });
       }
     });
   };
@@ -138,8 +165,12 @@ const validateUserIsLogged = () => {
 
 const userSignOut = () => {
   return async (dispatch) => {
-    await signOut(auth);
-    dispatch({ type: USER_SIGN_OUT });
+    try {
+      await signOut(auth);
+      dispatch({ type: USER_SIGN_OUT });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 

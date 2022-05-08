@@ -1,0 +1,46 @@
+
+.sideBarUserContainer{
+    display: flex;
+}
+.sideBarUser{
+    background-color: white;
+    color: black;
+    height: 100vh;
+    width: 300px;
+    transition: all 0.5s;
+}
+.sideBarLogo{
+    display: flex;
+    align-items: center;
+    padding: 20px 15px;
+   
+}
+.sideBarTitle{
+    font-size: 20px;
+    margin-left: 10px;
+}
+.sideBarLink{
+    display: flex;
+    color: black;
+    padding: 10px 15px;
+    gap: 15px;
+    transition: all 0.5s;
+
+}
+
+.sideBarLink:hover{
+    background-color:#fe4f22 ;
+    color: white;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.active{
+    background-color: #fe4f22;
+    color: white;
+
+}
+
+.sideBarIcon, .sideBarText{
+    font-size: 20px;
+
+}
