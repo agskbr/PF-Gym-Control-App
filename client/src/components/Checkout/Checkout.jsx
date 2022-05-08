@@ -4,9 +4,9 @@ import CartItem from '../CartItem/CartItem';
 import { validateUserIsLogged } from "../../store/actions/actions-login";
 import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import { BASE_URL } from '../../store/constantes';
 
-//Import para validar usuario --- checkear firebase
-/* import {useAuth0} from "@auth0/auth0-react" */
 
 /** Reducer para limpiar carrito
 /* import { clearCart } from "../../store/reducer/reducerCart.js"; */
@@ -40,8 +40,8 @@ export default function Checkout(activity) {
     async function checkOut(products){
         console.log("checkout")
         //Busco ID de usuario de firebase
-        /* let id = localStorage.getItem('idUser'); */
-        let id = '1';
+        let id = user.uid;
+        
         if (id){
             
             //Envio la data para conseguir ID de carrito
@@ -49,19 +49,24 @@ export default function Checkout(activity) {
 
             /* let idCart = pushProduct.data[0]; */
 
+            let idCart = Math.random(0,1000000);
+            console.log(idCart);
+
             /* await axios.get(USER_LOAD + idCart.id + '/cart'); */
             /* let check = {state:'Processing', totalPrice: totalCart}
             await axios.put('/orders/checkout/' + idCart.id, check); */
+            let check = {state:'Processing', totalPrice: totalCart}
+            await axios.post(BASE_URL + '/order/', check);
                                                 //userID
-           /*  let email = {
+            /* let email = {
                 user: {
-                    name: userState?.name,
-                    lastname: userState?.lastname,
-                    email: userState?.email
+                    name: user?.name,
+                    lastname: user?.lastname,
+                    email: user?.email
                 },
                 info: {
                     orderId: idCart,
-                    totalPrice: totalCheckOut
+                    totalPrice: totalCart
                 }
             }
             let resEmail = await axios.post('sendEmail/orderCreated', email) */
