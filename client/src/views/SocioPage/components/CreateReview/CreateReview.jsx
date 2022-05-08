@@ -19,7 +19,7 @@ export default function CreateReaview() {
     const [errors, setErrors]= useState({});
     const dispatch = useDispatch();
     const allActivities = useSelector((state)=>state.pgym.allActivities);
-
+    console.log("activ", allActivities)
    
     
     const stars= Array(5).fill(0);
@@ -28,7 +28,7 @@ export default function CreateReaview() {
     const [ input, setInput]= useState({
         rating: 0,
         description:"",
-        activityId: "",  /* ver */
+        activityId: 0,  /* ver */
         userId: "",
         name:""
     })
@@ -79,10 +79,11 @@ export default function CreateReaview() {
             description:e.target.value
         }))
     }
-    const handleSelect = (e)=>{
+    const handleSelect = (e)=>{//actividad
         setInput({
             ...input,
-            name: e.target.value
+            name: e.target.value,
+            
         });
         setErrors(validaciones({
             ...input,
@@ -153,10 +154,10 @@ export default function CreateReaview() {
             <div>
                 <h6> ¿Que servicio vas a calificar? </h6>
                 <select 
-                    name="activity" 
-                    id="activity"
-                    key="activity"
-                    
+                    name="activityId" 
+                    id="activityId"
+                    key="activityId"
+                    onClick={handleSelect}
                     className={s.CreateReaviewSelect}
                     >
                 {
@@ -165,7 +166,7 @@ export default function CreateReaview() {
                             key={activity.id} 
                             name={activity.name}
                             value={index}
-                            onClick={handleSelect}
+                            
                         >
                             {activity.name}
                         </option>

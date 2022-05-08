@@ -15,7 +15,7 @@ export default function CenterDynamicView({ itemSelected, contentOfCard }) {
       <div>{itemSelected === "Actividades" ? <MyActivities/>
              : itemSelected === "Recetas" ? <Recetas/> 
              : itemSelected === "Compras" ? <MisCompras/>
-             : "nada" }</div>
+             : "Bienvenido a tu panel de usuario" }</div>
     </div>
   );
 }

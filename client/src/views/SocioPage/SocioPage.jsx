@@ -19,7 +19,7 @@ export default function SocioPage() {
 
   useEffect(() => {
     if (user === null) {
-      navigate("/login");
+      navigate("/");
     }
   }, [user, navigate]);
 
@@ -27,7 +27,7 @@ export default function SocioPage() {
     <div className={style.principalContainer}>
       <SideBar itemSelected={itemSelected} setItemSelected={setItemSelected} />
       <div className={style.centerViewContainer}>
-     {/*    <button
+        {/* <button
         className={style.signOutBtn}
         onClick={()=> dispatch(userSignOut())}
         >
