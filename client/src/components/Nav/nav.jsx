@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
+import Cart from "../Cart/Cart";
 
 export default function Nav() {
   let [headerClasses, setHeaderClasses] = useState([]);
@@ -36,16 +37,12 @@ export default function Nav() {
 
       <nav className="main-nav">
         <ul className="main-nav-list">
-          <li>
-            <a className="main-nav-link" href="#about">
-              Sobre Nosotros
-            </a>
-          </li>
-          <li>
+          
+         {/*  <li>
             <a className="main-nav-link" href="#section-meals">
               Precios
             </a>
-          </li>
+          </li> */}
           <li>
             <a className="main-nav-link" href="#section-testimonials">
               Feedback
@@ -57,9 +54,18 @@ export default function Nav() {
             </a>
           </li>
           <li>
-            <Link to={"/admindashboard"} className="main-nav-link nav-cta">
+            <a className="main-nav-link" href="#about">
+              Sobre Nosotros
+            </a>
+          </li>
+          <li>
+            {/* <Link to={"/admindashboard"} className="main-nav-link nav-cta">
               Administrar
-            </Link>
+            </Link> */}
+          </li>
+          <li>
+            <div className="buttonCart">
+            </div>
           </li>
         </ul>
       </nav>
