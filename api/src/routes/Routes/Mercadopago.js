@@ -18,9 +18,9 @@ router.post("/", (req, res, next) => {
     let preference = {
       items: [],
       back_urls: {
-        success: "http://localhost:3000/order", // /home
-        failure: "http://localhost:3000/home",
-        pendind: "http://localhost:3000/home",
+        success: "http://localhost:3000/sociodashboard", // /home
+        failure: "http://localhost:3000/",
+        pendind: "http://localhost:3000/",
       },
       auto_return: "all",
     };
@@ -29,7 +29,7 @@ router.post("/", (req, res, next) => {
       preference.items.push({
         title: el.name,
         unit_price: parseInt(el.price),
-        quantity: parseInt(el.count)
+        quantity: parseInt(el.quantity)
       })
     })
   

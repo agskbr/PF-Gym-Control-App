@@ -32,13 +32,13 @@
 
 .cartContainer{
     grid-area: product;
-    background-color: #ff000088;
+   /*  background-color: #ff000088; */
 }
 
 .cartFinal{
     grid-area: productFinal;
     height: 100%;
-    background-color: #00ff0083;
+    /* background-color: #00ff0083; */
 }
 
 .dispatchContainer{
