@@ -4,7 +4,7 @@ import CenterDynamicView from "./components/CenterDynamicView/CenterDynamicView"
 import { useState, useEffect  } from 'react';
 import { useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {userSignOut, validateUserIsLogged} from '../../../../store/actions/actions-login';
+import {userSignOut, validateUserIsLogged} from '../../store/actions/actions-login';
 
 export default function SocioPage() {
   const dispatch = useDispatch();

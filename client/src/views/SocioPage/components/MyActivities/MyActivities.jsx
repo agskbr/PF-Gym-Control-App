@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import s from "./MyActivities.module.css";
-import {BsFillArrowDownCircleFill} from 'react-icons/bs'
+//import {BsFillArrowDownCircleFill} from 'react-icons/bs'
 import CreateReview from '../CreateReview/CreateReview'
 import { getActivity } from "../../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +11,7 @@ export default function MyActivities() {
   //console.log("soy actividades", actividades)
   const myActiv = actividades.find((a)=> a.name === "BodyCombat");
   console.log("MY", myActiv);
-
+/* 
   const ordenes = [
     {
       id: 1,
@@ -36,7 +36,7 @@ export default function MyActivities() {
       descargar: <BsFillArrowDownCircleFill/>
     },
     
-  ]
+  ] */
 
   useEffect(()=>{
     dispatch(getActivity())
