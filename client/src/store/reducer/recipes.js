@@ -3,23 +3,22 @@ import {
     GET_NAME_RECIPES,
     
 
-} from '../actions/index.js'
+} from '../actions-recipes/recipes.js'
 
 const initialState ={
     recipes: [],
-    allRecipes: []
+    
     
      
  }
  
- function rootReducer (state = initialState, action){
+ function recipeReducer (state = initialState, action){
     switch(action.type){
 
         case GET_RECIPES:
             return {
                 ...state,
                 recipes: action.payload,
-                allRecipes: action.payload
             }
 
             
@@ -28,16 +27,13 @@ const initialState ={
                 ...state,
                 recipes: action.payload
             }    
-            
-       
-
-
-
-
 
         
-        default: return state; 
+            default:
+                return {
+                  ...state,
+                };
     }
 }
 
-export default rootReducer
+export  {recipeReducer};

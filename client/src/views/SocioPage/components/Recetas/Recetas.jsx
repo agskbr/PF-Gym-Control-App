@@ -7,9 +7,9 @@ import Card from "./Card";
 
 export default function SocioPage() {
     const dispatch = useDispatch();
-    const allRecipes = useSelector((state) => state.recipes);
+    const allRecipes = useSelector((state) => state.recipe.recipes);
     const [currentPage, setCurrentPage] = useState(1)
-    const [recipesPerPage, setRecipesPerPage] = useState(12)
+    const [recipesPerPage, setRecipesPerPage] = useState(4)
     const indexOfLastRecipe = currentPage * recipesPerPage
     const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage
     const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
@@ -36,11 +36,12 @@ export default function SocioPage() {
         <SearchBar />
         <button onClick={e=> {handleClick(e)}}>Volver a cargar</button>
         </div>
-
+<div>
     <Paginado
     recipesPerPage={recipesPerPage} 
     allRecipes={allRecipes.length} 
     paginado={paginado} />        
+</div>
 
     <span>
 {  
