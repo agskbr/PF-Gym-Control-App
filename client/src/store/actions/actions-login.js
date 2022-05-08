@@ -139,7 +139,7 @@ const validateUserIsLogged = () => {
       if (user) {
         try {
           const { data } = await axios.post(
-            `${local_host}/user/isAdmin`,
+            `${base_url}/user/isAdmin`,
             {
               id: user.uid,
             }

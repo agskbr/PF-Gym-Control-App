@@ -23,7 +23,7 @@ const CartItem = ({data, removeFromCart, info}) => {
                 <h6>Total: ${price * quantity}.00</h6>
             </div>
             <div className={style.buttonsContainer}>
-                <button onClick={() => removeFromCart(id)}></button>
+                <button onClick={() => removeFromCart(name)}></button>
                 {/* <button onClick={() => removeFromCart(id, true)}>del all</button> */}
             </div>
         </div>

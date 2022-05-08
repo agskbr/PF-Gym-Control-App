@@ -92,7 +92,7 @@ export default function Buy() {
 
           
                 </div >
-                    <Cart data={activity}/>
+                    {/* <Cart data={activity}/> */}
 
             </div >
         );
