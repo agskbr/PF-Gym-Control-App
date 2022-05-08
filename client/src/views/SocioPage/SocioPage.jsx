@@ -27,7 +27,7 @@ export default function SocioPage() {
 
   return (
     <div className={style.principalContainer}>
-     {/*  <SideBar itemSelected={itemSelected} setItemSelected={setItemSelected} /> */}
+      <SideBar itemSelected={itemSelected} setItemSelected={setItemSelected} />
       <div className={style.centerViewContainer}>
         <button
           className={style.signOutBtn}
@@ -36,10 +36,10 @@ export default function SocioPage() {
           SignOut
         </button>
         <br />
-        {/* <CenterDynamicView
+        <CenterDynamicView
           itemSelected={itemSelected}
           contentOfCard={<div>Hola</div>}
-        /> */}
+        />
       </div>
 
       {/*  <div>
