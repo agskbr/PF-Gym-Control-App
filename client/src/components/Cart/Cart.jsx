@@ -25,7 +25,7 @@ export default function Cart(activity) {
                 <div className={s.cartItem}>
                     {
                         cart?.map((item, index) => (
-                        <CartItem key={index} data={item} removeFromCart={()=> dispatch(removeFromCart(item.id))}/>
+                        <CartItem key={index} data={item} removeFromCart={()=> dispatch(removeFromCart(item.name))}/>
                     ))
                     }
                 </div>

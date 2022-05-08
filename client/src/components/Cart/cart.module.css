@@ -63,8 +63,11 @@
     justify-content: center;
     align-items: center;
     transition: ease-in-out 0.2s;
+    text-decoration: none;
 }
-
+button{
+    text-decoration: none;
+}
 .dispatchContainer button:hover{
     color: rgb(255, 94, 0);
 }
