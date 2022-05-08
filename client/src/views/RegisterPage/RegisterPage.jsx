@@ -1,34 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./RegisterPage.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { requestPost } from "../../store/actions/index";
-import {
-  registerUserWithEmailAndPass,
-  validateUserIsLogged,
-} from "../../store/actions/actions-login";
+import { registerUserWithEmailAndPass } from "../../store/actions/actions-login";
 import CustomInput from "../AdminPage/components/CustomInput/CustomInput";
+import Loader from "../../components/Loader/Loader";
 
 export default function RegisterPage() {
-  const { user } = useSelector((state) => state.login);
   const { isLoading } = useSelector((state) => state.pgym);
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(requestPost());
-    dispatch(validateUserIsLogged());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (user) {
-      if (user.uid !== "jUHKBpHJLkb9dso2TNOW5DZaU0w2") {
-        navigate("/sociodashboard");
-      } else {
-        navigate("/admindashboard");
-      }
-    }
-  }, [user, navigate]);
 
   const [input, setInput] = useState({
     name: "",
@@ -77,7 +58,7 @@ export default function RegisterPage() {
   };
 
   return isLoading ? (
-    <div>Loading</div>
+    <Loader />
   ) : (
     <div className={style.principalContainer}>
       <h3>Regístrate</h3>
