@@ -36,16 +36,16 @@ export default function Perfil() {
               }
             />
           </div>
-          <p>Nombre: {user.displayName} </p>
-          <p>Email: {user.email}</p>
+          <p>Nombre: {user.displayName ? user.displayName : "Cargando.."} </p>
+          <p>Email: {user.email ? user.email : "Cargando.."}</p>
           <p>
             Teléfono: {user.phoneNumber ? user.phoneNumber : "No hay número"}
           </p>
         </div>
-        <Link to={"/sociodashboard"}>
+       {/*  <Link to={"/sociodashboard"}>
           <button>Volver</button>
-        </Link>
-        <button onClick={() => dispatch(userSignOut())}>SignOut</button>
+        </Link> */}
+       {/*  <button onClick={() => dispatch(userSignOut())}>SignOut</button> */}
       </div>
     </div>
   );
