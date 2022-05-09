@@ -137,12 +137,9 @@ const validateUserIsLogged = () => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
-          const { data } = await axios.post(
-            `http://localhost:3001/user/isAdmin`,
-            {
-              id: user.uid,
-            }
-          );
+          const { data } = await axios.post(`${base_url}/user/isAdmin`, {
+            id: user.uid,
+          });
           dispatch({ type: USER_IS_ADMIN, payload: data });
           dispatch({
             type: VALIDATE_USER_IS_LOGGED,
