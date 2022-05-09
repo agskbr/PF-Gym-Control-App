@@ -7,24 +7,22 @@ import {useDispatch, useSelector} from 'react-redux';
 
 export default function ReviewCard ({rating, description, id}) {
   
-
-  console.log("id", id)
   const dispatch = useDispatch();
   const allUsers = useSelector((state)=> state.pgym.users)
-  console.log("usuarios", allUsers)
+  
   
   const user = allUsers.find((u)=>u.id === id)
-  console.log("soy yo", user)
+  //console.log("soy yo", user)
   
   useEffect(()=>{
     dispatch(getAllUsers())
   },[dispatch])
 
-  return (
+  return user ? (
     <article className={s.reviewCardContainer}>
-        {/* <img src={user.image} alt={user.name} className={s.reviewCardImg} /> */}
+        <img src={user.image} alt={user.name} className={s.reviewCardImg} />
         <div className={s.reviewCardText}>
-            <h2 className={s.reviewCardName}>{}</h2>
+            <h2 className={s.reviewCardName}>{user.name}</h2>
             <div className={s.reviewCardDesc}>
                 <span className={s.reviewCardRating} title={`${rating} out of 5`}>
                   <ReactStars
@@ -40,5 +38,5 @@ export default function ReviewCard ({rating, description, id}) {
             </p>
         </div>
     </article>
-  )
+  ): <></>
 }

@@ -41,27 +41,31 @@ export default function Review() {
     const allReviews = useSelector((state)=>state.review.reviews)
     console.log("aca", allReviews)
 
-    const [selectedIndex, setSelectedIndex] = useState(0);
-    const [selectedReview, setSelectedReview]= useState(allReviews[0]);
-    const currentReview = selectedReview;
-    console.log("uno", currentReview)
+    //const [selectedIndex, setSelectedIndex] = useState(0);
+    //const [selectedReview, setSelectedReview]= useState(allReviews[0]);
+    //const currentReview = selectedReview;
+    //console.log("uno", currentReview)
 
-    const previous = ()=> {
+  /*   const previous = ()=> {
         const condition = selectedIndex > 0;
         const nextIndex = condition ? selectedIndex - 1 : allReviews.length -1;
         setSelectedReview(allReviews[nextIndex]);
         setSelectedIndex(nextIndex);
-    };
+    }; */
 
-    const next = ()=> {
+   /*  const next = ()=> {
         const condition = selectedIndex < allReviews.length -1;
         const nextIndex = condition ? selectedIndex + 1 : 0;
         setSelectedReview(allReviews[nextIndex]);
         setSelectedIndex(nextIndex);
-    } 
+    }  */
     useEffect(()=>{
       dispatch(getAllReviews())
     }, [dispatch]) 
+/* 
+    useEffect(()=>{
+        
+    }, [allReviews]) */
 
   return (
     <main className={s.reviewContainer}>
@@ -70,25 +74,26 @@ export default function Review() {
             <div className={s.contenedorSlider}>
                 <div className={s.revierCarrousel}>
                    {
-                       allReviews ? allReviews.map(r => 
+                       allReviews ? allReviews.map((r)=> (
                         <ReviewCard
                             key={r.id}
                             description={r.description}
                             rating={r.rating}
-                            id= {r.userId}
+                            id= {r.userId || r.uid}
+
                             />
-                    ): <p>error</p>
+                    )): <p>isloading</p>
                    }
                 </div>
             </div>
-          {/*   <div className={s.reviewContainerButton}>
+           {/*  <div className={s.reviewContainerButton}>
                 <div >
                 <p className={s.reviewButton} onClick={previous}> <AiOutlineLeft/> </p>
                 </div>
                 <div >
                 <p className={s.reviewButton}  onClick={next}> <AiOutlineRight/> </p>
                 </div>
-            </div>     */}
+            </div>  */}   
             
         </section>
     </main>

@@ -1,5 +1,5 @@
 .container {
-    background-color: #000000;
+    background-color: #ffffff;
     display: flex;
     height: 100vh;
     width: 100vw;
@@ -11,7 +11,7 @@
  .checkOut{
      width: 40vw;
      height: 65vh;
-     background-color: #f8792460;
+     background-color: #f86504c4;
      border-radius: 10px;
      display: grid;
     grid-template-areas: "title"
@@ -51,6 +51,7 @@
 
  .address p{
      margin-left: 1vw;
+     font-size: 1.2rem;
      
  }
 

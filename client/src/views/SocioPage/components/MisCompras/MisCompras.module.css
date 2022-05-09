@@ -1,0 +1,24 @@
+.comprasContainer{
+    height: 100%;
+    width: 100%;
+    margin-top: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.comprasTitle{
+    display: flex;
+    width: 90%;
+    align-items: center;
+    justify-content: space-between;
+}
+.comprasCardLayout{
+    margin-top: 20px;
+    height: 30vh;
+    width: 50vw; /* ver por tema responsive */
+    background-color: white;
+    /* overflow: scroll; */
+    
+}
+
+

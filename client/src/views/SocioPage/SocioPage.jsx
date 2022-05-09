@@ -1,22 +1,17 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import {
-  userSignOut,
-  validateUserIsLogged,
-} from "../../store/actions/actions-login";
 import style from "./SocioPage.module.css";
-//import MyActivities from "./components/MyActivities/MyActivities";
-//import CreateReaview from "./components/CreateReview/CreateReview";
 import SideBar from "./components/Sidebar/SideBar";
-import Recetas from "./components/Recetas/Recetas";
+import CenterDynamicView from "./components/CenterDynamicView/CenterDynamicView"
+import { useState, useEffect  } from 'react';
+import { useDispatch, useSelector} from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {userSignOut, validateUserIsLogged} from '../../store/actions/actions-login';
 
 
 export default function SocioPage() {
+  const [itemSelected, setItemSelected] = useState("Mi Perfil");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.login);
-  
 
   useEffect(() => {
     dispatch(validateUserIsLogged());
@@ -28,30 +23,21 @@ export default function SocioPage() {
     }
   }, [user, navigate]);
 
-  
-
   return (
     <div className={style.principalContainer}>
-      <SideBar />
-      <div>
-        <button
-          className={style.signOutBtn}
-          onClick={() => dispatch(userSignOut())}
+      <SideBar itemSelected={itemSelected} setItemSelected={setItemSelected} />
+      <div className={style.centerViewContainer}>
+        {/* <button
+        className={style.signOutBtn}
+        onClick={()=> dispatch(userSignOut())}
         >
-          SignOut
-        </button>
+            signOut
+        </button> */}
+        <CenterDynamicView
+          itemSelected={itemSelected}
+          contentOfCard={<div>Hola</div>}
+        />
       </div>
-      <div>
-      <Recetas/>
-      </div>
-      
-     {/*  <div>
-
-      {/*  <div>
-     837e72a1fe23d177252fbd73f98a3f26d4339631
-        <MyActivities />
-      </div>
-      <CreateReaview/> */}
     </div>
   );
 }
