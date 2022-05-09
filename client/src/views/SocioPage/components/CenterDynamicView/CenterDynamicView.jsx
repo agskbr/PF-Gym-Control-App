@@ -3,7 +3,7 @@ import MyActivities from "../MyActivities/MyActivities";
 import style from "./CenterDynamicView.module.css";
 import Recetas from "../Recetas/Recetas";
 import MisCompras from "../MisCompras/MisCompras"
-//import PerfilUsuario from '../PerfilUsuario/Perfil';
+import PerfilUsuario from '../PerfilUsuario/Perfil';
 
 export default function CenterDynamicView({ itemSelected, contentOfCard }) {
   return (
@@ -13,9 +13,10 @@ export default function CenterDynamicView({ itemSelected, contentOfCard }) {
         <h1>{itemSelected}</h1>
       </div>
       <div>{itemSelected === "Actividades" ? <MyActivities/>
-             : itemSelected === "Recetas" ? <Recetas/> 
-             : itemSelected === "Compras" ? <MisCompras/>
-             : "Bienvenido a tu panel de usuario" }</div>
+            : itemSelected === "Recetas" ? <Recetas/> 
+            : itemSelected === "Compras" ? <MisCompras/>
+            : itemSelected === "Mi Perfil" ? <PerfilUsuario/>
+            : "Bienvenido a tu panel de usuario"}</div>
     </div>
   );
 }

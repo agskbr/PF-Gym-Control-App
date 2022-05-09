@@ -14,7 +14,7 @@ const {
 router.post("/isAdmin", async (req, res) => {
   try {
     const { id } = req.body;
-    const isAdmin = await userIsAdmin(id);
+    const { isAdmin } = await userIsAdmin(id);
     res.send(!!isAdmin);
   } catch (error) {
     res.status(400).json({ error: "Not Found" });
