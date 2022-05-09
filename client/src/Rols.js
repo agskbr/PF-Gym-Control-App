@@ -17,7 +17,7 @@ export function AunthenticatedRoutes({ isAdmin }) {
       <Route path="/" element={<HomePage />} />
       <Route path="/clases/:id" element={<Buy />} />
       <Route path="/checkout" element={<Checkout />} />
-
+      
       <Route
         path="/admindashboard"
         element={isAdmin ? <AdminPage /> : <Navigate to={"/login"} replace />}

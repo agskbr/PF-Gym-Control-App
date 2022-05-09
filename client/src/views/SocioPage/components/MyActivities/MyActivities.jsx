@@ -31,33 +31,34 @@ export default function MyActivities() {
           {" "}
           Dejanos tu opinion{" "}
         </button>
+        
       </div>
       {
         myActiv ? (
           <div className={s.userCardLayout}>
-          <table>
-           <thead>
-            <tr>
-                <th>Actividad</th>
-                <th>Dias</th>
-                <th>Horario</th>
-                <th>Renovar Suscripcion</th>
+          <table className={s.containerTable}>
+           <thead className={s.encabezado}>
+            <tr className={s.tableRow}>
+                <th className={s.columnas}>Actividad</th>
+                <th className={s.columnas}>Dias</th>
+                <th className={s.columnas}>Horario</th>
+                <th className={s.columnas}>Suscripcion</th>
               </tr>
            </thead>
            <tbody>
-               <tr>
-                 <td>{myActiv.name}</td>
-                 <td>{myActiv.day[0]}</td>
-                 <td>{myActiv.hour[0]}</td>
-                 <td>
+               <tr className={s.tableRow}>
+                 <td className={s.filas}>{myActiv.name}</td>
+                 <td className={s.filas}>{myActiv.day[0]}</td>
+                 <td className={s.filas}>{myActiv.hour[0]}</td>
+                 <td className={s.filas}>
                    <BsFillCheckCircleFill/>
                  </td>
                </tr>
-               <tr>
-                 <td>{yoga.name}</td>
-                 <td>{yoga.day[0]}</td>
-                 <td>{yoga.hour[0]}</td>
-                 <td>
+               <tr className={s.tableRow}>
+                 <td className={s.filas}>{yoga.name}</td>
+                 <td className={s.filas}>{yoga.day[0]}</td>
+                 <td className={s.filas}>{yoga.hour[0]}</td>
+                 <td className={s.filas}>
                    <BsFillCheckCircleFill/>
                  </td>
                </tr>
