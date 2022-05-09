@@ -1,13 +1,63 @@
-.myActivitiesContainer{
-    margin-top: 15rem;
+.userPrincipalContainer{
+    height: 100%;
+    width: 100%;
+    margin-top: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    z-index: -2;
+}
+.userTitleAndAddBtn{
+    display: flex;
+    width: 90%;
+    align-items: center;
+    justify-content: space-between;
+}
+.userNameSeccion{
     color: white;
-    font-size: 1rem;
-    font-weight: 600;
-    
+    font-size: 2rem;
+}
+.userAddBtn{
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-family: sans-serif;
+    padding: 10px;
+    width: auto;
+    font-size: 14px;
+    height: 40px;
+    background-color: #fe4f22;
+}
+.userAddBtn:hover {
+    cursor: pointer;
+   /*  transition: all 0.5s;
+  color: darkgrey; */
+}
+.userAddBtn:focus {
+    outline: none;
+}
+.userCardLayout{
+    margin-top: 20px;
+    height: 30vh;
+    width: 50vw; /* ver por tema responsive */
+    background-color: white;
+    /* overflow: scroll; */
+}
+.containerTable{
+    background-color: #fdede9;
+    border-collapse: collapse;
+    width: 100%;
 }
 
-.myActivitiesDetail{
-    background-color: darkgrey;
-    height: 30vh;
-    width: 95vw;
+ .columnas, .filas {
+    padding: 0;
+}
+.encabezado{
+    background-color: #fe4f22;
+    border-bottom: solid 3px black;
+    color: white;
+}
+.tableRow:hover{
+    background-color: #fe4f22;
+    color: white;
 }

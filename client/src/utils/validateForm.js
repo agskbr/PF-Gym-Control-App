@@ -1,10 +1,16 @@
 const validateForm = (inputs, type) => {
   let errors = {};
 
-  if (type === "Usuarios") {
+  if (type === "Usuarios" || type === "Clases" || type === "Instructores") {
     if (!inputs.name) {
       errors.name = "El nombre es requerido";
     }
+    if (!inputs.image) {
+      errors.image = "La imagen es requerida";
+    }
+  }
+
+  if (type === "Usuarios") {
     if (!inputs.lastName) {
       errors.lastName = "El apellido es requerido";
     }
@@ -14,19 +20,20 @@ const validateForm = (inputs, type) => {
     if (!inputs.phoneNumber) {
       errors.phoneNumber = "El número de teléfono es requerido";
     }
-    if (!inputs.password) {
-      errors.password = "La contraseña es requerida";
-    }
-    if (!inputs.image) {
-      errors.image = "La imagen es requerida";
+    // if (!inputs.isAdmin) {
+    //   errors.isAdmin = "¿Será administrador?";
+    // }
+    // if (!inputs.notifications) {
+    //   errors.notifications = "¿Quiere activar las notificaciones?";
+    // }
+    if (!inputs.activities.length) {
+      errors.activities = "Debes mandar al menos una actividad";
     }
   }
+
   if (type === "Clases") {
     if (!inputs.name) {
       errors.name = "El nombre es requerido";
-    }
-    if (!inputs.image) {
-      errors.image = "La images es requerida";
     }
     if (!inputs.video) {
       errors.video = "El video es requerido";
@@ -42,15 +49,28 @@ const validateForm = (inputs, type) => {
     } else if (inputs.capacity < 0) {
       errors.capacity = "Solo valores positivos";
     }
-    // if (!inputs.day.length) {
-    //   errors.day = "Debe seleccionar al menos un dia";
-    // }
-    // if (!inputs.hour.length) {
-    //   errors.hour = "Debe seleccionar al menos un horario";
-    // }
-    // if (!inputs.trainers.length) {
-    //   errors.trainers = "Debe seleccionar instructor";
-    // }
+    if (!inputs.day.length) {
+      errors.day = "Debe seleccionar al menos un dia";
+    }
+    if (!inputs.hour.length) {
+      errors.hour = "Debe seleccionar al menos un horario";
+    }
+    if (!inputs.trainers.length) {
+      errors.trainers = "Debe seleccionar instructor";
+    }
+  }
+
+  if (type === "Instructores") {
+    if (!inputs.specialty) {
+      errors.specialty = "La especialidad se requiere";
+    }
+    if (!inputs.experience) {
+      errors.experience = "La experiencia es requerida";
+    }
+    if (!inputs.activities.length) {
+      errors.activities =
+        "Debes seleccionar al menos una actividad para el trainer";
+    }
   }
 
   return errors;

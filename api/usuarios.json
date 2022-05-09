@@ -1,5 +1,14 @@
 [
     {
+        "uid":"jUHKBpHJLkb9dso2TNOW5DZaU0w2",
+        "name": "Admin",
+        "lastName": "Admin",
+        "email": "admin@gmail.com",
+        "phoneNumber":"+543715248595",
+        "image": "https://fcb-abj-pre.s3.amazonaws.com/img/jugadors/MESSI.jpg",
+        "isAdmin" : true
+    },
+    {
         "name": "PF-GYM",
         "lastName": "Grupo 14",
         "email": "gymcontrol12@gmail.com",
