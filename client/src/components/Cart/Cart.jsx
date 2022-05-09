@@ -29,7 +29,7 @@ export default function Cart(activity) {
                     ))
                     }
                 </div>
-                {/* <button onClick={()=> dispatch(clearCart)}>limpiar carrito</button> */}
+                <button className={s.cleanCart} onClick={()=> dispatch(clearCart ())}>Vaciar Carrito</button>
             </div>
 
             <div className={s.cartFinal} >
