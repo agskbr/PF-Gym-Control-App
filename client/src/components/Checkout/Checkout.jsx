@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { BASE_URL, POST_MERCADOPAGO } from '../../store/constantes';
 import { clearCart } from '../../store/actions/actionsCart';
+import { removeFromCart } from '../../store/actions/actionsCart';
 
 
 /** Reducer para limpiar carrito
@@ -105,7 +106,7 @@ export default function Checkout(activity) {
                 <div className={style.products}>
                 {
                         cart?.map((item, index) => (
-                        <CartItem key={index} data={item}/>
+                        <CartItem key={index} data={item} removeFromCart={()=> dispatch(removeFromCart(item.name))}/>
                     ))
                     }
                 </div>
@@ -114,9 +115,9 @@ export default function Checkout(activity) {
                 </div>
                 <div className={style.address}>
                     <p>
-                    Direccion de envio:
+                    Email: {user.email}
                     </p>
-                    <button>Editar Direccion</button>
+                    <button>Editar Email</button>
                 </div>
                 <div className={style.dispatchContainer} >
                     <button onClick={e => checkOut(products,totalCart)} >Pagar</button>
