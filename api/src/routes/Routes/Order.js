@@ -9,8 +9,11 @@ const {
     orderCartUserId,
     deleteOrder
 } = require("../Controllers/Order");
+const {
+    Orderline,
+} = require('../../db');
 
-//order/carrito ---------------------------------------------------------------------------
+//order/carrito -------------------------------------------------------------------------------------------------------------
 //buscar o Crear orden-carrito / 
 
 //Buscar o crear orden/carrito
@@ -43,6 +46,39 @@ router.get("/cart/:userId", async (req, res) => {
     } catch (error) {
         res.send(error)
     }
+});
+
+//Modificar carrito cantidades en una orderline
+router.put("/cart/:userId", async (req, res) => {
+    const { userId } = req.params;
+    const { orderlineId, orderlineQuantity } = req.body; // Se trigerean desde el body los campos de la Orderline
+    try {
+        const OrderCart = await findOrCreateCart(userId)
+        const orderLine = await orderlineByOrderId(OrderCart.id)
+        const orderlineToChange = await Orderline.findByPk(orderlineId);
+        
+        /* // Acá se modificarán las cantidades (orderlineQuantity) de esa orderline (orderlineId)
+        const product = await Product.findOne({
+            where: {
+            id: orderlineToChange.productId,
+            },
+        });
+        if (orderlineQuantity > product.stock) {
+            return res.send(
+            `Se alcanzó el máximo stock, se puede comprar hasta ${product.stock} items.`
+            );
+        }
+        product.stock =
+            product.stock + orderlineToChange.quantity - orderlineQuantity;
+        const updatedProduct = await product.save();
+        orderlineToChange.quantity = Number(orderlineQuantity);
+        orderlineToChange.save();
+        return res.send(orderlineToChange);
+        }*/
+        return orderlineToChange;
+    }catch (err) {
+        return res.send({ data: err }).status(400);
+    } 
 });
 
 
