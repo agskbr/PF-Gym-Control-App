@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import {
   googleAuthProvider,
@@ -10,6 +9,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
+  updateProfile,
 } from "../../firebase/index";
 import {
   LOGIN_WITH_GOOGLE,
@@ -47,6 +47,9 @@ const registerUserWithEmailAndPass = (
         image: "",
       };
       await axios.post(`${base_url}/user`, userToDB);
+      await updateProfile(auth.currentUser, {
+        displayName: `${name} ${lastName}`,
+      });
 
       dispatch({
         type: REGISTER_USER_WITH_EMAIL_AND_PASS,
