@@ -42,10 +42,10 @@ export default function Perfil() {
             Teléfono: {user.phoneNumber ? user.phoneNumber : "No hay número"}
           </p>
         </div>
-        <Link to={"/sociodashboard"}>
+       {/*  <Link to={"/sociodashboard"}>
           <button>Volver</button>
-        </Link>
-        <button onClick={() => dispatch(userSignOut())}>SignOut</button>
+        </Link> */}
+       {/*  <button onClick={() => dispatch(userSignOut())}>SignOut</button> */}
       </div>
     </div>
   );
