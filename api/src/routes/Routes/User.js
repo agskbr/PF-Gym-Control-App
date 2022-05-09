@@ -17,7 +17,7 @@ router.post("/isAdmin", async (req, res) => {
     const { isAdmin } = await userIsAdmin(id);
     res.send(isAdmin);
   } catch (error) {
-    res.status(400).send(false);
+    res.send(false);
   }
 });
 
