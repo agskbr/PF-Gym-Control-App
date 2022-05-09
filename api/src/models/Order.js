@@ -16,8 +16,8 @@ sequelize.define('order', {
     },
 
     state: {
-        type: DataTypes.ENUM('Created', 'Canceled', 'Complete'),
-        defaultValue: 'Created',
+        type: DataTypes.ENUM('Cart','Created', 'Canceled', 'Complete'),
+        defaultValue: 'Cart',
         allowNull: false
     },
 

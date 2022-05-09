@@ -1,6 +1,3 @@
-//linea de orden
-//crear
-
 const router = require('express').Router();
 const {createOrderline, orderlineByOrderId, orderlineByActivityId} = require('../Controllers/Orderline.js')
 

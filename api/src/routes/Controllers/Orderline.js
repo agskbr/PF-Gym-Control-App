@@ -1,5 +1,6 @@
 const {OrderLine} = require('../../db')
 
+//crear linea de ordenLine con (unitPrice, subTotal, quantity, orderId, activityId)
 const createOrderline = async(unitprice, subtotal, quantity, orderId, activityId) =>{
     try {
         const orderline = await OrderLine.findOne({
@@ -25,6 +26,7 @@ const createOrderline = async(unitprice, subtotal, quantity, orderId, activityId
     }
 }
 
+//obetener todas las lineas de orden de una orden en especifico con orderId
 const orderlineByOrderId = async(orderId) =>{
     try {
         const orderlineId = await OrderLine.findAll({
@@ -38,6 +40,7 @@ const orderlineByOrderId = async(orderId) =>{
     }
 }
 
+//obtener todas las orderLine con el ActivityId
 const orderlineByActivityId = async(activityId) =>{
     try {
         const orderlineActId = await OrderLine.findAll({
