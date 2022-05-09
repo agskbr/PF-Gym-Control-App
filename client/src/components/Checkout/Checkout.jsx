@@ -54,8 +54,7 @@ export default function Checkout(activity) {
             /* let idCart = pushProduct.data[0]; */
 
             let idCart = Math.random(0,1000000);
-            console.log(idCart);
-
+           
             /* await axios.get(USER_LOAD + idCart.id + '/cart'); */
             /* let check = {state:'Processing', totalPrice: totalCart}
             await axios.put('/orders/checkout/' + idCart.id, check); */
@@ -81,12 +80,18 @@ export default function Checkout(activity) {
 
 //name
 //price
-//count
+//count 
+
+            
+
             let order = [{
-                name: name,
-                price: totalCart,
-                count: 1,
+                "name": name,
+                "price": totalCart,
+                "count": 1,
             }];
+
+
+
 
 
 
@@ -95,9 +100,12 @@ export default function Checkout(activity) {
 
 
             console.log(products.orderBody);
-            let mercadoPagoRes = await axios.post( 'http://localhost:3001/mercadopago/' , order)
+           /*  let mercadoPagoRes = await axios.post( POST_MERCADOPAGO , order)
             console.log(mercadoPagoRes.data);
-            window.open(mercadoPagoRes.data, '_blank')
+            window.open(mercadoPagoRes.data, '_blank') */
+
+
+
             /* localStorage.removeItem('shopCart')
             dispatch(clearCart());
             dispatch(totalCart(0)); */

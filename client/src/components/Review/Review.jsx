@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import s from './Review.module.css';
 import ReviewCard from '../ReviewCard/ReviewCard';
-import {AiOutlineRight} from 'react-icons/ai';
-import {AiOutlineLeft} from 'react-icons/ai';
+//import {AiOutlineRight} from 'react-icons/ai';
+//import {AiOutlineLeft} from 'react-icons/ai';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllReviews} from '../../store/actions/actions-review';
 
@@ -41,56 +41,61 @@ export default function Review() {
     const allReviews = useSelector((state)=>state.review.reviews)
     console.log("aca", allReviews)
 
-    const [selectedIndex, setSelectedIndex] = useState(0);
-    const [selectedReview, setSelectedReview]= useState(allReviews[0]);
-    const currentReview = selectedReview;
-    console.log("uno", currentReview)
+    //const [selectedIndex, setSelectedIndex] = useState(0);
+    //const [selectedReview, setSelectedReview]= useState(allReviews[0]);
+    //const currentReview = selectedReview;
+    //console.log("uno", currentReview)
 
-    const previous = ()=> {
+  /*   const previous = ()=> {
         const condition = selectedIndex > 0;
         const nextIndex = condition ? selectedIndex - 1 : allReviews.length -1;
         setSelectedReview(allReviews[nextIndex]);
         setSelectedIndex(nextIndex);
-    };
+    }; */
 
-    const next = ()=> {
+   /*  const next = ()=> {
         const condition = selectedIndex < allReviews.length -1;
         const nextIndex = condition ? selectedIndex + 1 : 0;
         setSelectedReview(allReviews[nextIndex]);
         setSelectedIndex(nextIndex);
-    } 
+    }  */
     useEffect(()=>{
       dispatch(getAllReviews())
     }, [dispatch]) 
+/* 
+    useEffect(()=>{
+        
+    }, [allReviews]) */
 
-  return currentReview? (
+  return (
     <main className={s.reviewContainer}>
         <section className={s.reviewList}>
             {/* <h1># que dicen nuestros clientes</h1> */}
             <div className={s.contenedorSlider}>
                 <div className={s.revierCarrousel}>
                    {
-                       currentReview? (
+                       allReviews ? allReviews.map((r)=> (
                         <ReviewCard
-                            key={currentReview.id}
-                            description={currentReview.description}
-                            rating={currentReview.rating}
-                            id= {currentReview.userId}
+                            key={r.id}
+                            description={r.description}
+                            rating={r.rating}
+                            id= {r.userId || r.uid}
+
                             />
-                    ): <p>isloading</p>
+                    )): <p>isloading</p>
                    }
                 </div>
             </div>
-            <div className={s.reviewContainerButton}>
+           {/*  <div className={s.reviewContainerButton}>
                 <div >
                 <p className={s.reviewButton} onClick={previous}> <AiOutlineLeft/> </p>
                 </div>
                 <div >
                 <p className={s.reviewButton}  onClick={next}> <AiOutlineRight/> </p>
                 </div>
-            </div>    
+            </div>  */}   
             
         </section>
     </main>
-  ): <p>error</p>
+  )
 }
