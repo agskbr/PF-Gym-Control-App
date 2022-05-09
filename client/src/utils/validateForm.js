@@ -20,13 +20,17 @@ const validateForm = (inputs, type) => {
     if (!inputs.phoneNumber) {
       errors.phoneNumber = "El número de teléfono es requerido";
     }
-    if (!inputs.isAdmin) {
-      errors.isAdmin = "¿Será administrador?";
-    }
-    if (!inputs.notifications) {
-      errors.notifications = "¿Quiere activar las notificaciones?";
+    // if (!inputs.isAdmin) {
+    //   errors.isAdmin = "¿Será administrador?";
+    // }
+    // if (!inputs.notifications) {
+    //   errors.notifications = "¿Quiere activar las notificaciones?";
+    // }
+    if (!inputs.activities.length) {
+      errors.activities = "Debes mandar al menos una actividad";
     }
   }
+
   if (type === "Clases") {
     if (!inputs.name) {
       errors.name = "El nombre es requerido";
@@ -45,15 +49,15 @@ const validateForm = (inputs, type) => {
     } else if (inputs.capacity < 0) {
       errors.capacity = "Solo valores positivos";
     }
-    // if (!inputs.day.length) {
-    //   errors.day = "Debe seleccionar al menos un dia";
-    // }
-    // if (!inputs.hour.length) {
-    //   errors.hour = "Debe seleccionar al menos un horario";
-    // }
-    // if (!inputs.trainers.length) {
-    //   errors.trainers = "Debe seleccionar instructor";
-    // }
+    if (!inputs.day.length) {
+      errors.day = "Debe seleccionar al menos un dia";
+    }
+    if (!inputs.hour.length) {
+      errors.hour = "Debe seleccionar al menos un horario";
+    }
+    if (!inputs.trainers.length) {
+      errors.trainers = "Debe seleccionar instructor";
+    }
   }
 
   if (type === "Instructores") {
@@ -62,6 +66,10 @@ const validateForm = (inputs, type) => {
     }
     if (!inputs.experience) {
       errors.experience = "La experiencia es requerida";
+    }
+    if (!inputs.activities.length) {
+      errors.activities =
+        "Debes seleccionar al menos una actividad para el trainer";
     }
   }
 
