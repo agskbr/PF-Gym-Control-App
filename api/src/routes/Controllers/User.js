@@ -102,9 +102,7 @@ const userIsAdmin = async (id) => {
       uid: id,
     },
   });
-  if (UserUid) {
-    return UserUid;
-  }
+  return UserUid;
 };
 
 module.exports = {
