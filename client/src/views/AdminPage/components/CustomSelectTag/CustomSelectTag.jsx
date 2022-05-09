@@ -10,9 +10,10 @@ export default function CustomSelectTag({
   firstOpt,
   visualizeItems,
   errorLabel,
-  setActivity,
+  setInputs,
   setErrors,
-  activity,
+  inputs,
+  type,
 }) {
   const [displayItems, setDisplayItems] = useState([]);
   useEffect(() => {
@@ -41,15 +42,18 @@ export default function CustomSelectTag({
                 key={Math.random()}
                 onClick={() => {
                   setDisplayItems((state) => state.filter((e) => e !== item));
-                  setActivity((state) => ({
+                  setInputs((state) => ({
                     ...state,
                     [name]: visualizeItems.filter((e) => e !== item),
                   }));
                   setErrors(
-                    validateForm({
-                      ...activity,
-                      [name]: visualizeItems.filter((e) => e !== item),
-                    })
+                    validateForm(
+                      {
+                        ...inputs,
+                        [name]: visualizeItems.filter((e) => e !== item),
+                      },
+                      type
+                    )
                   );
                 }}
                 color="red"
