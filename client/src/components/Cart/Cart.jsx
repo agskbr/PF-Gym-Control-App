@@ -25,11 +25,11 @@ export default function Cart(activity) {
                 <div className={s.cartItem}>
                     {
                         cart?.map((item, index) => (
-                        <CartItem key={index} data={item} removeFromCart={()=> dispatch(removeFromCart(item.id))}/>
+                        <CartItem key={index} data={item} removeFromCart={()=> dispatch(removeFromCart(item.name))}/>
                     ))
                     }
                 </div>
-                {/* <button onClick={()=> dispatch(clearCart)}>limpiar carrito</button> */}
+                <button className={s.cleanCart} onClick={()=> dispatch(clearCart ())}>Vaciar Carrito</button>
             </div>
 
             <div className={s.cartFinal} >

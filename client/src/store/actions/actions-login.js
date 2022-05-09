@@ -22,6 +22,7 @@ import {
 } from "../actions-type";
 
 const base_url = "https://pfgymapp-2.herokuapp.com";
+const local_host = "http://localhost:3001";
 
 const registerUserWithEmailAndPass = (
   email,

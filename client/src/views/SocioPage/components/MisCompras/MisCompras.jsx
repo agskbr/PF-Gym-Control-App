@@ -34,24 +34,24 @@ export default function MisCompras() {
         {/* <h4 className={s.comprasNameSeccion}></h4> */}
       </div>
       <div className={s.comprasCardLayout}>
-      <table>
-         <thead>
-          <tr>
-              <th>Id</th>
-              <th>Orden de compra N°</th>
-              <th>Estado</th>
-              <th>Comprobante</th>
-              <th>Descargar</th>
+      <table className={s.containerTable}>
+         <thead className={s.encabezado}>
+          <tr className={s.tableRow}>
+              <th className={s.columnas}>Id</th>
+              <th className={s.columnas}>Orden de compra N°</th>
+              <th className={s.columnas}>Estado</th>
+              <th className={s.columnas}>Comprobante</th>
+              <th className={s.columnas}>Descargar</th>
             </tr>
          </thead>
          <tbody>
            {ordenes.map((orden)=>(
-             <tr>
-               <td>{orden.id}</td>
-               <td>{orden.ordenCompra}</td>
-               <td>{orden.estado}</td>
-               <td>{orden.comprobante}</td>
-               <td>{orden.descargar}</td>
+             <tr className={s.tableRow}>
+               <td className={s.filas}>{orden.id}</td>
+               <td className={s.filas}>{orden.ordenCompra}</td>
+               <td className={s.filas}>{orden.estado}</td>
+               <td className={s.filas}>{orden.comprobante}</td>
+               <td className={s.filas}>{orden.descargar}</td>
              </tr>
            ))}
          </tbody>

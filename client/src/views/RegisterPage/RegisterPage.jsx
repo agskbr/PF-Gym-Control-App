@@ -6,6 +6,14 @@ import { registerUserWithEmailAndPass } from "../../store/actions/actions-login"
 import CustomInput from "../AdminPage/components/CustomInput/CustomInput";
 import Loader from "../../components/Loader/Loader";
 
+
+function checkPassword(password) {
+{
+    var re = /^(?=.*d)(?=.*[#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    return re.test(password);
+}
+}
+
 export default function RegisterPage() {
   const { isLoading } = useSelector((state) => state.pgym);
 
@@ -23,6 +31,7 @@ export default function RegisterPage() {
     lastName: "",
     email: "",
     password: "",
+    password2: "",
     phoneNumber: "",
   });
 
@@ -48,14 +57,17 @@ export default function RegisterPage() {
     }
     if (!input.password) {
       err.password = "La contraseña es obligatoria";
-    } else if (input.password.length < 6) {
-      err.password = "La contraseña no puede ser tan corta";
+    } else if (!checkPassword(input.password)) {
+      err.password = "Leer las condiciones de la contraseña *";
     }
     if (!input.phoneNumber) {
       err.phoneNumber = "Debe ingresar un numero de teléfono";
+    } else if (/^\(?(\d{3})\)?[-]?(\d{3})[-]?(\d{4})$/g.test(input.phoneNumber)) {
+      err.phoneNumber = "El telefono debe ser válido";
     }
     return err;
   };
+
 
   return isLoading ? (
     <Loader />
@@ -94,10 +106,12 @@ export default function RegisterPage() {
         />
         <CustomInput
           value={input.password}
+          type="password"
           name="password"
           onChange={handlerChange}
           placeholder="Contraseña"
           labelError={errors.password}
+          
         />
         <input
           type="submit"
@@ -114,10 +128,10 @@ export default function RegisterPage() {
                   input.name,
                   input.lastName,
                   input.phoneNumber
-                )
-              );
-            }
-          }}
+                  )
+                  );
+                }
+              }}
         />
         <div className={style.haveAccount}>
           ¿Ya tenés una cuenta?{" "}
@@ -126,6 +140,7 @@ export default function RegisterPage() {
           </Link>
         </div>
       </form>
+              <p className={style.password}>* La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minuscula, un numero y un caracter especial </p>
     </div>
   );
 }

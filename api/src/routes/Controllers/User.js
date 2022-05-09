@@ -104,6 +104,13 @@ const userIsAdmin = async (id) => {
   });
   if (UserUid) {
     return UserUid;
+  } else {
+    const UserId = await User.findOne({
+      where: {
+        id: id,
+      },
+    });
+    return UserId;
   }
 };
 
