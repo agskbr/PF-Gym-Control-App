@@ -42,8 +42,8 @@ export default function CreateReaview() {
         if(!input.description){
             errors.description="por favor ingresa una reseña"
         };
-        if(!input.userId){
-            errors.userId= "debes seleccionar una actividad"
+        if(!input.activityId){
+            errors.activityId= "debes seleccionar una actividad"
         };
         return errors
     }
@@ -106,10 +106,10 @@ export default function CreateReaview() {
         }else{
             dispatch(postReview(input))
             setInput({
-                rating: "",
-                description:"",
-                activityId: "",  
-                userId: ""
+                rating: " ",
+                description:" ",
+                activityId: " ",  
+                userId: " "
             })
             Swal({
                 title:"Reseña enviada correctamente",
@@ -120,7 +120,7 @@ export default function CreateReaview() {
                 showConfirmButton: false,
                 timerProgressBar: true,
             })
-            /* document.getElementById("reviewDialog").close(); */
+            document.getElementById("reviewDialog").close();
         }
         
     }
@@ -201,6 +201,7 @@ export default function CreateReaview() {
                                 placeholder='Dejanos tu comentario'
                                 style={styles.textarea}
                                 onChange={handleChange}
+                                cols={40}
                         />
                     </div>
                     <div>
