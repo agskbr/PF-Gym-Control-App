@@ -36,9 +36,12 @@ export default function Checkout(activity) {
     const cartCheckOut = useSelector(state => state.cart.order);
     const totalCart = cart.reduce((total, item) => total + item.price * item.quantity, 0);
     const products = {orderBody: cartCheckOut.cart};
-    const name = "pepito";  
-    const lastname = "carabajal";
-
+    
+    const usuarioName = state.login.user.displayName;
+    const nameMP = usuarioName.split(' ');
+    const name = nameMP[0];
+    const lastname = nameMP[1];
+   
     
 
     // Validacion de usuario
