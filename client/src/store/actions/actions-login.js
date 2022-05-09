@@ -22,6 +22,7 @@ import {
 } from "../actions-type";
 
 const base_url = "https://pfgymapp-2.herokuapp.com";
+const local_host = "http://localhost:3001";
 
 const registerUserWithEmailAndPass = (
   email,
@@ -138,7 +139,7 @@ const validateUserIsLogged = () => {
       if (user) {
         try {
           const { data } = await axios.post(
-            `http://localhost:3001/user/isAdmin`,
+            `${base_url}/user/isAdmin`,
             {
               id: user.uid,
             }

@@ -5,7 +5,7 @@ import { validateUserIsLogged } from "../../store/actions/actions-login";
 import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { BASE_URL } from '../../store/constantes';
+import { BASE_URL, POST_MERCADOPAGO } from '../../store/constantes';
 
 
 /** Reducer para limpiar carrito
@@ -33,9 +33,11 @@ export default function Checkout(activity) {
     const {cart} = state.cart;
     const cartCheckOut = useSelector(state => state.cart);
     const totalCart = cart.reduce((total, item) => total + item.price * item.quantity, 0);
-    const products = {orderBody: cartCheckOut};
+    const products = {orderBody: cartCheckOut.cart};
     const name = "pepito";  
     const lastname = "carabajal";
+
+    
 
     // Validacion de usuario
     /* const userState = useSelector(state => state.user[0]) */
@@ -52,8 +54,7 @@ export default function Checkout(activity) {
             /* let idCart = pushProduct.data[0]; */
 
             let idCart = Math.random(0,1000000);
-            console.log(idCart);
-
+           
             /* await axios.get(USER_LOAD + idCart.id + '/cart'); */
             /* let check = {state:'Processing', totalPrice: totalCart}
             await axios.put('/orders/checkout/' + idCart.id, check); */
@@ -77,10 +78,35 @@ export default function Checkout(activity) {
             let resEmail = await axios.post(BASE_URL +'/email/orderCreated', email) */
             //! --------------------------------------------------------
 
-           /*  let cartMercadoPago = products.orderBody;
-            let mercadoPagoRes = await axios.post(POST_MERCADOPAGO , cartMercadoPago)
-            window.open(mercadoPagoRes.data, '_blank')
-            localStorage.removeItem('shopCart')
+//name
+//price
+//count 
+
+            
+
+            let order = [{
+                "name": name,
+                "price": totalCart,
+                "count": 1,
+            }];
+
+
+
+
+
+
+
+            let cartMercadoPago = products.orderBody;
+
+
+            console.log(products.orderBody);
+           /*  let mercadoPagoRes = await axios.post( POST_MERCADOPAGO , order)
+            console.log(mercadoPagoRes.data);
+            window.open(mercadoPagoRes.data, '_blank') */
+
+
+
+            /* localStorage.removeItem('shopCart')
             dispatch(clearCart());
             dispatch(totalCart(0)); */
             
