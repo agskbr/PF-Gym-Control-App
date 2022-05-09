@@ -53,6 +53,8 @@ export default function RegisterPage() {
     }
     if (!input.phoneNumber) {
       err.phoneNumber = "Debe ingresar un numero de teléfono";
+    } else if (!/^\d{10}$/g.test(input.phoneNumber)) {
+      err.phoneNumber = "El telefono debe ser válido";
     }
     return err;
   };
@@ -94,6 +96,7 @@ export default function RegisterPage() {
         />
         <CustomInput
           value={input.password}
+          type="password"
           name="password"
           onChange={handlerChange}
           placeholder="Contraseña"
