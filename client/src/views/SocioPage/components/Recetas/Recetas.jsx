@@ -21,37 +21,33 @@ export default function SocioPage() {
     }
 
     return (
-        <div>
-        <div>
-        <h1> Recetario!!!</h1>
-        </div>
-        <div>
-        <SearchBar />
-        <Filter />
-        <button onClick={e=> {handleClick(e)}}>Volver a cargar</button>
-        </div>
-<div>
-    <Paginado />        
-</div>
+        <div className={style.container}>
+                    
+                <div className={style.navbar}>
+                    <SearchBar />
+                    <Filter />
+                </div>
+            
+            
 
-    <div className={style.recipeGrid}>
-{  
-    recipes?.map((el) => {
-        console.log(el)
-        return(
-        <div key={el.id}>
-               <Card 
-               image={el.img? el.img : el.image} 
-               name={el.name} 
-               diets={el.diets} 
-               key={el.id} 
-               id={el.id}                 
-               />  
+                    <div className={style.recipeGrid}>
+                                        {  
+                                            recipes?.map((el) => {
+                                                console.log(el)
+                                                return(
+                                                    <div key={el.id}>
+                                                    <Card 
+                                                    image={el.img? el.img : el.image} 
+                                                    name={el.name} 
+                                                    diets={el.diets} 
+                                                    key={el.id} 
+                                                    id={el.id}                 
+                                                    /> 
+                                                    </div>
+                                                )})   },
+                        </div>        
+                
+                        <Paginado />
         </div>
-        )
-    })
-}
-    </div>
-</div>
-);
+    );
 }
