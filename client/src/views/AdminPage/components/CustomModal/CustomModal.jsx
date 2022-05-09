@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { validateForm } from "../../../../utils/validateForm";
 import style from "./CustomModal.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { createActivity } from "../../../../store/actions/index";
+import {
+  createActivity,
+  createTrainer,
+  createUser,
+} from "../../../../store/actions/index";
 import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
 import CustomInput from "../CustomInput/CustomInput.jsx";
 import Swal from "sweetalert";
@@ -27,7 +31,7 @@ export default function CustomModal({ type }) {
   ];
   const trainersOpt = trainers;
 
-  const [activity, setActivity] = useState({});
+  const [inputs, setInputs] = useState({});
   const [errors, setErrors] = useState({});
 
   const [displayInputs, setDisplayInputs] = useState([]);
@@ -53,13 +57,18 @@ export default function CustomModal({ type }) {
   useEffect(() => {
     if (keys.length) {
       keys.forEach((key) => {
-        setActivity((state) => {
+        setInputs((state) => {
           if (Array.isArray(displayInputs[0][key])) {
             return { ...state, [key]: [] };
-          } else if (typeof displayInputs[0][key] === "number") {
+          }
+          if (typeof displayInputs[0][key] === "number") {
             return { ...state, [key]: 0 };
-          } else {
+          }
+          if (typeof displayInputs[0][key] === "string") {
             return { ...state, [key]: "" };
+          }
+          if (typeof displayInputs[0][key] === "boolean") {
+            return { ...state, [key]: false };
           }
         });
         setErrors((state) => ({ ...state, [key]: "" }));
@@ -70,17 +79,17 @@ export default function CustomModal({ type }) {
   const handlerChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setErrors(validateForm({ ...activity, [name]: value }, type));
-    setActivity((state) => ({ ...state, [name]: value }));
+    setErrors(validateForm({ ...inputs, [name]: value }, type));
+    setInputs((state) => ({ ...state, [name]: value }));
   };
   const handlerChangeSelectTag = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setErrors(validateForm({ ...activity, [name]: value }));
-    if (activity[name].includes(value)) return;
-    setActivity({
-      ...activity,
-      [name]: [...activity[name], value],
+    setErrors(validateForm({ ...inputs, [name]: value }, type));
+    if (inputs[name].includes(value)) return;
+    setInputs({
+      ...inputs,
+      [name]: [...inputs[name], value],
     });
   };
 
@@ -104,6 +113,9 @@ export default function CustomModal({ type }) {
           input !== "id" &&
           input !== "uid" &&
           input !== "description" &&
+          input !== "isAdmin" &&
+          input !== "notifications" &&
+          input !== "activities" &&
           input !== "status" &&
           input !== "day" &&
           input !== "trainers" &&
@@ -118,152 +130,88 @@ export default function CustomModal({ type }) {
               min={0}
               onChange={handlerChange}
               placeholder={input}
-              value={activity[input] || ""}
+              value={inputs[input] || ""}
               labelError={errors[input]}
             />
-          ) : null
-        )}
-        {keys.map((input) =>
-          input === "description" ? (
+          ) : input === "description" ? (
             <div key={input} className={style.textAreaContainer}>
               <textarea
-                value={activity.description}
+                value={inputs[input]}
                 onChange={handlerChange}
                 className={style.customTextArea}
-                name="description"
+                name={input}
                 placeholder="Descripcion"
               ></textarea>
               <label htmlFor="description">{errors.description}</label>
             </div>
           ) : null
         )}
-
-        {/* <CustomInput
-          onChange={handlerChange}
-          name="image"
-          placeholder="Image"
-          type="text"
-          value={activity.image}
-          labelError={errors.image}
-        />
-        <CustomInput
-          onChange={handlerChange}
-          value={activity.video}
-          name="video"
-          type="text"
-          placeholder="Video"
-          labelError={errors.video}
-        />
-        <CustomInput
-          onChange={handlerChange}
-          value={activity.name}
-          name="name"
-          className={style.customInput}
-          type="text"
-          placeholder="Nombre"
-          labelError={errors.name}
-        /> */}
-
-        {/* <CustomInput
-          name="price"
-          value={activity.price}
-          onChange={handlerChange}
-          className={style.customInput}
-          type="text"
-          placeholder="Price"
-          labelError={errors.price}
-        />
-        <CustomInput
-          name="capacity"
-          onChange={handlerChange}
-          value={activity.capacity}
-          className={style.customInput}
-          type="number"
-          placeholder="Capacidad"
-          min="0"
-          labelError={errors.capacity}
-        /> */}
         <div className={style.selectTagsContainer}>
-          {/* {keys.map((selectTag) =>
+          {keys.map((selectTag) =>
             Array.isArray(displayInputs[0][selectTag]) ? (
               <CustomSelectTag
-                activity={activity}
+                key={selectTag}
+                inputs={inputs}
                 firstOpt={`Selecciona al menos 1 ${selectTag}`}
                 name={selectTag}
                 options={
-                  selectTag === "trainers"
-                    ? trainersOpt
-                    : selectTag === "day"
+                  selectTag === "day"
                     ? daysOpt
                     : selectTag === "hour"
                     ? hoursOpt
-                    : null
+                    : selectTag === "trainers"
+                    ? trainersOpt
+                    : selectTag === "activities"
+                    ? [...activities]
+                    : []
                 }
-                setActivity={setActivity}
-                visualizeItems={}
+                setInputs={setInputs}
+                type={type}
+                setErrors={setErrors}
+                visualizeItems={[...(inputs[selectTag] ?? [])]}
+                errorLabel={errors[selectTag]}
                 handlerChangeSelectTag={handlerChangeSelectTag}
               />
             ) : null
-          )} */}
-          {/* <CustomSelectTag
-            errorLabel={errors.day}
-            firstOpt="Seleccioná un dia"
-            handlerChangeSelectTag={handlerChangeSelectTag}
-            name="day"
-            options={daysOpt}
-            visualizeItems={activity.day}
-            setActivity={setActivity}
-            setErrors={setErrors}
-            activity={activity}
-          />
-          <CustomSelectTag
-            errorLabel={errors.hour}
-            firstOpt="Seleccioná un horario"
-            handlerChangeSelectTag={handlerChangeSelectTag}
-            name="hour"
-            options={hoursOpt}
-            visualizeItems={activity.hour}
-            setActivity={setActivity}
-            setErrors={setErrors}
-            activity={activity}
-          />
-          <CustomSelectTag
-            errorLabel={errors.trainers}
-            firstOpt="Seleccioná un instructor"
-            handlerChangeSelectTag={handlerChangeSelectTag}
-            name="trainers"
-            options={trainersOpt}
-            visualizeItems={activity.trainers}
-            setActivity={setActivity}
-            setErrors={setErrors}
-            activity={activity}
-          /> */}
+          )}
         </div>
       </div>
       <div className={style.createBtnContainer}>
         <button
           onClick={() => {
-            setErrors(validateForm(activity, type));
+            setErrors(validateForm(inputs, type));
             if (Object.values(errors).length === 0) {
-              // dispatch(
-              //   createActivity({
-              //     ...activity,
-              //     price: parseInt(activity.price),
-              //     capacity: parseInt(activity.capacity),
-              //   })
-              // );
+              if (type === "Usuarios") {
+                dispatch(createUser(inputs));
+              }
+              if (type === "Clases") {
+                dispatch(
+                  createActivity({
+                    ...inputs,
+                    price: parseInt(inputs.price),
+                    capacity: parseInt(inputs.capacity),
+                  })
+                );
+              }
+              if (type === "Instructores") {
+                dispatch(createTrainer(inputs));
+              }
+
               Swal({
-                title: "Actividad creada correctamente",
+                title: `${
+                  type === "Usuarios" ? type.slice(0, -1) : type.slice(0, -2)
+                } se creó correctamente`,
                 buttons: "Aceptar",
                 icon: "success",
               });
               document.getElementById("createDialog").close();
+
               // setActivity({});
             }
           }}
           className={style.createBtn}
         >
-          Crear actividad
+          Crear
         </button>
       </div>
     </dialog>

@@ -96,6 +96,7 @@ export default function AdminCardView({ type }) {
                 <td>
                   <Link
                     to={`/admindashboard/${type.toLowerCase()}/edit/${el.id}`}
+                    state={{ displayArray, itemSelect: el }}
                   >
                     <FaEdit size={20} color={"#fe4f22"} />
                   </Link>
