@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {CREATE_REVIEW, GET_ALL_REVIEWS,} from '../actions-type/index';
 
-const base_url = "http://localhost:3001";
+/* const base_url = "http://localhost:3001"; */
+const base_url = "https://pfgymapp-2.herokuapp.com";
 
 export const postReview = (payload)=>{ // review = description, rating, userId, img??
     return async (dispatch)=> {
