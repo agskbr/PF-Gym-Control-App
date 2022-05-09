@@ -36,8 +36,8 @@ export default function Perfil() {
               }
             />
           </div>
-          <p>Nombre: {user.displayName} </p>
-          <p>Email: {user.email}</p>
+          <p>Nombre: {user.displayName ? user.displayName : "Cargando.."} </p>
+          <p>Email: {user.email ? user.email : "Cargando.."}</p>
           <p>
             Teléfono: {user.phoneNumber ? user.phoneNumber : "No hay número"}
           </p>
