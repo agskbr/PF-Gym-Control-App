@@ -173,6 +173,7 @@ export default function CreateReaview() {
                         )): <p></p>
                     }
                     </select>
+                    {errors.activityId && (<span className={s.error}>{errors.activityId}</span>)}
                 </div>
                 <h6>Dejanos tu opinion...</h6>
                 <form className={s.CreateReaviewForm} onSubmit>
@@ -203,6 +204,7 @@ export default function CreateReaview() {
                                 onChange={handleChange}
                                 cols={40}
                         />
+                         {errors.description && (<span className={s.error}>{errors.description}</span>)}
                     </div>
                     <div>
                         <button 
