@@ -28,31 +28,18 @@ router.post("/cart", async (req,res) => {
     }
 })
 
-//Obtener la Cart + Products de un usuario
+//Obtener el Cart + Products de un usuario
 router.get("/cart/:userId", async (req, res) => {
     const { userId } = req.params;
     try {
-        const cartUser = await orderCartUserId(userId)
-        const orderLineCart = await orderlineByOrderId(cartUser.id)
-        
-        /* .then((order) => {
-        Orderline.findAll({
-            where: {
-            orderId: order.id,
-            },
-        }).then((orderlines) => {
-            const orderLinePlusProduct = {
-            product: order.products,
-            orderlines: orderlines,
-            orderId: order.id,
+        const orderCartUser = await orderCartUserId(userId)
+        const orderLineCart = await orderlineByOrderId(orderCartUser.id)
+        const orderLinePlusProduct = {
+            orderId: orderCartUser.id,
+            activities: orderCartUser.activities,
+            orderlines: orderLineCart,
             };
-            res.send(orderLinePlusProduct);
-        });
-        })
-        .catch((err) => {
-            res.send({ data: err }).status(400);
-        }); */
-        res.send(orderLineCart)
+        res.send(orderLinePlusProduct)
     } catch (error) {
         res.send(error)
     }
