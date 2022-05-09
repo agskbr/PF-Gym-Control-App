@@ -1,0 +1,18 @@
+.principalContainer {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+.principalContainer span {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: #ff3d00;
+  padding: 10px;
+}
+.imageContainer {
+  height: 50vh;
+}

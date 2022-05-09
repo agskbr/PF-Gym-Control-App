@@ -1,31 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./RegisterPage.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  registerUserWithEmailAndPass,
-  validateUserIsLogged,
-} from "../../store/actions/actions-login";
+import { registerUserWithEmailAndPass } from "../../store/actions/actions-login";
 import CustomInput from "../AdminPage/components/CustomInput/CustomInput";
+import Loader from "../../components/Loader/Loader";
+
+
+function checkPassword(password) {
+{
+    var re = /^(?=.*d)(?=.*[#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    return re.test(password);
+}
+}
 
 export default function RegisterPage() {
-  const { user } = useSelector((state) => state.login);
-  const navigate = useNavigate();
+  const { isLoading } = useSelector((state) => state.pgym);
+
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(validateUserIsLogged());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (user) {
-      if (user.uid !== "jUHKBpHJLkb9dso2TNOW5DZaU0w2") {
-        navigate("/sociodashboard");
-      } else {
-        navigate("/admindashboard");
-      }
-    }
-  }, [user, navigate]);
 
   const [input, setInput] = useState({
     name: "",
@@ -39,6 +31,7 @@ export default function RegisterPage() {
     lastName: "",
     email: "",
     password: "",
+    password2: "",
     phoneNumber: "",
   });
 
@@ -64,16 +57,21 @@ export default function RegisterPage() {
     }
     if (!input.password) {
       err.password = "La contraseña es obligatoria";
-    } else if (input.password.length < 6) {
-      err.password = "La contraseña no puede ser tan corta";
+    } else if (!checkPassword(input.password)) {
+      err.password = "Leer las condiciones de la contraseña *";
     }
     if (!input.phoneNumber) {
       err.phoneNumber = "Debe ingresar un numero de teléfono";
+    } else if (/^\(?(\d{3})\)?[-]?(\d{3})[-]?(\d{4})$/g.test(input.phoneNumber)) {
+      err.phoneNumber = "El telefono debe ser válido";
     }
     return err;
   };
 
-  return (
+
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className={style.principalContainer}>
       <h3>Regístrate</h3>
 
@@ -108,10 +106,12 @@ export default function RegisterPage() {
         />
         <CustomInput
           value={input.password}
+          type="password"
           name="password"
           onChange={handlerChange}
           placeholder="Contraseña"
           labelError={errors.password}
+          
         />
         <input
           type="submit"
@@ -128,10 +128,10 @@ export default function RegisterPage() {
                   input.name,
                   input.lastName,
                   input.phoneNumber
-                )
-              );
-            }
-          }}
+                  )
+                  );
+                }
+              }}
         />
         <div className={style.haveAccount}>
           ¿Ya tenés una cuenta?{" "}
@@ -140,6 +140,7 @@ export default function RegisterPage() {
           </Link>
         </div>
       </form>
+              <p className={style.password}>* La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minuscula, un numero y un caracter especial </p>
     </div>
   );
 }

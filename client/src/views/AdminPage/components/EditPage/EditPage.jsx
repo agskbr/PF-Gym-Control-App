@@ -9,12 +9,13 @@ import {
 import { validateForm } from "../../../../utils/validateForm.js";
 import CustomInput from "../CustomInput/CustomInput.jsx";
 import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
-import style from "./EditActivity.module.css";
+import style from "./EditPage.module.css";
 import swal from "sweetalert";
 
-export default function EditActivity() {
+export default function EditPage() {
   const { trainers, detail } = useSelector((state) => state.pgym);
-  const { id } = useParams();
+
+  const { id, item } = useParams();
   const [activityToEdit, setActivityToEdit] = useState({});
   const dispatch = useDispatch();
   const daysOpt = [
@@ -102,7 +103,7 @@ export default function EditActivity() {
 
   return (
     <div className={style.principalContainer}>
-      <h3>Editar una actividad</h3>
+      <h3>Editar {item}</h3>
       <div className={style.inputsContainer}>
         <div className={style.imageContainer}>
           <img src={activity.image} alt="actividad" />
@@ -235,7 +236,9 @@ export default function EditActivity() {
           >
             Editar actividad
           </button>
-          <Link className={style.link} to={"/admindashboard"}>Terminar edición</Link>
+          <Link className={style.link} to={"/admindashboard"}>
+            Terminar edición
+          </Link>
         </div>
       </div>
     </div>

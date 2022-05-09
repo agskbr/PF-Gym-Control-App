@@ -1,14 +1,14 @@
 .CreateReviewContainer{
-    background-color: black;
+    /* background-color: black;
     color: whitesmoke;
     width: 50vw;
     height: 100vh;
     border: solid 1px whitesmoke;
     border-radius: 2rem;
-    /* display: grid;
-    grid-template-columns: repeat(2, 1fr); */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     padding: 1rem;
-    font-size: 20px;
+    font-size: 20px; */
     
 }
 
@@ -22,8 +22,8 @@
     color: black;
 }
 .createReviewSelect{
-    width: 90%;
-    background-color: rgb(168, 167, 167);
-    color: black;
+    width: 100%;
+    /* background-color: rgb(168, 167, 167);
+    color: black; */
     
 }
