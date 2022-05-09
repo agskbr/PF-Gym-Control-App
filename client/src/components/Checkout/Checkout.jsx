@@ -63,7 +63,7 @@ export default function Checkout(activity) {
 
 
             //!  ACTIVAR ENVIO DE EMAIL
-            /* let check = {state:'Processing', totalPrice: totalCart}
+            let check = {state:'Processing', totalPrice: totalCart}
             await axios.post(BASE_URL + '/order/', check);
                                                 //userID
             let email = {
@@ -77,7 +77,7 @@ export default function Checkout(activity) {
                     totalPrice: totalCart
                 }
             }
-            let resEmail = await axios.post(BASE_URL +'/email/orderCreated', email) */
+            let resEmail = await axios.post(BASE_URL +'/email/orderCreated', email)
             //! --------------------------------------------------------
 
 //name
