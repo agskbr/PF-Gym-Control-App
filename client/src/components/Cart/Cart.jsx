@@ -1,7 +1,7 @@
 import s from "./cart.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../CartItem/CartItem";
-import { addToCart, removeFromCart, clearCart, cleanCart } from "../../store/actions/actionsCart";
+import { addToCart, removeFromCart, clearCart } from "../../store/actions/actionsCart";
 import { Link } from "react-router-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
@@ -29,7 +29,7 @@ export default function Cart(activity) {
                     ))
                     }
                 </div>
-                <button onClick={()=> dispatch(cleanCart)}>limpiar carrito</button>
+                <button onClick={()=> dispatch(clearCart ())}>limpiar carrito</button>
             </div>
 
             <div className={s.cartFinal} >

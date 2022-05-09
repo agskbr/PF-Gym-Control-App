@@ -13,6 +13,16 @@ export const initialState = {
 
 export function cartReducer(state = initialState, action) {
     switch (action.type) {
+
+
+      case CLEAR_CART:
+                         
+            return {
+                ...state,
+                cart: [],
+                order: [],
+            }
+
         case ADD_TO_CART:
             let product = state.cart.find(product => product.id === action.payload.id);
 
@@ -77,21 +87,12 @@ export function cartReducer(state = initialState, action) {
                                   }
                                   )
        
-        case CLEAN_CART:
-          console.log("Reducer cleanCart");
-                  let cart = state.cart.filter(item => item.quantity !== 0);
-                  let order = state.order.filter(item => item.count !== 0);
-                  
-            return {
-                ...state,
-                cart: [],
-                order: [],
-            }
+        
             
         
-        case REMOVE_ALL_FROM_CART:
+        /* case REMOVE_ALL_FROM_CART:
             return state.cart.filter(item => item.id !== action.payload);
-
+ */
 
         case CLEAR_CART:
 

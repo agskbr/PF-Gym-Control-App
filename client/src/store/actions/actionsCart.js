@@ -16,10 +16,10 @@ import {
 const base_url = "https://pfgymapp-2.herokuapp.com";
 
 
-export function cleanCart(){
-  console.log("cleanCart");
+export function clearCart(){
+  console.log(" action cleanCart");
   return {
-    type: CLEAN_CART,
+    type: CLEAR_CART,
   };
 }
 
