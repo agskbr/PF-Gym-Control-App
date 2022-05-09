@@ -31,7 +31,7 @@ export default function Checkout(activity) {
 
     const state = useSelector(state => state);
     const {cart} = state.cart;
-    const cartCheckOut = useSelector(state => state.cart);
+    const cartCheckOut = useSelector(state => state.cart.order);
     const totalCart = cart.reduce((total, item) => total + item.price * item.quantity, 0);
     const products = {orderBody: cartCheckOut.cart};
     const name = "pepito";  
@@ -100,9 +100,9 @@ export default function Checkout(activity) {
 
 
             console.log(products.orderBody);
-           /*  let mercadoPagoRes = await axios.post( POST_MERCADOPAGO , order)
+            let mercadoPagoRes = await axios.post( POST_MERCADOPAGO , cartCheckOut)
             console.log(mercadoPagoRes.data);
-            window.open(mercadoPagoRes.data, '_blank') */
+            window.open(mercadoPagoRes.data, '_blank')
 
 
 

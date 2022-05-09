@@ -8,11 +8,21 @@ import {
   REMOVE_ALL_FROM_CART,
   REMOVE_ONE_FROM_CART,
   TOTAL_CART,
+  CLEAN_CART,
 } from "../actions-type";
 
 
 
 const base_url = "https://pfgymapp-2.herokuapp.com";
+
+
+export function cleanCart(){
+  console.log("cleanCart");
+  return {
+    type: CLEAN_CART,
+  };
+}
+
 
 function calculateTotalCart(state){
   let total = 0;
@@ -60,8 +70,7 @@ export function totalCart(state){
     console.log("estoy despachando CLEAR_CART")
         return function(dispatch){
             dispatch({
-                type: CLEAR_CART,
-                payload: []
+                type: "CLEAR_CART"
             })
         }
     }
