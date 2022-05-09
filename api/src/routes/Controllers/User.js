@@ -102,7 +102,16 @@ const userIsAdmin = async (id) => {
       uid: id,
     },
   });
-  return UserUid;
+  if (UserUid) {
+    return UserUid;
+  } else {
+    const UserId = await User.findOne({
+      where: {
+        id: id,
+      },
+    });
+    return UserId;
+  }
 };
 
 module.exports = {
