@@ -24,6 +24,7 @@ const loaderUsers = async () => {
         users.forEach(async (el) => {
             const userIns = await User.findOrCreate({
                 where: {
+                    uid: el.uid ? el.uid : null,
                     name: el.name,
                     lastName: el.lastName,
                     email: el.email,

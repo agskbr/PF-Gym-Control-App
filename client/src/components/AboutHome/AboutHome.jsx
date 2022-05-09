@@ -13,7 +13,7 @@ import {ImLocation2} from 'react-icons/im'
 export default function AboutHome() {
   const dispatch = useDispatch();
   const entrenadores = useSelector((state)=> state.pgym.trainers)
-  console.log("entre", entrenadores)
+  //console.log("entre", entrenadores)
 
   useEffect(()=>{
       dispatch(getAllTrainers())
