@@ -4,19 +4,12 @@ import { getRecipes } from "../../../../store/actions-recipes/recipes";
 import SearchBar from "./SearchBar";
 import Paginado from "./Paginado";
 import Card from "./Card";
+import style from './Recetas.module.css'
+import Filter from "./filter";
 
 export default function SocioPage() {
     const dispatch = useDispatch();
-    const allRecipes = useSelector((state) => state.recipe.recipes);
-    const [currentPage, setCurrentPage] = useState(1)
-    const [recipesPerPage, setRecipesPerPage] = useState(4)
-    const indexOfLastRecipe = currentPage * recipesPerPage
-    const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage
-    const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
-
-    const paginado = (pageNumber) => {
-        setCurrentPage(pageNumber)
-    }
+    const recipes = useSelector((state) => state.recipe.currentPage);
 
     useEffect(() => {
     dispatch(getRecipes());
@@ -28,40 +21,33 @@ export default function SocioPage() {
     }
 
     return (
-        <div>
-        <div>
-        <h1> Recetario!!!</h1>
-        </div>
-        <div>
-        <SearchBar />
-        <button onClick={e=> {handleClick(e)}}>Volver a cargar</button>
-        </div>
-<div>
-    <Paginado
-    recipesPerPage={recipesPerPage} 
-    allRecipes={allRecipes.length} 
-    paginado={paginado} />        
-</div>
+        <div className={style.container}>
+                    
+                <div className={style.navbar}>
+                    <SearchBar />
+                    <Filter />
+                </div>
+            
+            
 
-    <span>
-{  
-    currentRecipes?.map((el) => {
-        return(
-        <div key={el.id}>
-               <Card 
-               image={el.img? el.img : el.image} 
-               name={el.name} 
-               diets={el.diets} 
-               key={el.id} 
-               id={el.id}
-                   
-               />  
-
+                    <div className={style.recipeGrid}>
+                                        {  
+                                            recipes?.map((el) => {
+                                                console.log(el)
+                                                return(
+                                                    <div key={el.id}>
+                                                    <Card 
+                                                    image={el.img? el.img : el.image} 
+                                                    name={el.name} 
+                                                    diets={el.diets} 
+                                                    key={el.id} 
+                                                    id={el.id}                 
+                                                    /> 
+                                                    </div>
+                                                )})   },
+                        </div>        
+                
+                        <Paginado />
         </div>
-        )
-    })
-}
-    </span>
-</div>
-);
+    );
 }
