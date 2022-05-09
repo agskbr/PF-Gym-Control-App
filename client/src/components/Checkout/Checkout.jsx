@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { BASE_URL, POST_MERCADOPAGO } from '../../store/constantes';
+import { clearCart } from '../../store/actions/actionsCart';
+import { removeFromCart } from '../../store/actions/actionsCart';
 
 
 /** Reducer para limpiar carrito
@@ -31,7 +33,7 @@ export default function Checkout(activity) {
 
     const state = useSelector(state => state);
     const {cart} = state.cart;
-    const cartCheckOut = useSelector(state => state.cart);
+    const cartCheckOut = useSelector(state => state.cart.order);
     const totalCart = cart.reduce((total, item) => total + item.price * item.quantity, 0);
     const products = {orderBody: cartCheckOut.cart};
     const name = "pepito";  
@@ -82,33 +84,13 @@ export default function Checkout(activity) {
 //price
 //count 
 
+
             
-
-            let order = [{
-                "name": name,
-                "price": totalCart,
-                "count": 1,
-            }];
-
-
-
-
-
-
-
-            let cartMercadoPago = products.orderBody;
-
-
-            console.log(products.orderBody);
-           /*  let mercadoPagoRes = await axios.post( POST_MERCADOPAGO , order)
-            console.log(mercadoPagoRes.data);
-            window.open(mercadoPagoRes.data, '_blank') */
-
-
-
-            /* localStorage.removeItem('shopCart')
+            let mercadoPagoRes = await axios.post( POST_MERCADOPAGO , cartCheckOut)
+            /* window.open(mercadoPagoRes.data) */
+            window.location.href = mercadoPagoRes.data;
             dispatch(clearCart());
-            dispatch(totalCart(0)); */
+           
             
 
         } else {
@@ -124,7 +106,7 @@ export default function Checkout(activity) {
                 <div className={style.products}>
                 {
                         cart?.map((item, index) => (
-                        <CartItem key={index} data={item}/>
+                        <CartItem key={index} data={item} removeFromCart={()=> dispatch(removeFromCart(item.name))}/>
                     ))
                     }
                 </div>
@@ -133,9 +115,9 @@ export default function Checkout(activity) {
                 </div>
                 <div className={style.address}>
                     <p>
-                    Direccion de envio:
+                    Email: {user.email}
                     </p>
-                    <button>Editar Direccion</button>
+                    <button>Editar Email</button>
                 </div>
                 <div className={style.dispatchContainer} >
                     <button onClick={e => checkOut(products,totalCart)} >Pagar</button>
@@ -145,14 +127,6 @@ export default function Checkout(activity) {
           </div>
         )
 
-        // sino retornar:
-       /*  (
-            <div className={style.container}>
-                <h2>Registrate para continuar con la compra</h2>
-                //boton de logueo/resgistro
-            </div>
-        ) */
-        
     }
 
 
