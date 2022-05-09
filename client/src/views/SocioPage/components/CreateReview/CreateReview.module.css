@@ -9,7 +9,7 @@
     grid-template-columns: repeat(2, 1fr);
     padding: 1rem;
     font-size: 20px; */
-    
+    z-index:1;
 }
 
 .createReviewTextarea{
