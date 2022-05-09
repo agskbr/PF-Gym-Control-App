@@ -19,7 +19,7 @@ export default function SocioPage() {
 
   useEffect(() => {
     if (user === null) {
-      navigate("/");
+      navigate("/login");
     }
   }, [user, navigate]);
 

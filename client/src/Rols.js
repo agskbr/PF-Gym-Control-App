@@ -8,6 +8,7 @@ import Buy from "./components/Buy/Buy";
 import SocioPage from "./views/SocioPage/SocioPage";
 import { Navigate, Route, Routes } from "react-router-dom";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage.jsx";
+import Checkout from "./components/Checkout/Checkout.jsx";
 
 export function AunthenticatedRoutes({ isAdmin }) {
   return (
@@ -15,7 +16,8 @@ export function AunthenticatedRoutes({ isAdmin }) {
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/clases/:id" element={<Buy />} />
-
+      <Route path="/checkout" element={<Checkout />} />
+      
       <Route
         path="/admindashboard"
         element={isAdmin ? <AdminPage /> : <Navigate to={"/login"} replace />}

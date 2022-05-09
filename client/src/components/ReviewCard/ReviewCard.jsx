@@ -10,6 +10,7 @@ export default function ReviewCard ({rating, description, id}) {
   const dispatch = useDispatch();
   const allUsers = useSelector((state)=> state.pgym.users)
   
+  
   const user = allUsers.find((u)=>u.id === id)
   //console.log("soy yo", user)
   

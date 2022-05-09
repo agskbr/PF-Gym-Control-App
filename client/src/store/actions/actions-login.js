@@ -22,6 +22,7 @@ import {
 } from "../actions-type";
 
 const base_url = "https://pfgymapp-2.herokuapp.com";
+const local_host = "http://localhost:3001";
 
 const registerUserWithEmailAndPass = (
   email,
@@ -45,7 +46,7 @@ const registerUserWithEmailAndPass = (
         phoneNumber,
         image: "",
       };
-      await axios.post(`${base_url}/user`, userToDB);
+      await axios.post(`${local_host}/user`, userToDB);
 
       dispatch({
         type: REGISTER_USER_WITH_EMAIL_AND_PASS,
@@ -120,7 +121,7 @@ const loginWithGoogle = () => {
       };
 
       const { status } = await axios.post(
-        `${base_url}/user`,
+        `${local_host}/user`,
         authWithGoogleData
       );
       if (status === 200) {
@@ -138,7 +139,7 @@ const validateUserIsLogged = () => {
       if (user) {
         try {
           const { data } = await axios.post(
-            `http://localhost:3001/user/isAdmin`,
+            `${local_host}/user/isAdmin`,
             {
               id: user.uid,
             }
