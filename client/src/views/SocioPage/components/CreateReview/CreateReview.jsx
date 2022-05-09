@@ -20,17 +20,16 @@ export default function CreateReaview() {
     const dispatch = useDispatch();
     const allActivities = useSelector((state)=>state.pgym.allActivities);
     console.log("activ", allActivities)
-   
+    //const user = useSelector((state)=>state.login.user.uid);
     
     const stars= Array(5).fill(0);
     const [currentValue, setCurrentValue] = useState(0);
     const [hoverValue, setHoverValue]= useState(undefined);
     const [ input, setInput]= useState({
-        rating: 0,
+        rating: "",
         description:"",
-        activityId: 0,  /* ver */
-        userId: "",
-        name:""
+        activityId: "",  
+        userId: 1, //le seteo por defecto un id q este en base de datos para q funcione x ahora!!
     })
 
     function validaciones(input){
@@ -42,8 +41,8 @@ export default function CreateReaview() {
         if(!input.description){
             errors.description="por favor ingresa una reseña"
         };
-        if(!input.name){
-            errors.name= "debes seleccionar una actividad"
+        if(!input.userId){
+            errors.userId= "debes seleccionar una actividad"
         };
         return errors
     }
@@ -82,18 +81,19 @@ export default function CreateReaview() {
     const handleSelect = (e)=>{//actividad
         setInput({
             ...input,
-            name: e.target.value,
+            activityId: e.target.value,
             
         });
         setErrors(validaciones({
             ...input,
-            name:e.target.value
+            activityId:e.target.value
         }))
     }
 
    const handleSubmit = (e) => { //button
         e.preventDefault()
-        if(Object.keys(errors).length !== 0){
+        
+        if(Object.values(errors).length !== 0){
             Swal({
                 title:"Debes completar todos los campos, para poder realizar la reseña.",
                 icon: "warning",
@@ -105,11 +105,10 @@ export default function CreateReaview() {
         }else{
             dispatch(postReview(input))
             setInput({
-                rating: 0,
+                rating: "",
                 description:"",
-                activityId: "",  /* ver */
-                userId: "",
-                name:""
+                activityId: "",  
+                userId: ""
             })
             Swal({
                 title:"Reseña enviada correctamente",
@@ -120,8 +119,9 @@ export default function CreateReaview() {
                 showConfirmButton: false,
                 timerProgressBar: true,
             })
+            /* document.getElementById("reviewDialog").close(); */
         }
-        /* deberia recibir po prop userId y activityId */
+        
     }
 
     useEffect(()=>{
@@ -130,13 +130,13 @@ export default function CreateReaview() {
 
   return allActivities ? (
 
-    <dialog id="reviewDialog" style={{ border: "none", height: "85vh"}}>
+    <dialog id="reviewDialog" style={{ border: "none", height: "20vh"}}>
         <div
             style={styles.container}
         >
             <div style={{ justifyContent: "flex-end", display: "flex" }}>
                 <button
-                onClick={() => document.getElementById("reviewDialog").close()}
+                  onClick={() => document.getElementById("reviewDialog").close()}
                 >
                 x
                 </button>
@@ -160,12 +160,13 @@ export default function CreateReaview() {
                     onClick={handleSelect}
                     className={s.CreateReaviewSelect}
                     >
+                        <option value="">Actividad</option>
                 {
                     allActivities? allActivities.map((activity, index) => (
                         <option 
                             key={activity.id} 
                             name={activity.name}
-                            value={index}
+                            value={activity.id}
                             
                         >
                             {activity.name}
@@ -209,7 +210,7 @@ export default function CreateReaview() {
                
                 <button 
                     style={styles.button}
-                    onClick={(e)=> handleSubmit(e)}
+                    onClick={(e)=> handleSubmit(e)} 
                 >
                     Enviar
                 </button>
