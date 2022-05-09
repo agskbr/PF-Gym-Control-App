@@ -18,7 +18,24 @@
     width: 50vw; /* ver por tema responsive */
     background-color: white;
     /* overflow: scroll; */
-    
+}
+.containerTable{
+    background-color: #fdede9;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+ .columnas, .filas {
+    padding: 0;
+}
+.encabezado{
+    background-color: #fe4f22;
+    border-bottom: solid 3px black;
+    color: white;
+}
+.tableRow:hover{
+    background-color: #fe4f22;
+    color: white;
 }
 
 
