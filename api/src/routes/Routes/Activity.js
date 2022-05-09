@@ -14,7 +14,7 @@ const {
 
 
 // const Activity = require('../../models/Activity');
-router.post("/", async (req,res) => {
+router.post("/", async (req,res, next) => {
     try{
         const { name, description, video, image, price, day, hour, capacity, trainers } = req.body
         const activityName = createActivity(name, description, video, image, price, day, hour, capacity, trainers);

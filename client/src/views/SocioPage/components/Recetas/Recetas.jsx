@@ -4,19 +4,12 @@ import { getRecipes } from "../../../../store/actions-recipes/recipes";
 import SearchBar from "./SearchBar";
 import Paginado from "./Paginado";
 import Card from "./Card";
+import style from './Recetas.module.css'
+import Filter from "./filter";
 
 export default function SocioPage() {
     const dispatch = useDispatch();
-    const allRecipes = useSelector((state) => state.recipe.recipes);
-    const [currentPage, setCurrentPage] = useState(1)
-    const [recipesPerPage, setRecipesPerPage] = useState(4)
-    const indexOfLastRecipe = currentPage * recipesPerPage
-    const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage
-    const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
-
-    const paginado = (pageNumber) => {
-        setCurrentPage(pageNumber)
-    }
+    const recipes = useSelector((state) => state.recipe.currentPage);
 
     useEffect(() => {
     dispatch(getRecipes());
@@ -34,18 +27,17 @@ export default function SocioPage() {
         </div>
         <div>
         <SearchBar />
+        <Filter />
         <button onClick={e=> {handleClick(e)}}>Volver a cargar</button>
         </div>
 <div>
-    <Paginado
-    recipesPerPage={recipesPerPage} 
-    allRecipes={allRecipes.length} 
-    paginado={paginado} />        
+    <Paginado />        
 </div>
 
-    <span>
+    <div className={style.recipeGrid}>
 {  
-    currentRecipes?.map((el) => {
+    recipes?.map((el) => {
+        console.log(el)
         return(
         <div key={el.id}>
                <Card 
@@ -53,15 +45,13 @@ export default function SocioPage() {
                name={el.name} 
                diets={el.diets} 
                key={el.id} 
-               id={el.id}
-                   
+               id={el.id}                 
                />  
-
         </div>
         )
     })
 }
-    </span>
+    </div>
 </div>
 );
 }

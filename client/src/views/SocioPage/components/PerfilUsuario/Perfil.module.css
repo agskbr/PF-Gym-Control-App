@@ -1,13 +1,11 @@
 .perfilUser{
-    background: rgba(255, 255, 255, 0.282);
-    padding: 2rem 1.5rem;
-    margin: 1rem auto;
-    border-radius: 3rem;
-    transform: scale(.95);
-    transition: transform .3s linear;
-    transform-origin: center;
-    width: 80vw;
-    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60%;
+    margin-top: 10vh;
+
 }
 .perfilUser button{
     height: 5ex;
@@ -21,24 +19,17 @@
     cursor: pointer;
 }
 .perfilUser button:hover{
-    color: #111111;
-    background-color: #eb4e27;
+    height: 100%;
+    width: 100%;
 }
-.principalContainer {
+.principalContainer{
+    height: 100%;
+    width: 100%;
+    margin-top: 10px;
+    align-items: center;
     display: flex;
-    position: relative;
-    background: conic-gradient(
-      from 140deg at -15% -60%,
-      #fe4f22 -10.7deg,
-      rgba(0, 0, 0, 0) 349.17deg,
-      #fe4f22 349.3deg,
-      rgba(0, 0, 0, 0) 709.17deg
-    );
-    box-sizing: border-box;
-    width: 100vw;
-    height: 100vh;
-    background-color: black;
-  }
+    flex-direction: column;
+}
 
  .perfilUserName img{
      height: 10ex;
