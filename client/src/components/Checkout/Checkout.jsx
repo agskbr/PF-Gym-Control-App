@@ -36,9 +36,12 @@ export default function Checkout(activity) {
     const cartCheckOut = useSelector(state => state.cart.order);
     const totalCart = cart.reduce((total, item) => total + item.price * item.quantity, 0);
     const products = {orderBody: cartCheckOut.cart};
-    const name = "pepito";  
-    const lastname = "carabajal";
-
+    
+    const usuarioName = state.login.user.displayName;
+    const nameMP = usuarioName.split(' ');
+    const name = nameMP[0];
+    const lastname = nameMP[1];
+   
     
 
     // Validacion de usuario
@@ -63,7 +66,7 @@ export default function Checkout(activity) {
 
 
             //!  ACTIVAR ENVIO DE EMAIL
-            /* let check = {state:'Processing', totalPrice: totalCart}
+            let check = {state:'Processing', totalPrice: totalCart}
             await axios.post(BASE_URL + '/order/', check);
                                                 //userID
             let email = {
@@ -77,7 +80,7 @@ export default function Checkout(activity) {
                     totalPrice: totalCart
                 }
             }
-            let resEmail = await axios.post(BASE_URL +'/email/orderCreated', email) */
+            let resEmail = await axios.post(BASE_URL +'/email/orderCreated', email)
             //! --------------------------------------------------------
 
 //name
