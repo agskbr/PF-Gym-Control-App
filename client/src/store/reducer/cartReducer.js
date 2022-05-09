@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART, CLEAR_CART, TOTAL_CART} from "../actions-type/index.js";
+import { ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART, CLEAR_CART, TOTAL_CART, CLEAN_CART} from "../actions-type/index.js";
 
 
 
@@ -13,6 +13,16 @@ export const initialState = {
 
 export function cartReducer(state = initialState, action) {
     switch (action.type) {
+
+
+      case CLEAR_CART:
+                         
+            return {
+                ...state,
+                cart: [],
+                order: [],
+            }
+
         case ADD_TO_CART:
             let product = state.cart.find(product => product.id === action.payload.id);
 
@@ -75,50 +85,24 @@ export function cartReducer(state = initialState, action) {
                                     cart: state.cart.filter(item => item.name !== action.payload),
                                     order: state.order.filter(item => item.name !== action.payload)
                                   }
-            )
-       /*  case ADD_TO_CART:{
-            if (state.cart.length > 0) {
-                let isProduct = state.cart.filter((e) => e.id === action.payload.id);
-                
-                if (isProduct.length > 0) {
-                  let finalProduct = state.cart.map((e) => {
-                    if (e.id === action.payload.id) {
-                      e.count += 1;
-                      return e;
-                    } else {
-                      return e;
-                    }
-                  });
-                  return finalProduct;
-                } else {
-                  let cart = state.cart;
-                  action.payload.quantity = 1;
-                  cart.push(action.payload);
-                  return cart;
-                }
-              } else {
-                let cart = [];
-                action.payload.quantity = 1;
-                cart.push(action.payload);
-                return cart;
-              }
-
-        } */
-
+                                  )
+       
+        
             
         
-        case REMOVE_ALL_FROM_CART:
+        /* case REMOVE_ALL_FROM_CART:
             return state.cart.filter(item => item.id !== action.payload);
+ */
+
         case CLEAR_CART:
+
+                console.log("entre al reducer clear cart");
+
                 return {
-                    cart : state.cart,
+                    ...state,
+                    cart : state.cart.filter(item => item.id !== action.payload),
                 }
 
-        case TOTAL_CART:
-            return {
-                ...state,
-                totalCart: action.payload
-            }
               default:
                 return state;
     }

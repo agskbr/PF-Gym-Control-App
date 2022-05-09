@@ -46,7 +46,7 @@ const registerUserWithEmailAndPass = (
         phoneNumber,
         image: "",
       };
-      await axios.post(`${base_url}/user`, userToDB);
+      await axios.post(`${local_host}/user`, userToDB);
 
       dispatch({
         type: REGISTER_USER_WITH_EMAIL_AND_PASS,
@@ -121,7 +121,7 @@ const loginWithGoogle = () => {
       };
 
       const { status } = await axios.post(
-        `${base_url}/user`,
+        `${local_host}/user`,
         authWithGoogleData
       );
       if (status === 200) {
@@ -139,7 +139,7 @@ const validateUserIsLogged = () => {
       if (user) {
         try {
           const { data } = await axios.post(
-            `${base_url}/user/isAdmin`,
+            `${local_host}/user/isAdmin`,
             {
               id: user.uid,
             }
