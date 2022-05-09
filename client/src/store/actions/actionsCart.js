@@ -66,11 +66,3 @@ export function totalCart(state){
       ? { type: REMOVE_ALL_FROM_CART, payload: name }
       : { type: REMOVE_ONE_FROM_CART, payload: name };
   
-  export function clearCart(){
-    console.log("estoy despachando CLEAR_CART")
-        return function(dispatch){
-            dispatch({
-                type: "CLEAR_CART"
-            })
-        }
-    }

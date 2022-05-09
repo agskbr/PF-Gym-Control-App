@@ -40,6 +40,9 @@ export default function Nav() {
       <a href="/">
         <div className="logo"></div>
       </a>
+      <a href="/login">
+        <div className="login"></div>
+      </a>
 
       <nav className="main-nav">
         <ul className="main-nav-list">

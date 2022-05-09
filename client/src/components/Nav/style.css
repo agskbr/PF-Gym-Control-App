@@ -56,7 +56,36 @@ FONT SIZE SYSTEM (px)
   /* position: relative; */
 
 }
+.login{
+  background-image: url('../../assets/login3.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 10vw;
+  height: 5vh;
+  align-self: center;
+  position: absolute;
+  left: 9.5vw;
+  z-index: 0;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  transition: ease-in-out 0.2s;
+  top: 2.5vh;
+  
+}
+.login:hover{
+  transform: translateX(2vw);
+}
 
+.login p{
+  color: #fdede9;
+  font-size: 1.5rem;
+  position: absolute;
+  top: -1vh;
+  left: 3.5vw;
+}
 .headerScrolled {
 position: fixed;
 display: flex;
@@ -83,6 +112,7 @@ background: rgba(255, 254, 254, 0.9);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  z-index: 10;
 }
 
 
