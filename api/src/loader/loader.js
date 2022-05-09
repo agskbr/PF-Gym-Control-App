@@ -51,7 +51,6 @@ const loaderActivity = async () => {
                     video: el.video,
                     image: el.image,
                     price: el.price,
-                    capacity: el.capacity
                 },
             });
             el.trainers.forEach(async (e) => {
