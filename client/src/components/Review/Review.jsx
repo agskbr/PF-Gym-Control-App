@@ -3,8 +3,8 @@ import s from './Review.module.css';
 import ReviewCard from '../ReviewCard/ReviewCard';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllReviews} from '../../store/actions/actions-review';
-/* import { Carousel} from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; */
+import { Carousel} from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export default function Review() {
     const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export default function Review() {
             {/* <h1># que dicen nuestros clientes</h1> */}
             <div className={s.contenedorSlider}>
                 <div className={s.revierCarrousel}>
-                    {/* <Carousel
+                    <Carousel
                         useKeyboardArrows
                         infiniteLoop
                         autoPlay
@@ -39,7 +39,7 @@ export default function Review() {
                                 />
                             ))
                         }
-                    </Carousel> */}
+                    </Carousel>
                 </div>
             </div>
         </section>
