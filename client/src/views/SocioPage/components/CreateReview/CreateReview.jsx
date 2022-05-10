@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { postReview } from '../../../../store/actions/actions-review';
+import { postReview, getReviewsByUser } from '../../../../store/actions/actions-review';
 import s from './CreateReview.module.css';
 import Swal from "sweetalert";
 import logo from '../../../../assets/logo.png'
@@ -19,7 +19,9 @@ export default function CreateReaview() {
 
     const dispatch = useDispatch();
     const allActivities = useSelector((state)=>state.pgym.allActivities);
+    const allReviewUser = useSelector((state)=>state.review.reviews);
     //console.log("activ", allActivities)
+    console.log("reviewsid", allReviewUser)
     //const user = useSelector((state)=>state.login.user.uid);
     
     const stars= Array(5).fill(0);
@@ -100,6 +102,10 @@ export default function CreateReaview() {
                 timer: 2000,
                 
             });
+        }else if (allReviewUser.find((r)=>r.activityId === input.activityId)) {
+                e.preventDefault()
+                alert("ya realizaste una review de esta clase")
+                document.getElementById("reviewDialog").close();
         }else{
             e.preventDefault()
             dispatch(postReview(input))
@@ -123,9 +129,11 @@ export default function CreateReaview() {
         }
         
     }
-
+    
+   const user=1
     useEffect(()=>{
         dispatch(getActivity())
+        dispatch(getReviewsByUser(user))
     },[dispatch])
 
     return allActivities ? (
