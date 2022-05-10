@@ -17,10 +17,9 @@ const colors = {
 
 export default function CreateReaview() {
 
-    const [errors, setErrors]= useState({});
     const dispatch = useDispatch();
     const allActivities = useSelector((state)=>state.pgym.allActivities);
-    console.log("activ", allActivities)
+    //console.log("activ", allActivities)
     //const user = useSelector((state)=>state.login.user.uid);
     
     const stars= Array(5).fill(0);
@@ -33,7 +32,7 @@ export default function CreateReaview() {
         userId: 1, //le seteo por defecto un id q este en base de datos para q funcione x ahora!!
     })
 
-    function validaciones(input){
+   /*  function validaciones(input){
         let errors = {}
 
         if(!input.rating){
@@ -47,7 +46,7 @@ export default function CreateReaview() {
         };
         return errors
     }
-
+ */
     
 
     const handleClick = value => { //rating
@@ -56,10 +55,10 @@ export default function CreateReaview() {
             ...input,
             rating:value
         })
-        setErrors(validaciones({
+       /*  setErrors(validaciones({
             ...input,
             rating:value,
-        }))
+        })) */
     };
 
     const handleMouseOver = value => {
@@ -74,10 +73,10 @@ export default function CreateReaview() {
             ...input,
             description: e.target.value
         })
-        setErrors(validaciones({
+       /*  setErrors(validaciones({
             ...input,
             description:e.target.value
-        }))
+        })) */
     }
     const handleSelect = (e)=>{//actividad
         setInput({
@@ -85,26 +84,26 @@ export default function CreateReaview() {
             activityId: e.target.value,
             
         });
-        setErrors(validaciones({
+      /*   setErrors(validaciones({
             ...input,
             activityId:e.target.value
-        }))
+        })) */
     }
 
-   const handleSubmit = (e) => { //button
-        e.preventDefault()
-        
-        if(Object.values(errors).length !== 0){
+    const handleSubmit = (e) => { //button
+        if(!input.description || !input.rating || !input.activityId){
+            e.preventDefault()
             Swal({
-                title:"Debes completar todos los campos, para poder realizar la reseña.",
+                title:"Complete todos los campos.",
                 icon: "warning",
-                position:"center",
-                timer:2000,
-                showConfirmButton:false,
-                timerProgressBar:true,
+                position:"bottom",
+                timer: 2000,
+                
             });
         }else{
+            e.preventDefault()
             dispatch(postReview(input))
+            console.log("input", input)
             setInput({
                 rating: " ",
                 description:" ",
@@ -115,10 +114,10 @@ export default function CreateReaview() {
                 title:"Reseña enviada correctamente",
                 buttons:"aceptar",
                 icon:"success",
-                position: "center",
+                /* position: "center", */
                 timer: 2000,
-                showConfirmButton: false,
-                timerProgressBar: true,
+                toast: true,
+                position:"top-end",
             })
             document.getElementById("reviewDialog").close();
         }
@@ -173,7 +172,6 @@ export default function CreateReaview() {
                         )): <p></p>
                     }
                     </select>
-                    {errors.activityId && (<span className={s.error}>{errors.activityId}</span>)}
                 </div>
                 <h6>Dejanos tu opinion...</h6>
                 <form className={s.CreateReaviewForm} onSubmit>
@@ -204,7 +202,6 @@ export default function CreateReaview() {
                                 onChange={handleChange}
                                 cols={40}
                         />
-                         {errors.description && (<span className={s.error}>{errors.description}</span>)}
                     </div>
                     <div>
                         <button 
