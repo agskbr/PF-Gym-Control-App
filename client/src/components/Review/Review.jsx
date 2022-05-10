@@ -6,6 +6,7 @@ import {getAllReviews} from '../../store/actions/actions-review';
 import { Carousel} from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 
+
 export default function Review() {
     const dispatch = useDispatch();
     
@@ -46,4 +47,3 @@ export default function Review() {
     </main>
   ): <></>
 }
-
