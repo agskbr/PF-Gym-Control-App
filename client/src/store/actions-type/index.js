@@ -9,6 +9,7 @@ const RECEIVED_POST = "RECEIVED_POST";
 //data by review reducer
 const GET_ALL_REVIEWS = "GET_ALL_REVIEWS";
 const CREATE_REVIEW = "CREATE_REVIEW";
+const GET_REVIEWS_BY_USER = "GET_REVIEWS_BY_USER"
 //-----------------
 
 //Data by login reducer
@@ -42,4 +43,5 @@ export {
   GET_ALL_USERS,
   GET_ALL_REVIEWS,
   USER_IS_ADMIN,
+  GET_REVIEWS_BY_USER,
 };
