@@ -2,8 +2,7 @@
     background-color: black;
     color: rgb(168, 167, 167);
     padding: 1rem;
-    font-size: 20px;
-    z-index: -1;
+    font-size: 20px;position: relative;
 }
 .createReviewHeader{
    /*  width: 40vw; */
@@ -21,7 +20,7 @@
     font-size: 14px;
     height: 40px;
     background-color: #fe4f22;
-    
+    cursor: pointer;
 }
 
 .createReviewBoton:hover {

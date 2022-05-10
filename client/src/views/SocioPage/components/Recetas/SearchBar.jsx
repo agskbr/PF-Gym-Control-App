@@ -2,24 +2,29 @@ import React from 'react';
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {getNameRecipe} from '../../../../store/actions-recipes/recipes';
+import {getRecipes} from '../../../../store/actions-recipes/recipes';
 
 
 
 
 export default function SearchBar(){
     const dispatch = useDispatch()
-    const [name,setName] = useState(" ")
+    const [title,setTitle] = useState(" ")
 
     function handleInputChange(e){
         e.preventDefault()
-        setName(e.target.value)
+        setTitle(e.target.value)
+
+        if (e.target.value === ""){
+            dispatch(getRecipes())
         
     }
+}
 
     function handleSubmit(e){
         e.preventDefault()
-        dispatch(getNameRecipe(name))
-        setName ({name:''})
+        dispatch(getNameRecipe(title))
+        setTitle ({title:''})
     }
     
     return(

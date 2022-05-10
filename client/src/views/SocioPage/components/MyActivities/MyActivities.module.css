@@ -5,7 +5,6 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    z-index: -2;
 }
 .userTitleAndAddBtn{
     display: flex;
@@ -27,11 +26,13 @@
     font-size: 14px;
     height: 40px;
     background-color: #fe4f22;
+    cursor: pointer;
 }
 .userAddBtn:hover {
     cursor: pointer;
-   /*  transition: all 0.5s;
-  color: darkgrey; */
+    /* background-color: #fdede9;
+    transition: all .3s;
+    color: #eb4e27; */
 }
 .userAddBtn:focus {
     outline: none;

@@ -1,4 +1,23 @@
 .recipeGrid {
+    height: 20vh;
+    width: 30vw;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    position: absolute;
+    top: 28vh;
+    right: 40vw;
+}
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 0vw;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    background-color: #fdede9;
 }

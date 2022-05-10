@@ -2,10 +2,10 @@
   display: inline-grid;
   grid-template-rows: 25% 1fr;
   width: 250px;
-  height: 350px;
+  height: 300px;
   border-radius: 2.5rem;
   background-color: rgba(3, 3, 3, 0.3);
-  margin: 1rem;
+  margin: .5rem;
   border: 1px solid rgb(238, 98, 5);
 }
 
@@ -28,7 +28,7 @@
   width: 160px;
   border: 4px solid var(--primary-color);
   object-fit: cover;
-  margin: 1rem auto;
+  margin: .5rem auto;
     
     
   }
