@@ -31,8 +31,8 @@ router.get("/user/:id", async (req, res) => {
 //crear un dia 
 router.post("/create", async (req, res) => {
     try {
-        const {days, hour, capacity, activities} = req.body
-        const horaDia = await horaDiaCreate(days,hour,capacity,activities)
+        const { day, hour, capacity } = req.body
+        const horaDia = await horaDiaCreate(day,hour,capacity)
         return res.send(horaDia)
     } catch (error) {
         console.log(error)

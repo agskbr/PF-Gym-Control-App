@@ -13,6 +13,7 @@ const review = require('./Review')
 const order = require('./Order')
 const email = require('./Email')
 const orderline = require('./OrderLine')
+const horaDia = require("./HoraDia")
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -29,5 +30,6 @@ router.use('/review', review)
 router.use('/order', order)
 router.use('/email', email)
 router.use('/orderline', orderline)
+router.use("/horaDia",horaDia)
 
 module.exports = router;
