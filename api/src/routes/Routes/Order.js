@@ -1,70 +1,94 @@
 const router = require('express').Router()
+const { orderlineByOrderId } = require("../Controllers/Orderline");
 const {
-    orederUpdate,
     allOrder,
     orderFilterId,
     orderUpdate,
     orderUserId,
-    createOrder,
-    deleteOrder} = require("../Controllers/Order");
+    findOrCreateCart,
+    orderCartUserId,
+    deleteOrder
+} = require("../Controllers/Order");
+const {
+    Orderline,
+} = require('../../db');
 
-//para orden
-//hacer ruta para traer todas las ordenes de un usuario en especifico
-//crear orden
+//order/carrito -------------------------------------------------------------------------------------------------------------
+//buscar o Crear orden-carrito / Buscar o Crear Orden-carrito / 
 
-// finalizar compra
-//revisar
-
-
-
-//crear orden
-router.post("/", async (req,res) => {
+//Buscar o crear orden/carrito
+router.post("/cart", async (req,res) => {
     try {
-        const { totalPrice, state, userId} = req.body
-        const order = await createOrder(totalPrice,state, userId);
+        const { userId } = req.body;
+        const order = await findOrCreateCart(userId);
         if(order){
-            return res.send("Order created");
+            return res.send(order); //devuelve un array con un objeto y un boleano si fue o no creado ej: [{objeto},boolean]
         }else{
-            return res.send("Order not created")  
+            return res.send(order)  
         }
     } catch(err){
-        console.log(err)
+        return(err)
     }
-
 })
 
-//obtener ordenes de un usuario específico
-router.get("/user/:id", async (req,res) => {
-    try{
-        const {id} = req.params;
-        const orderUser = await orderUserId(id);
-        revActId ?
-            res.send(orderUser) :
-            res.send("order of user not found")
+//Obtener el Cart + Activity de un usuario
+router.get("/cart/:userId", async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const orderCartUser = await orderCartUserId(userId)
+        const orderLineCart = await orderlineByOrderId(orderCartUser.id)
+        const orderLinePlusProduct = {
+            orderId: orderCartUser.id,
+            activities: orderCartUser.activities,
+            orderlines: orderLineCart,
+            };
+        res.send(orderLinePlusProduct)
+    } catch (error) {
+        res.send(error)
     }
-    catch(error){
-        console.log(error)
-    }
+});
 
-})
+//Modificar carrito cantidades en una orderline
+//en orden ->  precioTotal 
+//en lineaDeOrden -> Subtotal / Precio unitario / cantidad 
+router.put("/cart/:userId", async (req, res) => {
+    const { userId } = req.params;
+    const { orderlineId, orderlineQuantity } = req.body; // Se trigerean desde el body los campos de la Orderline
+    try {
+        const OrderCart = await findOrCreateCart(userId)
+        const orderLine = await orderlineByOrderId(OrderCart.id)
+        const orderlineToChange = await Orderline.findByPk(orderlineId);
+        
+        /* // Acá se modificarán las cantidades (orderlineQuantity) de esa orderline (orderlineId)
+        const product = await Product.findOne({
+            where: {
+            id: orderlineToChange.productId,
+            },
+        });
+        if (orderlineQuantity > product.stock) {
+            return res.send(
+            `Se alcanzó el máximo stock, se puede comprar hasta ${product.stock} items.`
+            );
+        }
+        product.stock =
+            product.stock + orderlineToChange.quantity - orderlineQuantity;
+        const updatedProduct = await product.save();
+        orderlineToChange.quantity = Number(orderlineQuantity);
+        orderlineToChange.save();
+        return res.send(orderlineToChange);
+        }*/
+        return orderlineToChange;
+    }catch (err) {
+        return res.send({ data: err }).status(400);
+    } 
+});
 
 
+//Modificad estado y control de stock - Confirmar compra - compra cancelada - compra finalizada
 
-// //modificar estado orden 
-// router.put("/checkout/:id", async (req, res) => {
-//     const { state, totalPrice } = req.body;
-//     const { id } = req.params;
-//     try {
-//         const order = await orederUpdate(state, totalPrice, id);
-//         if (order) {
-//             return res.send("Elemento actualizado");
-//         }
-//         res.status(400).send("Orden no encontrada");
-//     } catch (error) {
-//         return res.status(400).send({ data: error })
-//     }
-// });
 
+//funciones basicas
+//AllOrder / obtener ordenes por userId / obtener orden por Orderid/ Modificar via OrdenId / eliminar ordenId/ -------------------------------------------------------------------------------
 
 //AllOrder
 router.get("/", async (req, res, next) => {
@@ -76,6 +100,19 @@ router.get("/", async (req, res, next) => {
     }
 });
 
+//obtener todas las ordenes por userId
+router.get("/user/:id", async (req,res) => {
+    try{
+        const {id} = req.params;
+        const orderUser = await orderUserId(id);
+        revActId ?
+            res.send(orderUser) :
+            res.send("order of user not found")
+    }
+    catch(error){
+        console.log(error)
+    }
+})
 
 //obtener orden por id
 router.get("/:id", async (req, res) => {
@@ -92,7 +129,7 @@ router.get("/:id", async (req, res) => {
 });
 
 
-// modificar orden id: num Order
+// modificar orden orderId
 router.put("/:id", async (req, res, next) => {
     const { state } = req.body;
     const { id } = req.params;
@@ -107,8 +144,7 @@ router.put("/:id", async (req, res, next) => {
     }
 });
 
-//eliminar orden
-
+//eliminar orden orderId
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;
     try {

@@ -4,7 +4,8 @@ import ReviewCard from '../ReviewCard/ReviewCard';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllReviews} from '../../store/actions/actions-review';
 import { Carousel} from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+
 
 export default function Review() {
     const dispatch = useDispatch();

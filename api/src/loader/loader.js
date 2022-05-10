@@ -2,13 +2,16 @@ const activities = require('../../activity.json')
 const users = require('../../usuarios.json')
 const trainer = require('../../trainer.json')
 const review = require('../../review.json')
+const diaHora = require('../../diaHora.json')
 const orderLine = require ('../../orderLine.json')
 const order = require ('../../Order.json')
+
 const {
     Activity,
     User,
     Trainer,
     Review,
+    DiaHora,
     Order,
     OrderLine
 } = require('../db');
@@ -30,14 +33,6 @@ const loaderUsers = async () => {
                     isAdmin: el.isAdmin
                 },
             });
-            /* el.activity.forEach(async (e) => {
-                const activityIns = await Activity.findOne({
-                    where: {
-                        name: e.name
-                    }
-                })
-                await activityIns.addUser(userIns[0])
-            }) */
         });
         console.log('Usuarios cargados en la DB')
     }
@@ -56,9 +51,6 @@ const loaderActivity = async () => {
                     video: el.video,
                     image: el.image,
                     price: el.price,
-                    day: el.day,
-                    hour: el.hour,
-                    capacity: el.capacity
                 },
             });
             el.trainers.forEach(async (e) => {
@@ -151,11 +143,30 @@ const loaderOrderline = async () =>{
 }
 
 
+const loaderDiaHora = async () =>{
+    try {
+        diaHora.forEach(async (el) => {
+            await DiaHora.findOrCreate({
+                where: {
+                    day: el.day,
+                    hour: el.hour,
+                    capacity: el.capacity,
+                    activityId: el.activityId
+                },
+            });
+        })
+        console.log('diaHora cargados en la DB')
+    } catch (error) {
+        console.log('Error en la carga de diaHora a la DB')
+    }
+}
+
 module.exports = {
     loaderUsers,
     loaderActivity,
     loaderTrainer,
     loaderReview,
+    loaderDiaHora,
     loaderOrder,
-    loaderOrderline 
+    loaderOrderline
 }
