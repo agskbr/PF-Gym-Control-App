@@ -59,24 +59,6 @@ router.put("/cart/:userId", async (req, res) => {
         const orderLine = await orderlineByOrderId(OrderCart.id)
         const orderlineToChange = await Orderline.findByPk(orderlineId);
         
-        /* // Acá se modificarán las cantidades (orderlineQuantity) de esa orderline (orderlineId)
-        const product = await Product.findOne({
-            where: {
-            id: orderlineToChange.productId,
-            },
-        });
-        if (orderlineQuantity > product.stock) {
-            return res.send(
-            `Se alcanzó el máximo stock, se puede comprar hasta ${product.stock} items.`
-            );
-        }
-        product.stock =
-            product.stock + orderlineToChange.quantity - orderlineQuantity;
-        const updatedProduct = await product.save();
-        orderlineToChange.quantity = Number(orderlineQuantity);
-        orderlineToChange.save();
-        return res.send(orderlineToChange);
-        }*/
         return orderlineToChange;
     }catch (err) {
         return res.send({ data: err }).status(400);
