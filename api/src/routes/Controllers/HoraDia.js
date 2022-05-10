@@ -10,33 +10,26 @@ const allHoraDia = async () => {
         const allHoraDia = await HoraDia.findAll({
             include: {
                 model: Activity,
-                attributes: ["name"],
-                through: {
-                    attributes: [],
-                },
+                attributes: ["name"]
             }
         })
         return allHoraDia;
 }
 
-// traigo los dias y horas con sus usuarios
-const allHoraDiaUser = async () => {
+
+// traigo todos los dias y horas de un usuario
+const allHoraDiaUser = async (userId) => {
     const allHoraDiaUser = await HoraDia.findAll({
-        include: {
-            model: User,
-            attributes: ["name"],
-            through: {
-                attributes: [],
-            },
-        }
+        where: {
+            userId: userId
+        },
     })
     return allHoraDiaUser;
 }
 
 
 // para crear un nuevo evento
-
-const horaDiaCreate = async (days, hour,capacity,availability, activities) => {
+const horaDiaCreate = async (days, hour, capacity, availability, activities) => {
     try {
         const horaDia = await HoraDia.findOne({
             where: {
@@ -70,23 +63,6 @@ const horaDiaId = async (id) => {
             },
             include: {
                 model: Activity,
-                attributes: ["name"]
-            }
-        })
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-// para buscar un evento con sus usuarios
-const horaDiaIdUser = async (id) => {
-    try {
-        return await HoraDia.findOne({
-            where: {
-                id: id,
-            },
-            include: {
-                model: User,
                 attributes: ["name"]
             }
         })

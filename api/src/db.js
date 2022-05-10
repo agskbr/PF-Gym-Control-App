@@ -78,7 +78,8 @@ DiaHora.belongsTo(Activity,);
 Activity.belongsToMany(Order, { through: OrderLine });
 Order.belongsToMany(Activity, { through: OrderLine });
 
-
+User.belongsToMany(DiaHora, { through: "Dias-Users" });
+DiaHora.belongsToMany(User, { through: "Dias-Users" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

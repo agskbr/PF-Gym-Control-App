@@ -13,30 +13,33 @@ const{
     removeUserHoraDia
 } = require('../Controllers/HoraDia');
 
-
+//obtengo todos los dias-horas y sus actividades
 router.get("/", async (req, res) => {
     const horasDia = await allHoraDia();
     horasDia ? res.status(200).send(horasDia)
     : res.status(404).send("HoraDia no encontrado");
 });
 
-
-router.get("/", async (req, res) => {
-    const horaDiaUser = await allHoraDiaUser();
+//obtener todos los dias de un usuario 
+router.get("/user/:id", async (req, res) => {
+    const { id } = req.params;
+    const horaDiaUser = await allHoraDiaUser(id);
     horaDiaUser ? res.status(200).send(horaDiaUser)
     : res.status(404).send("No encontrado");
 })
 
-router.post("/", async (req, res) => {
+//crear un dia 
+router.post("/create", async (req, res) => {
     try {
-        const {days,hour, capacity, availability, activities} = req.body
-        const horaDia = await horaDiaCreate(days,hour,capacity,availability,activities)
+        const {days, hour, capacity, activities} = req.body
+        const horaDia = await horaDiaCreate(days,hour,capacity,activities)
         return res.send(horaDia)
     } catch (error) {
         console.log(error)
     }
 });
 
+//obtener un horaDia por un Id
 router.get("/:id", async (req, res) => {
     const {id} = req.params
     const horaDia = await horaDiaId(id)
@@ -44,13 +47,7 @@ router.get("/:id", async (req, res) => {
     : res.status(404).send("No se encontro");
 });
 
-router.get("/:id", async (req, res) => {
-    const {id} = req.params
-    const horaDiaUser = await horaDiaIdUser(id)
-    horaDiaUser ? res.status(200).send(horaDiaUser)
-    : res.status(404).send("No se encontro usuario");
-});
-
+//eliminar diaHora especifica :diaHoraId
 router.delete("/:id", async (req, res) => {
     const {id} = req.params
     try {
@@ -61,6 +58,7 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
+//modificar diaHora especifica :diaHoraId
 router.put('/:id', async (req, res,)=> {
     let {id} = req.params
     let horaDia = req.body;

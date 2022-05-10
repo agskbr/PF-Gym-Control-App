@@ -14,7 +14,7 @@ const {
 } = require('../../db');
 
 //order/carrito -------------------------------------------------------------------------------------------------------------
-//buscar o Crear orden-carrito / 
+//buscar o Crear orden-carrito / Buscar o Crear Orden-carrito / 
 
 //Buscar o crear orden/carrito
 router.post("/cart", async (req,res) => {
@@ -31,7 +31,7 @@ router.post("/cart", async (req,res) => {
     }
 })
 
-//Obtener el Cart + Products de un usuario
+//Obtener el Cart + Activity de un usuario
 router.get("/cart/:userId", async (req, res) => {
     const { userId } = req.params;
     try {
@@ -49,6 +49,8 @@ router.get("/cart/:userId", async (req, res) => {
 });
 
 //Modificar carrito cantidades en una orderline
+//en orden ->  precioTotal 
+//en lineaDeOrden -> Subtotal / Precio unitario / cantidad 
 router.put("/cart/:userId", async (req, res) => {
     const { userId } = req.params;
     const { orderlineId, orderlineQuantity } = req.body; // Se trigerean desde el body los campos de la Orderline
@@ -81,6 +83,8 @@ router.put("/cart/:userId", async (req, res) => {
     } 
 });
 
+
+//Modificad estado y control de stock - Confirmar compra - compra cancelada - compra finalizada
 
 
 //funciones basicas

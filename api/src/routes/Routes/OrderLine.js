@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {createOrderline, orderlineByOrderId, orderlineByActivityId} = require('../Controllers/Orderline.js')
 
+//crear una linea de orden
 router.post('/', async (req,res,) =>{
     try {
         const { unitprice, subtotal, quantity, orderId, activityId} = req.body
@@ -14,6 +15,7 @@ router.post('/', async (req,res,) =>{
     }
 });
 
+//obtener lineas de orden de una actividad con activityId
 router.get('/activity/:activityId', async(req,res) =>{
     try {
         const {activityId} = req.params
@@ -26,6 +28,7 @@ router.get('/activity/:activityId', async(req,res) =>{
     }
 })
 
+//obtener lineas de orden de una orden especifica
 router.get('/:orderId', async(req,res) =>{
     try {
         const {orderId} = req.params
