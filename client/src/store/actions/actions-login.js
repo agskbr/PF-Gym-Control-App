@@ -48,7 +48,7 @@ const registerUserWithEmailAndPass = (
       };
       await axios.post(`${base_url}/user`, userToDB);
       await updateProfile(auth.currentUser, {
-        displayName: `${name} ${lastName}`,
+        displayName: `${base_url} ${lastName}`,
       });
 
       dispatch({

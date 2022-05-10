@@ -5,7 +5,7 @@ import { validateUserIsLogged } from "../../store/actions/actions-login";
 import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { BASE_URL, POST_MERCADOPAGO } from '../../store/constantes';
+import { BASE_URL, POST_MERCADOPAGO, LOCAL_HOST} from '../../store/constantes';
 import { clearCart } from '../../store/actions/actionsCart';
 import { removeFromCart } from '../../store/actions/actionsCart';
 
@@ -38,11 +38,9 @@ export default function Checkout(activity) {
     const products = {orderBody: cartCheckOut.cart};
     
     const usuarioName = state.login.user.displayName;
-    const nameMP = usuarioName.split(' ');
-    const name = nameMP[0];
-    const lastname = nameMP[1];
-   
     
+    console.log(cartCheckOut);
+  
 
     // Validacion de usuario
     /* const userState = useSelector(state => state.user[0]) */
@@ -65,6 +63,12 @@ export default function Checkout(activity) {
             await axios.put('/orders/checkout/' + idCart.id, check); */
 
 
+
+            const nameMP = usuarioName.split(' ');
+             const name = nameMP[0];
+            const lastname = nameMP[1];
+            
+
             //!  ACTIVAR ENVIO DE EMAIL
             let check = {state:'Processing', totalPrice: totalCart}
             await axios.post(BASE_URL + '/order/', check);
@@ -73,7 +77,7 @@ export default function Checkout(activity) {
                 user: {
                     name: name,
                     lastname: lastname,
-                    email: user?.email
+                    email: user.email
                 },
                 info: {
                     orderId: idCart,
@@ -89,8 +93,8 @@ export default function Checkout(activity) {
 
 
             
-            let mercadoPagoRes = await axios.post( POST_MERCADOPAGO , cartCheckOut)
-            /* window.open(mercadoPagoRes.data) */
+            let mercadoPagoRes = await axios.post(BASE_URL + '/mercadopago/', cartCheckOut)
+            window.open(mercadoPagoRes.data)
             window.location.href = mercadoPagoRes.data;
             dispatch(clearCart());
            

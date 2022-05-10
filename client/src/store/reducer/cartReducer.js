@@ -36,7 +36,7 @@ export function cartReducer(state = initialState, action) {
 
             if (itemInCart) {
                 itemInCart.quantity += 1;
-                itemInOrder.count += 1;
+                itemInOrder.quantity += 1;
                 return {
                     ...state,
                     cart: [...state.cart],
@@ -49,7 +49,7 @@ export function cartReducer(state = initialState, action) {
                     order: [...state.order, {
                         name: action.payload.name,
                         price: action.payload.price,
-                        count: 1 
+                        quantity: 1 
                       }],
                 }
             }
