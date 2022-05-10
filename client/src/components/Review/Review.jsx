@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import s from './Review.module.css';
 import ReviewCard from '../ReviewCard/ReviewCard';
-//import {AiOutlineRight} from 'react-icons/ai';
-//import {AiOutlineLeft} from 'react-icons/ai';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllReviews} from '../../store/actions/actions-review';
 import { Carousel} from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+
 
 export default function Review() {
     const dispatch = useDispatch();
     
     const allReviews = useSelector((state)=>state.review.reviews)
-    console.log("aca", allReviews)
+    //console.log("aca", allReviews)
 
-    
     useEffect(()=>{
       dispatch(getAllReviews())
     }, [dispatch]) 
@@ -29,7 +27,7 @@ export default function Review() {
                         useKeyboardArrows
                         infiniteLoop
                         autoPlay
-                        interval={6000}
+                        interval={5000}
                         showThumbs={false}
                     >
                         {
@@ -42,11 +40,10 @@ export default function Review() {
                                 />
                             ))
                         }
-                    </Carousel>
+                    </Carousel> 
                 </div>
             </div>
         </section>
     </main>
   ): <></>
 }
-

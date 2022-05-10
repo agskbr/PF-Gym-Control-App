@@ -7,11 +7,33 @@ import {
 } from "../actions-type/index";
 
 const base_url = "https://pfgymapp-2.herokuapp.com";
+const local_host = "http://localhost:3001";
 
 const createActivity = (activity) => {
-  return async () => {
+  return async (dispatch) => {
     try {
-      await axios.post(`${base_url}/activity`, activity);
+      await axios.post(`${local_host}/activity`, activity);
+      dispatch(getActivity());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+const createUser = (user) => {
+  return async (dispatch) => {
+    try {
+      await axios.post(`${base_url}/user`, user);
+      dispatch(getAllUsers());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+const createTrainer = (trainer) => {
+  return async (dispatch) => {
+    try {
+      await axios.post(`${base_url}/trainer`, trainer);
+      dispatch(getAllTrainers());
     } catch (error) {
       console.log(error);
     }
@@ -126,6 +148,8 @@ export function changePage(page) {
 
 export {
   createActivity,
+  createUser,
+  createTrainer,
   getAllTrainers,
   editActivity,
   requestPost,

@@ -29,7 +29,7 @@ router.post("/", (req, res, next) => {
       preference.items.push({
         title: el.name,
         unit_price: parseInt(el.price),
-        quantity: parseInt(el.quantity)
+        quantity: parseInt(el.count)
       })
     })
   

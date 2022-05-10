@@ -1,10 +1,26 @@
 const {
     Activity,
     User,
-    Trainer
+    Trainer,
+    DiaHora
 } = require('../../db');
 
 
+
+const activityIdHora = async (id) => {
+    try {
+        return await Activity.findOne({
+            where: {
+                id: id,
+            },
+            include: {
+                model: DiaHora
+            }
+        })
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 const activityId = async (id) => {
     try {
@@ -51,7 +67,7 @@ const allActivity = async () => {
 
 
 
-const createActivity = async (name, description, video, image, price, day, hour, capacity, trainers) => {
+const createActivity = async (name, description, video, image, price, trainers) => {
     try {
         const actividad = await Activity.findOne({
             where: {
@@ -66,9 +82,6 @@ const createActivity = async (name, description, video, image, price, day, hour,
                 video,
                 image,
                 price,
-                day,
-                hour,
-                capacity,
                 trainers
             })
             const trainerenc = await Trainer.findAll({

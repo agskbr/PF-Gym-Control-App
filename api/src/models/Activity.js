@@ -35,10 +35,5 @@ module.exports = (sequelize) => {
       allowNull: true
     },
 
-    capacity:{
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-
   });
 };

@@ -26,6 +26,7 @@ const {
 //     }
 // }
 
+//obtener todas las ordenes+Users de la base de datos
 const allOrder = async () => {
     try {
         const allOrder = await Order.findAll({
@@ -38,6 +39,7 @@ const allOrder = async () => {
     }
 }
 
+//obtener orden de un ID especifico (orderId)
 const orderFilterId = async (id) => {
     try {
         const orderFilter = await Order.findAll({
@@ -51,6 +53,7 @@ const orderFilterId = async (id) => {
     }
 }
 
+//actualizar estado de una order de un Id especificado
 const orderUpdate = async (state, id) => {
     try {
         const orderUpd = await Order.update(
@@ -71,6 +74,7 @@ const orderUpdate = async (state, id) => {
 
 }
 
+//obtener ordenes de usuario sea el estado que sea de esa orden
 const orderUserId = async (userId) => {
     try {
         let reviews = await Order.findAll({
@@ -83,28 +87,41 @@ const orderUserId = async (userId) => {
         return error
     }
 }
-const createOrder = async (totalPrice, state, userId) => {
+
+//obtener cart+productos de un usuario
+const orderCartUserId = async (userId) => {
     try {
-        const order = await Order.findOne({
+        let reviews = await Order.findOne({
             where: {
                 userId: userId,
+                state: "Cart"
+            },
+            include: [{
+                model: Activity,
+            }]
+        })
+        return reviews
+    } catch (error) {
+        return error
+    }
+}
+
+//ver si el usuario tiene un cart en caso de no tener ninguno crear la orden en state:Cart
+const findOrCreateCart = async (userId) => {
+    try {
+        const order = await Order.findOrCreate({
+            where: {
+                userId: userId,
+                state: "Cart"
             },
         })
-        if (!order) {
-            const newOrder = await Order.create({
-                totalPrice,
-                state,
-                userId
-            })
-            return newOrder
-        }else{
-            return false
-        }
+        return order
     } catch (error) {
         return(error)
     }
 }
 
+//eliminar Orden de id recibido
 const deleteOrder = async (id) => {
     try {
         await Order.destroy({   
@@ -123,6 +140,7 @@ module.exports = {
     orderFilterId,
     orderUpdate,
     orderUserId,
-    createOrder,
-    deleteOrder
+    findOrCreateCart,
+    deleteOrder,
+    orderCartUserId
 }

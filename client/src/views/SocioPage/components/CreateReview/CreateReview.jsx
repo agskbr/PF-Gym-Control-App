@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { postReview } from '../../../../store/actions/actions-review';
+import { postReview, getReviewsByUser } from '../../../../store/actions/actions-review';
 import s from './CreateReview.module.css';
 import Swal from "sweetalert";
 import logo from '../../../../assets/logo.png'
@@ -9,17 +9,19 @@ import {FaStar} from 'react-icons/fa'
 
 
 const colors = {
-    orange: "#FFBA5A",
-    grey: "#a9a9a9"
+    orange: "#eb4e27",
+    grey: "#a9a9a9",
+    
 }
 
 
 export default function CreateReaview() {
 
-    const [errors, setErrors]= useState({});
     const dispatch = useDispatch();
     const allActivities = useSelector((state)=>state.pgym.allActivities);
-    console.log("activ", allActivities)
+    const allReviewUser = useSelector((state)=>state.review.reviews);
+    //console.log("activ", allActivities)
+    console.log("reviewsid", allReviewUser)
     //const user = useSelector((state)=>state.login.user.uid);
     
     const stars= Array(5).fill(0);
@@ -32,7 +34,7 @@ export default function CreateReaview() {
         userId: 1, //le seteo por defecto un id q este en base de datos para q funcione x ahora!!
     })
 
-    function validaciones(input){
+   /*  function validaciones(input){
         let errors = {}
 
         if(!input.rating){
@@ -41,12 +43,12 @@ export default function CreateReaview() {
         if(!input.description){
             errors.description="por favor ingresa una reseña"
         };
-        if(!input.userId){
-            errors.userId= "debes seleccionar una actividad"
+        if(!input.activityId){
+            errors.activityId= "debes seleccionar una actividad"
         };
         return errors
     }
-
+ */
     
 
     const handleClick = value => { //rating
@@ -55,10 +57,10 @@ export default function CreateReaview() {
             ...input,
             rating:value
         })
-        setErrors(validaciones({
+       /*  setErrors(validaciones({
             ...input,
             rating:value,
-        }))
+        })) */
     };
 
     const handleMouseOver = value => {
@@ -73,10 +75,10 @@ export default function CreateReaview() {
             ...input,
             description: e.target.value
         })
-        setErrors(validaciones({
+       /*  setErrors(validaciones({
             ...input,
             description:e.target.value
-        }))
+        })) */
     }
     const handleSelect = (e)=>{//actividad
         setInput({
@@ -84,142 +86,144 @@ export default function CreateReaview() {
             activityId: e.target.value,
             
         });
-        setErrors(validaciones({
+      /*   setErrors(validaciones({
             ...input,
             activityId:e.target.value
-        }))
+        })) */
     }
 
-   const handleSubmit = (e) => { //button
-        e.preventDefault()
-        
-        if(Object.values(errors).length !== 0){
+    const handleSubmit = (e) => { //button
+        if(!input.description || !input.rating || !input.activityId){
+            e.preventDefault()
             Swal({
-                title:"Debes completar todos los campos, para poder realizar la reseña.",
+                title:"Complete todos los campos.",
                 icon: "warning",
-                position:"center",
-                timer:2000,
-                showConfirmButton:false,
-                timerProgressBar:true,
+                position:"bottom",
+                timer: 2000,
+                
             });
+        }else if (allReviewUser.find((r)=>r.activityId === input.activityId)) {
+                e.preventDefault()
+                alert("ya realizaste una review de esta clase")
+                document.getElementById("reviewDialog").close();
         }else{
+            e.preventDefault()
             dispatch(postReview(input))
+            console.log("input", input)
             setInput({
-                rating: "",
-                description:"",
-                activityId: "",  
-                userId: ""
+                rating: " ",
+                description:" ",
+                activityId: " ",  
+                userId: " "
             })
             Swal({
                 title:"Reseña enviada correctamente",
                 buttons:"aceptar",
                 icon:"success",
-                position: "center",
+                /* position: "center", */
                 timer: 2000,
-                showConfirmButton: false,
-                timerProgressBar: true,
+                toast: true,
+                position:"top-end",
             })
-            /* document.getElementById("reviewDialog").close(); */
+            document.getElementById("reviewDialog").close();
         }
         
     }
-
+    
+   const user=1
     useEffect(()=>{
         dispatch(getActivity())
+        dispatch(getReviewsByUser(user))
     },[dispatch])
 
-  return allActivities ? (
+    return allActivities ? (
 
-    <dialog id="reviewDialog" style={{ border: "none", height: "20vh"}}>
-        <div
-            style={styles.container}
-        >
-            <div style={{ justifyContent: "flex-end", display: "flex" }}>
-                <button
-                  onClick={() => document.getElementById("reviewDialog").close()}
-                >
-                x
-                </button>
-            </div>
-            
-            <img 
-                src={logo} 
-                style={{ width: 100, objectFit: "cover", justifyContent: "center"}}
-                alt="logo"
-            />
-            <div className={s.createReviewtitle}>
-                <h3>Power Gym</h3>
-                <h4>¿Estas conforme son nuestro servicio? Dejanos tu opinion</h4>
-            </div>
-            <div>
-                <h6> ¿Que servicio vas a calificar? </h6>
-                <select 
-                    name="activityId" 
-                    id="activityId"
-                    key="activityId"
-                    onClick={handleSelect}
-                    className={s.CreateReaviewSelect}
-                    >
-                        <option value="">Actividad</option>
-                {
-                    allActivities? allActivities.map((activity, index) => (
-                        <option 
-                            key={activity.id} 
-                            name={activity.name}
-                            value={activity.id}
-                            
+        <dialog id="reviewDialog" style={{ border: "none", height: "80vh"}}>
+            <div className={s.createReviewContainer}>
+                <div className={s.createReviewHeader}>
+                    <div style={{ justifyContent: "flex-end", display: "flex" }}>
+                        <button
+                        onClick={() => document.getElementById("reviewDialog").close()}
+                        className={s.createReviewBoton}
                         >
-                            {activity.name}
-                        </option>
-                    )): <p></p>
-                }
-                </select>
-            </div>
-            <h6>Dejanos tu opinion...</h6>
-            <form
-                className={s.CreateReaviewForm}
-                onSubmit
-            >
-               <div style={styles.stars}>
+                        x
+                        </button>
+                    </div>
+                    <img 
+                        src={logo} 
+                        style={{ width: 100, objectFit: "cover", justifyContent: "center"}}
+                        alt="logo"
+                    />
+                    <h3 className={s.createReviewTitle}>Power Gym</h3>
+                    <h4>¿Estas conforme son nuestro servicio? Dejanos tu opinion</h4>
+                </div>
+                <div>
+                    <h6> ¿Que servicio vas a calificar? </h6>
+                    <select 
+                        name="activityId" 
+                        id="activityId"
+                        key="activityId"
+                        onClick={handleSelect}
+                        className={s.CreateReaviewSelect}
+                        >
+                            <option value="">Actividad</option>
                     {
-                        stars.map((_, index)=> {
-                            return (
-                                <FaStar
-                                    key={index}
-                                    size={24}
-                                    style={{
-                                        marginRight:10,
-                                        cursor: "pointer"
-                                    }}
-                                    color={( hoverValue || currentValue) > index ? colors.orange : colors.grey}
-                                    onClick={()=> handleClick(index + 1)}
-                                    onMouseOver={()=> handleMouseOver(index + 1)}
-                                    onMouseLeave= {handleMouseLeave}
-                                />
-                            )
-                        })
+                        allActivities? allActivities.map((activity, index) => (
+                            <option 
+                                key={activity.id} 
+                                name={activity.name}
+                                value={activity.id}
+                                
+                            >
+                                {activity.name}
+                            </option>
+                        )): <p></p>
                     }
-               </div>
-               <div>
-                <textarea
-                        placeholder='Dejanos tu comentario'
-                        style={styles.textarea}
-                        onChange={handleChange}
-                />
-               </div>
-               
-                <button 
-                    style={styles.button}
-                    onClick={(e)=> handleSubmit(e)} 
-                >
-                    Enviar
-                </button>
-
-            </form>
-            
-        </div>
-      </dialog>
-  ): <></>
+                    </select>
+                </div>
+                <h6>Dejanos tu opinion...</h6>
+                <form className={s.CreateReaviewForm} onSubmit>
+                    <div style={styles.stars}>
+                        {
+                            stars.map((_, index)=> {
+                                return (
+                                    <FaStar
+                                        key={index}
+                                        size={24}
+                                        style={{
+                                            marginRight:10,
+                                            cursor: "pointer"
+                                        }}
+                                        color={( hoverValue || currentValue) > index ? colors.orange : colors.grey}
+                                        onClick={()=> handleClick(index + 1)}
+                                        onMouseOver={()=> handleMouseOver(index + 1)}
+                                        onMouseLeave= {handleMouseLeave}
+                                    />
+                                )
+                            })
+                        }
+                    </div>
+                    <div>
+                        <textarea
+                                placeholder='Dejanos tu comentario'
+                                style={styles.textarea}
+                                onChange={handleChange}
+                                cols={40}
+                        />
+                    </div>
+                    <div>
+                        <button 
+                            style={styles.button}
+                            onClick={(e)=> handleSubmit(e)}
+                            className={s.createReviewBoton} 
+                        >
+                            Enviar
+                        </button>
+                    </div>   
+                </form>
+            </div>
+        </dialog>
+    ): <></>
 }
 
 const styles = {
