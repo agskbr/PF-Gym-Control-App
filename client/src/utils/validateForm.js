@@ -44,17 +44,6 @@ const validateForm = (inputs, type) => {
     if (!inputs.price) {
       errors.price = "El precio es requerido";
     }
-    if (!inputs.capacity) {
-      errors.capacity = "La capacidad es requerida";
-    } else if (inputs.capacity < 0) {
-      errors.capacity = "Solo valores positivos";
-    }
-    if (!inputs.day.length) {
-      errors.day = "Debe seleccionar al menos un dia";
-    }
-    if (!inputs.hour.length) {
-      errors.hour = "Debe seleccionar al menos un horario";
-    }
     if (!inputs.trainers.length) {
       errors.trainers = "Debe seleccionar instructor";
     }
