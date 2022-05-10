@@ -26,8 +26,8 @@ const initialState ={
         case GET_NAME_RECIPES:
             return {
                 ...state,
-                orderedRecipes: state.recipes.filter(recipe => recipe.name.toLowerCase().includes(action.payload.toLowerCase())),
-                currentPage: state.recipes.filter(recipe => recipe.name.toLowerCase().includes(action.payload.toLowerCase()))
+                orderedRecipes: state.recipes.filter(recipe => recipe.title.toLowerCase().includes(action.payload.toLowerCase())),
+                currentPage: state.recipes.filter(recipe => recipe.title.toLowerCase().includes(action.payload.toLowerCase()))
             }
 
         case 'FILTER_RECIPES':
