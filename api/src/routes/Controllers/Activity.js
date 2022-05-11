@@ -22,15 +22,12 @@ const activityIdHora = async (id) => {
     }
 }
 
-const activityId = async (id) => {
+//obtener activida por nonmbre (devuelve unicamente la actividad)
+const activityName = async (name) => {
     try {
         return await Activity.findOne({
             where: {
-                id: id,
-            },
-            include: {
-                model: Trainer,
-                attributes: ["name"]
+                name: name,
             }
         })
     } catch (err) {
@@ -38,26 +35,39 @@ const activityId = async (id) => {
     }
 }
 
+//obtener activida por activityId
+const activityId = async (id) => {
+    try {
+        return await Activity.findOne({
+            where: {
+                id: id,
+            },
+            include: [
+                {
+                    model: Trainer,
+                    attributes: ["name"]
+                },
+                { model: DiaHora }
+            ]
+        })
+    } catch (err) {
+        console.log(err);
+    }
+}
 
+//todas las actividades+Trainer+DiaHora
 const allActivity = async () => {
     try {
         return await Activity.findAll({
-            /* include: {
-                model: User,
-                attributes: ["name","lastName","dni"],
-                through: {
-                    attributes: [],
+            include: [
+                {
+                    model: Trainer,
+                    attributes: ["name"],
                 },
-            },
-                attributes: ["name","lastName","dni"]
-            }, */
-            include: {
-                model: Trainer,
-                attributes: ["name"],
-                through: {
-                    attributes: [],
-                },
-            }
+                {
+                    model: DiaHora
+                }
+            ]
             
         })
     } catch (err) {
@@ -65,24 +75,21 @@ const allActivity = async () => {
     }
 }
 
-
-
-const createActivity = async (name, description, video, image, price, trainers) => {
+//crear actividad - el dia y hora debe de ser uno creado nuevo en el cual no tenga relacion con ninguno
+const createActivity = async (name, description, video, image, price, trainers, arrayIddh) => {
     try {
-        const actividad = await Activity.findOne({
+        let actividad = await Activity.findOne({
             where: {
                 name: name,
             },
         })
-    
         if (!actividad) {
             const newAct = await Activity.create({
                 name,
                 description,
                 video,
                 image,
-                price,
-                trainers
+                price
             })
             const trainerenc = await Trainer.findAll({
                 where: {
@@ -92,13 +99,24 @@ const createActivity = async (name, description, video, image, price, trainers) 
             if (trainerenc[0]) {
                 newAct.addTrainer(trainerenc);
             }
+            const diahora = await DiaHora.findAll({
+                where: {
+                    id: arrayIddh,
+                }
+            })
+            if (diahora[0]) {
+                newAct.addDiaHora(diahora);
+            }
             return newAct
-        }else return actividad
+        }
+        return false
     } catch (error) {
-        console.log(error)
+        return (error)
     }
 }
 
+
+//actualizar Actividad sola
 const activityUpd = async (id,activity) => {
     try {
         return await Activity.update(activity,{   
@@ -111,7 +129,7 @@ const activityUpd = async (id,activity) => {
     }
 }
 
-
+//eliminar actividad
 const deleteActivity = async (id) => {
     try {
         await Activity.destroy({   
@@ -166,7 +184,8 @@ module.exports = {
     activityUpd,
     deleteActivity,
     activityDeleteTrainer,
-    activityAddTrainer
+    activityAddTrainer,
+    activityName
 }
 
 
