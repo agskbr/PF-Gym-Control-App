@@ -36,7 +36,7 @@ router.get("/find/:state", async (req, res) => {   //example: http://localhost:3
 
 })
 //obtener todas las ordenes de un estado específico de un usuario específico
-router.get("/find/:state/:userId", async (req, res) => {   //example: http://localhost:3001/order/find/Complete/2
+router.get("/find/:state/:userId", async (req, res) => {   //example: http://localhost:3001/order/find/Cart/2
     try {
       const state=req.params.state;
       const userId = req.params.userId;
