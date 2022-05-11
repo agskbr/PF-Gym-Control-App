@@ -1,7 +1,6 @@
 const router = require("express").Router();
-const { Activity, Review, User, Order } = require("../../db");
 const nodemailer = require("nodemailer");
-const hbs = require("nodemailer-express-handlebars");
+//const hbs = require("nodemailer-express-handlebars");
 //const {USER_MAIL, USER_PASS} = process.env;
 //const UserMail = "gymcontrol12@gmail.com"
 const UserMail = "gymcontrol12@outlook.com"
@@ -25,13 +24,10 @@ router.post('/:emailType', async (req,res) => {
             user: UserMail,
             pass: Pass,
         },
-
     })
-
     const emailType = req.params.emailType;
     let mailOptions;
     console.log(req.body.user.email)
-
     if (emailType === "welcome") {
         mailOptions = {
           from: UserMail,
@@ -57,8 +53,8 @@ router.post('/:emailType', async (req,res) => {
             <hr>
             <small>En caso de cualquier inquietud, por favor contactanos en: gymcontrol12@gmail.com</small>`,
         };
-    }
-    else if (emailType === "forgotPassword") {
+      /*}
+        else if (emailType === "forgotPassword") {
         mailOptions = {
           from: UserMail,
           to: req.body.user.email,
@@ -87,7 +83,7 @@ router.post('/:emailType', async (req,res) => {
             Gracias por contar con nosotr@s!</p>
             <hr>
             <small>En caso de cualquier inquietud, por favor contactanos en: gymcontrol12@gmail.com</small>`,
-        };
+        }; */
       } else if (emailType === "orderCreated") {
         const { user, info } = req.body;
         mailOptions = {
@@ -142,10 +138,6 @@ router.post('/:emailType', async (req,res) => {
           `,
         };
       }
-
-
-
-
 
 
     transporter.sendMail(mailOptions, (err, data) => {

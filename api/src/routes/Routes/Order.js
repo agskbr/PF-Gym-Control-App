@@ -48,17 +48,23 @@ router.get("/cart/:userId", async (req, res) => {
     }
 });
 
-//Modificar carrito cantidades en una orderline
+//Realizar checkout cuardando cambios 
+// (agregando actividades y modificando cantidades de las orderline)
 //en orden ->  precioTotal 
 //en lineaDeOrden -> Subtotal / Precio unitario / cantidad 
-router.put("/cart/:userId", async (req, res) => {
+router.put("/checkout/:userId", async (req, res) => {
     const { userId } = req.params;
     const { orderlineId, orderlineQuantity } = req.body; // Se trigerean desde el body los campos de la Orderline
     try {
         const OrderCart = await findOrCreateCart(userId)
         const orderLine = await orderlineByOrderId(OrderCart.id)
         const orderlineToChange = await Orderline.findByPk(orderlineId);
-        
+
+
+
+
+
+
         return orderlineToChange;
     }catch (err) {
         return res.send({ data: err }).status(400);

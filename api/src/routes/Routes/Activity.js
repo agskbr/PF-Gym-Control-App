@@ -13,6 +13,7 @@ const {
 } = require('../Controllers/Activity');
 
 
+
 //crear actividad+[NameTrainer]+[idDiasCreados] array de los Id de dias creados ejemplo: [Id1,Id2,Id3]
 //se actualizo la ruta, ahora necesita recibir los nombre de los trainers por un array y
 //los nombres de los ID de los dias creados (sin relaciona a ninguna actividad) por un array
