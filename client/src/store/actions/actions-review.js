@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {CREATE_REVIEW, GET_ALL_REVIEWS,} from '../actions-type/index';
+import {CREATE_REVIEW, GET_ALL_REVIEWS, GET_REVIEWS_BY_USER} from '../actions-type/index';
 
 /* const base_url = "http://localhost:3001"; */
-const base_url = "https://pfgymapp-2.herokuapp.com";
+const base_url = "https://pfgymapp-2.herokuapp.com" || "http://localhost:3001" ;
 
 export const postReview = (payload)=>{ // review = description, rating, userId, img??
     return async (dispatch)=> {
@@ -28,6 +28,20 @@ export const getAllReviews = ()=> {
             })
         } catch (err) {
             console.log('error en getAllReviews', err)
+        }
+    }
+}
+
+export const getReviewsByUser = (id) => {
+    return async (dispatch)=>{
+        try {
+            const {data} = await axios.get(`${base_url}/review/user/${id}`)
+            return dispatch({
+                type: GET_REVIEWS_BY_USER,
+                payload:data
+            })
+        } catch (error) {
+            console.log('error en getReviewsByUser', error)
         }
     }
 }

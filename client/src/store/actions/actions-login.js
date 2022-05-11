@@ -1,5 +1,6 @@
 import axios from "axios";
 import swal from "sweetalert";
+import { BASE_URL } from "../constantes";
 import {
   googleAuthProvider,
   auth,
@@ -20,9 +21,6 @@ import {
   RECEIVED_POST,
   USER_IS_ADMIN,
 } from "../actions-type";
-
-const base_url = "https://pfgymapp-2.herokuapp.com";
-const local_host = "http://localhost:3001";
 
 const registerUserWithEmailAndPass = (
   email,
@@ -46,10 +44,11 @@ const registerUserWithEmailAndPass = (
         phoneNumber,
         image: "",
       };
-      await axios.post(`${base_url}/user`, userToDB);
+      await axios.post(`${BASE_URL}/user`, userToDB);
       await updateProfile(auth.currentUser, {
-        displayName: `${base_url} ${lastName}`,
+        displayName: `${name} ${lastName}`,
       });
+      console.log(auth);
 
       dispatch({
         type: REGISTER_USER_WITH_EMAIL_AND_PASS,
@@ -119,17 +118,13 @@ const loginWithGoogle = () => {
         email: userData.user.email,
         name: firstName,
         lastName,
-        phoneNumber: userData.user.phoneNumber,
+        phoneNumber: userData.user.phoneNumber ?? "",
         image: userData.user.photoURL,
       };
 
-      const { status } = await axios.post(
-        `${base_url}/user`,
-        authWithGoogleData
-      );
-      if (status === 200) {
-        dispatch({ type: LOGIN_WITH_GOOGLE, payload: authWithGoogleData });
-      }
+      await axios.post(`${BASE_URL}/user`, authWithGoogleData);
+
+      dispatch({ type: LOGIN_WITH_GOOGLE, payload: authWithGoogleData });
     } catch (error) {
       console.log(error);
     }
@@ -141,7 +136,7 @@ const validateUserIsLogged = () => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
-          const { data } = await axios.post(`${base_url}/user/isAdmin`, {
+          const { data } = await axios.post(`${BASE_URL}/user/isAdmin`, {
             id: user.uid,
           });
           dispatch({ type: USER_IS_ADMIN, payload: data });
