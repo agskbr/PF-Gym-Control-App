@@ -5,15 +5,11 @@ const{
     allHoraDiaUser,
     horaDiaCreate,
     horaDiaId,
-    horaDiaIdUser,
     horaDiaDelete,
-    horaDiaDelete2,
     horaDiaUpd,
-    updateHoraDia,
-    removeUserHoraDia,
-    horaDiaActivityUpd,
     deleteHoraDiaActivity
 } = require('../Controllers/DiaHora');
+
 
 //obtener todos los dias de un usuario 
 router.get("/user/:id", async (req, res) => {
@@ -36,7 +32,7 @@ router.post("/create", async (req, res) => {
 
 //eliminar dia especificado de una actividad especificada por idActivity y idDiaHora
 router.delete('/activity/:ActivityId/:diaHoraId', async (req, res,)=> {
-    let { ActivityId, diaHoraId } = req.params;
+    const { ActivityId, diaHoraId } = req.params;
     try {
         const horaDia_Upd = deleteHoraDiaActivity(ActivityId,diaHoraId);
         res.send(horaDia_Upd);  
@@ -46,16 +42,17 @@ router.delete('/activity/:ActivityId/:diaHoraId', async (req, res,)=> {
 });
 
 //modificar diaHora de una Actividad especifica :diaHoraId
-router.put('/activity/:ActivityId', async (req, res,)=> {
+//esta de mas, para eso directamente usar la ruta editar Horadia por IdHoraDia
+/* router.put('/activity/:ActivityId/:diaHoraId', async (req, res,)=> {
     let { ActivityId } = req.params;
-    let horaDia = req.body;
+    let { horaDia } = req.body;
     try {
-        const horaDia_Upd = horaDiaActivityUpd(ActivityId,horaDia);
+        const horaDia_Upd = horaDiaActivityUpd(ActivityId,diaHoraId,horaDia);
         res.send(horaDia_Upd);  
     } catch (error) {
         return(error)
     }
-});
+}); */
 
 
 //funciones basicas Obtener todo/ eliminar con Id de diaHora / Modificar Con Id de diaHora---------------------------------------------------
@@ -79,7 +76,7 @@ router.get("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     const {id} = req.params
     try {
-        await horaDiaDelete2(id)
+        await horaDiaDelete(id)
         res.status(200).json("HoraDia Eliminado");
     } catch (error) {
         console.log(error)

@@ -99,16 +99,15 @@ const createActivity = async (name, description, video, image, price, trainers, 
             if (trainerenc[0]) {
                 newAct.addTrainer(trainerenc);
             }
-            actividad = newAct;
             const diahora = await DiaHora.findAll({
                 where: {
                     id: arrayIddh,
                 }
             })
             if (diahora[0]) {
-                actividad.addDiaHora(diahora);
+                newAct.addDiaHora(diahora);
             }
-            return actividad
+            return newAct
         }
         return false
     } catch (error) {

@@ -89,7 +89,7 @@ const deleteHoraDiaActivity = async (idActivity,idDiaHora) => {
 }
 
 // para eliminar un diaHora con su IdDiaHora especifico
-const horaDiaDelete2 = async (id) => {
+const horaDiaDelete = async (id) => {
     try {
         return await DiaHora.destroy({
             where: {
@@ -175,29 +175,28 @@ const removeUserHoraDia = async (req, res) => {
 }
 
 // para modificar un evento de una actividad especifica
-const horaDiaActivityUpd = async (id,horaDia) => {
+//esta de mas.. no sirve. 
+/* const horaDiaActivityUpd = async (id, idDiaHora, horaDia) => {
     try {
         return await DiaHora.update(horaDia,{
             where: {
                 ActivityId: id,
+                id:idDiaHora
             }
         })
     } catch (error) {
         return(error)
     }
-}
+} */
 
 module.exports = {
     allHoraDia,
     allHoraDiaUser,
     horaDiaCreate,
     horaDiaId,
-    //horaDiaIdUser,
-    //horaDiaDelete,
-    horaDiaDelete2,
+    horaDiaDelete,
     horaDiaUpd,
     updateHoraDia,
     removeUserHoraDia,
-    horaDiaActivityUpd,
     deleteHoraDiaActivity
 }
