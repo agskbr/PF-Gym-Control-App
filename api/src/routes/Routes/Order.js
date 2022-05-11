@@ -13,8 +13,33 @@ const {
     Orderline,
 } = require('../../db');
 
+//modificar estado a cancelado volviendo sumando el stock correspondiente
+//vaciar el carrito
+//saber estado de una orden especifica por su ordenId
+//obtener todas las ordenes en un estado especifico :orderState
+//obtener todas las ordenes de un usuario en especifico y estado indicado
+
+
+
+
+
 //order/carrito -------------------------------------------------------------------------------------------------------------
-//buscar o Crear orden-carrito / Buscar o Crear Orden-carrito / 
+//buscar o Crear orden-carrito / Buscar o Crear Orden-carrito / modificar estado de orden
+
+//modificar estado de orden de una orden especifica orderId y state ejm:{"state":"Complete"}
+router.put("/state/:id", async (req, res, next) => {
+    const { state } = req.body; // 'Cart', 'Created', 'Processing', 'Canceled', 'Complete'
+    const { id } = req.params;
+    try {
+        const orderUpd = await orderUpdate(state, id)
+            if (orderUpd) {
+                return res.status(202).send("Element updated");
+            }
+            return res.status(400).send("Order not found!");
+        } catch (error) {
+            
+        }
+})
 
 //Buscar o crear orden/carrito
 router.post("/cart", async (req,res) => {
@@ -48,10 +73,11 @@ router.get("/cart/:userId", async (req, res) => {
     }
 });
 
-//Realizar checkout cuardando cambios 
+//Realizar checkout cuardando cambios
 // (agregando actividades y modificando cantidades de las orderline)
-//en orden ->  precioTotal 
-//en lineaDeOrden -> Subtotal / Precio unitario / cantidad 
+//en orden ->  precioTotal
+//en lineaDeOrden -> Subtotal / Precio unitario / cantidad
+//verificar estado de stock
 router.put("/checkout/:userId", async (req, res) => {
     const { userId } = req.params;
     const { orderlineId, orderlineQuantity } = req.body; // Se trigerean desde el body los campos de la Orderline
@@ -70,9 +96,6 @@ router.put("/checkout/:userId", async (req, res) => {
         return res.send({ data: err }).status(400);
     } 
 });
-
-
-//Modificad estado y control de stock - Confirmar compra - compra cancelada - compra finalizada
 
 
 //funciones basicas
