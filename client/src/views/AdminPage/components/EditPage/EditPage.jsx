@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import {
-  editActivity,
-  getActivityById,
-  getAllTrainers,
-} from "../../../../store/actions/index.js";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { editActivity } from "../../../../store/actions/index.js";
 import { validateForm } from "../../../../utils/validateForm.js";
 import CustomInput from "../CustomInput/CustomInput.jsx";
 import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
@@ -13,11 +9,7 @@ import style from "./EditPage.module.css";
 import swal from "sweetalert";
 
 export default function EditPage() {
-  const { trainers, detail } = useSelector((state) => state.pgym);
-
-  const { id, item } = useParams();
-  const [activityToEdit, setActivityToEdit] = useState({});
-  const dispatch = useDispatch();
+  const { trainers, activities } = useSelector((state) => state.pgym);
   const daysOpt = [
     { id: 1, name: "Lunes" },
     { id: 2, name: "Martes" },
@@ -35,196 +27,174 @@ export default function EditPage() {
     { id: 6, name: "18-20" },
   ];
   const trainersOpt = trainers;
-  const [errors, setErrors] = useState({
-    image: "",
-    video: "",
-    name: "",
-    description: "",
-    price: "",
-    capacity: "",
-    day: "",
-    hour: "",
-    trainers: "",
-  });
-  const [activity, setActivity] = useState({
-    image: "",
-    video: "",
-    name: "",
-    description: "",
-    price: "",
-    capacity: "",
-    day: [],
-    hour: [],
-    trainers: [],
-  });
+
+  const { state } = useLocation();
+  const dispatch = useDispatch();
+
+  const { id, item } = useParams();
+  const type = item.replace(item[0], item[0].toUpperCase());
+
+  const [errors, setErrors] = useState({});
+  const [displayInputs, setDisplayInputs] = useState([]);
+  const [inputs, setInputs] = useState({});
+  const [keys, setKeys] = useState([]);
 
   const handlerChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setErrors(validateForm({ ...activity, [name]: value }));
-    setActivity((state) => ({ ...state, [name]: value }));
+    setErrors(validateForm({ ...inputs, [name]: value }, type));
+    setInputs((state) => ({ ...state, [name]: value }));
   };
+
   const handlerChangeSelectTag = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setErrors(validateForm({ ...activity, [name]: value }));
-    if (activity[name].includes(value)) return;
-    setActivity({
-      ...activity,
-      [name]: [...activity[name], value],
+    setErrors(validateForm({ ...inputs, [name]: value }, type));
+    if (inputs[name].includes(value)) return;
+    setInputs({
+      ...inputs,
+      [name]: [...inputs[name], value],
     });
   };
 
   useEffect(() => {
-    dispatch(getActivityById(id));
-    dispatch(getAllTrainers());
-  }, [dispatch, id]);
-  useEffect(() => {
-    if (Object.values(detail).length) {
-      setActivityToEdit(detail);
+    if (Object.values(state).length) {
+      setDisplayInputs([...state.displayArray]);
+      setKeys(Object.keys(state.displayArray[0]));
     }
-  }, [detail]);
+  }, [state, id]);
 
   useEffect(() => {
-    if (Object.values(activityToEdit).length) {
-      setActivity({
-        trainers: activityToEdit.trainers.map((trainer) => trainer.name),
-        day: activityToEdit.day,
-        hour: activityToEdit.hour,
-        image: activityToEdit.image,
-        capacity: activityToEdit.capacity,
-        name: activityToEdit.name,
-        video: activityToEdit.video,
-        description: activityToEdit.description,
-        price: activityToEdit.price,
+    if (keys.length) {
+      keys.forEach((key) => {
+        setInputs((sta) => {
+          if (Array.isArray(state.itemSelect[key])) {
+            const convertToArrayOfString = state.itemSelect[key][0]?.name
+              ? state.itemSelect[key].map((item) => item.name)
+              : state.itemSelect[key];
+            console.log(convertToArrayOfString);
+            return { ...sta, [key]: [...convertToArrayOfString] };
+          } else if (typeof displayInputs[0][key] === "number") {
+            return { ...sta, [key]: state.itemSelect[key] };
+          } else {
+            return { ...sta, [key]: state.itemSelect[key] };
+          }
+        });
+        setErrors((state) => ({ ...state, [key]: "" }));
       });
     }
-  }, [activityToEdit]);
+  }, [keys, displayInputs, state]);
 
   return (
     <div className={style.principalContainer}>
       <h3>Editar {item}</h3>
       <div className={style.inputsContainer}>
         <div className={style.imageContainer}>
-          <img src={activity.image} alt="actividad" />
+          <img src={state.itemSelect.image ?? ""} alt={item} />
         </div>
-        <CustomInput
-          onChange={handlerChange}
-          name="image"
-          placeholder="Image"
-          type="text"
-          value={activity.image}
-          labelError={errors.image}
-          titleInput="Imagen"
-        />
-        <CustomInput
-          onChange={handlerChange}
-          value={activity.video}
-          name="video"
-          type="text"
-          placeholder="Video"
-          labelError={errors.video}
-          titleInput="Video"
-        />
-        <CustomInput
-          onChange={handlerChange}
-          value={activity.name}
-          name="name"
-          type="text"
-          placeholder="Nombre"
-          labelError={errors.name}
-          titleInput="Nombre"
-        />
-        <div className={style.textAreaContainer}>
-          <span>Descripcion</span>
-          <textarea
-            value={activity.description}
-            onChange={handlerChange}
-            className={style.customTextArea}
-            name="description"
-            placeholder="Descripcion"
-          ></textarea>
-          <label htmlFor="description">{errors.description}</label>
-        </div>
-        <CustomInput
-          name="price"
-          value={activity.price}
-          onChange={handlerChange}
-          type="text"
-          placeholder="Price"
-          labelError={errors.price}
-          titleInput="Precio"
-        />
-        <CustomInput
-          name="capacity"
-          onChange={handlerChange}
-          value={activity.capacity}
-          type="number"
-          placeholder="Capacidad"
-          min="0"
-          labelError={errors.capacity}
-          titleInput="Capacidad"
-        />
-        <div className={style.selectTagsContainer}>
-          <CustomSelectTag
-            errorLabel={errors.day}
-            options={daysOpt}
-            firstOpt="Elegí un día"
-            name="day"
-            handlerChangeSelectTag={handlerChangeSelectTag}
-            visualizeItems={activity.day}
-            activity={activity}
-            setActivity={setActivity}
-            setErrors={setErrors}
-          />
-          <CustomSelectTag
-            errorLabel={errors.hour}
-            options={hoursOpt}
-            firstOpt="Elegí un horario"
-            name="hour"
-            handlerChangeSelectTag={handlerChangeSelectTag}
-            visualizeItems={activity.hour}
-            activity={activity}
-            setActivity={setActivity}
-            setErrors={setErrors}
-          />
+        {keys.map((input) =>
+          input !== "id" &&
+          input !== "uid" &&
+          input !== "description" &&
+          input !== "experience" &&
+          input !== "activities" &&
+          input !== "status" &&
+          input !== "day" &&
+          input !== "trainers" &&
+          input !== "updatedAt" &&
+          input !== "createdAt" &&
+          input !== "createdInDb" &&
+          input !== "hour" ? (
+            <CustomInput
+              disabled={disabledUserInputs(type, input)}
+              key={input}
+              labelError={errors[input]}
+              name={input}
+              onChange={handlerChange}
+              value={inputs[input] ?? ""}
+              placeholder={input}
+              titleInput={input}
+              type="text"
+            />
+          ) : input === "experience" || input === "description" ? (
+            <div key={input} className={style.textAreaContainer}>
+              <span>
+                {inputs.description
+                  ? "description"
+                  : inputs.experience
+                  ? "experience"
+                  : null}
+              </span>
+              <textarea
+                value={inputs[input] ?? ""}
+                onChange={handlerChange}
+                className={style.customTextArea}
+                name="description"
+                placeholder="Descripcion"
+              ></textarea>
+              <label htmlFor="description">{errors.description}</label>
+            </div>
+          ) : null
+        )}
 
-          <CustomSelectTag
-            errorLabel={errors.trainers}
-            options={trainersOpt}
-            firstOpt="Elegí un instructor"
-            name="trainers"
-            handlerChangeSelectTag={handlerChangeSelectTag}
-            visualizeItems={activity.trainers}
-            activity={activity}
-            setActivity={setActivity}
-            setErrors={setErrors}
-          />
+        <div className={style.selectTagsContainer}>
+          {keys.map((selectTag) =>
+            Array.isArray(state.itemSelect[selectTag]) ? (
+              <CustomSelectTag
+                key={selectTag}
+                name={selectTag}
+                inputs={inputs}
+                firstOpt="Elegí una o mas opciones"
+                setInputs={setInputs}
+                setErrors={setErrors}
+                errorLabel={errors[selectTag]}
+                type={type}
+                handlerChangeSelectTag={handlerChangeSelectTag}
+                options={
+                  selectTag === "day"
+                    ? daysOpt
+                    : selectTag === "hour"
+                    ? hoursOpt
+                    : selectTag === "trainers"
+                    ? trainersOpt
+                    : selectTag === "activities"
+                    ? [...activities]
+                    : []
+                }
+                visualizeItems={inputs[selectTag] ?? []}
+              />
+            ) : null
+          )}
         </div>
         <div className={style.buttonsContainer}>
           <button
             disabled={Object.values(errors).length}
             onClick={() => {
-              setErrors(validateForm(activity));
               if (Object.values(errors).length === 0) {
-                dispatch(editActivity(activity, id));
+                if (type === "Clases") {
+                  dispatch(
+                    editActivity(
+                      {
+                        ...inputs,
+                        price: parseInt(inputs.price),
+                        capacity: parseInt(inputs.capacity),
+                      },
+                      id
+                    )
+                  );
+                }
+                if (type === "Instructores") {
+                  // dispatch();
+                }
+                if (type === "Instructores") {
+                  // dispatch();
+                }
                 swal({
                   closeOnEsc: false,
                   closeOnClickOutside: false,
                   buttons: "Aceptar",
                   icon: "success",
                   title: "Actividad editada correctamente",
-                });
-                setErrors({
-                  image: "",
-                  video: "",
-                  name: "",
-                  description: "",
-                  price: "",
-                  capacity: "",
-                  day: "",
-                  hour: "",
-                  trainers: "",
                 });
               }
             }}
@@ -234,7 +204,7 @@ export default function EditPage() {
                 : style.editBtn
             }
           >
-            Editar actividad
+            Editar {item}
           </button>
           <Link className={style.link} to={"/admindashboard"}>
             Terminar edición
@@ -244,3 +214,15 @@ export default function EditPage() {
     </div>
   );
 }
+
+export const disabledUserInputs = (type, input) => {
+  if (type !== "Usuarios") return false;
+  if (
+    input === "name" ||
+    input === "lastName" ||
+    input === "email" ||
+    input === "phoneNumber"
+  ) {
+    return true;
+  }
+};

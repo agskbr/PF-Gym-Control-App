@@ -5,66 +5,51 @@ const {
 } = require('../../db');
 
 
-// traigo los dias y horas con sus acividades
-const allDiaHora = async () => {
-    try {
-        const allDia = await DiaHora.findAll({
-            // include: [{model: Activity}], 
-            include: {
+// traigo los dias y horas con sus acividades y usuarios
+const allHoraDia = async () => {
+    const allHoraDia = await DiaHora.findAll({
+        include: [
+            {
                 model: Activity,
-                attributes: ["name", "image"]
-            }
-        })
-        return allDia;
-    } catch (error) {
-        console.log(error);
-    }
-}
-        
-
-// traigo los dias y horas con sus usuarios
-// const allHoraDiaUser = async (userId) => {
-
-//     try {
-//         let allHoraDiaUser = await HoraDia.findAll({
-//             where: {
-//                 userId: userId,
-//             },
-//         })
-//         return allHoraDiaUser 
-//     } catch (error) {
-//         return error
-//     }
-// }
-
-
-// para crear un nuevo evento
-
-const createDiaHora = async (day, hour,capacity, activityId) => {
-    try {
-        const dia = await DiaHora.findOne({
-            where: {
-                activityId: activityId
+                attributes: ["name"]
             },
+            {
+                model: User,
+                attributes: ["name"]
+            }
+            ]
         })
-        if (dia) {
-            const newHoraDia = await DiaHora.create({
-                day,
-                hour,
-                capacity,
-                activityId
-            })
-            return newHoraDia;
-        } else {
-            return false
-        }
-    } catch (error) {
-        console.log(error);
+        return allHoraDia;
 }
+
+
+// traigo todos los dias y horas de un usuario
+const allHoraDiaUser = async (userId) => {
+    const allHoraDiaUser = await DiaHora.findAll({
+        where: {
+            userId: userId
+        },
+    })
+    return allHoraDiaUser;
+}
+
+
+// para crear un nuevo diaHora
+const horaDiaCreate = async (day, hour, capacity) => {
+    try {
+        const newHoraDia = await DiaHora.create({
+            day,
+            hour,
+            capacity
+        })
+        return newHoraDia
+    } catch (error) {
+        return(error)
+    }
 }
 
 // para buscar un evento con sus actividades
-const diaHoraId = async (id) => {
+const horaDiaId = async (id) => {
     try {
         return await DiaHora.findOne({
             where: {
@@ -80,38 +65,33 @@ const diaHoraId = async (id) => {
     }
 }
 
-
-
-
-// para eliminar el evento
-// const horaDiaDelete = async (day, hour) => {
-//     try {
-//         const horaDia = await HoraDia.findOne({
-//             where: {
-//                 day: day,
-//                 hour: hour,
-//             },
-//         })
-//         if (horaDia) {
-//             const deleteHoraDia = await HoraDia.destroy({
-//                 where: {
-//                     day: day,
-//                     hour: hour,
-//                 }
-//             })
-//             return deleteHoraDia
-//         }else{
-//             return false
-//         }
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
-
-// para eliminar un evento 2 opcion
-const deleteDiaHora = async (id) => {
+// para eliminar un diaHora de una actividad especifica
+//primego elimino la relacion que hay entre horaDia
+//luego elimino diaHora
+const deleteHoraDiaActivity = async (idActivity,idDiaHora) => {
     try {
-        await DiaHora.destroy({
+        var actividad = await Activity.findByPk(idActivity);
+        var diaHora = await DiaHora.findByPk(idDiaHora);
+        if (diaHora && actividad) {
+            actividad.removeDiaHora(diaHora);
+            await DiaHora.destroy({   
+                where: {                                            
+                    id : diaHora.id,
+                }
+            })
+            return true
+        } else {
+            return false
+        }
+    } catch (error) {
+        console.log(error)
+    }   
+}
+
+// para eliminar un diaHora con su IdDiaHora especifico
+const horaDiaDelete = async (id) => {
+    try {
+        return await DiaHora.destroy({
             where: {
                 id: id,
             }
@@ -121,8 +101,7 @@ const deleteDiaHora = async (id) => {
     }   
 }
 
-// para modificar un evento
-
+// para modificar un evento con su Id
 const horaDiaUpd = async (id,horaDia) => {
     try {
         return await DiaHora.update(horaDia,{
@@ -137,11 +116,11 @@ const horaDiaUpd = async (id,horaDia) => {
 
 // actualizar turno de usuario. esto seria cada vez que el usuario quiera acceder a un turno
 const updateHoraDia = async (req, res) => { 
-    const { idUser, idDiaHora} = req.body;
+    const { idUser, idHoraDia} = req.body;
     try {
-        let diaHora = await DiaHora.findOne({
+        let horaDia = await DiaHora.findOne({
             where: {
-                id: idDiaHora,
+                id: idHoraDia,
             },
         })
         let addUser = await User.findOne({
@@ -149,14 +128,14 @@ const updateHoraDia = async (req, res) => {
                 id: idUser,
             },
         })
-        await diaHora.addUser(addUser);
-        diaHora.save();
-        console.log(diaHora.users.length)
-        let newAvailability = diaHora.capacity - (diaHora.users.length + 1);
+        await horaDia.addUser(addUser);
+        horaDia.save();
+        console.log(horaDia.users.length)
+        let newAvailability = horaDia.capacity - (horaDia.users.length + 1);
         console.log(newAvailability);
-        diaHora.availability = newAvailability;
-        diaHora.save();
-        return res.json(diaHora);
+        horaDia.availability = newAvailability;
+        horaDia.save();
+        return res.json(horaDia);
     } catch (error) {
         console.log(error)
     }
@@ -164,17 +143,17 @@ const updateHoraDia = async (req, res) => {
 
 // quitar un turno al usuario. esto seria para que se muestre habilitado o no la clase
 const removeUserHoraDia = async (req, res) => {
-    const { userId, diaHoraId } = req.params
+    const { userId, horadiaId } = req.params
     try {
         let turno = await tablaintermedia.findOne({
             where: {
-                diaHoraId: parseInt(diaHoraId),
+                horadiaId: parseInt(horadiaId),
                 userId: userId
             },
         })
-        let diaHora = await horaDia.findOne({
+        let horadia = await DiaHora.findOne({
             where: {
-                id: diaHoraId
+                id: horadiaId
             },
             include: {
                 model: User,
@@ -184,9 +163,9 @@ const removeUserHoraDia = async (req, res) => {
                 },
             }
         })
-        diaHora.availability = diaHora.availability + 1
+        horadia.availability = horadia.availability + 1
         turno.destroy()
-        diaHora.save()
+        horadia.save()
         return res.json({
             message: "turno eliminado"
         })
@@ -195,13 +174,29 @@ const removeUserHoraDia = async (req, res) => {
     }
 }
 
+// para modificar un evento de una actividad especifica
+//esta de mas.. no sirve. 
+/* const horaDiaActivityUpd = async (id, idDiaHora, horaDia) => {
+    try {
+        return await DiaHora.update(horaDia,{
+            where: {
+                ActivityId: id,
+                id:idDiaHora
+            }
+        })
+    } catch (error) {
+        return(error)
+    }
+} */
+
 module.exports = {
-    allDiaHora,
-    // allHoraDiaUser,
-    createDiaHora,
-    diaHoraId,
-    deleteDiaHora,
+    allHoraDia,
+    allHoraDiaUser,
+    horaDiaCreate,
+    horaDiaId,
+    horaDiaDelete,
     horaDiaUpd,
     updateHoraDia,
-    removeUserHoraDia
+    removeUserHoraDia,
+    deleteHoraDiaActivity
 }
