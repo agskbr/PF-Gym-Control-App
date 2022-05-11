@@ -16,7 +16,7 @@ const loginReducer = (state = initialState, action) => {
     case LOGIN_WITH_GOOGLE:
       return {
         ...state,
-        user: action.payload,
+        user: { ...action.payload.user },
       };
     case USER_IS_ADMIN:
       return {

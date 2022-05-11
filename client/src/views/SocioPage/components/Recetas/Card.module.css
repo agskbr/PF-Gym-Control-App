@@ -1,8 +1,8 @@
 .div{
   display: inline-grid;
   grid-template-rows: 25% 1fr;
-  width: 250px;
-  height: 300px;
+  width: 220px;
+  height: 200px;
   border-radius: 2.5rem;
   background-color: rgba(3, 3, 3, 0.3);
   margin: .5rem;
@@ -13,6 +13,7 @@
     height: 100px;
     width: 50%;
     border-radius: 15px;
+    object-fit: cover;
 }
 .name{
   color: bisque;
