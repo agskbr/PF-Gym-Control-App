@@ -5,7 +5,7 @@ import Recetas from "../Recetas/Recetas";
 import MisCompras from "../MisCompras/MisCompras"
 import PerfilUsuario from '../PerfilUsuario/Perfil';
 
-export default function CenterDynamicView({ itemSelected, contentOfCard }) {
+export default function CenterDynamicView({ itemSelected }) {
   return (
     <div className={style.centerDynamicContainer}>
 
