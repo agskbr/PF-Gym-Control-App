@@ -71,7 +71,7 @@ const reviewUpdate = async (id,review) => {
 
 const allReviews = async () => {
     try {
-        let reviews = await Review.findAll({include: ""})
+        let reviews = await Review.findAll({ include: "" })
         return reviews
     } catch (error) {
         return(error)

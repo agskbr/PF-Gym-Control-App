@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const { User } = require("../../db");
 const router = Router();
 const {
   getAllUsers,
