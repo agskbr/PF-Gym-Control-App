@@ -1,72 +1,68 @@
-.perfilUser{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 60%;
-    margin-top: 10vh;
-
+.principalContainer {
+  height: max-content;
+  width: 100%;
+  margin-top: 10px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
-.perfilUser button{
-    height: 5ex;
-    width: 10ex;
-    border-radius: 2ex;
-    border: none;
-    color: #eb4e27;
-    background-color: #111111;
-    margin: 2ex;
-    font-size: 4ex;
-    cursor: pointer;
+.perfilUser {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.perfilUser button:hover{
-    height: 100%;
-    width: 100%;
+.perfilUser button {
+  height: 5ex;
+  width: 10ex;
+  border-radius: 2ex;
+  border: none;
+  color: #eb4e27;
+  background-color: #111111;
+  margin: 2ex;
+  font-size: 4ex;
+  cursor: pointer;
 }
-.principalContainer{
-    height: 100%;
-    width: 100%;
-    margin-top: 10px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+.perfilUser button:hover {
+  height: 100%;
+  width: 100%;
 }
 
- .perfilUserName img{
-     height: 10ex;
-     width: 10ex;
-     border-radius: 100%;
- }
- .perfilUserName{
-     display:block;
-     font-size: 3rem;
-     color: #111111;
-     padding-bottom: .5rem;
-     margin-top: 2.5rem;
-     transition: all .2s;
-     filter: grayscale(1);
- }
- .perfilUserSub{
-     display: block;
-     font-size: 1.2rem;
-     color: #777;
-     transition: all .2s;
- }
- .perfilUserDetail{
-     font-size: 1.2rem;
-     font-weight: lighter;
-     transition: all .2s;
- }
- .perfilUser:hover{
-     /* transform: scale(1); */
-     background: rgba(255, 253, 253, 0.4);
- }
- .perfilUser:hover .perfilUserSub,
- .perfilUser:hover .perfilUserDetail{
-   color: #111111;
- }
- .perfilUserName:hover{
-     filter: none;
- }
- .perfilUser:hover .perfilUserName{
-     color: #eb4e27
- }
+.perfilUserName img {
+  height: 10ex;
+  width: 10ex;
+  border-radius: 100%;
+}
+.perfilUserName {
+  display: block;
+  font-size: 3rem;
+  color: #111111;
+  padding-bottom: 0.5rem;
+  margin-top: 2.5rem;
+  transition: all 0.2s;
+  filter: grayscale(1);
+}
+.perfilUserSub {
+  display: block;
+  font-size: 1.2rem;
+  color: #777;
+  transition: all 0.2s;
+}
+.perfilUserDetail {
+  font-size: 1.2rem;
+  font-weight: lighter;
+  transition: all 0.2s;
+}
+.perfilUser:hover {
+  /* transform: scale(1); */
+  background: rgba(255, 253, 253, 0.4);
+}
+.perfilUser:hover .perfilUserSub,
+.perfilUser:hover .perfilUserDetail {
+  color: #111111;
+}
+.perfilUserName:hover {
+  filter: none;
+}
+.perfilUser:hover .perfilUserName {
+  color: #eb4e27;
+}

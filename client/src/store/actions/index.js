@@ -6,13 +6,14 @@ import {
   GET_ALL_USERS,
 } from "../actions-type/index";
 
-const base_url = "https://pfgymapp-2.herokuapp.com";
-const local_host = "http://localhost:3001";
+import { BASE_URL } from "../constantes";
+
+
 
 const createActivity = (activity) => {
   return async (dispatch) => {
     try {
-      await axios.post(`${local_host}/activity`, activity);
+      await axios.post(`${BASE_URL}/activity`, activity);
       dispatch(getActivity());
     } catch (error) {
       console.log(error);
@@ -22,7 +23,7 @@ const createActivity = (activity) => {
 const createUser = (user) => {
   return async (dispatch) => {
     try {
-      await axios.post(`${base_url}/user`, user);
+      await axios.post(`${BASE_URL}/user`, user);
       dispatch(getAllUsers());
     } catch (error) {
       console.log(error);
@@ -32,7 +33,7 @@ const createUser = (user) => {
 const createTrainer = (trainer) => {
   return async (dispatch) => {
     try {
-      await axios.post(`${base_url}/trainer`, trainer);
+      await axios.post(`${BASE_URL}/trainer`, trainer);
       dispatch(getAllTrainers());
     } catch (error) {
       console.log(error);
@@ -43,7 +44,7 @@ const createTrainer = (trainer) => {
 const getAllUsers = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`${base_url}/user`);
+      const { data } = await axios.get(`${BASE_URL}/user`);
       dispatch({ type: GET_ALL_USERS, payload: data });
     } catch (error) {
       console.log(error);
@@ -54,7 +55,7 @@ const getAllUsers = () => {
 const editActivity = (activity, id) => {
   return async () => {
     try {
-      await axios.put(`${base_url}/activity/${id}`, activity);
+      await axios.put(`${BASE_URL}/activity/${id}`, activity);
     } catch (error) {
       console.log(error);
     }
@@ -64,7 +65,7 @@ const editActivity = (activity, id) => {
 const getAllTrainers = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`${base_url}/trainer`);
+      const { data } = await axios.get(`${BASE_URL}/trainer`);
       dispatch({ type: GET_ALL_TRAINERS, payload: data });
     } catch (error) {
       console.log(error);
@@ -80,7 +81,7 @@ const requestPost = () => {
 export function getActivity() {
   return function (dispatch) {
     axios
-      .get(`${base_url}/activity`)
+      .get(`${BASE_URL}/activity/all`)
       .then((activity) =>
         dispatch({
           type: "GET_ACTIVITY",
@@ -96,7 +97,7 @@ export function getActivity() {
 export function getActivityById(payload) {
   return async function (dispatch) {
     try {
-      const activity = await axios.get(`${base_url}/activity/` + payload);
+      const activity = await axios.get(`${BASE_URL}/activity/` + payload);
       dispatch({
         type: "GET_ACTIVITY_DETAIL",
         payload: activity.data,

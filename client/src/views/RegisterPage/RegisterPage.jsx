@@ -103,7 +103,7 @@ export default function RegisterPage() {
         />
         <CustomInput
           value={input.password}
-          type="text"
+          type="password"
           name="password"
           onChange={handlerChange}
           placeholder="Contraseña"

@@ -133,6 +133,38 @@ const deleteOrder = async (id) => {
         return error
     }
 }
+//
+const orderStatus = async (state) => {
+    try{
+    const orders = await Order.findAll({
+    where: {
+      state: state,
+    },
+    include: [
+      {
+        model: User,
+      },
+    ],
+  });
+  return orders;
+}catch(error){
+    return(error)
+}
+}
+
+const orderStatusUserId = async (state, userId) => {
+    try{
+    const orders = await Order.findAll({
+    where: {
+      state: state,
+      userId : userId
+    },
+  });
+  return orders;
+}catch(error){
+    return(error)
+}
+}
 
 
 module.exports = {
@@ -142,5 +174,7 @@ module.exports = {
     orderUserId,
     findOrCreateCart,
     deleteOrder,
-    orderCartUserId
+    orderCartUserId,
+    orderStatus,
+    orderStatusUserId
 }

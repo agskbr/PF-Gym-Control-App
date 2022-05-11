@@ -1,7 +1,7 @@
 import style from "./activity.module.css";
 
 
-export default function Activity({ id, name, description, video,  image, price, day, hour, capacity}) {
+export default function Activity({ id, name, description, video,  image, price, day, hour, capacity, diaHoras, updateAt}) {
     
 
     return (
@@ -13,8 +13,8 @@ export default function Activity({ id, name, description, video,  image, price, 
             
             <img src={image} className={style.imagen} alt="esto es una imagen"/>
             {
-                day.map(day => (
-                <span className={style.day} key={day}>{` ${day}`}</span>
+                diaHoras.map(day => (
+                <span className={style.day} key={updateAt}>{`${day.day}`}</span>
                 )
                 )
             }
@@ -25,3 +25,5 @@ export default function Activity({ id, name, description, video,  image, price, 
         </div >
     );
     }
+
+
