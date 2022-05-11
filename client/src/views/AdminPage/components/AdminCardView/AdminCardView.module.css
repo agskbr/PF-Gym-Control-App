@@ -70,6 +70,14 @@
 .tdArray {
   width: 200px;
 }
+.daysItems {
+  list-style: none;
+}
+.hourItems {
+  color: #fe4f22;
+  list-style-type: square;
+
+}
 
 .headerOfCard {
   display: flex;
@@ -137,6 +145,34 @@
 }
 .deleteBtn:focus {
   outline: none;
+}
+
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+
+  padding: 8px;
+  width: 100%;
+  border: none;
+  display: flex;
+  justify-content: space-around;
+  outline: none;
+  font-size: 15px;
+}
+
+.active {
+  background-color: whitesmoke;
+}
+.collapsible:hover {
+  background-color: #fe4f22;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
 }
 
 @media screen and (max-width: 1050px) {
