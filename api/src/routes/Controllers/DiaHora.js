@@ -75,7 +75,7 @@ const deleteHoraDiaActivity = async (idActivity,idDiaHora) => {
         if (diaHora && actividad) {
             actividad.removeDiaHora(diaHora);
             await DiaHora.destroy({   
-                where: {                                            
+                where: {
                     id : diaHora.id,
                 }
             })
