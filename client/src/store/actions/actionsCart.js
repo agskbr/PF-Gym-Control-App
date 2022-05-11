@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { BASE_URL } from "../constantes";
 
 
 import {
@@ -13,7 +14,6 @@ import {
 
 
 
-const base_url = "https://pfgymapp-2.herokuapp.com";
 
 
 export function clearCart(){
@@ -47,7 +47,7 @@ export function totalCart(state){
     
     return async function (dispatch) {
       try {
-        const product = await axios.get(`${base_url}/activity/` + payload);
+        const product = await axios.get(`${BASE_URL}/activity/` + payload);
         
         dispatch({
           type: "ADD_TO_CART",

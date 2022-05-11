@@ -1,6 +1,6 @@
 import axios from "axios";
 import swal from "sweetalert";
-import { LOCAL_HOST, BASE_URL } from "../constantes";
+import { BASE_URL } from "../constantes";
 import {
   googleAuthProvider,
   auth,
@@ -44,7 +44,7 @@ const registerUserWithEmailAndPass = (
         phoneNumber,
         image: "",
       };
-      await axios.post(`${LOCAL_HOST}/user`, userToDB);
+      await axios.post(`${BASE_URL}/user`, userToDB);
       await updateProfile(auth.currentUser, {
         displayName: `${name} ${lastName}`,
       });
@@ -122,7 +122,7 @@ const loginWithGoogle = () => {
         image: userData.user.photoURL,
       };
 
-      await axios.post(`${LOCAL_HOST}/user`, authWithGoogleData);
+      await axios.post(`${BASE_URL}/user`, authWithGoogleData);
 
       dispatch({ type: LOGIN_WITH_GOOGLE, payload: authWithGoogleData });
     } catch (error) {
@@ -136,7 +136,7 @@ const validateUserIsLogged = () => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
-          const { data } = await axios.post(`${LOCAL_HOST}/user/isAdmin`, {
+          const { data } = await axios.post(`${BASE_URL}/user/isAdmin`, {
             id: user.uid,
           });
           dispatch({ type: USER_IS_ADMIN, payload: data });
