@@ -1,48 +1,37 @@
-.div{
-  display: inline-grid;
-  grid-template-rows: 25% 1fr;
-  width: 220px;
-  height: 200px;
-  border-radius: 2.5rem;
-  background-color: rgba(3, 3, 3, 0.3);
-  margin: .5rem;
-  border: 1px solid rgb(238, 98, 5);
+.imageContainer {
+  width: 100%;
 }
 
-.imagen{
-    height: 100px;
-    width: 50%;
-    border-radius: 15px;
-    object-fit: cover;
-}
-.name{
-  color: bisque;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+.textContainer {
+  padding: 0.2rem;
+  padding-top: 0;
 }
 
 .Card {
-  position: relative;
-  border: none;
-  border-radius: 30%;
-  display: block;
-  height: 130px;
-  width: 160px;
-  border: 4px solid var(--primary-color);
-  object-fit: cover;
-  margin: .5rem auto;
-    
-    
-  }
-  
-  .Card:hover {
-    background: rgb(255, 79, 5);
-    background: linear-gradient(
-      63deg,
-      rgba(255, 79, 5, 1) 4%,
-      rgba(254, 85, 7, 1) 9%,
-      rgba(241, 183, 33, 1) 86%,
-      rgba(116, 105, 100, 1) 98%
-    );
-    cursor: pointer;
-  }
-  
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.137);
+  overflow: hidden;
+  max-width: 200px;
+  transition: all 0.3s;
+}
+
+.name {
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 40px;
+  height: 20px;
+}
+
+.categories {
+  height: 20px;
+  font-size: 0.8rem;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 40px;
+}
+
+.Card:hover {
+  transform: scale(1.1);
+}
