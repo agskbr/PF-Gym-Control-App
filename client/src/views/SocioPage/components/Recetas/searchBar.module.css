@@ -1,0 +1,48 @@
+.searchContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.searchBar {
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.buttonSearch {
+    background-color: tomato;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    margin-left: 1.2rem;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.autoComplete {
+    width: 159px;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    background-color: white;
+    margin: 0;
+    border: 1px solid gray;
+    /* transform: translateY(300%); */
+}
+
+.autoComplete:hover {
+    background-color: gray;
+    color: white;
+}
+
+.autoCompleteContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0;
+    position: absolute;
+    bottom: 0px;
+    z-index: 9999;
+    transform: translateY(100%);
+}

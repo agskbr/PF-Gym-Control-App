@@ -1,14 +1,11 @@
 .recipeGrid {
     padding-top: 30px;
     padding-bottom: 20px;
-    height: 100%;
-    width:100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    position: relative;
-    top: 0px;
-    right: 0px;
-
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 3.2rem;
 }
 
 .navbar{
