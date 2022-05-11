@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import style from "./AdminCardView.module.css";
 import { Link } from "react-router-dom";
-import { FaEdit } from "react-icons/fa";
+import {
+  FaArrowDown,
+  FaArrowUp,
+  FaEdit,
+  FaMinus,
+  FaPlus,
+} from "react-icons/fa";
 
 export default function AdminCardView({ type }) {
   // const [isAscendentOrder, setIsAscendentOrder] = useState({
@@ -10,6 +16,7 @@ export default function AdminCardView({ type }) {
   //   price: false,
   // });
   const { activities, trainers, users } = useSelector((state) => state.pgym);
+  const [expanseItemDay, setExpanseItemDay] = useState({});
   const [keys, setKeys] = useState([]);
   const [displayArray, setDisplayArray] = useState([]);
   useEffect(() => {
@@ -67,7 +74,42 @@ export default function AdminCardView({ type }) {
                         <td className={style.tdArray} key={i}>
                           {el[key].map((item, i) => (
                             <ul key={i}>
-                              <li>{item.name ?? item}</li>
+                              {item.day ? (
+                                <li className={style.daysItems}>
+                                  <div>
+                                    <button
+                                      onClick={() =>
+                                        setExpanseItemDay((state) => ({
+                                          ...state,
+                                          [item.id]: !state[item.id],
+                                        }))
+                                      }
+                                      type="button"
+                                      className={style.collapsible}
+                                    >
+                                      {item.day}{" "}
+                                      {expanseItemDay[item.id] ? (
+                                        <FaMinus />
+                                      ) : (
+                                        <FaPlus />
+                                      )}
+                                    </button>
+                                    <div
+                                      className={
+                                        expanseItemDay[item.id]
+                                          ? style.active
+                                          : style.content
+                                      }
+                                    >
+                                      <ul className={style.hourItems}>
+                                        <li>{item.hour}</li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </li>
+                              ) : (
+                                <li>{item.name ?? item}</li>
+                              )}
                             </ul>
                           ))}
                         </td>
