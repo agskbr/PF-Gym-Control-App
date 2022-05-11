@@ -10,15 +10,10 @@ const{
     horaDiaDelete2,
     horaDiaUpd,
     updateHoraDia,
-    removeUserHoraDia
-} = require('../Controllers/HoraDia');
-
-//obtengo todos los dias-horas y sus actividades
-router.get("/", async (req, res) => {
-    const horasDia = await allHoraDia();
-    horasDia ? res.status(200).send(horasDia)
-    : res.status(404).send("HoraDia no encontrado");
-});
+    removeUserHoraDia,
+    horaDiaActivityUpd,
+    deleteHoraDiaActivity
+} = require('../Controllers/DiaHora');
 
 //obtener todos los dias de un usuario 
 router.get("/user/:id", async (req, res) => {
@@ -28,7 +23,7 @@ router.get("/user/:id", async (req, res) => {
     : res.status(404).send("No encontrado");
 })
 
-//crear un dia 
+//crear un dia
 router.post("/create", async (req, res) => {
     try {
         const { day, hour, capacity } = req.body
@@ -39,6 +34,39 @@ router.post("/create", async (req, res) => {
     }
 });
 
+//eliminar dia especificado de una actividad especificada por idActivity y idDiaHora
+router.delete('/activity/:ActivityId/:diaHoraId', async (req, res,)=> {
+    let { ActivityId, diaHoraId } = req.params;
+    try {
+        const horaDia_Upd = deleteHoraDiaActivity(ActivityId,diaHoraId);
+        res.send(horaDia_Upd);  
+    } catch (error) {
+        return(error)
+    }
+});
+
+//modificar diaHora de una Actividad especifica :diaHoraId
+router.put('/activity/:ActivityId', async (req, res,)=> {
+    let { ActivityId } = req.params;
+    let horaDia = req.body;
+    try {
+        const horaDia_Upd = horaDiaActivityUpd(ActivityId,horaDia);
+        res.send(horaDia_Upd);  
+    } catch (error) {
+        return(error)
+    }
+});
+
+
+//funciones basicas Obtener todo/ eliminar con Id de diaHora / Modificar Con Id de diaHora---------------------------------------------------
+
+//obtengo todos los dias-horas con sus actividades y usuarios relacionados al dia 
+router.get("/", async (req, res) => {
+    const horasDia = await allHoraDia();
+    horasDia ? res.status(200).send(horasDia)
+    : res.status(404).send("HoraDia no encontrado");
+});
+
 //obtener un horaDia por un Id
 router.get("/:id", async (req, res) => {
     const {id} = req.params
@@ -47,7 +75,7 @@ router.get("/:id", async (req, res) => {
     : res.status(404).send("No se encontro");
 });
 
-//eliminar diaHora especifica :diaHoraId
+//eliminar diaHora especifica :diaHoraId de la DB
 router.delete("/:id", async (req, res) => {
     const {id} = req.params
     try {

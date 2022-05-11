@@ -5,13 +5,19 @@ const {
 } = require('../../db');
 
 
-// traigo los dias y horas con sus acividades
+// traigo los dias y horas con sus acividades y usuarios
 const allHoraDia = async () => {
-        const allHoraDia = await DiaHora.findAll({
-            include: {
+    const allHoraDia = await DiaHora.findAll({
+        include: [
+            {
                 model: Activity,
                 attributes: ["name"]
+            },
+            {
+                model: User,
+                attributes: ["name"]
             }
+            ]
         })
         return allHoraDia;
 }
@@ -59,34 +65,30 @@ const horaDiaId = async (id) => {
     }
 }
 
-
-
-// para eliminar el evento
-const horaDiaDelete = async (days, hour) => {
+// para eliminar un diaHora de una actividad especifica
+//primego elimino la relacion que hay entre horaDia
+//luego elimino diaHora
+const deleteHoraDiaActivity = async (idActivity,idDiaHora) => {
     try {
-        const horaDia = await DiaHora.findOne({
-            where: {
-                days: days,
-                hour: hour,
-            },
-        })
-        if (horaDia) {
-            const deleteHoraDia = await DiaHora.destroy({
-                where: {
-                    days: days,
-                    hour: hour,
+        var actividad = await Activity.findByPk(idActivity);
+        var diaHora = await DiaHora.findByPk(idDiaHora);
+        if (diaHora && actividad) {
+            actividad.removeDiaHora(diaHora);
+            await DiaHora.destroy({   
+                where: {                                            
+                    id : diaHora.id,
                 }
             })
-            return deleteHoraDia
-        }else{
+            return true
+        } else {
             return false
         }
     } catch (error) {
         console.log(error)
-    }
+    }   
 }
 
-// para eliminar un evento 2 opcion
+// para eliminar un diaHora con su IdDiaHora especifico
 const horaDiaDelete2 = async (id) => {
     try {
         return await DiaHora.destroy({
@@ -99,8 +101,7 @@ const horaDiaDelete2 = async (id) => {
     }   
 }
 
-// para modificar un evento
-
+// para modificar un evento con su Id
 const horaDiaUpd = async (id,horaDia) => {
     try {
         return await DiaHora.update(horaDia,{
@@ -173,15 +174,30 @@ const removeUserHoraDia = async (req, res) => {
     }
 }
 
+// para modificar un evento de una actividad especifica
+const horaDiaActivityUpd = async (id,horaDia) => {
+    try {
+        return await DiaHora.update(horaDia,{
+            where: {
+                ActivityId: id,
+            }
+        })
+    } catch (error) {
+        return(error)
+    }
+}
+
 module.exports = {
     allHoraDia,
     allHoraDiaUser,
     horaDiaCreate,
     horaDiaId,
     //horaDiaIdUser,
-    horaDiaDelete,
+    //horaDiaDelete,
     horaDiaDelete2,
     horaDiaUpd,
     updateHoraDia,
-    removeUserHoraDia
+    removeUserHoraDia,
+    horaDiaActivityUpd,
+    deleteHoraDiaActivity
 }

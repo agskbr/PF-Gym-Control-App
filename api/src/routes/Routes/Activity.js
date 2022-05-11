@@ -1,6 +1,5 @@
 const { Router } = require('express');
 const router = Router();
-const { horaDiaCreate } = require("../Controllers/HoraDia");
 const {
     allActivity,
     activityId,
@@ -9,12 +8,9 @@ const {
     deleteActivity,
     activityDeleteTrainer,
     activityAddTrainer,
-    activityName
+    activityName,
+    allActivityDh
 } = require('../Controllers/Activity');
-//editar diaHora de una actividad en especifico
-//obtener activity+diaHora
-//eliminar dia de una actividad
-
 
 
 //crear actividad+[NameTrainer]+[idDiasCreados] array de los Id de dias creados ejemplo: [Id1,Id2,Id3]
@@ -58,13 +54,12 @@ router.post("/", async (req,res, next) => {
     }
 })
 
-
-//obtener todas las actividades+trainer+DiaHora
+//obtener activity+diaHora
 router.get("/", async (req,res) => {
     // ME GUARDO EL NAME QUE ME LLEGA POR QUERY PARA USARLO CUANDO LO NECESITE
     const {name} = req.query;
     try {
-        const allCards = await allActivity();
+        const allCards = await allActivityDh();
         if(name){
             const cardsName = allCards.filter(card => card.name.toLowerCase().includes(name.toLowerCase()));
             cardsName.length ? 
@@ -78,6 +73,24 @@ router.get("/", async (req,res) => {
     }
 })
 
+//obtener todas las actividades+trainer+DiaHora
+router.get ('/all', async (req, res,) => {
+    const activity_name = await allActivity();
+    if(activity_name){
+        /*const activity = await allActivities.filter(el => el.id.toString() === id);
+        activity.length ?*/
+        res.status(200).json(activity_name);
+    }else res.status(404).send("Activity not found, try another one.");
+})
+
+//obtener actividad especificada por Nombre ingresado
+router.get ('/name/:name', async (req, res,) => {
+    const { name } = req.params
+    const activity_name = await activityName(name);
+    if(activity_name){
+        res.send(activity_name);
+    }else res.status(404).send("Activity not found, try another one.");
+})
 
 //obtener actividad especifica +trainer+horaDia por activityId
 router.get ('/:id', async (req, res,) => {

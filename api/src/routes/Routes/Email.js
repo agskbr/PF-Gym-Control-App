@@ -42,7 +42,7 @@ router.post('/:emailType', async (req,res) => {
                     <div style="width: 100%; max-width: 700px; margin: auto; ">
                         <div style="background-color: #eb4e27; text-align: center; padding: 0.7rem 0;">
                             <h1 style="color: white; font-family: sans-serif; font-weight: normal;">Gym Control</h1>
-                         </div>
+                        </div>
                 
               <div style="text-align: center; padding: 0 0.72rem; padding-top: 2.5rem;background-color: rgba(253,237,233,.98);">
               <p style="color: black; margin-bottom: 1.4rem; font-size: 1rem;">&iexcl;
@@ -68,7 +68,7 @@ router.post('/:emailType', async (req,res) => {
             <div style="width: 100%; max-width: 700px; margin: auto; ">
                 <div style="background-color: #eb4e27; text-align: center; padding: 0.7rem 0;">
                     <h1 style="color: white; font-family: sans-serif; font-weight: normal;">Gym Control</h1>
-                 </div>
+                </div>
                 
               <div style="text-align: center; padding: 0 0.72rem; padding-top: 2.5rem; background-color: rgba(253,237,233,.98)">
               <p style="color: #4f5154; margin-bottom: 1.4rem; font-size: 1rem;">&iexcl;
@@ -98,7 +98,7 @@ router.post('/:emailType', async (req,res) => {
           <div style="width: 100%; max-width: 700px; margin: auto; ">
               <div style="background-color: #eb4e27; text-align: center; padding: 0.7rem 0;">
                   <h1 style="color: white; font-family: sans-serif; font-weight: normal;">Gym Control</h1>
-               </div>
+              </div>
           
           <div style="text-align: center; padding: 0 0.72rem; padding-top: 2.5rem; background-color: rgba(253,237,233,.98)">
           <p style="color: #4f5154; margin-bottom: 1.4rem; font-size: 1rem;">&iexcl;
@@ -106,7 +106,6 @@ router.post('/:emailType', async (req,res) => {
           <h3>Tu orden fue creada con éxito </h3>
           Order N° ${info.orderId}
           <hr>
-                 
           <h3>Precio total: ${info.totalPrice}</h3>
           <hr>
           <p> Si deseas ver los detalles de tu orden, por favor regrese a nuestra página!! </p>
@@ -126,14 +125,13 @@ router.post('/:emailType', async (req,res) => {
           <div style="width: 100%; max-width: 700px; margin: auto; ">
               <div style="background-color: #eb4e27; text-align: center; padding: 0.7rem 0;">
                   <h1 style="color: white; font-family: sans-serif; font-weight: normal;">Gym Control</h1>
-               </div>
+              </div>
           <div style="text-align: center; padding: 0 0.72rem; padding-top: 2.5rem; background-color:rgba(253,237,233,.98)">
           <p style="color: #4f5154; margin-bottom: 1.4rem; font-size: 1rem;">&iexcl;
           Hola ${user.name}  ${user.lastname}  !
           <h3>Tu orden fue pagada con éxito </h3>
           Order N° ${info.orderId}
           <hr>
-                 
           <h3>Precio total: ${info.totalPrice}</h3>
           <hr>
           <p> Si deseas ver los detalles de tu orden, por favor regrese a nuestra página!! </p>
