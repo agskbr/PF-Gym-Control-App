@@ -1,11 +1,14 @@
 .recipeGrid {
-    height: 20vh;
-    width: 30vw;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    height: 100%;
+    width:100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    position: absolute;
-    top: 28vh;
-    right: 40vw;
+    position: relative;
+    top: 0px;
+    right: 0px;
+
 }
 
 .navbar{
@@ -20,4 +23,5 @@
     display: flex;
     flex-direction: column;
     background-color: #fdede9;
+    height: 100%;
 }
