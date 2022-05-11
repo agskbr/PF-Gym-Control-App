@@ -81,7 +81,7 @@ const requestPost = () => {
 export function getActivity() {
   return function (dispatch) {
     axios
-      .get(`${BASE_URL}/activity`)
+      .get(`${BASE_URL}/activity/all`)
       .then((activity) =>
         dispatch({
           type: "GET_ACTIVITY",

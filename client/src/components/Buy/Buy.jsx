@@ -38,6 +38,7 @@ export default function Buy() {
 		hour,
 		capacity,
         trainers,
+        diaHoras
 	} = useSelector((state) => state.pgym.detail);
     
     const activity = useSelector((state)=> state.pgym.detail)
@@ -47,6 +48,7 @@ export default function Buy() {
     
     /* let coach = entrenadores?.filter(e => e.name === trainers[0]?.name);
     let coach2 = entrenadores?.filter(e => e.name === trainers[1]?.name); */
+   
    
         
         return (
@@ -73,9 +75,19 @@ export default function Buy() {
                             <div className={style.back}>{description}</div>
                         </div>
                     </div> 
+
+                    <div className={style.day}>Dias: 
+                        {
+                            diaHoras?.map(day => ( <span className={style.day} key={day.day}>{` ${day.day}`}</span>))
+                        }
+                    </div>
+
+                    <div className={style.hour}>Horarios:
+                        {
+                            diaHoras?.map(hour => ( <span className={style.hour} key={hour.hour}>{` ${hour.hour}`}</span>))
+                        }
+                    </div>
                     
-                    <div className={style.day}>Dias:{` ${day} `}</div>
-                    <div className={style.hour}>Horarios:{` ${hour} `}</div>
                     <div className={style.price}>Precio:{` $${price} `}</div>
                     <div className={style.capacity}>Capacidad:{` ${capacity} lugares disponibles `}</div>
 
