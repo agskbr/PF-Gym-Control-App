@@ -1,27 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import {
-  userSignOut,
-  validateUserIsLogged,
-} from "../../../../store/actions/actions-login";
+import React from "react";
+import { useSelector } from "react-redux";
 import style from "./Perfil.module.css";
-import { Link } from "react-router-dom";
 
 export default function Perfil() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { user } = useSelector((state) => state.login);
-  console.log(user.photoURL);
-  useEffect(() => {
-    dispatch(validateUserIsLogged());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (user === null) {
-      navigate("/login");
-    }
-  }, [user, navigate]);
 
   return (
     <div className={style.principalContainer}>
@@ -29,6 +11,7 @@ export default function Perfil() {
         <div className={style.perfilUserName}>
           <div className={style.userImg}>
             <img
+              alt="user"
               src={
                 user.photoURL
                   ? user.photoURL
@@ -42,10 +25,10 @@ export default function Perfil() {
             Teléfono: {user.phoneNumber ? user.phoneNumber : "No hay número"}
           </p>
         </div>
-       {/*  <Link to={"/sociodashboard"}>
+        {/*  <Link to={"/sociodashboard"}>
           <button>Volver</button>
         </Link> */}
-       {/*  <button onClick={() => dispatch(userSignOut())}>SignOut</button> */}
+        {/*  <button onClick={() => dispatch(userSignOut())}>SignOut</button> */}
       </div>
     </div>
   );
