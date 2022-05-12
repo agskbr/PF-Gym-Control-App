@@ -99,8 +99,7 @@ const userDelete = async (id) => {
 const userIsAdmin = async (id) => {
   const UserUid = await User.findOne({
     where: {
-      uid: id,
-      isAdmin: true
+      uid: id
     },
   });
   if (UserUid) {
@@ -108,8 +107,7 @@ const userIsAdmin = async (id) => {
   } else {
     const UserId = await User.findOne({
       where: {
-        id: id,
-        isAdmin: true
+        id: id
       },
     });
     return UserId;
