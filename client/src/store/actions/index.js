@@ -94,6 +94,7 @@ export function getActivity() {
       .catch((err) => console.log(err));
   };
 }
+
 export function getActivityById(payload) {
   return async function (dispatch) {
     try {
@@ -106,6 +107,15 @@ export function getActivityById(payload) {
       console.log(err);
     }
   };
+}
+
+export function getTimeByActivityId(payload) {
+      return function (dispatch) {
+      dispatch({
+      type: "GET_TIME_BY_ACTIVITY_DAY",
+        payload: payload,
+      });
+}
 }
 
 export function searchByName(name) {

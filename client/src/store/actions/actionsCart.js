@@ -9,7 +9,7 @@ import {
   REMOVE_ALL_FROM_CART,
   REMOVE_ONE_FROM_CART,
   TOTAL_CART,
-  CLEAN_CART,
+  ADD_ORDER_LINE,
 } from "../actions-type";
 
 
@@ -24,24 +24,7 @@ export function clearCart(){
 }
 
 
-function calculateTotalCart(state){
-  let total = 0;
-  if(state){
-      state.map(e => {
-          let subTotal = Number(e.price) * Number(e.count);
-          return total += subTotal;
-      })
-  }
-  return total;
-}
-export function totalCart(state){
-  return async function(dispatch){
-      dispatch({
-          type: 'TOTAL_CART',
-          payload: calculateTotalCart(state)
-      })
-  }
-}
+
 
   export function addToCart(payload) {
     
@@ -58,6 +41,21 @@ export function totalCart(state){
         console.log(err);
       }
     };
+  }
+
+
+  export function addOrderLine(payload){
+    return async function(dispatch){
+      try {
+        const orderline = await axios.post(`${BASE_URL}/orderline`, payload);
+        dispatch({
+          type: "ADD_ORDER_LINE",
+          payload: orderline.data,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    }
   }
 
   
