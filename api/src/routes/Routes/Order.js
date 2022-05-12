@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { orderlineByOrderId } = require("../Controllers/Orderline");
+const { orderlineByOrderId} = require("../Controllers/Orderline");
 const {
     allOrder,
     orderFilterId,
@@ -9,77 +9,87 @@ const {
     orderCartUserId,
     deleteOrder,
     orderStatus,
-    orderStatusUserId
+    orderStatusUserId,
 } = require("../Controllers/Order");
-const {
-    Orderline,
-} = require('../../db');
 
-//falta checkout 
-//modificar estado a cancelado volviendo sumando el stock correspondiente
-
+//funcion para guardar carrito
 
 
 //order/carrito -------------------------------------------------------------------------------------------------------------
 
-
 //obtener todas las ordenes en un estado especifico 
 router.get("/find/:state", async (req, res) => {   //example: http://localhost:3001/order/find/Complete
     try {
-      const state=req.params.state;
-      console.log(state)
-      const orders = await orderStatus(state)
-      if (orders) return res.json(orders);
+        const state=req.params.state;
+        console.log(state)
+        const orders = await orderStatus(state)
+        if (orders) return res.json(orders);
     } catch (err) {
-      return res.send({ data: err }).status(400);
+        return res.send({ data: err }).status(400);
     }
-
 })
+
 //obtener todas las ordenes de un estado específico de un usuario específico
 router.get("/find/:state/:userId", async (req, res) => {   //example: http://localhost:3001/order/find/Cart/2
     try {
-      const state=req.params.state;
-      const userId = req.params.userId;
-      const orders = await orderStatusUserId(state, userId)
-      if (orders) return res.json(orders);
+        const state=req.params.state;
+        const userId = req.params.userId;
+        const orders = await orderStatusUserId(state, userId)
+        if (orders) return res.json(orders);
     } catch (err) {
-      return res.send({ data: err }).status(400);
+        return res.send({ data: err }).status(400);
     }
-
 })
 
-
-
-
-//eliminar carrito cuando el cliente se arrepiente y quiere vaciar carrito, si ya esta guardado lo elimina y sino
+//PASO 1 - para checkout / guardar nuevo carrito
+//eliminar/vaciar carrito cuando el cliente se arrepiente y quiere vaciar carrito, si ya esta guardado lo elimina y sino
 //elimina el carrito vacio
 router.delete("/cart/:idUser", async (req, res) => {
     try {
-      const { idUser } = req.params;
-      const orderUs = await findOrCreateCart(idUser)
-      const orderDeleted = await orderUs[0].destroy();
-      res.status(200).send("Carrito está vacío");
+        const { idUser } = req.params;
+        const orderUs = await findOrCreateCart(idUser)
+        await orderUs[0].destroy();
+        const newOrder = await findOrCreateCart(idUser)
+        res.status(200).send({ newOrderId: newOrder[0].id });
     } catch (error) {
-      return res.status(400).send({ data: error });
+        return res.status(400).send({ data: error });
     }
-    
-  });
+});
 
-
+//PASO 2 - para checking -> "Created"
+//PASO 1 - para cancelar orden -> "Canceled"
 //modificar estado de orden de una orden especifica orderId y state ejm:{"state":"Complete"}
-router.put("/state/:id", async (req, res, next) => {
-    const { state } = req.body; // 'Cart', 'Created', 'Processing', 'Canceled', 'Complete'
-    const { id } = req.params;
+router.put("/state", async (req, res, next) => {
+    const { state, orderId } = req.body; // 'Cart', 'Created', 'Processing', 'Canceled', 'Complete'
+    //id de la order
     try {
-        const orderUpd = await orderUpdate(state, id)
-            if (orderUpd) {
-                return res.status(202).send("Element updated");
-            }
-            return res.status(400).send("Order not found!");
-        } catch (error) {
-            
+        const orderUpd = await orderUpdate(state, orderId)
+        if (orderUpd) {
+            return res.status(202).send("Element updated");
         }
+        return res.status(400).send("Order not found!");
+    } catch (error) {
+        res.send(error)
+    }
 })
+
+//PASO 5 -> para checkout
+//paso 3 esta en diaHora y el 4 en orderLine 
+//paso 3, 4 y 5 seria dentro de un forEach por cada orderLine
+router.put("/sumaTotal", async (req, res) => {
+    const { orderId, subtotal } = req.body; // 'Cart', 'Created', 'Processing', 'Canceled', 'Complete'
+    //id de la order
+    try {
+        const order = await orderFilterId(orderId)
+        console.log(order.totalPrice)
+        order.totalPrice = Number(order.totalPrice) + Number(subtotal);
+        order.save()
+        return res.send(order);
+    } catch (error) {
+        res.send(error)
+    }
+})
+
 
 //Buscar o crear carrito
 router.post("/cart", async (req,res) => {
@@ -113,30 +123,6 @@ router.get("/cart/:userId", async (req, res) => {
     }
 });
 
-//Realizar checkout cuardando cambios
-// (agregando actividades y modificando cantidades de las orderline)
-//en orden ->  precioTotal
-//en lineaDeOrden -> Subtotal / Precio unitario / cantidad
-//verificar estado de stock
-router.put("/checkout/:userId", async (req, res) => {
-    const { userId } = req.params;
-    const { orderlineId, orderlineQuantity } = req.body; // Se trigerean desde el body los campos de la Orderline
-    try {
-        const OrderCart = await findOrCreateCart(userId)
-        const orderLine = await orderlineByOrderId(OrderCart.id)
-        const orderlineToChange = await Orderline.findByPk(orderlineId);
-
-
-
-
-
-
-        return orderlineToChange;
-    }catch (err) {
-        return res.send({ data: err }).status(400);
-    } 
-});
-
 
 //funciones basicas
 //AllOrder / obtener ordenes por userId / obtener orden por Orderid/ Modificar via OrdenId / eliminar ordenId/ -------------------------------------------------------------------------------
@@ -151,12 +137,12 @@ router.get("/", async (req, res, next) => {
     }
 });
 
-//obtener todas las ordenes por userId
+//obtener todas las ordenes por userId 
 router.get("/user/:id", async (req,res) => {
     try{
         const {id} = req.params;
         const orderUser = await orderUserId(id);
-        revActId ?
+        orderUser ?
             res.send(orderUser) :
             res.send("order of user not found")
     }

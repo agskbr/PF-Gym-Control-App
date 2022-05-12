@@ -7,9 +7,53 @@ const{
     horaDiaId,
     horaDiaDelete,
     horaDiaUpd,
-    deleteHoraDiaActivity
+    deleteHoraDiaActivity,
+    diahoraActivity
 } = require('../Controllers/DiaHora');
 
+
+//PASO 2 - para cancelar order
+//sumar stock para ordenes canceladas
+router.put('/sumarStock', async (req, res,)=> {
+    let { quantity, diaHoraId} = req.body;
+    try {
+        const diaHora = await horaDiaId(diaHoraId);
+        var stock = diaHora.capacity + quantity;
+        diaHora.capacity = stock
+        await diaHora.save();
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+
+//PASO 3 - restar stock para checkout
+//paso 3 y 4 seria dentro de un forEach para recorrer todas las OrderLine
+//modificar diaHora especifica :diaHoraId
+router.put('/restarStock', async (req, res,)=> {
+    let { quantity, diaHoraId } = req.body;
+    try {
+        const diaHora = await horaDiaId(diaHoraId);
+        if (diaHora.capacity < quantity) {
+            return res.status(400).send("sin stock disponible");
+        }
+        var stock = diaHora.capacity - quantity;
+        diaHora.capacity = stock
+        await diaHora.save();
+        res.send(diaHora);
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+
+//obetener los dias de una actividad especifica 
+router.get("/activity/:id", async (req, res) => {
+    const {id} = req.params
+    const horaDia = await diahoraActivity(id)
+    horaDia ? res.status(200).send(horaDia)
+    : res.status(404).send("No se encontro");
+});
 
 //obtener todos los dias de un usuario 
 router.get("/user/:id", async (req, res) => {
@@ -40,19 +84,6 @@ router.delete('/activity/:ActivityId/:diaHoraId', async (req, res,)=> {
         return(error)
     }
 });
-
-//modificar diaHora de una Actividad especifica :diaHoraId
-//esta de mas, para eso directamente usar la ruta editar Horadia por IdHoraDia
-/* router.put('/activity/:ActivityId/:diaHoraId', async (req, res,)=> {
-    let { ActivityId } = req.params;
-    let { horaDia } = req.body;
-    try {
-        const horaDia_Upd = horaDiaActivityUpd(ActivityId,diaHoraId,horaDia);
-        res.send(horaDia_Upd);  
-    } catch (error) {
-        return(error)
-    }
-}); */
 
 
 //funciones basicas Obtener todo/ eliminar con Id de diaHora / Modificar Con Id de diaHora---------------------------------------------------
