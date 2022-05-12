@@ -16,8 +16,8 @@
 }
 .expertImg{
     display: block;
-    height: 15rem;
-    width: 15rem;
+    height: 12rem;
+    width: 12rem;
     margin-top: 1rem;
     filter: grayscale(1);
     object-fit: cover;
@@ -57,4 +57,78 @@
 }
 .expert:hover .expertName{
     color: #eb4e27
+}
+
+@media(max-width:800px){
+    .expert{
+        grid-template-columns: 1fr;
+        grid-gap:0.5rem;
+        /* width: 50vw; */
+    }
+    .flexi{
+     grid-template-columns: 1fr;
+     justify-content: center;
+     grid-gap:0.5rem;
+       
+        
+    }
+    .expertImg{
+        height: 7rem;
+        width: 7rem;
+        display: flex;
+        object-fit: contain;
+        justify-content: space-around;
+        margin-left: 8px;
+        margin-top: 1rem;
+        
+    }
+
+    .expertName{
+        display:inline;
+        font-size: 2rem;
+        color: #111111;
+        padding-bottom: .5rem;
+        margin-top: 2.5rem;
+        transition: all .2s;
+    }
+    .expertSub{
+        display: block;
+        font-size: 1.2rem;
+        color: #777;
+        transition: all .2s;
+    }
+    .expertDetail{
+        font-size: 1.2rem;
+        font-weight: lighter;
+        transition: all .2s;
+    }
+    .expertBio{
+        display: block;
+
+    }
+}
+
+@media(max-width:425px){
+    .expert{
+       height:30vh ;
+        width: 60vw; 
+
+    }
+
+    .expertImg{
+        height: 5rem;
+        width: 5rem;
+        margin-top: 0;
+        display: flex;
+        object-position: center;
+    }
+    .expertName{
+        font-size: 1.5rem;
+    }
+    .expertSub{
+        font-size: 1rem;
+    }
+    .expertDetail{
+        font-size: 0.8rem;
+    }
 }

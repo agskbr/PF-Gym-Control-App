@@ -8,8 +8,10 @@ import {BsFillCheckCircleFill} from 'react-icons/bs'
 export default function MyActivities() {
   const dispatch = useDispatch();
   const actividades= useSelector((state)=> state.pgym.allActivities);
-  const myActiv = actividades.find((a)=> a.name === "BodyCombat");
-  const yoga= actividades.find((a)=> a.name === "Yoga")
+  console.log("activ", actividades)
+  //const myActiv = actividades.find((a)=> a.name === "BodyCombat");
+  //console.log("myActiv", myActiv)
+ 
   
 
 
@@ -33,8 +35,8 @@ export default function MyActivities() {
         </button>
         
       </div>
-      {
-        myActiv ? (
+    {/*   {
+        Object.keys().length > 0 ? (
           <div className={s.userCardLayout}>
           <table className={s.containerTable}>
            <thead className={s.encabezado}>
@@ -47,17 +49,17 @@ export default function MyActivities() {
            </thead>
            <tbody>
                <tr className={s.tableRow}>
-                 <td className={s.filas}>{myActiv.name}</td>
-                 <td className={s.filas}>{myActiv.day[0]}</td>
-                 <td className={s.filas}>{myActiv.hour[0]}</td>
+                 <td className={s.filas}>{}</td>
+                 <td className={s.filas}>{}</td>
+                 <td className={s.filas}>{}</td>
                  <td className={s.filas}>
                    <BsFillCheckCircleFill/>
                  </td>
                </tr>
                <tr className={s.tableRow}>
-                 <td className={s.filas}>{yoga.name}</td>
-                 <td className={s.filas}>{yoga.day[0]}</td>
-                 <td className={s.filas}>{yoga.hour[0]}</td>
+                 <td className={s.filas}>{}</td>
+                 <td className={s.filas}>{}</td>
+                 <td className={s.filas}>{}</td>
                  <td className={s.filas}>
                    <BsFillCheckCircleFill/>
                  </td>
@@ -68,7 +70,7 @@ export default function MyActivities() {
         </div>
         ): <p>err</p>
       }
-      
+       */}
       <CreateReview/>
     </div>
   );
