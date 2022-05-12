@@ -141,15 +141,33 @@ background-color: rgba(255, 92, 43, 0.795);
 }
 
 
-.day{
+.horarios{
     grid-area: day;
     font-size: 1vw;
+    height: 3vh;
+    background-color: rgba(184, 184, 184, 0.815);
     color: rgb(0, 0, 0);
+    text-align: center;
+    align-content: center;
+    justify-content: center;
 }
+
+
 .hour{
     grid-area: hour;
     font-size: 1vw;
+    background-color: rgba(255, 255, 255, 0.377);
     color: rgb(0, 0, 0);
+    justify-self: center;
+    border-radius: 10px;
+    margin: 1rem;
+}
+.hour span {
+    font-size: 1.5rem;
+    align-self: center;
+    justify-self: center;
+    align-content: center;
+   background-color: unset;;
 }
 .price{
     grid-area: price;

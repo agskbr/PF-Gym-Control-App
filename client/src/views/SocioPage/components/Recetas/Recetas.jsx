@@ -27,18 +27,14 @@ export default function SocioPage() {
                     <SearchBar />
                     <Filter />
                 </div>
-            
-            
-
                     <div className={style.recipeGrid}>
                                         {  
                                             recipes?.map((el) => {
-                                                console.log(el)
                                                 return(
                                                     <div key={el.id}>
                                                     <Card 
                                                     image={el.img? el.img : el.image} 
-                                                    name={el.name} 
+                                                    title={el.title} 
                                                     diets={el.diets} 
                                                     key={el.id} 
                                                     id={el.id}                 
