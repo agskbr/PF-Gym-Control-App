@@ -1,6 +1,5 @@
 const router = require('express').Router()
-const { horaDiaId, diahoraActivity , horaDiaUpd } = require("../Controllers/DiaHora");
-const { orderlineByOrderId, createOrderline} = require("../Controllers/Orderline");
+const { orderlineByOrderId} = require("../Controllers/Orderline");
 const {
     allOrder,
     orderFilterId,
@@ -10,58 +9,13 @@ const {
     orderCartUserId,
     deleteOrder,
     orderStatus,
-    orderStatusUserId
+    orderStatusUserId,
 } = require("../Controllers/Order");
-const {
-    Orderline,
-} = require('../../db');
 
-//modificar estado a cancelado volviendo sumando el stock correspondiente
-
+//funcion para guardar carrito
 
 
 //order/carrito -------------------------------------------------------------------------------------------------------------
-
-//Realizar checkout cuardando cambios
-// (agregando actividades y modificando cantidades de las orderline)
-//en orden ->  precioTotal
-//en lineaDeOrden -> Subtotal / Precio unitario / cantidad
-//verificar estado de stock
-router.put("/checkout/:userId", async (req, res) => {
-    const { userId } = req.params;//este es el ID no es el UID
-    const orderLines = req.body;
-    //es una array de objetos ejemplo:
-    /* [{
-            "unitPrice": "30",
-            "subtotal": "90",
-            "quantity": "1",
-            "activityId":"3",
-            "orderId":"1",
-            "diaHoraId":"9"
-        }] */
-    try {
-        const OrderCart = await findOrCreateCart(userId)
-        await OrderCart[0].destroy();
-        //elimino carrito guardado con informacion que ya no nos sirve
-        const ordercart2 = await findOrCreateCart(userId)
-        //creo nueva orden con los valores correctos recibidos
-        var i = 0
-        orderLines.map(async ol => {
-            //crear orderLine nuevas
-            await createOrderline(ol.unitPrice, ol.subtotal, ol.quantity, ordercart2[0].id, ol.activityId);
-            //busco stock disponibles dentro de diaHoras
-            const diaHora = await horaDiaId(ol.diaHoraId);
-            var stock = diaHora.capacity - ol.quantity;
-            diaHora.capacity = stock
-            await diaHora.save();
-            console.log(stock)
-        });
-        //cambiar estado a "Creado"
-        res.send("cambio exitoso");
-    }catch (err) {
-        return res.send(err)
-    } 
-});
 
 //obtener todas las ordenes en un estado especifico 
 router.get("/find/:state", async (req, res) => {   //example: http://localhost:3001/order/find/Complete
@@ -87,6 +41,7 @@ router.get("/find/:state/:userId", async (req, res) => {   //example: http://loc
     }
 })
 
+//PASO 1 - para checkout / guardar nuevo carrito
 //eliminar/vaciar carrito cuando el cliente se arrepiente y quiere vaciar carrito, si ya esta guardado lo elimina y sino
 //elimina el carrito vacio
 router.delete("/cart/:idUser", async (req, res) => {
@@ -94,19 +49,21 @@ router.delete("/cart/:idUser", async (req, res) => {
         const { idUser } = req.params;
         const orderUs = await findOrCreateCart(idUser)
         await orderUs[0].destroy();
-        res.status(200).send("Carrito está vacío");
+        const newOrder = await findOrCreateCart(idUser)
+        res.status(200).send({ newOrderId: newOrder[0].id });
     } catch (error) {
         return res.status(400).send({ data: error });
     }
 });
 
-
+//PASO 2 - para checking -> "Created"
+//PASO 1 - para cancelar orden -> "Canceled"
 //modificar estado de orden de una orden especifica orderId y state ejm:{"state":"Complete"}
-router.put("/state/:id", async (req, res, next) => {
-    const { state } = req.body; // 'Cart', 'Created', 'Processing', 'Canceled', 'Complete'
-    const { id } = req.params;
+router.put("/state", async (req, res, next) => {
+    const { state, orderId } = req.body; // 'Cart', 'Created', 'Processing', 'Canceled', 'Complete'
+    //id de la order
     try {
-        const orderUpd = await orderUpdate(state, id)
+        const orderUpd = await orderUpdate(state, orderId)
         if (orderUpd) {
             return res.status(202).send("Element updated");
         }
@@ -115,6 +72,24 @@ router.put("/state/:id", async (req, res, next) => {
         res.send(error)
     }
 })
+
+//PASO 5 -> para checkout
+//paso 3 esta en diaHora y el 4 en orderLine 
+//paso 3, 4 y 5 seria dentro de un forEach por cada orderLine
+router.put("/sumaTotal", async (req, res) => {
+    const { orderId, subtotal } = req.body; // 'Cart', 'Created', 'Processing', 'Canceled', 'Complete'
+    //id de la order
+    try {
+        const order = await orderFilterId(orderId)
+        console.log(order.totalPrice)
+        order.totalPrice = Number(order.totalPrice) + Number(subtotal);
+        order.save()
+        return res.send(order);
+    } catch (error) {
+        res.send(error)
+    }
+})
+
 
 //Buscar o crear carrito
 router.post("/cart", async (req,res) => {

@@ -20,7 +20,7 @@ const allOrder = async () => {
 //obtener orden de un ID especifico (orderId)
 const orderFilterId = async (id) => {
     try {
-        const orderFilter = await Order.findAll({
+        const orderFilter = await Order.findOne({
             where: {
                 id: id,
             },
@@ -143,6 +143,27 @@ const orderStatusUserId = async (state, userId) => {
     return(error)
 }
 }
+
+/* //actualizar estado de una order de un Id especificado
+const orderUpdatePrecioTotal = async (precioOrderLine, id) => {
+    try {
+        const orderUpd = await Order.update(
+            {
+                precioTotal: precioOrderLine,
+            },
+            {
+                where:
+                {
+                    id: id
+                }
+            }
+        )
+        return orderUpd;
+    } catch (error) {
+        console.log(error);
+    }
+
+} */
 
 
 module.exports = {
