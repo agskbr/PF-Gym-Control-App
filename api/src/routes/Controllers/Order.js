@@ -69,7 +69,7 @@ const orderUserId = async (userId) => {
 //obtener cart+productos de un usuario
 const orderCartUserId = async (userId) => {
     try {
-        let reviews = await Order.findOne({
+        let order = await Order.findOne({
             where: {
                 userId: userId,
                 state: "Cart"
@@ -78,7 +78,7 @@ const orderCartUserId = async (userId) => {
                 model: Activity,
             }]
         })
-        return reviews
+        return order
     } catch (error) {
         return error
     }

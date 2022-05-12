@@ -7,9 +7,18 @@ const{
     horaDiaId,
     horaDiaDelete,
     horaDiaUpd,
-    deleteHoraDiaActivity
+    deleteHoraDiaActivity,
+    diahoraActivity
 } = require('../Controllers/DiaHora');
 
+
+//obetener los dias de una actividad especifica 
+router.get("/activity/:id", async (req, res) => {
+    const {id} = req.params
+    const horaDia = await diahoraActivity(id)
+    horaDia ? res.status(200).send(horaDia)
+    : res.status(404).send("No se encontro");
+});
 
 //obtener todos los dias de un usuario 
 router.get("/user/:id", async (req, res) => {

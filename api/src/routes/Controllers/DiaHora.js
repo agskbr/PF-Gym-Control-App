@@ -5,9 +5,23 @@ const {
 } = require('../../db');
 
 
+// para buscar los diasHora de una actividad indicada
+const diahoraActivity = async (activityId) => {
+    try {
+        const dia_Hora = await DiaHora.findAll({
+            where: {
+                activityId: activityId,
+            }
+        })
+        return dia_Hora;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 // traigo los dias y horas con sus acividades y usuarios
 const allHoraDia = async () => {
-    const allHoraDia = await DiaHora.findAll({
+    const all_HoraDia = await DiaHora.findAll({
         include: [
             {
                 model: Activity,
@@ -19,7 +33,7 @@ const allHoraDia = async () => {
             }
             ]
         })
-        return allHoraDia;
+        return all_HoraDia;
 }
 
 
@@ -198,5 +212,6 @@ module.exports = {
     horaDiaUpd,
     updateHoraDia,
     removeUserHoraDia,
-    deleteHoraDiaActivity
+    deleteHoraDiaActivity,
+    diahoraActivity
 }

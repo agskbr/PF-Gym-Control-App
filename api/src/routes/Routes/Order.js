@@ -1,5 +1,6 @@
 const router = require('express').Router()
-const { orderlineByOrderId } = require("../Controllers/Orderline");
+const { horaDiaId, diahoraActivity , horaDiaUpd } = require("../Controllers/DiaHora");
+const { orderlineByOrderId, createOrderline} = require("../Controllers/Orderline");
 const {
     allOrder,
     orderFilterId,
@@ -15,7 +16,6 @@ const {
     Orderline,
 } = require('../../db');
 
-//falta checkout
 //modificar estado a cancelado volviendo sumando el stock correspondiente
 
 
@@ -28,21 +28,38 @@ const {
 //en lineaDeOrden -> Subtotal / Precio unitario / cantidad
 //verificar estado de stock
 router.put("/checkout/:userId", async (req, res) => {
-    const { userId } = req.params;
-    const { orderlineId, orderlineQuantity } = req.body; // Se trigerean desde el body los campos de la Orderline
+    const { userId } = req.params;//este es el ID no es el UID
+    const orderLines = req.body;
+    //es una array de objetos ejemplo:
+    /* [{
+            "unitPrice": "30",
+            "subtotal": "90",
+            "quantity": "1",
+            "activityId":"3",
+            "orderId":"1",
+            "diaHoraId":"9"
+        }] */
     try {
         const OrderCart = await findOrCreateCart(userId)
-        const orderLine = await orderlineByOrderId(OrderCart.id)
-        const orderlineToChange = await Orderline.findByPk(orderlineId);
-
-
-
-
-
-
-        return orderlineToChange;
+        await OrderCart[0].destroy();
+        //elimino carrito guardado con informacion que ya no nos sirve
+        const ordercart2 = await findOrCreateCart(userId)
+        //creo nueva orden con los valores correctos recibidos
+        var i = 0
+        orderLines.map(async ol => {
+            //crear orderLine nuevas
+            await createOrderline(ol.unitPrice, ol.subtotal, ol.quantity, ordercart2[0].id, ol.activityId);
+            //busco stock disponibles dentro de diaHoras
+            const diaHora = await horaDiaId(ol.diaHoraId);
+            var stock = diaHora.capacity - ol.quantity;
+            diaHora.capacity = stock
+            await diaHora.save();
+            console.log(stock)
+        });
+        //cambiar estado a "Creado"
+        res.send("cambio exitoso");
     }catch (err) {
-        return res.send({ data: err }).status(400);
+        return res.send(err)
     } 
 });
 
@@ -70,13 +87,13 @@ router.get("/find/:state/:userId", async (req, res) => {   //example: http://loc
     }
 })
 
-//eliminar carrito cuando el cliente se arrepiente y quiere vaciar carrito, si ya esta guardado lo elimina y sino
+//eliminar/vaciar carrito cuando el cliente se arrepiente y quiere vaciar carrito, si ya esta guardado lo elimina y sino
 //elimina el carrito vacio
 router.delete("/cart/:idUser", async (req, res) => {
     try {
         const { idUser } = req.params;
         const orderUs = await findOrCreateCart(idUser)
-        const orderDeleted = await orderUs[0].destroy();
+        await orderUs[0].destroy();
         res.status(200).send("Carrito está vacío");
     } catch (error) {
         return res.status(400).send({ data: error });
@@ -145,12 +162,12 @@ router.get("/", async (req, res, next) => {
     }
 });
 
-//obtener todas las ordenes por userId
+//obtener todas las ordenes por userId 
 router.get("/user/:id", async (req,res) => {
     try{
         const {id} = req.params;
         const orderUser = await orderUserId(id);
-        revActId ?
+        orderUser ?
             res.send(orderUser) :
             res.send("order of user not found")
     }
