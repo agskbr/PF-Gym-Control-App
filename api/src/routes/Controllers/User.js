@@ -100,6 +100,7 @@ const userIsAdmin = async (id) => {
   const UserUid = await User.findOne({
     where: {
       uid: id,
+      isAdmin: true
     },
   });
   if (UserUid) {
@@ -108,6 +109,7 @@ const userIsAdmin = async (id) => {
     const UserId = await User.findOne({
       where: {
         id: id,
+        isAdmin: true
       },
     });
     return UserId;
