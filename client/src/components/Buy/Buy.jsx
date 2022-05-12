@@ -1,5 +1,5 @@
 import style from "./buy.module.css"
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getActivityById } from '../../store/actions';
 import { useParams } from "react-router-dom";
@@ -7,11 +7,12 @@ import Nav from "../Nav/nav";
 import { Link } from 'react-router-dom';
 import { getAllTrainers } from '../../store/actions';
 import Cart from "../Cart/Cart";
-import { addToCart } from "../../store/actions/actionsCart";
+import { addToCart, addOrderLine} from "../../store/actions/actionsCart";
 
 
 
 export default function Buy() {
+    const [time, setTime] = useState("");
 
     const state = useSelector(state => state);
     const dispatch = useDispatch();
@@ -42,8 +43,13 @@ export default function Buy() {
 	} = useSelector((state) => state.pgym.detail);
     
     const activity = useSelector((state)=> state.pgym.detail)
-   
-   
+
+    function getOptionSelected(){
+        let selectInput = document.getElementById("select");
+        setTime(selectInput.value);
+    }
+
+ 
 
     
     /* let coach = entrenadores?.filter(e => e.name === trainers[0]?.name);
@@ -90,7 +96,7 @@ export default function Buy() {
                         </div>
                     </div> 
                         
-                    <select className={style.horarios}> 
+                    <select className={style.horarios} id="select" onClick={()=> getOptionSelected()}> 
                         {
                             diaHoras?.map(day => ( <option className={style.day} key={day.day}>{` ${day.day} ${day.hour}`}</option>))
                         }
@@ -111,7 +117,7 @@ export default function Buy() {
                         </Link>
 
                         
-                            <button className={style.elbo} onClick={() => dispatch(addToCart(state.pgym.detail.id))} >Add to cart</button>
+                            <button className={style.elbo} onClick={() => dispatch(addToCart(state.pgym.detail.id), addOrderLine())} >Add to cart</button>
                         
 
                     </div>
