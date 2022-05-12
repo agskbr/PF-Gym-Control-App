@@ -48,13 +48,27 @@ export default function Buy() {
     
     /* let coach = entrenadores?.filter(e => e.name === trainers[0]?.name);
     let coach2 = entrenadores?.filter(e => e.name === trainers[1]?.name); */
-   
+
+  function getTimeByActivityDay() {
+      setTimeout(() => {
+        timeByDay();
+        }, 2000);
+    }
+    
+
+    function timeByDay() {
+    setTimeout(() => {
+        let time = state.pgym.detail.diaHoras[0].hour;
+        console.log(state.pgym.detail.diaHoras[0].hour)
+        return time;
+    }, 2000);
+    }
    
         
         return (
             <div className={style.background}>
                <Nav />
-            {/*    <div className={style.coachsTitle}>Coachs</div>
+               {/* <div className={style.coachsTitle}>Coachs</div>
                <div className={style.coachs}>
                      <div className={style.coach1}>
                             <img src={coach[0]?.image} alt="coach" className={style.coachImage} />
@@ -75,18 +89,18 @@ export default function Buy() {
                             <div className={style.back}>{description}</div>
                         </div>
                     </div> 
-
-                    <div className={style.day}>Dias: 
+                        
+                    <select className={style.horarios}> 
                         {
-                            diaHoras?.map(day => ( <span className={style.day} key={day.day}>{` ${day.day}`}</span>))
+                            diaHoras?.map(day => ( <option className={style.day} key={day.day}>{` ${day.day} ${day.hour}`}</option>))
                         }
-                    </div>
+                    </select>
 
-                    <div className={style.hour}>Horarios:
-                        {
-                            diaHoras?.map(hour => ( <span className={style.hour} key={hour.hour}>{` ${hour.hour}`}</span>))
-                        }
-                    </div>
+                    {/* <div className={style.hour}>Horarios:
+                        
+                            <span className={style.hour}>click here</span>
+                        
+                    </div> */}
                     
                     <div className={style.price}>Precio:{` $${price} `}</div>
                     <div className={style.capacity}>Capacidad:{` ${capacity} lugares disponibles `}</div>

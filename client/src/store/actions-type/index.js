@@ -29,6 +29,10 @@ export const CLEAR_CART = "CLEAR_CART";
 export const TOTAL_CART = "TOTAL_CART";
 // END SHOPPING CART
 
+//ORDER LINE
+export const ADD_ORDER_LINE = "ADD_ORDER_LINE";
+
+
 export {
   CREATE_ACTIVITY,
   REQUEST_POST,

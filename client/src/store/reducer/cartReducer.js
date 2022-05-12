@@ -1,4 +1,11 @@
-import { ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART, CLEAR_CART, TOTAL_CART, CLEAN_CART} from "../actions-type/index.js";
+import { 
+    ADD_TO_CART,
+    REMOVE_ONE_FROM_CART,
+    REMOVE_ALL_FROM_CART,
+    CLEAR_CART,
+    TOTAL_CART,
+    CLEAN_CART,
+    ADD_ORDER_LINE} from "../actions-type/index.js";
 
 
 
@@ -8,12 +15,18 @@ export const initialState = {
     order: [],
     cart: [],
     totalCart: 0,
+    orderLine:[],
 }
 
 
 export function cartReducer(state = initialState, action) {
     switch (action.type) {
-
+        
+      case ADD_ORDER_LINE:
+        return {
+            ...state,
+            orderLine: action.payload,
+        };
 
       case CLEAR_CART:
                          
