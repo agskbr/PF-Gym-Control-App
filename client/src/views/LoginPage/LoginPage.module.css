@@ -80,6 +80,12 @@
   cursor: pointer;
 }
 
+.loginOptions {
+  display: flex;
+  width: 30%;
+  justify-content: space-evenly;
+}
+
 .loginBtn {
   background-color: white;
   box-shadow: 10px 10px 20px rgb(171, 171, 171);
@@ -100,7 +106,7 @@
   font-family: sans-serif;
   font-weight: 600;
 }
-.googleBtn {
+.socialBtn {
   margin-top: 20px;
   width: 50px;
   height: 50px;
@@ -112,10 +118,10 @@
   border-radius: 100%;
   border: none;
 }
-.googleBtn img {
+.socialBtn img {
   width: 40px;
   height: 40px;
 }
-.googleBtn:hover {
+.socialBtn:hover {
   cursor: pointer;
 }
