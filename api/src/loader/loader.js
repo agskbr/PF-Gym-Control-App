@@ -132,7 +132,8 @@ const loaderOrderline = async () =>{
                     subtotal: el.subtotal,
                     quantity: el.quantity,
                     orderId: el.orderId,
-                    activityId: el.activityId
+                    activityId: el.activityId,
+                    diaHoraId: el.diaHoraId
                 },
             });
         })
@@ -160,6 +161,7 @@ const loaderDiaHora = async () =>{
         console.log('Error en la carga de diaHora a la DB')
     }
 }
+
 
 module.exports = {
     loaderUsers,

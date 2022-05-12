@@ -1,12 +1,12 @@
 const {OrderLine} = require('../../db')
 
-//crear linea de ordenLine con (unitPrice, subTotal, quantity, orderId, activityId)
-const createOrderline = async(unitPrice, subtotal, quantity, orderId, activityId) =>{
+//crear linea de ordenLine con (unitPrice, subTotal, quantity, orderId, activityId,diaHoraId)
+const createOrderline = async(unitPrice, subtotal, quantity, orderId, activityId,diaHoraId) =>{
     try {
         const orderline = await OrderLine.findOne({
             where: {
                 orderId: orderId,
-                activityId:activityId
+                diaHoraId:diaHoraId
             },
         })
         if(!orderline){
@@ -15,7 +15,8 @@ const createOrderline = async(unitPrice, subtotal, quantity, orderId, activityId
                 subtotal,
                 quantity,
                 orderId,
-                activityId
+                activityId,
+                diaHoraId
             })
             return newOrderline
         }else{

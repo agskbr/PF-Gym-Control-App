@@ -29,7 +29,7 @@ const getAllUsers = async () => {
   return user;
 };
 
-const userId = async (id) => {
+const getUserId = async (id) => {
   try {
     return await User.findOne({
       where: {
@@ -119,7 +119,7 @@ module.exports = {
   filterUserEmail,
   userCreate,
   userUpd,
-  userId,
+  getUserId,
   userDelete,
   userIsAdmin,
 };

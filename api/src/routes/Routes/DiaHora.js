@@ -1,5 +1,8 @@
 const { Router } = require('express');
 const router = Router();
+const { orderlineByOrderId } = require("../Controllers/Orderline");
+const { orderFilterId } = require("../Controllers/Order");
+const { getUserId } = require("../Controllers/User");
 const{ 
     allHoraDia,
     allHoraDiaUser,
@@ -14,15 +17,24 @@ const{
 
 //PASO 2 - para cancelar order
 //sumar stock para ordenes canceladas
-router.put('/sumarStock', async (req, res,)=> {
-    let { quantity, diaHoraId} = req.body;
+router.put('/addStock', async (req, res,)=> {
+    let { orderId } = req.body;
     try {
-        const diaHora = await horaDiaId(diaHoraId);
-        var stock = diaHora.capacity + quantity;
-        diaHora.capacity = stock
-        await diaHora.save();
+        const orderline = await orderlineByOrderId(orderId);
+        /* const order = await orderFilterId(orderId)
+        const user = await getUserId(order.userId) */
+        await orderline.forEach(async element => {
+            const diaHora = await horaDiaId(element.diaHoraId);
+            var stock = diaHora.capacity + element.quantity;
+            diaHora.capacity = stock
+            await diaHora.save();
+            /* if (user && diaHora) {
+                diaHora.removeUser(user);
+            } */
+        });
+        res.send("stock restaurado")
     } catch (error) {
-        console.log(error)
+        res.send(error)
     }
 });
 
@@ -30,7 +42,7 @@ router.put('/sumarStock', async (req, res,)=> {
 //PASO 3 - restar stock para checkout
 //paso 3 y 4 seria dentro de un forEach para recorrer todas las OrderLine
 //modificar diaHora especifica :diaHoraId
-router.put('/restarStock', async (req, res,)=> {
+router.put('/subtractStock', async (req, res,)=> {
     let { quantity, diaHoraId } = req.body;
     try {
         const diaHora = await horaDiaId(diaHoraId);
