@@ -10,7 +10,7 @@ sequelize.define('order', {
     },
 
     totalPrice: {
-        type: DataTypes.DECIMAL(9, 2),
+        type: DataTypes.DECIMAL,
         allowNull: true,
         defaultValue: 0,
     },

@@ -2,13 +2,18 @@ import React from 'react';
 import style from "./Card.module.css";
 
 
-export default function Card({image, name, diets}){
+export default function Card({image, title, diets}){
     return(
         <div className= {style.div}>
         <div className= {style.Card}>
-            <h3 className= {style.name}>{name}</h3>
-            <img className= {style.imagen} src={image} alt="" width="200px" height="200px"/>
-            <h5>{diets ? diets : <h5>Sin especificar</h5>}</h5>
+            <div className={style.imageContainer}>
+                <img className= {style.imagen} src={image} alt="" width="200px" height="200px"/>
+            </div>
+            <div className={style.textContainer}>
+                <p className={style.name}>{title}</p>
+                <p className={style.categories}>{diets ? diets : <p>Sin especificar</p>}</p>
+            </div>
+            
         </div>
         </div>
     )

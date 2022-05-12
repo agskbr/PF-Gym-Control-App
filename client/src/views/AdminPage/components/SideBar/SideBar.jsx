@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import CustomItemSideBar from "../CustomItemSideBar/CustomItemSideBar";
 import logoUser from "../../../../assets/logo.png";
-import { userSignOut } from "../../../../store/actions/actions-login";
+import {
+  requestUserLogin,
+  userSignOut,
+} from "../../../../store/actions/actions-login";
 import { Link } from "react-router-dom";
 import style from "./SideBar.module.css";
 import {
@@ -9,6 +12,7 @@ import {
   FaDumbbell,
   FaClipboard,
   FaArrowCircleLeft,
+  FaPercent,
 } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 
@@ -54,8 +58,18 @@ export default function SideBar({ setTypeOfCardView }) {
             setTypeOfCardView("Instructores");
           }}
         />
+        <CustomItemSideBar
+          icon={<FaPercent size={20} />}
+          name="Ofertas"
+          selected={selected}
+          onClick={() => {
+            setSeletected("Ofertas");
+            setTypeOfCardView("Ofertas");
+          }}
+        />
         <Link
           onClick={() => {
+            dispatch(requestUserLogin());
             dispatch(userSignOut());
           }}
           className={style.link}

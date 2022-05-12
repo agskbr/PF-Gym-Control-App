@@ -20,31 +20,6 @@ const {
 router.post("/", async (req,res, next) => {
     try{
         const { name, description, video, image, price, trainers, diaHoraId } = req.body
-
-        /* const idhd = []
-        const queries = [];
-        horaDiaCapc.forEach((el) => {
-            queries.push(horaDiaCreate(el.day, el.hour, el.capacity));
-                Promise.all(queries) 
-                    .then((queryResults) => {
-                        queryResults.forEach((queryResult) => {
-                            let response = queryResult.dataValues
-                            idhd.push(response.id)
-                        })
-                    })
-                    .then(() => response)
-                    .catch((err) => console.log(err));
-        })
-        console.log(idhd)
-        }catch (err) {
-            console.log(err)
-        } */
-        /* horaDiaCapc.map(async (el) => {
-            const respuesta = await horaDiaCreate(el.day, el.hour, el.capacity)
-            idhd.push(respuesta.dataValues.id)
-            console.log(respuesta.dataValues.id)
-        }) */
-        //console.log(idhd)
         const activity_Name = await createActivity(name, description, video, image, price, trainers, diaHoraId);
         if (activity_Name) {
             return res.send(activity_Name);
@@ -78,8 +53,6 @@ router.get("/", async (req,res) => {
 router.get ('/all', async (req, res,) => {
     const activity_name = await allActivity();
     if(activity_name){
-        /*const activity = await allActivities.filter(el => el.id.toString() === id);
-        activity.length ?*/
         res.status(200).json(activity_name);
     }else res.status(404).send("Activity not found, try another one.");
 })
@@ -98,8 +71,6 @@ router.get ('/:id', async (req, res,) => {
     const id = req.params.id;
     const activity_Id = await activityId(id);
     if(activity_Id){
-        /*const activity = await allActivities.filter(el => el.id.toString() === id);
-        activity.length ?*/
         res.status(200).json(activity_Id);
     }else res.status(404).send("Activity not found, try another one.");
 })

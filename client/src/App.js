@@ -2,23 +2,28 @@ import "./App.css";
 import { AunthenticatedRoutes, UnAuthenticatedRoutes } from "./Rols";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { validateUserIsLogged } from "./store/actions/actions-login";
-import { requestPost } from "./store/actions";
+import {
+  requestUserLogin,
+  validateUserIsLogged,
+} from "./store/actions/actions-login";
+import Loader from "./components/Loader/Loader";
 
 function App() {
   const dispatch = useDispatch();
-  const { user, isAdmin } = useSelector((state) => state.login);
+  const { user, isAdmin, isLoading } = useSelector((state) => state.login);
   useEffect(() => {
-    dispatch(requestPost());
+    dispatch(requestUserLogin());
     dispatch(validateUserIsLogged());
   }, [dispatch]);
 
   return (
     <div className="App">
-      {user ? (
-        <AunthenticatedRoutes isAdmin={isAdmin} />
+      {isLoading ? (
+        <Loader />
+      ) : user ? (
+        <AunthenticatedRoutes isAdmin={isAdmin} isLoading={isLoading} />
       ) : (
-        <UnAuthenticatedRoutes user={user} />
+        <UnAuthenticatedRoutes  />
       )}
     </div>
   );

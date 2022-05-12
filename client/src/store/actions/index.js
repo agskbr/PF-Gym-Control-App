@@ -8,8 +8,6 @@ import {
 
 import { BASE_URL } from "../constantes";
 
-
-
 const createActivity = (activity) => {
   return async (dispatch) => {
     try {
@@ -46,6 +44,7 @@ const getAllUsers = () => {
     try {
       const { data } = await axios.get(`${BASE_URL}/user`);
       dispatch({ type: GET_ALL_USERS, payload: data });
+      dispatch({ type: RECEIVED_POST });
     } catch (error) {
       console.log(error);
     }
@@ -67,6 +66,7 @@ const getAllTrainers = () => {
     try {
       const { data } = await axios.get(`${BASE_URL}/trainer`);
       dispatch({ type: GET_ALL_TRAINERS, payload: data });
+      dispatch({ type: RECEIVED_POST });
     } catch (error) {
       console.log(error);
     }
