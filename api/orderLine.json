@@ -4,49 +4,56 @@
         "subtotal": "90",
         "quantity": "3",
         "activityId":"3",
-        "orderId":"1"
+        "orderId":"1",
+        "diaHoraId":"3"
     },
     {
         "unitPrice": "80",
         "subtotal": "160",
         "quantity": "2",
         "activityId":"5",
-        "orderId":"2"
+        "orderId":"2",
+        "diaHoraId":"5"
     },
     {
         "unitPrice": "20",
         "subtotal": "40",
         "quantity": "2",
         "activityId":"4",
-        "orderId":"3"
+        "orderId":"3",
+        "diaHoraId":"4"
     },
     {
         "unitPrice": "10",
         "subtotal": "20",
         "quantity": "2",
         "activityId":"6",
-        "orderId":"1"
+        "orderId":"1",
+        "diaHoraId":"6"
+    },
+    {
+        "unitPrice": "10",
+        "subtotal": "20",
+        "quantity": "2",
+        "activityId":"7",
+        "orderId":"1",
+        "diaHoraId":"7"
+    },
+    {
+        "unitPrice": "10",
+        "subtotal": "20",
+        "quantity": "2",
+        "activityId":"8",
+        "orderId":"1",
+        "diaHoraId":"8"
     },
     {
         "unitPrice": "10",
         "subtotal": "20",
         "quantity": "2",
         "activityId":"1",
-        "orderId":"1"
-    },
-    {
-        "unitPrice": "10",
-        "subtotal": "20",
-        "quantity": "2",
-        "activityId":"1",
-        "orderId":"1"
-    },
-    {
-        "unitPrice": "10",
-        "subtotal": "20",
-        "quantity": "2",
-        "activityId":"1",
-        "orderId":"1"
+        "orderId":"2",
+        "diaHoraId":"1"
     }
 
 ]

@@ -132,7 +132,8 @@ const loaderOrderline = async () =>{
                     subtotal: el.subtotal,
                     quantity: el.quantity,
                     orderId: el.orderId,
-                    activityId: el.activityId
+                    activityId: el.activityId,
+                    diaHoraId: el.diaHoraId
                 },
             });
         })
