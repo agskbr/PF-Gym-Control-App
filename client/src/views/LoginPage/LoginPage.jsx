@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { requestPost } from "../../store/actions/index";
 import {
+  loginWithGithub,
   loginWithGoogle,
   resetPassword,
   signInWithEmailAndPass,
 } from "../../store/actions/actions-login";
 import googleLogo from "../../assets/google-logo.png";
+import githubLogo from "../../assets/github-logo.png";
 import style from "./LoginPage.module.css";
 import CustomInput from "../AdminPage/components/CustomInput/CustomInput";
 import Loader from "../../components/Loader/Loader";
@@ -29,7 +32,17 @@ export default function LoginPage() {
       <h3>Inicia sesión</h3>
       <dialog className={style.forgotDialog} id="forgotPassDialog">
         <div className={style.dialogContainer}>
-          <h4>Se te enviará un correo para recuperar tu cuenta</h4>
+          <div className={style.headerOfDialog}>
+            <h4>Se te enviará un correo para recuperar tu cuenta</h4>
+            <button
+              className={style.closeBtnModal}
+              onClick={() =>
+                document.getElementById("forgotPassDialog").close()
+              }
+            >
+              x
+            </button>
+          </div>
           <CustomInput
             name={"recEmail"}
             value={recAccount.recEmail}
@@ -70,20 +83,20 @@ export default function LoginPage() {
           onChange={handlerChange}
           placeholder="Password"
         />
-        <div className={style.forgotPassContainer}>
-          ¿Olvidaste tu contraseña?
-          <button
-            className={style.forgotPassBtn}
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById("forgotPassDialog").showModal();
-            }}
-          >
-            recupera tu cuenta
-          </button>
-        </div>
+
         <input className={style.loginBtn} type="submit" value="Ingresar" />
       </form>
+      <div className={style.forgotPassContainer}>
+        ¿Olvidaste tu contraseña?
+        <button
+          className={style.forgotPassBtn}
+          onClick={() => {
+            document.getElementById("forgotPassDialog").showModal();
+          }}
+        >
+          recupera tu cuenta
+        </button>
+      </div>
       <div className={style.createAccount}>
         ¿No tenes una cuenta?{" "}
         <Link className={style.link} to="/register">
@@ -91,14 +104,26 @@ export default function LoginPage() {
         </Link>
       </div>
       <span className={style.optionsToLogin}>O ingresá con</span>
-      <button
-        className={style.googleBtn}
-        onClick={() => {
-          dispatch(loginWithGoogle());
-        }}
-      >
-        <img src={googleLogo} alt="google" />
-      </button>
+      <div className={style.loginOptions}>
+        <button
+          className={style.socialBtn}
+          onClick={() => {
+            dispatch(requestPost());
+            dispatch(loginWithGoogle());
+          }}
+        >
+          <img src={googleLogo} alt="googleLogo" />
+        </button>
+        <button
+          className={style.socialBtn}
+          onClick={() => {
+            dispatch(requestPost());
+            dispatch(loginWithGithub());
+          }}
+        >
+          <img src={githubLogo} alt="githubLogo" />
+        </button>
+      </div>
     </div>
   );
 }

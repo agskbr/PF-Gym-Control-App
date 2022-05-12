@@ -8,9 +8,14 @@ import { BsCartFill } from "react-icons/bs";
 import { GoSignOut } from "react-icons/go";
 import logo from "../../../../assets/logo.png";
 import { useDispatch } from "react-redux";
-import { userSignOut } from "../../../../store/actions/actions-login";
+import {
+  requestUserLogin,
+  userSignOut,
+} from "../../../../store/actions/actions-login";
+import { useNavigate } from "react-router-dom";
 
 export default function SideBar({ setItemSelected }) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -67,6 +72,8 @@ export default function SideBar({ setItemSelected }) {
             href={item.path}
             onClick={() => {
               if (item.name === "SignOut") {
+                dispatch(requestUserLogin());
+                navigate("/", { replace: true });
                 return dispatch(userSignOut());
               }
               setItemSelected(item.name);
