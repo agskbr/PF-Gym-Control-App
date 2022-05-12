@@ -34,6 +34,7 @@ export function cartReducer(state = initialState, action) {
                 ...state,
                 cart: [],
                 order: [],
+                orderLine: [],
             }
 
         case ADD_TO_CART:
@@ -44,16 +45,19 @@ export function cartReducer(state = initialState, action) {
             
             let itemInCart = state.cart?.find(item => item.id === action.payload.id);
             let itemInOrder = state.order?.find(item => item.name === action.payload.name);
+            let itemInOrderLine = state.orderLine?.find(item => item.activityId === action.payload.id);
             /* console.log(state.cart);
             console.log(itemInCart); */
 
             if (itemInCart) {
                 itemInCart.quantity += 1;
                 itemInOrder.quantity += 1;
+                itemInOrderLine.quantity += 1;
                 return {
                     ...state,
                     cart: [...state.cart],
                     order: [...state.order],
+                    orderLine: [...state.orderLine],
                 }
             } else {
                 return {
@@ -64,6 +68,13 @@ export function cartReducer(state = initialState, action) {
                         price: action.payload.price,
                         quantity: 1 
                       }],
+                    orderLine: [...state.orderLine, {
+                        activityId: action.payload.id,
+                        unitprice: action.payload.price,
+                        orderId: Math.random(1,10000),
+                        quantity: 1,
+                        subtotal: (action.payload.price * action.payload.quantity),
+                        }],
                 }
             }
             
