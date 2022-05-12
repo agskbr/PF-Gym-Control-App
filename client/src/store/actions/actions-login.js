@@ -110,6 +110,7 @@ const resetPassword = (email) => {
       });
     } catch (error) {
       console.log(error);
+      swal({ buttons: "Aceptar", title: "Email no válido", icon: "error" });
     }
   };
 };
