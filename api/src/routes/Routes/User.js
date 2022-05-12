@@ -11,6 +11,7 @@ const {
 } = require("../Controllers/User");
 
 //recibe un UID o un Id del usuario y la propiedad isAdmin del usuario encontrado
+//en caso de no encontrar ningun usuario con ese UID o ID devuelve false
 router.post("/isAdmin", async (req, res) => {
   try {
     const { id } = req.body;
