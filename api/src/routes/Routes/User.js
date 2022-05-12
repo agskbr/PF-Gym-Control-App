@@ -10,6 +10,7 @@ const {
   userIsAdmin,
 } = require("../Controllers/User");
 
+//recibe un UID o un Id del usuario y la propiedad isAdmin del usuario encontrado
 router.post("/isAdmin", async (req, res) => {
   try {
     const { id } = req.body;
