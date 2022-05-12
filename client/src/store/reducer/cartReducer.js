@@ -53,6 +53,7 @@ export function cartReducer(state = initialState, action) {
                 itemInCart.quantity += 1;
                 itemInOrder.quantity += 1;
                 itemInOrderLine.quantity += 1;
+                itemInOrderLine.subtotal = ((itemInOrderLine.unitprice * itemInOrderLine.quantity));
                 return {
                     ...state,
                     cart: [...state.cart],
@@ -73,8 +74,8 @@ export function cartReducer(state = initialState, action) {
                         unitprice: action.payload.price,
                         orderId: Math.random(1,10000),
                         quantity: 1,
-                        subtotal: (action.payload.price * action.payload.quantity),
-                        }],
+                        subtotal: action.payload.price,
+                        }]
                 }
             }
             
