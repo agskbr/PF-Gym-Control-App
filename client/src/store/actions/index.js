@@ -8,8 +8,6 @@ import {
 
 import { BASE_URL } from "../constantes";
 
-
-
 const createActivity = (activity) => {
   return async (dispatch) => {
     try {
@@ -46,6 +44,7 @@ const getAllUsers = () => {
     try {
       const { data } = await axios.get(`${BASE_URL}/user`);
       dispatch({ type: GET_ALL_USERS, payload: data });
+      dispatch({ type: RECEIVED_POST });
     } catch (error) {
       console.log(error);
     }
@@ -67,6 +66,7 @@ const getAllTrainers = () => {
     try {
       const { data } = await axios.get(`${BASE_URL}/trainer`);
       dispatch({ type: GET_ALL_TRAINERS, payload: data });
+      dispatch({ type: RECEIVED_POST });
     } catch (error) {
       console.log(error);
     }
@@ -94,6 +94,7 @@ export function getActivity() {
       .catch((err) => console.log(err));
   };
 }
+
 export function getActivityById(payload) {
   return async function (dispatch) {
     try {
@@ -106,6 +107,15 @@ export function getActivityById(payload) {
       console.log(err);
     }
   };
+}
+
+export function getTimeByActivityId(payload) {
+      return function (dispatch) {
+      dispatch({
+      type: "GET_TIME_BY_ACTIVITY_DAY",
+        payload: payload,
+      });
+}
 }
 
 export function searchByName(name) {

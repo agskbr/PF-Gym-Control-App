@@ -19,6 +19,7 @@ export const initialState = {
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+  
     case GET_ALL_TRAINERS:
       return {
         ...state,
@@ -49,6 +50,16 @@ export const rootReducer = (state = initialState, action) => {
         detail: action.payload,
       };
 
+    /*  case "GET_TIME_BY_ACTIVITY_DAY":
+       state.pgym.detail.diaHoras.filter((item) => {
+          if (item.day === action.payload.day) {
+      return {
+        ...state,
+        time: item.hour,
+      };
+    }
+  });
+ */
     case "SEARCH_BY_NAME":
       return {
         ...state,
