@@ -31,15 +31,29 @@ const getAllUsers = async () => {
 
 const getUserId = async (id) => {
   try {
-    return await User.findOne({
+    const UserUid = await User.findOne({
       where: {
-        id: id,
+        uid: id
       },
       include: {
         model: Activity,
         attributes: ["name"],
       },
     });
+    if (UserUid) {
+      return UserUid;
+    } else {
+      const UserId = await User.findOne({
+        where: {
+          id: id
+        },
+        include: {
+          model: Activity,
+          attributes: ["name"],
+        },
+      });
+      return UserId;
+    }
   } catch (error) {
     console.log(error);
   }
@@ -59,7 +73,7 @@ const filterUserEmail = async (email) => {
 
 const userCreate = async (uid, name, lastName, email, phoneNumber, image) => {
   try {
-    return await User.create({
+    return await User.findOrCreate({
       uid: uid,
       name: name,
       lastName: lastName,
