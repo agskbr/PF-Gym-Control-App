@@ -5,7 +5,7 @@ const {
   filterUserEmail,
   userCreate,
   userUpd,
-  userId,
+  getUserId,
   userDelete,
   userIsAdmin,
 } = require("../Controllers/User");
@@ -68,7 +68,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
-  const user_Id = await userId(id);
+  const user_Id = await getUserId(id);
   if (user_Id) {
     res.status(200).json(user_Id);
   } else res.status(404).send("Usuario no encontrado");

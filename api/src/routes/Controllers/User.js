@@ -31,28 +31,29 @@ const getAllUsers = async () => {
 
 const getUserId = async (id) => {
   try {
-    const user = await User.findOne({
+    const UserUid = await User.findOne({
       where: {
-        id: id,
+        uid: id
       },
       include: {
         model: Activity,
         attributes: ["name"],
       },
     });
-    if ({user}) {
-      return user
+    if (UserUid) {
+      return UserUid;
+    } else {
+      const UserId = await User.findOne({
+        where: {
+          id: id
+        },
+        include: {
+          model: Activity,
+          attributes: ["name"],
+        },
+      });
+      return UserId;
     }
-    const user2 = await User.findOne({
-      where: {
-        uid: id,
-      },
-      include: {
-        model: Activity,
-        attributes: ["name"],
-      },
-    });
-    return user2
   } catch (error) {
     console.log(error);
   }
