@@ -11,7 +11,8 @@ const{
     horaDiaDelete,
     horaDiaUpd,
     deleteHoraDiaActivity,
-    diahoraActivity
+    diahoraActivity,
+    deleteHoraDiaUser
 } = require('../Controllers/DiaHora');
 
 
@@ -21,18 +22,21 @@ router.put('/addStock', async (req, res,)=> {
     let { orderId } = req.body;
     try {
         const orderline = await orderlineByOrderId(orderId);
-        /* const order = await orderFilterId(orderId)
-        const user = await getUserId(order.userId) */
+        const order = await orderFilterId(orderId)
+        const user = await getUserId(order.userId) 
         await orderline.forEach(async element => {
             const diaHora = await horaDiaId(element.diaHoraId);
+            console.log(`La capacidad actual es: ${diaHora.capacity}`)
             var stock = diaHora.capacity + element.quantity;
             diaHora.capacity = stock
+            console.log(`Y ahora es: ${diaHora.capacity}`)
             await diaHora.save();
-            /* if (user && diaHora) {
-                diaHora.removeUser(user);
-            } */
+            const resp = await deleteHoraDiaUser(order.userId, element.diaHoraId)
+            resp ? 
+            console.log(`Relación del diaHora (id: ${diaHora.id}) con el usuario ${user.name} eliminada`) :
+            console.log('Relacion no hecha')
         });
-        res.send("stock restaurado")
+        res.send("stock restaurado y relaciones eliminadas")
     } catch (error) {
         res.send(error)
     }
@@ -49,10 +53,12 @@ router.put('/subtractStock', async (req, res,)=> {
         if (diaHora.capacity < quantity) {
             return res.status(400).send("sin stock disponible");
         }
+        console.log(`La capacidad actual es ${diaHora.capacity}`)
         var stock = diaHora.capacity - quantity;
         diaHora.capacity = stock
+        console.log(`Y ahora es ${diaHora.capacity}`)
         await diaHora.save();
-        res.send(diaHora);
+        res.send("Capacidad del diaHora restada exitosamente");
     } catch (error) {
         console.log(error)
     }
