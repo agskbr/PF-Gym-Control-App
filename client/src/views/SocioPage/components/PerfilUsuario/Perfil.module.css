@@ -12,19 +12,20 @@
   justify-content: center;
 }
 .perfilUser button {
-  height: 5ex;
-  width: 10ex;
+  height: 3ex;
+  width: auto;
   border-radius: 2ex;
   border: none;
   color: #eb4e27;
   background-color: #111111;
   margin: 2ex;
-  font-size: 4ex;
+  font-size: 1ex;
   cursor: pointer;
 }
+
 .perfilUser button:hover {
-  height: 100%;
-  width: 100%;
+  background-color: #eb4e27;
+  color: white;
 }
 
 .perfilUserName img {
