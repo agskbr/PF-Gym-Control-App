@@ -1,72 +1,224 @@
 [
     {
         "day": "Lunes",
-        "hour": "19hs",
-        "capacity": 5,
+        "hour": "10hs",
+        "capacity": 10,
         "activityId": 1
     },
+
     {
-        "day": "Martes",
-        "hour": "18hs",
+        "day": "Lunes",
+        "hour": "10hs",
         "capacity": 10,
+        "activityId": 9
+    },
+
+    {
+        "day": "Lunes",
+        "hour": "13hs",
+        "capacity": 15,
         "activityId": 2
     },
     {
-        "day": "Miercoles",
-        "hour": "10hs",
-        "capacity": 6,
+        "day": "Lunes",
+        "hour": "18hs",
+        "capacity": 10,
         "activityId": 3
     },
     {
-        "day": "Jueves",
+        "day": "Lunes",
         "hour": "20hs",
-        "capacity": 9,
+        "capacity": 15,
         "activityId": 4
     },
     {
-        "day": "Viernes",
-        "hour": "21hs",
-        "capacity": 8,
-        "activityId": 5
-    },
-    {
-        "day": "Sabado",
+        "day": "Martes",
         "hour": "9hs",
-        "capacity": 3,
+        "capacity": 10,
+        "activityId": 1
+    },
+
+    {
+        "day": "Martes",
+        "hour": "10hs",
+        "capacity": 10,
+        "activityId": 9
+    },
+
+    {
+        "day": "Martes",
+        "hour": "9hs",
+        "capacity": 10,
         "activityId": 6
     },
     {
         "day": "Martes",
-        "hour": "16hs",
-        "capacity": 6,
-        "activityId": 7
+        "hour": "10hs",
+        "capacity": 10,
+        "activityId": 9
     },
+
     {
-        "day": "Miercoles",
-        "hour": "16hs",
-        "capacity": 7,
+        "day": "Martes",
+        "hour": "17hs",
+        "capacity": 10,
+        "activityId": 9
+    },
+
+    {
+        "day": "Martes",
+        "hour": "14hs",
+        "capacity": 10,
         "activityId": 8
     },
     {
-        "day": "Lunes",
-        "hour": "15hs",
-        "capacity": 7,
+        "day": "Martes",
+        "hour": "16hs",
+        "capacity": 10,
         "activityId": 3
     }
     ,
     {
-        "day": "Jueves",
+        "day": "Martes",
         "hour": "16hs",
         "capacity": 7,
         "activityId": 2
     }
     ,
     {
-        "day": "Viernes",
-        "hour": "16hs",
-        "capacity": 7,
+        "day": "Miercoles",
+        "hour": "10hs",
+        "capacity": 10,
         "activityId": 1
+    },
+    
+    {
+        "day": "Miercoles",
+        "hour": "12hs",
+        "capacity": 15,
+        "activityId": 2
+    },
+
+    {
+        "day": "Miercoles",
+        "hour": "16hs",
+        "capacity": 10,
+        "activityId": 3
+    },
+
+    {
+        "day": "Miercoles",
+        "hour": "17hs",
+        "capacity": 10,
+        "activityId": 8
+    },
+
+    {
+        "day": "Miercoles",
+        "hour": "20hs",
+        "capacity": 15,
+        "activityId": 4
+    },
+
+    {
+        "day": "Jueves",
+        "hour": "9hs",
+        "capacity": 10,
+        "activityId": 8
+    },
+
+    {
+        "day": "Jueves",
+        "hour": "11hs",
+        "capacity": 10,
+        "activityId": 1
+    },
+
+    {
+        "day": "Jueves",
+        "hour": "16hs",
+        "capacity": 10,
+        "activityId": 5
+    },
+
+    {
+        "day": "Jueves",
+        "hour": "18hs",
+        "capacity": 10,
+        "activityId": 1
+    },
+
+    {
+        "day": "Jueves",
+        "hour": "20hs",
+        "capacity": 7,
+        "activityId": 3
+
+    },
+
+    {
+        "day": "Viernes",
+        "hour": "9hs",
+        "capacity": 15,
+        "activityId": 8
+        
+    },
+
+    {
+        "day": "Viernes",
+        "hour": "9hs",
+        "capacity": 10,
+        "activityId": 9
+        
+    },
+
+    {
+        "day": "Viernes",
+        "hour": "11hs",
+        "capacity": 10,
+        "activityId": 3
+        
+    },
+
+    {
+        "day": "Viernes",
+        "hour": "14hs",
+        "capacity": 10,
+        "activityId": 6
+        
+    },
+
+    {
+        "day": "Viernes",
+        "hour": "18hs",
+        "capacity": 10,
+        "activityId": 3
+        
+    },
+
+    {
+        "day": "Sabado",
+        "hour": "10hs",
+        "capacity": 10,
+        "activityId": 8
+        
+    },
+
+    {
+        "day": "Sabado",
+        "hour": "12hs",
+        "capacity": 10,
+        "activityId": 8
+        
+    },
+
+    {
+        "day": "Sabado",
+        "hour": "14hs",
+        "capacity": 10,
+        "activityId": 8
+        
     }
-    
-    
+
+
 ]
