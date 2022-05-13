@@ -9,7 +9,7 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   updateProfile,
-  
+  sendEmailVerification,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -37,4 +37,5 @@ export {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   updateProfile,
+  sendEmailVerification,
 };
