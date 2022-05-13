@@ -47,7 +47,7 @@ router.post("/", async (req, res) => {
 });
 
 //obtener usuario por email
-router.get("/:email", async (req, res) => {
+router.get("/email/:email", async (req, res) => {
   try {
     const { email } = req.params;
     const usuarioEmail = await filterUserEmail(email);

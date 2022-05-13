@@ -31,7 +31,7 @@ const getAllUsers = async () => {
 
 const getUserId = async (id) => {
   try {
-    return await User.findOne({
+    const user = await User.findOne({
       where: {
         id: id,
       },
@@ -40,6 +40,19 @@ const getUserId = async (id) => {
         attributes: ["name"],
       },
     });
+    if ({user}) {
+      return user
+    }
+    const user2 = await User.findOne({
+      where: {
+        uid: id,
+      },
+      include: {
+        model: Activity,
+        attributes: ["name"],
+      },
+    });
+    return user2
   } catch (error) {
     console.log(error);
   }
@@ -59,7 +72,7 @@ const filterUserEmail = async (email) => {
 
 const userCreate = async (uid, name, lastName, email, phoneNumber, image) => {
   try {
-    return await User.create({
+    return await User.findOrCreate({
       uid: uid,
       name: name,
       lastName: lastName,
