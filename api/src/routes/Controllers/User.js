@@ -34,11 +34,7 @@ const getUserId = async (id) => {
     const UserUid = await User.findOne({
       where: {
         uid: id
-      },
-      include: {
-        model: Activity,
-        attributes: ["name"],
-      },
+      }
     });
     if (UserUid) {
       return UserUid;
@@ -46,16 +42,12 @@ const getUserId = async (id) => {
       const UserId = await User.findOne({
         where: {
           id: id
-        },
-        include: {
-          model: Activity,
-          attributes: ["name"],
-        },
+        }
       });
       return UserId;
     }
   } catch (error) {
-    console.log(error);
+    return(error);
   }
 };
 
@@ -94,7 +86,7 @@ const userUpd = async (id, user) => {
       },
     });
   } catch (error) {
-    console.log(error);
+    return(error);
   }
 };
 
@@ -106,7 +98,7 @@ const userDelete = async (id) => {
       },
     });
   } catch (error) {
-    console.log(error);
+    return(error);
   }
 };
 
