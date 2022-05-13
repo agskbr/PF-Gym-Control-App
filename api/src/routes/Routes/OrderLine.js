@@ -16,9 +16,9 @@ router.post('/checkout', async (req, res,) => {
             quantity,
             orderId,
             activityId
+            //
         } = req.body
-
-        const orderline = await createOrderline(unitprice, subtotal, quantity, orderId, activityId ,diaHoraId);
+        const orderline = await createOrderline(unitprice, subtotal, quantity, orderId, activityId,diaHoraId);
         
         const usuario = await getUserId(userId);
         const diahora = await horaDiaId(diaHoraId);

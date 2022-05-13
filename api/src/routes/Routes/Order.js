@@ -40,7 +40,7 @@ router.get("/find/:state/:userId", async (req, res) => {   //example: http://loc
 })
 
 //PASO 1 - para checkout 
-//PASO 1 - guardar nuevo carrito -> paso 2 en OrderLine
+//PASO 1 - guardar nuevo carrito -> paso 2 en OrderLine ??? no esto creo no va
 //eliminar/vaciar carrito cuando el cliente se arrepiente y quiere vaciar carrito, si ya esta guardado lo elimina y sino
 //elimina el carrito vacio
 router.delete("/cart/:idUser", async (req, res) => {
@@ -82,7 +82,7 @@ router.put("/sumaTotal", async (req, res) => {
         const order = await orderFilterId(orderId)
         order.totalPrice = Number(order.totalPrice) + Number(subtotal);
         order.save()
-        return res.send(order);
+        res.send("Precio Total de la orden modificada exitósamente");
     } catch (error) {
         res.send(error)
     }
@@ -90,7 +90,7 @@ router.put("/sumaTotal", async (req, res) => {
 
 //PASO 1 - para cancelar orden -> "Canceled"
 //paso 2 en DiaHora
-//cambio estado a acencelado.
+//cambio estado a cancelado.
 router.put("/canceled", async (req, res, next) => {
     const { orderId } = req.body;//id de la order
     const state = "Canceled";
