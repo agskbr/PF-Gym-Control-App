@@ -34,21 +34,20 @@ const getUserId = async (id) => {
     const UserUid = await User.findOne({
       where: {
         uid: id
-      },
+      }
     });
-    console.log(UserUid)
     if (UserUid) {
       return UserUid;
     } else {
       const UserId = await User.findOne({
         where: {
           id: id
-        },
+        }
       });
       return UserId;
     }
   } catch (error) {
-    console.log(error);
+    return(error);
   }
 };
 
@@ -87,7 +86,7 @@ const userUpd = async (id, user) => {
       },
     });
   } catch (error) {
-    console.log(error);
+    return(error);
   }
 };
 
@@ -99,7 +98,7 @@ const userDelete = async (id) => {
       },
     });
   } catch (error) {
-    console.log(error);
+    return(error);
   }
 };
 
