@@ -10,6 +10,9 @@ import {
   sendPasswordResetEmail,
   updateProfile,
   sendEmailVerification,
+  updatePhoneNumber,
+  sendEmailVerification,
+  GithubAuthProvider,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -25,6 +28,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 const auth = getAuth();
 const googleAuthProvider = new GoogleAuthProvider();
+const githubAuthProvider = new GithubAuthProvider();
 
 export {
   firebaseApp,
@@ -38,4 +42,7 @@ export {
   sendPasswordResetEmail,
   updateProfile,
   sendEmailVerification,
+  updatePhoneNumber,
+  sendEmailVerification,
+  githubAuthProvider,
 };

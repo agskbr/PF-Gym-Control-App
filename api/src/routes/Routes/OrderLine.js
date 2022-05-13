@@ -1,16 +1,32 @@
 const router = require('express').Router();
+const { getUserId } = require("../Controllers/User");
+const { horaDiaId } = require("../Controllers/DiaHora");
 const {createOrderline, orderlineByOrderId, orderlineByActivityId} = require('../Controllers/Orderline.js')
 
-//crear una linea de orden
-router.post('/', async (req,res,) =>{
+//PASO 4 - para checkout
+//Desde el front recorrer el array de orderlist con un forEach y crear una linea de orden por elemento
+router.post('/checkout', async (req, res,) => {
     try {
-        const { unitprice, subtotal, quantity, orderId, activityId} = req.body
-        const orderline = await createOrderline(unitprice, subtotal, quantity, orderId, activityId);
-        if(orderline){
-            res.send("Ordeline created");
+        const {
+            userId,
+            diaHoraId,
+            unitprice,
+            subtotal,
+            quantity,
+            orderId,
+            activityId
+            //
+        } = req.body
+        const orderline = await createOrderline(unitprice, subtotal, quantity, orderId, activityId,diaHoraId);
+        
+        const usuario = await getUserId(userId);
+        const diahora = await horaDiaId(diaHoraId);
+        await diahora.addUsers(usuario);
+        if (orderline) {
+            return res.send("Ordeline created");
         }
         res.send("Orderline ya existente")
-    } catch(error){
+    } catch (error) {
         console.log(error)
     }
 });
@@ -41,6 +57,24 @@ router.get('/:orderId', async(req,res) =>{
     }
 })
 
-
+//PASO 2 para guardar carrito nuevo
+//Desde el front recorrer un array de orderlist y por cada elemento crear/guardar una orderline
+router.post('/cart', async (req, res,) => {
+    try {
+        const {
+            diaHoraId,
+            unitprice,
+            subtotal,
+            quantity,
+            orderId,
+            activityId
+            //
+        } = req.body
+        const orderline = await createOrderline(unitprice, subtotal, quantity, orderId, activityId,diaHoraId);
+        res.send(orderline)
+    } catch (error) {
+        console.log(error)
+    }
+});
 
 module.exports = router

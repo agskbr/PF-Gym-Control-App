@@ -3,9 +3,11 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { verifyAccount } from "../../../../store/actions/actions-login";
 import style from "./Perfil.module.css";
+import EditProfile from "./EditProfile/EditProfile";
 
 export default function Perfil() {
   const { user } = useSelector((state) => state.login);
+  console.log("usuarios", user)
 
   const dispatch = useDispatch()
 
@@ -42,12 +44,18 @@ export default function Perfil() {
           <p>
             Teléfono: {user.phoneNumber ? user.phoneNumber : "No hay número"}
           </p>
+          <button
+            onClick={() => {
+              document.getElementById("editProfileDialog").showModal();
+            }}
+          >
+            {" "}
+          Actualizar Datos{" "}
+          </button>
         </div>
-        {/*  <Link to={"/sociodashboard"}>
-          <button>Volver</button>
-        </Link> */}
-        {/*  <button onClick={() => dispatch(userSignOut())}>SignOut</button> */}
+        <EditProfile/>
       </div>
+      
     </div>
   );
 }

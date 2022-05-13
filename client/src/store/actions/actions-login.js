@@ -12,6 +12,7 @@ import {
   sendPasswordResetEmail,
   updateProfile,
   sendEmailVerification,
+  githubAuthProvider,
 } from "../../firebase/index";
 import {
   LOGIN_WITH_GOOGLE,
@@ -19,9 +20,17 @@ import {
   VALIDATE_USER_IS_LOGGED,
   REGISTER_USER_WITH_EMAIL_AND_PASS,
   SIGN_IN_USER,
-  RECEIVED_POST,
   USER_IS_ADMIN,
+  LOGIN_WITH_GITHUB,
+  REQUEST_USER_LOGIN,
+  RECEIVED_USER_LOGIN,
 } from "../actions-type";
+
+const requestUserLogin = () => {
+  return {
+    type: REQUEST_USER_LOGIN,
+  };
+};
 
 const registerUserWithEmailAndPass = (
   email,
@@ -49,13 +58,11 @@ const registerUserWithEmailAndPass = (
       await updateProfile(auth.currentUser, {
         displayName: `${name} ${lastName}`,
       });
-      console.log(auth);
-
       dispatch({
         type: REGISTER_USER_WITH_EMAIL_AND_PASS,
         payload: userCredential,
       });
-      dispatch({ type: RECEIVED_POST });
+      dispatch({ type: RECEIVED_USER_LOGIN });
       swal({
         buttons: "Aceptar",
         icon: "success",
@@ -81,7 +88,7 @@ const signInWithEmailAndPass = (email, password) => {
         password
       );
       dispatch({ type: SIGN_IN_USER, payload: userCredential });
-      dispatch({ type: RECEIVED_POST });
+      dispatch({ type: RECEIVED_USER_LOGIN });
     } catch (error) {
       console.log(error);
       swal({
@@ -104,6 +111,7 @@ const resetPassword = (email) => {
       });
     } catch (error) {
       console.log(error);
+      swal({ buttons: "Aceptar", title: "Email no válido", icon: "error" });
     }
   };
 };
@@ -126,6 +134,32 @@ const loginWithGoogle = () => {
       await axios.post(`${BASE_URL}/user`, authWithGoogleData);
 
       dispatch({ type: LOGIN_WITH_GOOGLE, payload: authWithGoogleData });
+      dispatch({ type: RECEIVED_USER_LOGIN });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+const loginWithGithub = () => {
+  return async (dispatch) => {
+    try {
+      const userData = await signInWithPopup(auth, githubAuthProvider);
+      const firstName = userData.user.displayName.split(" ")[0];
+      const lastName = userData.user.displayName.split(" ")[1];
+
+      const authWithGithubData = {
+        uid: userData.user.uid,
+        email: userData.user.email ?? "",
+        name: firstName,
+        lastName,
+        phoneNumber: userData.user.phoneNumber ?? "",
+        image: userData.user.photoURL,
+      };
+
+      await axios.post(`${BASE_URL}/user`, authWithGithubData);
+
+      dispatch({ type: LOGIN_WITH_GITHUB, payload: userData });
+      dispatch({ type: RECEIVED_USER_LOGIN });
     } catch (error) {
       console.log(error);
     }
@@ -145,7 +179,7 @@ const validateUserIsLogged = () => {
             type: VALIDATE_USER_IS_LOGGED,
             payload: user,
           });
-          dispatch({ type: RECEIVED_POST });
+          dispatch({ type: RECEIVED_USER_LOGIN });
         } catch (error) {
           swal({
             title: "Algo salió mal, intenta nuevamente más tarde" + error,
@@ -154,7 +188,7 @@ const validateUserIsLogged = () => {
         }
       } else {
         dispatch({ type: VALIDATE_USER_IS_LOGGED, payload: null });
-        dispatch({ type: RECEIVED_POST });
+        dispatch({ type: RECEIVED_USER_LOGIN });
       }
     });
   };
@@ -165,6 +199,7 @@ const userSignOut = () => {
     try {
       await signOut(auth);
       dispatch({ type: USER_SIGN_OUT });
+      dispatch({ type: RECEIVED_USER_LOGIN });
     } catch (error) {
       console.log(error);
     }
@@ -190,9 +225,11 @@ export function verifyAccount() {
 
 export {
   loginWithGoogle,
+  loginWithGithub,
   validateUserIsLogged,
   userSignOut,
   registerUserWithEmailAndPass,
   signInWithEmailAndPass,
   resetPassword,
+  requestUserLogin,
 };

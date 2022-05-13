@@ -29,7 +29,7 @@ const getAllUsers = async () => {
   return user;
 };
 
-const userId = async (id) => {
+const getUserId = async (id) => {
   try {
     return await User.findOne({
       where: {
@@ -99,7 +99,7 @@ const userDelete = async (id) => {
 const userIsAdmin = async (id) => {
   const UserUid = await User.findOne({
     where: {
-      uid: id,
+      uid: id
     },
   });
   if (UserUid) {
@@ -107,7 +107,7 @@ const userIsAdmin = async (id) => {
   } else {
     const UserId = await User.findOne({
       where: {
-        id: id,
+        id: id
       },
     });
     return UserId;
@@ -119,7 +119,7 @@ module.exports = {
   filterUserEmail,
   userCreate,
   userUpd,
-  userId,
+  getUserId,
   userDelete,
   userIsAdmin,
 };

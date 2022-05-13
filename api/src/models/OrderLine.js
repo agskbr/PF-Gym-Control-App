@@ -23,5 +23,9 @@ module.exports = (sequelize) => {
         quantity: {
             type: DataTypes.INTEGER,
         },
+
+        diaHoraId: {
+            type: DataTypes.INTEGER,
+        }
     });
 };

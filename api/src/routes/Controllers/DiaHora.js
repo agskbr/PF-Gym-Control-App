@@ -5,9 +5,23 @@ const {
 } = require('../../db');
 
 
+// para buscar los diasHora de una actividad indicada
+const diahoraActivity = async (activityId) => {
+    try {
+        const dia_Hora = await DiaHora.findAll({
+            where: {
+                activityId: activityId,
+            }
+        })
+        return dia_Hora;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 // traigo los dias y horas con sus acividades y usuarios
 const allHoraDia = async () => {
-    const allHoraDia = await DiaHora.findAll({
+    const all_HoraDia = await DiaHora.findAll({
         include: [
             {
                 model: Activity,
@@ -19,7 +33,7 @@ const allHoraDia = async () => {
             }
             ]
         })
-        return allHoraDia;
+        return all_HoraDia;
 }
 
 
@@ -75,7 +89,7 @@ const deleteHoraDiaActivity = async (idActivity,idDiaHora) => {
         if (diaHora && actividad) {
             actividad.removeDiaHora(diaHora);
             await DiaHora.destroy({   
-                where: {                                            
+                where: {
                     id : diaHora.id,
                 }
             })
@@ -86,6 +100,20 @@ const deleteHoraDiaActivity = async (idActivity,idDiaHora) => {
     } catch (error) {
         console.log(error)
     }   
+}
+
+const deleteHoraDiaUser = async (idUser, idDiaHora) => {
+    try {
+        var diaHora = await DiaHora.findByPk(idDiaHora)
+        var user = await User.findByPk(idUser)
+        if (diaHora && user) {
+            user.removeDiaHora(diaHora);
+            return true
+        }
+        return false
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 // para eliminar un diaHora con su IdDiaHora especifico
@@ -174,21 +202,6 @@ const removeUserHoraDia = async (req, res) => {
     }
 }
 
-// para modificar un evento de una actividad especifica
-//esta de mas.. no sirve. 
-/* const horaDiaActivityUpd = async (id, idDiaHora, horaDia) => {
-    try {
-        return await DiaHora.update(horaDia,{
-            where: {
-                ActivityId: id,
-                id:idDiaHora
-            }
-        })
-    } catch (error) {
-        return(error)
-    }
-} */
-
 module.exports = {
     allHoraDia,
     allHoraDiaUser,
@@ -198,5 +211,7 @@ module.exports = {
     horaDiaUpd,
     updateHoraDia,
     removeUserHoraDia,
-    deleteHoraDiaActivity
+    deleteHoraDiaActivity,
+    diahoraActivity,
+    deleteHoraDiaUser
 }

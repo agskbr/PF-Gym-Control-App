@@ -4,6 +4,28 @@ const {
     Activity
 } = require('../../db');
 
+
+
+// const orederUpdate = async (state, totalPrice, id) => {
+//     try {
+//         const orderUpd = await Order.update(
+//             {
+//                 state: state,
+//                 totalPrice: totalPrice,
+//             },
+//             {//
+//                 where:
+//                 {
+//                     id: id
+//                 }
+//             }
+//         )
+//         return orderUpd;
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
 //obtener todas las ordenes+Users de la base de datos
 const allOrder = async () => {
     try {
@@ -20,7 +42,7 @@ const allOrder = async () => {
 //obtener orden de un ID especifico (orderId)
 const orderFilterId = async (id) => {
     try {
-        const orderFilter = await Order.findAll({
+        const orderFilter = await Order.findOne({
             where: {
                 id: id,
             },
@@ -69,7 +91,7 @@ const orderUserId = async (userId) => {
 //obtener cart+productos de un usuario
 const orderCartUserId = async (userId) => {
     try {
-        let reviews = await Order.findOne({
+        let order = await Order.findOne({
             where: {
                 userId: userId,
                 state: "Cart"
@@ -78,7 +100,7 @@ const orderCartUserId = async (userId) => {
                 model: Activity,
             }]
         })
-        return reviews
+        return order
     } catch (error) {
         return error
     }
@@ -143,6 +165,27 @@ const orderStatusUserId = async (state, userId) => {
     return(error)
 }
 }
+
+/* //actualizar estado de una order de un Id especificado
+const orderUpdatePrecioTotal = async (precioOrderLine, id) => {
+    try {
+        const orderUpd = await Order.update(
+            {
+                precioTotal: precioOrderLine,
+            },
+            {
+                where:
+                {
+                    id: id
+                }
+            }
+        )
+        return orderUpd;
+    } catch (error) {
+        console.log(error);
+    }
+
+} */
 
 
 module.exports = {
