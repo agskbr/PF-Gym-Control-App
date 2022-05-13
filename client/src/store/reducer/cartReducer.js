@@ -72,7 +72,7 @@ export function cartReducer(state = initialState, action) {
                     orderLine: [...state.orderLine, {
                         activityId: action.payload.id,
                         unitprice: action.payload.price,
-                        orderId: Math.random(1,100),
+                        orderId: Math.floor(Math.random(1,1000)),
                         quantity: 1,
                         subtotal: action.payload.price,
                         }]
