@@ -188,21 +188,6 @@ const removeUserHoraDia = async (req, res) => {
     }
 }
 
-// para modificar un evento de una actividad especifica
-//esta de mas.. no sirve. 
-/* const horaDiaActivityUpd = async (id, idDiaHora, horaDia) => {
-    try {
-        return await DiaHora.update(horaDia,{
-            where: {
-                ActivityId: id,
-                id:idDiaHora
-            }
-        })
-    } catch (error) {
-        return(error)
-    }
-} */
-
 module.exports = {
     allHoraDia,
     allHoraDiaUser,

@@ -1,13 +1,28 @@
 const router = require('express').Router();
+const { getUserId } = require("../Controllers/User");
+const { horaDiaId } = require("../Controllers/DiaHora");
 const {createOrderline, orderlineByOrderId, orderlineByActivityId} = require('../Controllers/Orderline.js')
 
 //PASO 4 - para checkout/guardar carrito nuevo
 //paso 3 y 4 dentro de un forEach para recorrer la array de OrderList
 //crear una linea de orden
-router.post('/', async (req, res,) => {
+router.post('/checkout', async (req, res,) => {
     try {
-        const { unitprice, subtotal, quantity, orderId, activityId } = req.body
-        const orderline = await createOrderline(unitprice, subtotal, quantity, orderId, activityId);
+        const {
+            userId,
+            diaHoraId,
+            unitprice,
+            subtotal,
+            quantity,
+            orderId,
+            activityId
+        } = req.body
+
+        const orderline = await createOrderline(unitprice, subtotal, quantity, orderId, activityId ,diaHoraId);
+        
+        const usuario = await getUserId(userId);
+        const diahora = await horaDiaId(diaHoraId);
+        await diahora.addUsers(usuario);
         if (orderline) {
             return res.send("Ordeline created");
         }
