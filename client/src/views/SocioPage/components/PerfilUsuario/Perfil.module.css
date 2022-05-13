@@ -11,21 +11,25 @@
   align-items: center;
   justify-content: center;
 }
-.perfilUser button {
-  height: 3ex;
-  width: auto;
+.verify {
   border-radius: 2ex;
   border: none;
-  color: #eb4e27;
+  background-color: black;
+  color: white;
   background-color: #111111;
   margin: 2ex;
-  font-size: 1ex;
+  font-size: 1.2rem;
   cursor: pointer;
+  padding: 0.4rem 0.8rem;
 }
 
-.perfilUser button:hover {
+.verify:hover {
   background-color: #eb4e27;
-  color: white;
+}
+
+.notVerified {
+  font-size: 1rem;
+  color: red;
 }
 
 .perfilUserName img {
