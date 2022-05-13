@@ -3,9 +3,8 @@ const { getUserId } = require("../Controllers/User");
 const { horaDiaId } = require("../Controllers/DiaHora");
 const {createOrderline, orderlineByOrderId, orderlineByActivityId} = require('../Controllers/Orderline.js')
 
-//PASO 4 - para checkout/guardar carrito nuevo
-//paso 3 y 4 dentro de un forEach para recorrer la array de OrderList
-//crear una linea de orden
+//PASO 4 - para checkout
+//Desde el front recorrer el array de orderlist con un forEach y crear una linea de orden por elemento
 router.post('/checkout', async (req, res,) => {
     try {
         const {
@@ -16,9 +15,9 @@ router.post('/checkout', async (req, res,) => {
             quantity,
             orderId,
             activityId
+            //
         } = req.body
-
-        const orderline = await createOrderline(unitprice, subtotal, quantity, orderId, activityId ,diaHoraId);
+        const orderline = await createOrderline(unitprice, subtotal, quantity, orderId, activityId,diaHoraId);
         
         const usuario = await getUserId(userId);
         const diahora = await horaDiaId(diaHoraId);
@@ -58,6 +57,24 @@ router.get('/:orderId', async(req,res) =>{
     }
 })
 
-
+//PASO 2 para guardar carrito nuevo
+//Desde el front recorrer un array de orderlist y por cada elemento crear/guardar una orderline
+router.post('/cart', async (req, res,) => {
+    try {
+        const {
+            diaHoraId,
+            unitprice,
+            subtotal,
+            quantity,
+            orderId,
+            activityId
+            //
+        } = req.body
+        const orderline = await createOrderline(unitprice, subtotal, quantity, orderId, activityId,diaHoraId);
+        res.send(orderline)
+    } catch (error) {
+        console.log(error)
+    }
+});
 
 module.exports = router
