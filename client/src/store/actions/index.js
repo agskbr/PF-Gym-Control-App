@@ -4,6 +4,8 @@ import {
   RECEIVED_POST,
   REQUEST_POST,
   GET_ALL_USERS,
+  GET_USER_BY_EMAIL,
+  CREATE_USER,
 } from "../actions-type/index";
 
 import { BASE_URL } from "../constantes";
@@ -157,6 +159,31 @@ export function changePage(page) {
   };
 }
 
+const getUserByEmail = (email)=> {
+  return async function (dispatch){
+    try {
+      const {data} = await axios.get(`${BASE_URL}/user/`, email)
+      return dispatch({
+        type: GET_USER_BY_EMAIL,
+        payload:data
+    })
+    } catch (error) {
+      console.log("getUserByEmail", error)
+    }
+  }
+}
+
+const createNewUser = (payload)=> {
+  return async function (){
+    try {
+      const newUser = await axios.post(`${BASE_URL}/user`, payload)
+      return newUser
+    } catch (error) {
+      console.log("createNewUser", error)
+    }
+  }
+}
+
 export {
   createActivity,
   createUser,
@@ -165,4 +192,6 @@ export {
   editActivity,
   requestPost,
   getAllUsers,
+  getUserByEmail,
+  createNewUser,
 };
