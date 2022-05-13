@@ -165,6 +165,32 @@ router.get("/user/:id", async (req,res) => {
         console.log(error)
     }
 })
+// //modificar estado orden 
+// router.put("/checkout/:id", async (req, res) => {
+//     const { state, totalPrice } = req.body;
+//     const { id } = req.params;
+//     try {
+//         const order = await orederUpdate(state, totalPrice, id);
+//         if (order) {
+//             return res.send("Elemento actualizado");
+//         }
+//         res.status(400).send("Orden no encontrada");
+//     } catch (error) {
+//         return res.status(400).send({ data: error })
+//     }
+// });
+
+
+//AllOrder
+router.get("/", async (req, res, next) => {
+    try {
+        const all_Order = await allOrder();
+        res.send(all_Order);
+    } catch (error) {
+        res.status(400).send({ data: error });
+    }
+});
+
 
 //obtener orden por id
 router.get("/:id", async (req, res) => {

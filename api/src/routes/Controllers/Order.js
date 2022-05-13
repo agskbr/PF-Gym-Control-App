@@ -4,6 +4,28 @@ const {
     Activity
 } = require('../../db');
 
+
+
+// const orederUpdate = async (state, totalPrice, id) => {
+//     try {
+//         const orderUpd = await Order.update(
+//             {
+//                 state: state,
+//                 totalPrice: totalPrice,
+//             },
+//             {//
+//                 where:
+//                 {
+//                     id: id
+//                 }
+//             }
+//         )
+//         return orderUpd;
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
 //obtener todas las ordenes+Users de la base de datos
 const allOrder = async () => {
     try {

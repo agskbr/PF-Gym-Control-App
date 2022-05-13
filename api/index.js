@@ -43,7 +43,6 @@ conn.sync({ force: true }).then(() => {
     await loaderOrder();
     await loaderOrderline();
 
-
     console.log('%s listening 3001 '); // eslint-disable-line no-console
   });
 });
