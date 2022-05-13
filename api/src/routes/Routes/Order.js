@@ -82,7 +82,7 @@ router.put("/sumaTotal", async (req, res) => {
         const order = await orderFilterId(orderId)
         order.totalPrice = Number(order.totalPrice) + Number(subtotal);
         order.save()
-        return res.send(order);
+        res.send("Precio Total de la orden modificada exitósamente");
     } catch (error) {
         res.send(error)
     }
@@ -90,7 +90,7 @@ router.put("/sumaTotal", async (req, res) => {
 
 //PASO 1 - para cancelar orden -> "Canceled"
 //paso 2 en DiaHora
-//cambio estado a acencelado.
+//cambio estado a cancelado.
 router.put("/canceled", async (req, res, next) => {
     const { orderId } = req.body;//id de la order
     const state = "Canceled";

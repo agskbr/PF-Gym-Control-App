@@ -1,9 +1,28 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { verifyAccount } from "../../../../store/actions/actions-login";
 import style from "./Perfil.module.css";
+import EditProfile from "./EditProfile/EditProfile";
 
 export default function Perfil() {
   const { user } = useSelector((state) => state.login);
+  console.log("usuarios", user)
+
+  const dispatch = useDispatch()
+
+  const [verify, setVerify] = useState(user.emailVerified)
+
+  let verified = !verify ? 
+    <div>
+      <p className={style.notVerified}>Email no verificado</p>
+      <button onClick={() => {
+        dispatch(verifyAccount())
+    
+        }} className={style.verify}>Verifica tu correo electrónico
+      </button>
+    </div> : ''
+
 
   return (
     <div className={style.principalContainer}>
@@ -21,15 +40,22 @@ export default function Perfil() {
           </div>
           <p>Nombre: {user.displayName ? user.displayName : "Cargando.."} </p>
           <p>Email: {user.email ? user.email : "Cargando.."}</p>
+          {verified}
           <p>
             Teléfono: {user.phoneNumber ? user.phoneNumber : "No hay número"}
           </p>
+          <button
+            onClick={() => {
+              document.getElementById("editProfileDialog").showModal();
+            }}
+          >
+            {" "}
+          Actualizar Datos{" "}
+          </button>
         </div>
-        {/*  <Link to={"/sociodashboard"}>
-          <button>Volver</button>
-        </Link> */}
-        {/*  <button onClick={() => dispatch(userSignOut())}>SignOut</button> */}
+        <EditProfile/>
       </div>
+      
     </div>
   );
 }

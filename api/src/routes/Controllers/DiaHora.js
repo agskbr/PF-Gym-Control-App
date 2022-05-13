@@ -102,6 +102,20 @@ const deleteHoraDiaActivity = async (idActivity,idDiaHora) => {
     }   
 }
 
+const deleteHoraDiaUser = async (idUser, idDiaHora) => {
+    try {
+        var diaHora = await DiaHora.findByPk(idDiaHora)
+        var user = await User.findByPk(idUser)
+        if (diaHora && user) {
+            user.removeDiaHora(diaHora);
+            return true
+        }
+        return false
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 // para eliminar un diaHora con su IdDiaHora especifico
 const horaDiaDelete = async (id) => {
     try {
@@ -198,5 +212,6 @@ module.exports = {
     updateHoraDia,
     removeUserHoraDia,
     deleteHoraDiaActivity,
-    diahoraActivity
+    diahoraActivity,
+    deleteHoraDiaUser
 }
