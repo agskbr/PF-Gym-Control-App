@@ -35,21 +35,14 @@ const getUserId = async (id) => {
       where: {
         uid: id
       },
-      include: {
-        model: Activity,
-        attributes: ["name"],
-      },
     });
+    console.log(UserUid)
     if (UserUid) {
       return UserUid;
     } else {
       const UserId = await User.findOne({
         where: {
           id: id
-        },
-        include: {
-          model: Activity,
-          attributes: ["name"],
         },
       });
       return UserId;

@@ -11,7 +11,7 @@ import {
   updateProfile,
   sendEmailVerification,
   updatePhoneNumber,
-  sendEmailVerification,
+  // sendEmailVerification,
   GithubAuthProvider,
 } from "firebase/auth";
 
@@ -45,6 +45,6 @@ export {
   updateProfile,
   sendEmailVerification,
   updatePhoneNumber,
-  sendEmailVerification,
+  // sendEmailVerification,
   githubAuthProvider,
 };

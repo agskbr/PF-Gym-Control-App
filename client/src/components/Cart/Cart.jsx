@@ -7,6 +7,7 @@ import {
   clearCart,
   checkout,
 } from "../../store/actions/actionsCart";
+import { getIdUser } from "../../store/actions/index";
 import { Link } from "react-router-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
@@ -14,6 +15,7 @@ export default function Cart(activity) {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const { cart, products } = state.cart;
+  const { user } = state.login;
 
   return (
     <div className={s.container}>
@@ -46,7 +48,7 @@ export default function Cart(activity) {
         <div className={s.dispatchContainer}>
           <button
             onClick={() => {
-              console.log(cart);
+              dispatch(getIdUser(user.uid));
             }}
           >
             Finalizar la compra
