@@ -123,13 +123,12 @@ const loginWithGoogle = () => {
 
       const authWithGoogleData = {
         uid: userData.user.uid,
-        email: userData.user.email,
+        email: userData.user.email ?? "",
         name: firstName,
         lastName,
         phoneNumber: userData.user.phoneNumber ?? "",
-        image: userData.user.photoURL,
+        image: userData.user.photoURL ?? "",
       };
-
       await axios.post(`${BASE_URL}/user`, authWithGoogleData);
 
       dispatch({ type: LOGIN_WITH_GOOGLE, payload: authWithGoogleData });
@@ -152,7 +151,7 @@ const loginWithGithub = () => {
         name: firstName,
         lastName,
         phoneNumber: userData.user.phoneNumber ?? "",
-        image: userData.user.photoURL,
+        image: userData.user.photoURL ?? "",
       };
 
       await axios.post(`${BASE_URL}/user`, authWithGithubData);
