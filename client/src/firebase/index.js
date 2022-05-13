@@ -15,6 +15,8 @@ import {
   GithubAuthProvider,
 } from "firebase/auth";
 
+// 
+
 const firebaseConfig = {
   apiKey: "AIzaSyAAXjAvlncE6ESilGoJxdljX8-EJa_oJ8A",
   authDomain: "pf-gym-control.firebaseapp.com",
