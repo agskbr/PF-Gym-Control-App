@@ -55,7 +55,7 @@ const getUserId = async (id) => {
       return UserId;
     }
   } catch (error) {
-    console.log(error);
+    return(error);
   }
 };
 
@@ -94,7 +94,7 @@ const userUpd = async (id, user) => {
       },
     });
   } catch (error) {
-    console.log(error);
+    return(error);
   }
 };
 
@@ -106,7 +106,7 @@ const userDelete = async (id) => {
       },
     });
   } catch (error) {
-    console.log(error);
+    return(error);
   }
 };
 
