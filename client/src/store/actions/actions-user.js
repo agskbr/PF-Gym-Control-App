@@ -1,6 +1,7 @@
 import axios from 'axios';
-import {GET_USER_BY_EMAIL, CREATE_USER, GET_USERS, GET_USER_BY_UID, EDIT_USER} from '../actions-type/index';
+import {GET_USER_BY_EMAIL, GET_USERS, GET_USER_BY_UID, EDIT_USER} from '../actions-type/index';
 import {BASE_URL} from '../constantes';
+import swal from 'sweetalert';
 
 const  getUsers = () => {
     return async function (dispatch){
@@ -55,15 +56,29 @@ const createNewUser = (payload)=> {
 }
 
 const editUser = (id, payload) => {
-    return async function (){
+    return async function (dispatch){
         try {
             const {data} = await axios.put(`${BASE_URL}/user/${id}`, payload)
+            swal({
+                title: "edit profile",
+                icon: "success",
+                position: "center",
+                timer: 2000,
+            });
+            dispatch(getUserById(id))
             return ({
                 type:EDIT_USER,
                 payload: data
             })
+            
         } catch (error) {
-            console.log("editUser", error)
+           console.log(error)
+           swal({
+            title: "algo salio mal",
+            icon: "error",
+            position: "center",
+            timer: 2000,
+        });
         }
     }
 }
