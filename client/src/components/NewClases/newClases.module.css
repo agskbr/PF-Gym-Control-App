@@ -67,7 +67,7 @@
 
 .buttonCloseDetail{
     position: absolute;
-    margin-top: -69vh;
+    margin-top: -74vh;
     margin-left: 63.3vw;
     z-index: 10;
     background-image: url("../../assets/del.ico");

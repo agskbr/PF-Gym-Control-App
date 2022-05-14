@@ -9,10 +9,13 @@ import { addToCart } from "../../store/actions/actionsCart";
 
 
 export default function Detail() {
+
         const state = useSelector(state => state);
         const dispatch = useDispatch();
         const detail = useSelector((state) => state.pgym.detail? state.pgym.detail: null);
         const [time, setTime] = useState("");
+
+        const text = detail?.description?.substring(0, 700);
         
         function getOptionSelected(){
             let selectInput = document.getElementById("select");
@@ -29,8 +32,8 @@ export default function Detail() {
                             <img src={detail?.image} alt="activity" className={style.image} />
                         </div>
                         <div className={style.info}>
-                            
-                            <div className={style.infoDescription}>{detail?.description}</div>
+
+                            <div className={style.infoDescription}>{text}...</div>
                             <div className={style.infoPrice}>Precio ${detail?.price}.00</div>
                             <select className={style.horarios} id="select" onClick={()=> getOptionSelected()}> 
                             {
