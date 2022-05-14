@@ -3,52 +3,46 @@ import { useDispatch, useSelector } from "react-redux";
 //import { verifyAccount } from "../../../../store/actions/actions-login";
 import style from "./Perfil.module.css";
 import EditProfile from "./EditProfile/EditProfile";
-import {getUsers, createNewUser} from '../../../../store/actions/actions-user'
+import { createNewUser, getUserById} from '../../../../store/actions/actions-user'
 import swal from "sweetalert";
 
 export default function Perfil() {
   const dispatch = useDispatch()
-  
   const currentUser = useSelector((state) => state.login.user);
-  //console.log("user logeado", currentUser)
-  //const uid = currentUser.uid;
-  const uid = "7d5241ddde3d429a80705f32f7ba"
-  //console.log("UID", uid)
-  const usuarios = useSelector((state)=> state.users.users)
-  //console.log("33", usuarios)
+  const {uid} = useSelector((state) => state.login.user);
+  const usuario = useSelector((state)=> state.users.user)
+  console.log("usuario", usuario)
+  
+  const [input, setInput]= useState({})
 
- const usuario = usuarios.find((user)=> user.uid === uid);
- //console.log("YO", usuario)
-   const [input, setInput]= useState({
-     uid: currentUser.uid,
-     nombre:currentUser.displayName,
-     email: currentUser.email,
-     telefono:""
-   })
+  const handleChange = (e) => {
+    e.preventDefault();
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+  }
 
-   const handleChange = (e) => {
-     e.preventDefault();
-     setInput({
-       ...input,
-       [e.target.name]: e.target.value,
-     });
-   }
-
-   const handleSubmit = (e) => {
-     e.preventDefault();
-     dispatch(createNewUser(input))
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  dispatch(createNewUser(input))
      swal({
       title: "Create profile",
       icon: "success",
       position: "center",
       timer: 2000,
      })
-   }
+  }
 
-  
   useEffect(()=>{
-    dispatch(getUsers())
-  },[dispatch])
+    setInput({
+      ...usuario
+    })
+  },[usuario])
+
+  useEffect(()=>{
+    dispatch(getUserById(uid))
+  },[dispatch, uid])
 
   return (
     
@@ -61,13 +55,14 @@ export default function Perfil() {
                 <img
                   alt="user"
                   src={
-                    currentUser.photoURL
-                      ? currentUser.photoURL
+                    usuario.photoURL
+                      ? usuario.photoURL
                       : "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
                   }
                 />
               </div>
               <p>Nombre: {usuario.name} </p>
+              <p>Apellido: {usuario.lastName}</p>
               <p>Email: {usuario.email}</p>
                 {/*  {verified}  */}
               <p>Teléfono: {usuario.phoneNumber}</p>
