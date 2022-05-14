@@ -1,5 +1,8 @@
 const { Router } = require('express');
 const router = Router();
+const { orderlineByOrderId } = require("../Controllers/Orderline");
+const { orderFilterId } = require("../Controllers/Order");
+const { getUserId } = require("../Controllers/User");
 const{ 
     allHoraDia,
     allHoraDiaUser,
@@ -8,21 +11,34 @@ const{
     horaDiaDelete,
     horaDiaUpd,
     deleteHoraDiaActivity,
-    diahoraActivity
+    diahoraActivity,
+    deleteHoraDiaUser
 } = require('../Controllers/DiaHora');
 
 
 //PASO 2 - para cancelar order
 //sumar stock para ordenes canceladas
-router.put('/sumarStock', async (req, res,)=> {
-    let { quantity, diaHoraId} = req.body;
+router.put('/addStock', async (req, res,)=> {
+    let { orderId } = req.body;
     try {
-        const diaHora = await horaDiaId(diaHoraId);
-        var stock = diaHora.capacity + quantity;
-        diaHora.capacity = stock
-        await diaHora.save();
+        const orderline = await orderlineByOrderId(orderId);
+        const order = await orderFilterId(orderId)
+        const user = await getUserId(order.userId) 
+        await orderline.forEach(async element => {
+            const diaHora = await horaDiaId(element.diaHoraId);
+            console.log(`La capacidad actual es: ${diaHora.capacity}`)
+            var stock = diaHora.capacity + element.quantity;
+            diaHora.capacity = stock
+            console.log(`Y ahora es: ${diaHora.capacity}`)
+            await diaHora.save();
+            const resp = await deleteHoraDiaUser(order.userId, element.diaHoraId)
+            resp ? 
+            console.log(`Relación del diaHora (id: ${diaHora.id}) con el usuario ${user.name} eliminada`) :
+            console.log('Relacion no hecha')
+        });
+        res.send("stock restaurado y relaciones eliminadas")
     } catch (error) {
-        console.log(error)
+        res.send(error)
     }
 });
 
@@ -30,17 +46,19 @@ router.put('/sumarStock', async (req, res,)=> {
 //PASO 3 - restar stock para checkout
 //paso 3 y 4 seria dentro de un forEach para recorrer todas las OrderLine
 //modificar diaHora especifica :diaHoraId
-router.put('/restarStock', async (req, res,)=> {
+router.put('/subtractStock', async (req, res,)=> {
     let { quantity, diaHoraId } = req.body;
     try {
         const diaHora = await horaDiaId(diaHoraId);
         if (diaHora.capacity < quantity) {
             return res.status(400).send("sin stock disponible");
         }
+        console.log(`La capacidad actual es ${diaHora.capacity}`)
         var stock = diaHora.capacity - quantity;
         diaHora.capacity = stock
+        console.log(`Y ahora es ${diaHora.capacity}`)
         await diaHora.save();
-        res.send(diaHora);
+        res.send("Capacidad del diaHora restada exitosamente");
     } catch (error) {
         console.log(error)
     }

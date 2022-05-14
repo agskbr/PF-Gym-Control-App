@@ -9,10 +9,13 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   updateProfile,
-  updatePhoneNumber,
   sendEmailVerification,
+  updatePhoneNumber,
+  // sendEmailVerification,
   GithubAuthProvider,
 } from "firebase/auth";
+
+// 
 
 const firebaseConfig = {
   apiKey: "AIzaSyAAXjAvlncE6ESilGoJxdljX8-EJa_oJ8A",
@@ -40,7 +43,8 @@ export {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   updateProfile,
-  updatePhoneNumber,
   sendEmailVerification,
+  updatePhoneNumber,
+  // sendEmailVerification,
   githubAuthProvider,
 };

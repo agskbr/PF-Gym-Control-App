@@ -41,7 +41,7 @@ export function cartReducer(state = initialState, action) {
             let product = state.cart.find(product => product.id === action.payload.id);
 
            /*  console.log(action.payload) */
-            /* console.log(product);  */     
+            console.log(product);   
             
             let itemInCart = state.cart?.find(item => item.id === action.payload.id);
             let itemInOrder = state.order?.find(item => item.name === action.payload.name);

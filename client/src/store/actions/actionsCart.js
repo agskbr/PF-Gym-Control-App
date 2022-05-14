@@ -65,3 +65,17 @@ export function clearCart(){
       ? { type: REMOVE_ALL_FROM_CART, payload: name }
       : { type: REMOVE_ONE_FROM_CART, payload: name };
   
+    export function checkout(payload){
+        return async function(dispatch){
+          try {
+            const orderline = await axios.post(`${BASE_URL}/orderline`, payload);
+            dispatch({
+              type: "ADD_ORDER_LINE",
+              payload: orderline.data,
+            });
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      }
+  

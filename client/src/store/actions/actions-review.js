@@ -1,13 +1,14 @@
 import axios from 'axios';
 import {CREATE_REVIEW, GET_ALL_REVIEWS, GET_REVIEWS_BY_USER} from '../actions-type/index';
+import {BASE_URL} from '../constantes'
 
-/* const base_url = "http://localhost:3001"; */
-const base_url = "https://pfgymapp-2.herokuapp.com" || "http://localhost:3001" ;
+
+
 
 export const postReview = (payload)=>{ // review = description, rating, userId, img??
     return async (dispatch)=> {
         try {
-            const {data} = await axios.post(`${base_url}/review/activity`, payload)
+            const {data} = await axios.post(`${BASE_URL}/review/activity`, payload)
             return dispatch({
                 type:CREATE_REVIEW,
                 payload:data
@@ -21,7 +22,7 @@ export const postReview = (payload)=>{ // review = description, rating, userId, 
 export const getAllReviews = ()=> {
     return async (dispatch)=> {
         try {
-            const {data} = await axios.get(`${base_url}/review/all`)
+            const {data} = await axios.get(`${BASE_URL}/review/all`)
             return dispatch({
                 type: GET_ALL_REVIEWS,
                 payload: data
@@ -35,7 +36,7 @@ export const getAllReviews = ()=> {
 export const getReviewsByUser = (id) => {
     return async (dispatch)=>{
         try {
-            const {data} = await axios.get(`${base_url}/review/user/${id}`)
+            const {data} = await axios.get(`${BASE_URL}/review/user/${id}`)
             return dispatch({
                 type: GET_REVIEWS_BY_USER,
                 payload:data

@@ -12,8 +12,6 @@ const {
     orderStatusUserId,
 } = require("../Controllers/Order");
 
-//funcion para guardar carrito
-
 
 //order/carrito -------------------------------------------------------------------------------------------------------------
 
@@ -41,7 +39,8 @@ router.get("/find/:state/:userId", async (req, res) => {   //example: http://loc
     }
 })
 
-//PASO 1 - para checkout / guardar nuevo carrito
+//PASO 1 - para checkout 
+//PASO 1 - guardar nuevo carrito -> paso 2 en OrderLine
 //eliminar/vaciar carrito cuando el cliente se arrepiente y quiere vaciar carrito, si ya esta guardado lo elimina y sino
 //elimina el carrito vacio
 router.delete("/cart/:idUser", async (req, res) => {
@@ -57,9 +56,8 @@ router.delete("/cart/:idUser", async (req, res) => {
 });
 
 //PASO 2 - para checking -> "Created"
-//PASO 1 - para cancelar orden -> "Canceled"
 //modificar estado de orden de una orden especifica orderId y state ejm:{"state":"Complete"}
-router.put("/state", async (req, res, next) => {
+router.put("/checkout", async (req, res, next) => {
     const { state, orderId } = req.body; // 'Cart', 'Created', 'Processing', 'Canceled', 'Complete'
     //id de la order
     try {
@@ -74,17 +72,34 @@ router.put("/state", async (req, res, next) => {
 })
 
 //PASO 5 -> para checkout
-//paso 3 esta en diaHora y el 4 en orderLine 
+//paso 3 esta en diaHora y el 4 en orderLine
 //paso 3, 4 y 5 seria dentro de un forEach por cada orderLine
+//suma el valor recibido del subtotal de la linea de orden al valor total de
 router.put("/sumaTotal", async (req, res) => {
     const { orderId, subtotal } = req.body; // 'Cart', 'Created', 'Processing', 'Canceled', 'Complete'
     //id de la order
     try {
         const order = await orderFilterId(orderId)
-        console.log(order.totalPrice)
         order.totalPrice = Number(order.totalPrice) + Number(subtotal);
         order.save()
-        return res.send(order);
+        res.send("Precio Total de la orden modificada exitósamente");
+    } catch (error) {
+        res.send(error)
+    }
+})
+
+//PASO 1 - para cancelar orden -> "Canceled"
+//paso 2 en DiaHora
+//cambio estado a cancelado.
+router.put("/canceled", async (req, res, next) => {
+    const { orderId } = req.body;//id de la order
+    const state = "Canceled";
+    try {
+        const orderUpd = await orderUpdate(state, orderId)
+        if (orderUpd) {
+            return res.status(202).send("Order Canceled");
+        }
+        return res.status(400).send("Order not found!");
     } catch (error) {
         res.send(error)
     }
@@ -150,6 +165,32 @@ router.get("/user/:id", async (req,res) => {
         console.log(error)
     }
 })
+// //modificar estado orden 
+// router.put("/checkout/:id", async (req, res) => {
+//     const { state, totalPrice } = req.body;
+//     const { id } = req.params;
+//     try {
+//         const order = await orederUpdate(state, totalPrice, id);
+//         if (order) {
+//             return res.send("Elemento actualizado");
+//         }
+//         res.status(400).send("Orden no encontrada");
+//     } catch (error) {
+//         return res.status(400).send({ data: error })
+//     }
+// });
+
+
+//AllOrder
+router.get("/", async (req, res, next) => {
+    try {
+        const all_Order = await allOrder();
+        res.send(all_Order);
+    } catch (error) {
+        res.status(400).send({ data: error });
+    }
+});
+
 
 //obtener orden por id
 router.get("/:id", async (req, res) => {
