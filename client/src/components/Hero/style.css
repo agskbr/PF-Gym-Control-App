@@ -3,7 +3,9 @@
     background-image: linear-gradient(to right, rgb(34, 34, 34, 0.8), rgba(34, 34, 34, 0.8)), url('./img/hero.jpg');
     background-size: cover;
     padding: 4rem 0;
-    height: 80vh;
+    height: 100%;
+    width: 100%;
+
   }
   
   
@@ -50,12 +52,18 @@
     align-self: center;
     width: 60%;
   }
+
+  .hero-login{
+    margin-top: 15vh;
+  }
   
   .login-text {
     color: white;
     margin-top: 4rem;
     font-size: 1.2rem;
   }
+
+
   
   .login-link:link, .login-link:visited{
     color: white;

@@ -1,3 +1,4 @@
+import "./style.css"
 import Hero from "../Hero/hero";
 import Nav from "../Nav/nav";
 
@@ -5,10 +6,11 @@ import Nav from "../Nav/nav";
 
 export default function Home() {
     return (
-        <div>
+        <div className="container">
             <Nav />
-            <Hero />
+            <div className="hero-container">
+                <Hero />
+            </div>
         </div>
     )
 }
-//

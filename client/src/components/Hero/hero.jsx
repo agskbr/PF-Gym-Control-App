@@ -9,7 +9,7 @@ export default function Hero() {
                             <h1 className="heading-primary">El gimnasio que siempre has querido</h1>
                         </div>
                         <p className="hero-description">Si pensabas que el gimnasio perfecto no existía, estabas equivocado. Encuentra decenas de clases, planes de dieta y precios bajos con nosotros.</p>
-                        <a href="#" className="btn-main">Empezar</a>
+                        <a href="/login" className="btn-main">Empezar</a>
                     </div>
                     <div className="hero-login">
                         <p className="login-text">¿Ya eres miembro? <a href="/login" className="login-link">Entra a tu cuenta</a></p>

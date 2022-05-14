@@ -172,6 +172,8 @@ export function changePage(page) {
   };
 }
 
+
+
 export {
   createActivity,
   createTrainer,

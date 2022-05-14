@@ -67,7 +67,7 @@
 
 .buttonCloseDetail{
     position: absolute;
-    margin-top: -69vh;
+    margin-top: -74vh;
     margin-left: 63.3vw;
     z-index: 10;
     background-image: url("../../assets/del.ico");
@@ -81,3 +81,14 @@
     border-radius: 50%;
 }
 
+
+@media (max-width: 62em) {
+
+    .buttonCloseDetail{
+        margin-top: -88.5vh;
+        margin-left: 87vw;
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+}
