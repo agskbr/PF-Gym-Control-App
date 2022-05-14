@@ -1,0 +1,76 @@
+
+.flipContainer{
+    perspective: 1000px; 
+    background-color: transparent;
+}
+
+.flipContainer:hover .card {
+    transform: rotateY(180deg);
+}
+
+.card{
+    filter: none;
+    justify-content: space-evenly;
+    margin: 0px;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+
+.image{
+    backface-visibility: hidden;
+    filter: none;
+    width: 230px;
+    height: 235px;
+    object-fit: cover;
+}
+
+.title{
+    backface-visibility: hidden;
+    font-size: 1.5rem;
+    background-color: rgba(255, 115, 0, 0.651);
+    color: #f8f8f8;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+  .price {
+    backface-visibility: hidden;
+    width: 100%;
+    font-size: 1.5rem;
+    text-align: center;
+    position: absolute;
+    background-color: #000000a4;
+    color: rgb(255, 94, 0);
+    transform: rotateY(180deg);
+    margin-top: -4.3vh;
+    z-index: 10;
+  }
+  .back {
+    backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 235px;
+    text-align: center;
+    transform: rotateY(180deg);
+    background-color: #000000a4;
+    font-size: .8rem;
+    color: rgb(255, 255, 255);
+    margin-top: -30vh;
+  }
+
+  .back p{
+        background-color: #ffffff;
+        color: #ff6600;
+        font-size: .9rem;
+        width: 100%;
+  }
+
+  .dias {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+  }

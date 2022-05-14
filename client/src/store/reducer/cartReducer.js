@@ -72,7 +72,7 @@ export function cartReducer(state = initialState, action) {
                     orderLine: [...state.orderLine, {
                         activityId: action.payload.id,
                         unitprice: action.payload.price,
-                        orderId: Math.random(1,10000),
+                        orderId: Math.floor(Math.random(1,1000)),
                         quantity: 1,
                         subtotal: action.payload.price,
                         }]
@@ -90,7 +90,8 @@ export function cartReducer(state = initialState, action) {
 
         case REMOVE_ONE_FROM_CART:
             let itemInCartToDel = state.cart.find(item => item.name === action.payload);
-            console.log(itemInCartToDel);
+            let idOfItem = state.cart.find(item => item.name === action.payload);
+
 
             return (
                       
@@ -102,13 +103,19 @@ export function cartReducer(state = initialState, action) {
                                 ),
                                 order: state.order.map(item =>
                                   item.name === action.payload
-                                  ? {...item, count: item.count - 1}
+                                  ? {...item, quantity: item.quantity - 1}
                                   : item
                                   ),
+                                orderLine: state.orderLine.map(item =>
+                                    item.activityId === idOfItem.id
+                                    ? {...item, quantity: item.quantity - 1, subtotal: item.unitprice * (item.quantity - 1)}
+                                    : item
+                                    ),
                               } : {
                                     ...state,
                                     cart: state.cart.filter(item => item.name !== action.payload),
-                                    order: state.order.filter(item => item.name !== action.payload)
+                                    order: state.order.filter(item => item.name !== action.payload),
+                                    orderLine: state.orderLine.filter(item => item.activityId !== action.payload),
                                   }
                                   )
        
@@ -119,15 +126,7 @@ export function cartReducer(state = initialState, action) {
             return state.cart.filter(item => item.id !== action.payload);
  */
 
-        case CLEAR_CART:
-
-                console.log("entre al reducer clear cart");
-
-                return {
-                    ...state,
-                    cart : state.cart.filter(item => item.id !== action.payload),
-                }
-
+        
               default:
                 return state;
     }

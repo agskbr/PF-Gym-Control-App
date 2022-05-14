@@ -3,6 +3,7 @@ import Home from '../../components/Home/home'
 import AboutHome from '../../components/AboutHome/AboutHome'
 import Clases from '../../components/Clases/Clases'
 import Review from '../../components/Review/Review'
+import NewClases from '../../components/NewClases/NewClases'
 
 
 export default function HomePage() {
@@ -15,7 +16,7 @@ export default function HomePage() {
                     <AboutHome />
                 </div>
                 <div id='clases'>
-                    <Clases />
+                    <NewClases />
                 </div>
                 <div id='section-testimonials'>
                     <Review/>

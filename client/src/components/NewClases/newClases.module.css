@@ -1,0 +1,83 @@
+
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    background-image: url("../../assets/clases_background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    grid-template-areas:"topRightInfo    filters         ."
+                        "midleRightInfo  activities      ."
+                        ".               bottomInfo      .";
+    grid-template-rows: 16vh 1fr 10vh;
+    grid-template-columns: 25vw 1fr 25vw;
+    /* filter: sepia(0.5); */
+}
+
+
+.titleComponent{
+    grid-area: midleRightInfo;
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    align-self: flex-start;
+    
+    font-size: 3.5rem;
+    color: red;
+    font-weight: bold;
+    filter: unset;
+  	font-family:  "Oswald", sans-serif;
+    z-index: 1;
+    background-color: rgba(253, 209, 173, 0.5);
+    border-top-right-radius: 200px;
+    border-bottom-left-radius: 200px;
+    border: #000000;
+
+}
+
+.titleComponent:hover{
+    color: #ff6600;
+}
+
+.clasesContainer{
+    align-self: center;
+    margin-bottom: 5vh;
+   
+    filter: none;
+    grid-area: activities;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(235px, 1fr));
+}
+
+.containerClosed{
+    z-index: 1;
+    display: none;
+}
+
+.containerOpen{
+    z-index: 1;
+    display: block;
+}
+
+
+
+
+.buttonCloseDetail{
+    position: absolute;
+    margin-top: -69vh;
+    margin-left: 63.3vw;
+    z-index: 10;
+    background-image: url("../../assets/del.ico");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 1vw;
+    height: 2vh;
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+}
+
