@@ -46,12 +46,6 @@ export default function Nav() {
 
       <nav className="main-nav">
         <ul className="main-nav-list">
-          
-         {/*  <li>
-            <a className="main-nav-link" href="#section-meals">
-              Precios
-            </a>
-          </li> */}
           <li>
             <a className="main-nav-link" href="#about">
               Sobre Nosotros
@@ -69,9 +63,6 @@ export default function Nav() {
           </li>
           
           <li>
-            {/* <Link to={"/admindashboard"} className="main-nav-link nav-cta">
-              Administrar
-            </Link> */}
           </li>
           <li>
             <div className="buttonCart" onClick={handleCartClick}>
@@ -85,7 +76,7 @@ export default function Nav() {
             <button className="close-cart" onClick={handleCartClick}>X</button>
       </div>
 
-      {/*  <button className="btn-mobile-nav" >{!mobileNav ? 'Open' : 'Close'}</button> */}
+       {/* <button className="btn-mobile-nav" >{!mobileNav ? 'Open' : 'Close'}</button> */}
     </header>
     
   );
