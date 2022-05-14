@@ -52,12 +52,18 @@
     align-self: center;
     width: 60%;
   }
+
+  .hero-login{
+    margin-top: 15vh;
+  }
   
   .login-text {
     color: white;
     margin-top: 4rem;
     font-size: 1.2rem;
   }
+
+
   
   .login-link:link, .login-link:visited{
     color: white;
