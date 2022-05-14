@@ -23,7 +23,7 @@ const createOrderline = async(unitPrice, subtotal, quantity, orderId, activityId
             return false
         }
     }catch (error) {
-        return(error)
+        console.log(error)
     }
 }
 
@@ -37,7 +37,7 @@ const orderlineByOrderId = async(orderId) =>{
         })
         return orderlineId
     } catch (error) {
-        return(error)
+        console.log(error)
     }
 }
 
@@ -51,7 +51,7 @@ const orderlineByActivityId = async(activityId) =>{
         })
         return orderlineActId
     } catch (error) {
-        return(error)
+        console.log(error)
     }
 }
 
