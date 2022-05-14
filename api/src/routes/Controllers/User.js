@@ -31,17 +31,23 @@ const getAllUsers = async () => {
 
 const getUserId = async (id) => {
   try {
-    return await User.findOne({
+    const UserUid = await User.findOne({
       where: {
-        id: id,
-      },
-      include: {
-        model: Activity,
-        attributes: ["name"],
+        uid: id
       },
     });
+    if (UserUid) {
+      return UserUid;
+    } else {
+      const UserId = await User.findOne({
+        where: {
+          id: id
+        },
+      });
+      return UserId;
+    }
   } catch (error) {
-    console.log(error);
+    return(error);
   }
 };
 
@@ -59,7 +65,7 @@ const filterUserEmail = async (email) => {
 
 const userCreate = async (uid, name, lastName, email, phoneNumber, image) => {
   try {
-    return await User.create({
+    return await User.findOrCreate({
       uid: uid,
       name: name,
       lastName: lastName,
@@ -80,7 +86,7 @@ const userUpd = async (id, user) => {
       },
     });
   } catch (error) {
-    console.log(error);
+    return(error);
   }
 };
 
@@ -92,7 +98,7 @@ const userDelete = async (id) => {
       },
     });
   } catch (error) {
-    console.log(error);
+    return(error);
   }
 };
 

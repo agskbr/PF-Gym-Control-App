@@ -40,7 +40,7 @@ router.get('/activity/:activityId', async(req,res) =>{
         res.send(orderlineActId)
         : res.send("No se encontro orderline en la actividad")
     } catch (error) {
-        console.log(error)
+        return(error)
     }
 })
 
@@ -53,7 +53,7 @@ router.get('/:orderId', async(req,res) =>{
         res.send(orderlineId)
         : res.send("No se encontro orderline en la orden")
     } catch (error) {
-        console.log(error)
+        return(error)
     }
 })
 
@@ -73,7 +73,7 @@ router.post('/cart', async (req, res,) => {
         const orderline = await createOrderline(unitprice, subtotal, quantity, orderId, activityId,diaHoraId);
         res.send(orderline)
     } catch (error) {
-        console.log(error)
+        return(error)
     }
 });
 
