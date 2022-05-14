@@ -10,7 +10,7 @@ const mercadopago = require('mercadopago');
 router.post("/", (req, res, next) => {
     // Crea un objeto de preferencia
     const products = req.body
-    console.log(products)
+    //console.log(products)
     mercadopago.configure({
       access_token: 'APP_USR-4956501168084278-050317-2dacf17c8364126a0177a1ef5846ee9e-1117263864'
     });
@@ -37,7 +37,7 @@ router.post("/", (req, res, next) => {
       .then((response) => {
         res.send(response.body.init_point)
       }).catch((error) => {
-        console.log(error)
+        return(error)
       });
   })
   

@@ -4,6 +4,7 @@ import {
   RECEIVED_POST,
   REQUEST_POST,
   GET_ALL_USERS,
+  GET_ID_USER
 } from "../actions-type/index";
 
 import { BASE_URL } from "../constantes";
@@ -50,6 +51,17 @@ const getAllUsers = () => {
     }
   };
 };
+
+const getIdUser = (uid) => {
+  return async (dispatch) => {
+    try{
+      const {data} = await axios.get(`${BASE_URL}/user/${uid}`)
+      dispatch({type: GET_ID_USER, payload: data})
+    } catch(err){
+      console.log(err)
+    }
+  }
+}
 
 const editActivity = (activity, id) => {
   return async () => {
@@ -167,4 +179,5 @@ export {
   editActivity,
   requestPost,
   getAllUsers,
+  getIdUser
 };

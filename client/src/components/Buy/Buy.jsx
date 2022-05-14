@@ -50,7 +50,7 @@ export default function Buy() {
     }
 
  
-
+   
     
     /* let coach = entrenadores?.filter(e => e.name === trainers[0]?.name);
     let coach2 = entrenadores?.filter(e => e.name === trainers[1]?.name); */
@@ -117,7 +117,7 @@ export default function Buy() {
                         </Link>
 
                         
-                            <button className={style.elbo} onClick={() => dispatch(addToCart(state.pgym.detail.id), addOrderLine())} >Add to cart</button>
+                            <button className={style.elbo} onClick={() => dispatch(addToCart(state.pgym.detail.id), addOrderLine(state.cart.orderLine[0]))} >Add to cart</button>
                         
 
                     </div>

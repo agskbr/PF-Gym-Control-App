@@ -42,7 +42,7 @@ router.post("/", async (req, res) => {
     );
     return res.send(user_Create);
   } catch (error) {
-    console.log(error);
+    return(error);
   }
 });
 
@@ -60,18 +60,26 @@ router.get("/email/:email", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const users = await getAllUsers();
-  users
-    ? res.status(200).send(users)
-    : res.status(404).send("Usuario no encontrado");
+  try {
+    const users = await getAllUsers();
+    users
+      ? res.status(200).send(users)
+      : res.status(404).send("Usuario no encontrado");
+  } catch (error) {
+    res.status(error)
+  }
 });
 
 router.get("/:id", async (req, res) => {
-  const id = req.params.id;
-  const user_Id = await getUserId(id);
-  if (user_Id) {
-    res.status(200).json(user_Id);
-  } else res.status(404).send("Usuario no encontrado");
+  try {
+    const id = req.params.id;
+    const user_Id = await getUserId(id);
+    if (user_Id) {
+      res.status(200).json(user_Id);
+    } else res.status(404).send("Usuario no encontrado");
+  } catch (error) {
+    res.send(error)
+  }
 });
 
 router.put("/:id", async (req, res, next) => {

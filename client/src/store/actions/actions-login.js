@@ -148,12 +148,13 @@ const loginWithGithub = () => {
 
       const authWithGithubData = {
         uid: userData.user.uid,
-        email: userData.user.email ?? "",
+        email: userData.user.email,
         name: firstName,
         lastName,
         phoneNumber: userData.user.phoneNumber ?? "",
         image: userData.user.photoURL ?? "",
       };
+      console.log(authWithGithubData);
 
       await axios.post(`${BASE_URL}/user`, authWithGithubData);
 
@@ -208,19 +209,16 @@ const userSignOut = () => {
 const actionCodeSettings = {
   // URL you want to redirect back to. The domain (www.example.com) for this
   // URL must be in the authorized domains list in the Firebase Console.
-  url: 'http://localhost:3000/sociodashboard',
+  url: "http://localhost:3000/sociodashboard",
   // This must be true.
   // dynamicLinkDomain: 'http://localhost:3000/login'
 };
 
 export function verifyAccount() {
-  return async function() {
-      await sendEmailVerification(auth.currentUser, actionCodeSettings)
-  } 
+  return async function () {
+    await sendEmailVerification(auth.currentUser, actionCodeSettings);
+  };
 }
-
-
-
 
 export {
   loginWithGoogle,

@@ -5,6 +5,7 @@ import {
   GET_ALL_USERS,
   GET_USER_BY_EMAIL,
   CREATE_USER,
+  GET_ID_USER,
 } from "../actions-type/index";
 
 export const initialState = {
@@ -14,6 +15,7 @@ export const initialState = {
   page: [],
   trainers: [],
   detail: [],
+  userId: [],
   /* days: [],
   hour: [], */
   isLoading: false,
@@ -32,6 +34,12 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         users: action.payload,
       };
+
+    case GET_ID_USER:
+      return {
+        ...state,
+        userId: action.payload
+      }
     case REQUEST_POST:
       return { ...state, isLoading: true };
 

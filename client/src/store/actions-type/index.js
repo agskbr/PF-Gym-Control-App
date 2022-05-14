@@ -4,7 +4,7 @@ const GET_ALL_TRAINERS = "GET_ALL_TRAINERS";
 const GET_ALL_USERS = "GET_ALL_USERS";
 const REQUEST_POST = "REQUEST_POST";
 const RECEIVED_POST = "RECEIVED_POST";
-
+const GET_ID_USER = "GET_ID_USER"
 //-----------------
 
 //data by review reducer
@@ -67,4 +67,5 @@ export {
   GET_USERS,
   GET_USER_BY_UID,
   EDIT_USER,
+  GET_ID_USER,
 };
