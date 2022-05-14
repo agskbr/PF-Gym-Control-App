@@ -6,7 +6,6 @@ import { validateForm } from "../../../../utils/validateForm.js";
 import CustomInput from "../CustomInput/CustomInput.jsx";
 import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
 import style from "./EditPage.module.css";
-import swal from "sweetalert";
 
 export default function EditPage() {
   const { trainers, activities } = useSelector((state) => state.pgym);
@@ -90,7 +89,9 @@ export default function EditPage() {
       <h3>Editar {item}</h3>
       <div className={style.inputsContainer}>
         <div className={style.imageContainer}>
-          <img src={state.itemSelect.image ?? ""} alt={item} />
+          {state.itemSelect.image ? (
+            <img src={state.itemSelect.image} alt={item} />
+          ) : null}
         </div>
         {keys.map((input) =>
           input !== "id" &&
@@ -189,13 +190,6 @@ export default function EditPage() {
                 if (type === "Instructores") {
                   // dispatch();
                 }
-                swal({
-                  closeOnEsc: false,
-                  closeOnClickOutside: false,
-                  buttons: "Aceptar",
-                  icon: "success",
-                  title: "Actividad editada correctamente",
-                });
               }
             }}
             className={
