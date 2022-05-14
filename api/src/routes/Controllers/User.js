@@ -65,14 +65,17 @@ const filterUserEmail = async (email) => {
 
 const userCreate = async (uid, name, lastName, email, phoneNumber, image) => {
   try {
-    return await User.findOrCreate({
-      uid: uid,
-      name: name,
-      lastName: lastName,
-      email: email,
-      phoneNumber: phoneNumber,
-      image: image,
+    const user = await User.findOrCreate({
+      where: {
+        uid: uid,
+        name: name,
+        lastName: lastName,
+        email: email,
+        phoneNumber: phoneNumber,
+        image: image,  
+      }
     });
+    return user
   } catch (error) {
     return error;
   }
