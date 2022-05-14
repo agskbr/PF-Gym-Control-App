@@ -3,8 +3,6 @@ import {
   RECEIVED_POST,
   GET_ALL_TRAINERS,
   GET_ALL_USERS,
-  GET_USER_BY_EMAIL,
-  CREATE_USER,
   GET_ID_USER,
 } from "../actions-type/index";
 
@@ -155,15 +153,6 @@ export const rootReducer = (state = initialState, action) => {
         activities: orderedActivities,
         page: orderedActivities.slice(0, 3),
       };
-    case GET_USER_BY_EMAIL:
-      return{
-        ...state,
-        users:action.payload,
-      }
-    case CREATE_USER:
-      return{
-        ...state,
-      }
 
     default:
       return {
