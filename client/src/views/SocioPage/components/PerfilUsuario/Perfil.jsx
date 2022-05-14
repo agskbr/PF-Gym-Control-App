@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 //import { verifyAccount } from "../../../../store/actions/actions-login";
 import style from "./Perfil.module.css";
 import EditProfile from "./EditProfile/EditProfile";
-import {getUsers, createNewUser, getUserById} from '../../../../store/actions/actions-user'
+import {getUsers, createNewUser} from '../../../../store/actions/actions-user'
 import swal from "sweetalert";
 
 export default function Perfil() {
