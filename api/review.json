@@ -2,7 +2,7 @@
     {
         "rating": "3",
         "description": "pilates.. muy buena la actividad de hacer pilates",
-        "userId": "2",
+        "userId": "10",
         "activityId":"3"
     },
 
@@ -10,7 +10,7 @@
     {
         "rating": "5",
         "description": "muy buena actividad. 10/10",
-        "userId": "1",
+        "userId": "7",
         "activityId":"3"
     },
 
@@ -24,7 +24,7 @@
     {
         "rating": "4",
         "description": "de apoco me va fortaleciendo el body",
-        "userId": "2",
+        "userId": "13",
         "activityId":"4"
     },
 
@@ -45,7 +45,7 @@
     {
         "rating": "3",
         "description": "no esta mal.",
-        "userId": "6",
+        "userId": "15",
         "activityId":"1"
     },
 
@@ -59,7 +59,7 @@
     {
         "rating": "5",
         "description": "La profe de pilates es una genia.",
-        "userId": "6",
+        "userId": "16",
         "activityId":"3"
     },
 
@@ -79,7 +79,7 @@
 
     {
         "rating": "4",
-        "description": "La clese son muy divertidas, vale la pena termianr reventada.",
+        "description": "La clase es muy divertida, vale la pena terminar reventado.",
         "userId": "9",
         "activityId":"4"
     },
@@ -87,7 +87,7 @@
     {
         "rating": "2",
         "description": "Me quede dormida, muy mala la clase.",
-        "userId": "6",
+        "userId": "12",
         "activityId":"5"
     },
 
@@ -115,14 +115,14 @@
     {
         "rating": "2",
         "description": "Se rompio la cinta, muy mala calidad.",
-        "userId": "6",
+        "userId": "13",
         "activityId":"7"
     },
 
     {
         "rating": "4",
         "description": "Muy bueno los ejercicios, pronto volvere para seguir mi entrenamiento.",
-        "userId": "13",
+        "userId": "15",
         "activityId":"7"
     },
 
@@ -143,28 +143,28 @@
     {
         "rating": "4",
         "description": "Excelente la musica para los entrenamientos.",
-        "userId": "6",
+        "userId": "16",
         "activityId":"8"
     },
 
     {
         "rating": "1",
         "description": "Pocas maquinas para hacer piernas, tienen que mejorar.",
-        "userId": "6",
+        "userId": "11",
         "activityId":"9"
     },
 
     {
         "rating": "2",
         "description": "Muy poco seguimiento de parte de los profesores.",
-        "userId": "1",
+        "userId": "5",
         "activityId":"9"
     },
 
     {
         "rating": "5",
         "description": "Excelente rutinas, la verdad que se hace mover.",
-        "userId": "1",
+        "userId": "14",
         "activityId":"6"
     },
 

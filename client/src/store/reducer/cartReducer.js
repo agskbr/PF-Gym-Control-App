@@ -38,6 +38,7 @@ export function cartReducer(state = initialState, action) {
             }
 
         case ADD_TO_CART:
+            console.log(state.cart)
             let product = state.cart.find(product => product.id === action.payload.id);
 
            /*  console.log(action.payload) */
