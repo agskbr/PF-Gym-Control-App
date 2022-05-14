@@ -2,20 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import style from "./AdminCardView.module.css";
 import { Link } from "react-router-dom";
-import {
-  FaArrowDown,
-  FaArrowUp,
-  FaEdit,
-  FaMinus,
-  FaPlus,
-} from "react-icons/fa";
+import { FaEdit, FaPrint } from "react-icons/fa";
+import ExpansibleMenu from "../ExpansibleMenu/ExpansibleMenu";
 
 export default function AdminCardView({ type }) {
-  // const [isAscendentOrder, setIsAscendentOrder] = useState({
-  //   name: false,
-  //   price: false,
-  // });
-  const { activities, trainers, users } = useSelector((state) => state.pgym);
+  const { activities, trainers, users, orders, daysAndHours } = useSelector(
+    (state) => state.pgym
+  );
   const [expanseItemDay, setExpanseItemDay] = useState({});
   const [keys, setKeys] = useState([]);
   const [displayArray, setDisplayArray] = useState([]);
@@ -33,19 +26,29 @@ export default function AdminCardView({ type }) {
         setDisplayArray([...activities]);
         setKeys(Object.keys(activities[0]));
       }
+      if (type === "Ordenes") {
+        setDisplayArray([...orders]);
+        setKeys(Object.keys(orders[0]));
+      }
+      if (type === "Dias y horas") {
+        setDisplayArray([...daysAndHours]);
+        setKeys(Object.keys(daysAndHours[0]));
+      }
     }
-  }, [activities, trainers, users, type]);
+  }, [activities, trainers, users, orders, daysAndHours, type]);
 
   return (
     <div className={style.principalContainer}>
       <div className={style.titleAndAddBtn}>
         <h4>{type}</h4>
-        <button
-          onClick={() => document.getElementById("createDialog").showModal()}
-          className={style.addBtn}
-        >
-          Agregar
-        </button>
+        {type !== "Ordenes" && type !== "Usuarios" ? (
+          <button
+            onClick={() => document.getElementById("createDialog").showModal()}
+            className={style.addBtn}
+          >
+            Agregar
+          </button>
+        ) : null}
       </div>
       <div className={style.cardLayout}>
         <table className={style.tableAdminView}>
@@ -54,6 +57,8 @@ export default function AdminCardView({ type }) {
               {keys.map((head) =>
                 head !== "createdAt" &&
                 head !== "updatedAt" &&
+                head !== "userId" &&
+                head !== "users" &&
                 head !== "createdInDb" ? (
                   <th key={head}>{head}</th>
                 ) : null
@@ -67,6 +72,8 @@ export default function AdminCardView({ type }) {
                   if (
                     key !== "createdAt" &&
                     key !== "updatedAt" &&
+                    key !== "userId" &&
+                    key !== "users"&& 
                     key !== "createdInDb"
                   ) {
                     if (Array.isArray(el[key])) {
@@ -76,36 +83,11 @@ export default function AdminCardView({ type }) {
                             <ul key={i}>
                               {item.day ? (
                                 <li className={style.daysItems}>
-                                  <div>
-                                    <button
-                                      onClick={() =>
-                                        setExpanseItemDay((state) => ({
-                                          ...state,
-                                          [item.id]: !state[item.id],
-                                        }))
-                                      }
-                                      type="button"
-                                      className={style.collapsible}
-                                    >
-                                      {item.day}{" "}
-                                      {expanseItemDay[item.id] ? (
-                                        <FaMinus />
-                                      ) : (
-                                        <FaPlus />
-                                      )}
-                                    </button>
-                                    <div
-                                      className={
-                                        expanseItemDay[item.id]
-                                          ? style.active
-                                          : style.content
-                                      }
-                                    >
-                                      <ul className={style.hourItems}>
-                                        <li>{item.hour}</li>
-                                      </ul>
-                                    </div>
-                                  </div>
+                                  <ExpansibleMenu
+                                    expanseItemDay={expanseItemDay}
+                                    item={item}
+                                    setExpanseItemDay={setExpanseItemDay}
+                                  />
                                 </li>
                               ) : (
                                 <li>{item.name ?? item}</li>
@@ -115,6 +97,34 @@ export default function AdminCardView({ type }) {
                         </td>
                       );
                     }
+
+                    if (key === "activity" && Object.values(el[key]).length) {
+                      return <td key={i}>{el[key].name}</td>;
+                    }
+
+                    if (key === "user") {
+                      return (
+                        <td key={i}>
+                          <div className={style.userDataContainer}>
+                            <ul>
+                              <li>
+                                <span>NOMBRE:</span> {el[key].name}
+                              </li>
+                              <li>
+                                <span>APELLIDO:</span> {el[key].lastName}
+                              </li>
+                              <li>
+                                <span>EMAIL:</span> {el[key].email}
+                              </li>
+                              <li>
+                                <span>TELEFONO:</span> {el[key].phoneNumber}
+                              </li>
+                            </ul>
+                          </div>
+                        </td>
+                      );
+                    }
+
                     if (typeof el[key] === "boolean") {
                       return <td key={i}>{el[key].toString()}</td>;
                     }
@@ -136,12 +146,16 @@ export default function AdminCardView({ type }) {
                   return null;
                 })}
                 <td>
-                  <Link
-                    to={`/admindashboard/${type.toLowerCase()}/edit/${el.id}`}
-                    state={{ displayArray, itemSelect: el }}
-                  >
-                    <FaEdit size={20} color={"#fe4f22"} />
-                  </Link>
+                  {type === "Ordenes" ? (
+                    <FaPrint color="#fe4f22" size={20} />
+                  ) : (
+                    <Link
+                      to={`/admindashboard/${type.toLowerCase()}/edit/${el.id}`}
+                      state={{ displayArray, itemSelect: el }}
+                    >
+                      <FaEdit size={20} color={"#fe4f22"} />
+                    </Link>
+                  )}
                 </td>
               </tr>
             ))}
