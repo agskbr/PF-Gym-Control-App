@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { verifyAccount } from "../../../../store/actions/actions-login";
 import style from "./Perfil.module.css";
 import EditProfile from "./EditProfile/EditProfile";
+import Loader from "../../../../components/Loader/Loader";
 
 export default function Perfil() {
   const { user } = useSelector((state) => state.login);
@@ -21,10 +22,11 @@ export default function Perfil() {
     
         }} className={style.verify}>Verifica tu correo electrónico
       </button>
-    </div> : ''
+    </div> : '';
 
 
-  return (
+
+  return user.displayName ? (
     <div className={style.principalContainer}>
       <div className={style.perfilUser}>
         <div className={style.perfilUserName}>
@@ -47,8 +49,7 @@ export default function Perfil() {
           <button
             onClick={() => {
               document.getElementById("editProfileDialog").showModal();
-            }}
-          >
+            }}>
             {" "}
           Actualizar Datos{" "}
           </button>
@@ -57,5 +58,11 @@ export default function Perfil() {
       </div>
       
     </div>
+    
+  ) 
+  : 
+  (
+  <Loader/>
+   
   );
 }
