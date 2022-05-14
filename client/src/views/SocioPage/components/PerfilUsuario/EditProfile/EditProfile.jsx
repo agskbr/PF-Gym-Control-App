@@ -10,16 +10,13 @@ export default function EditProfile() {
 
     //me traigo del estado local del login el usuario
     const currentUser = useSelector((state) => state.login.user); //mail-id state login
-    console.log("currentU", currentUser)
-   // const id = currentUser.uid
-    //console.log("ID", id)
-
+  
     const dispatch = useDispatch();
     
     const [user, setUser]= useState({
         nombre: currentUser.displayName,
         email: currentUser.email,
-        telefono: currentUser.phoneNumber,
+        telefono: "",
 
     })
 
@@ -29,6 +26,7 @@ export default function EditProfile() {
 
     /*inputs*/
     const handleChange = (e) => {
+        e.preventDefault()
         setUser({
           ...user,
           [e.target.name]: e.target.value,
