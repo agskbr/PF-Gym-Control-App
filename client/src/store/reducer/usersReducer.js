@@ -26,7 +26,7 @@ export const userReducer = (state = initialState, action) => {
         case GET_USER_BY_UID:
             return {
                 ...state,
-                users: action.payload
+                user: action.payload
             }
         case CREATE_USER:
             return {

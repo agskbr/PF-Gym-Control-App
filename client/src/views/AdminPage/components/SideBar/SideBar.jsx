@@ -12,7 +12,8 @@ import {
   FaDumbbell,
   FaClipboard,
   FaArrowCircleLeft,
-  FaPercent,
+  FaCalendar,
+  FaTicketAlt,
 } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 
@@ -59,14 +60,24 @@ export default function SideBar({ setTypeOfCardView }) {
           }}
         />
         <CustomItemSideBar
-          icon={<FaPercent size={20} />}
-          name="Ofertas"
+          icon={<FaTicketAlt size={20} />}
+          name="Ordenes"
           selected={selected}
           onClick={() => {
-            setSeletected("Ofertas");
-            setTypeOfCardView("Ofertas");
+            setSeletected("Ordenes");
+            setTypeOfCardView("Ordenes");
           }}
         />
+        <CustomItemSideBar
+          icon={<FaCalendar size={20} />}
+          name="Dias y horas"
+          selected={selected}
+          onClick={() => {
+            setSeletected("Dias y horas");
+            setTypeOfCardView("Dias y horas");
+          }}
+        />
+
         <Link
           onClick={() => {
             dispatch(requestUserLogin());

@@ -4,6 +4,8 @@ import {
   GET_ALL_TRAINERS,
   GET_ALL_USERS,
   GET_ID_USER,
+  GET_ALL_ORDERS,
+  GET_ALL_DAYS_AND_HOURS,
 } from "../actions-type/index";
 
 export const initialState = {
@@ -13,15 +15,14 @@ export const initialState = {
   page: [],
   trainers: [],
   detail: [],
+  orders: [],
+  daysAndHours: [],
   userId: [],
-  /* days: [],
-  hour: [], */
   isLoading: false,
 };
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-  
     case GET_ALL_TRAINERS:
       return {
         ...state,
@@ -32,12 +33,16 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         users: action.payload,
       };
+    case GET_ALL_DAYS_AND_HOURS:
+      return { ...state, daysAndHours: action.payload };
+    case GET_ALL_ORDERS:
+      return { ...state, orders: action.payload };
 
     case GET_ID_USER:
       return {
         ...state,
-        userId: action.payload
-      }
+        userId: action.payload,
+      };
     case REQUEST_POST:
       return { ...state, isLoading: true };
 

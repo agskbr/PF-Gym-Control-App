@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getAllOrders } from "../../store/actions/actions-orders";
 import Loader from "../../components/Loader/Loader";
 import {
   getActivity,
   getAllTrainers,
   getAllUsers,
   requestPost,
+  getAllDaysAndHours,
 } from "../../store/actions";
 import style from "./AdminPage.module.css";
 import AdminCardView from "./components/AdminCardView/AdminCardView";
@@ -20,8 +22,10 @@ export default function AdminPage() {
   useEffect(() => {
     dispatch(requestPost());
     dispatch(getAllUsers());
+    dispatch(getAllDaysAndHours());
     dispatch(getAllTrainers());
     dispatch(getActivity());
+    dispatch(getAllOrders());
   }, [dispatch]);
 
   return (
