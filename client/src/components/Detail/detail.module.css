@@ -72,3 +72,37 @@
 .horarios{
     margin-top: 2vh;
 }
+
+
+
+@media (max-width: 62em) {
+    .containerOpen{
+        display: absolute;
+        width: 95vw;
+        height: 90vh;
+        background-color: rgba(0, 0, 0, 0.815);
+        border-radius: 5px;
+        margin-top: 5vh;
+        margin-left: 2.5vw;
+        z-index: 10;
+    }
+
+    .elbo{
+        height: 4vh;
+        width: 40vw;
+        background-color: rgb(255, 75, 43);
+        color: rgb(255, 255, 255);
+        font-size: 1rem;
+        border-radius: 10px;
+    }
+
+    
+    .horarios{
+    margin-top: 1vh;
+    }
+    .infoPrice{
+        margin-top: 0vh;
+        font-size: 1.2rem;
+    }
+
+}

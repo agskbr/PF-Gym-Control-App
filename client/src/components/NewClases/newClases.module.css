@@ -81,3 +81,14 @@
     border-radius: 50%;
 }
 
+
+@media (max-width: 62em) {
+
+    .buttonCloseDetail{
+        margin-top: -88.5vh;
+        margin-left: 87vw;
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+}
