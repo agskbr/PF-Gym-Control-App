@@ -1,13 +1,18 @@
+import "./style.css"
 import Hero from "../Hero/hero";
 import Nav from "../Nav/nav";
+import Footer from "../Footer/Footer";
 
 
 
 export default function Home() {
     return (
-        <div>
+        <div className="container">
             <Nav />
-            <Hero />
+            <div className="hero-container">
+                <Hero />
+            </div>
+         {/*    <Footer /> */}
         </div>
     )
 }

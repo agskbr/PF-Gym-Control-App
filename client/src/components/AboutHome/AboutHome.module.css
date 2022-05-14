@@ -1,7 +1,6 @@
 .aboutPage{
     min-height: 100vh; 
     /* height: 100vh; */
-    margin-top: -15rem;
     position: relative;
     padding: 12rem 2rem 2rem 2rem;
 }
