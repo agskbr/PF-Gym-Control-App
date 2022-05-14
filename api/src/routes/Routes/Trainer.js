@@ -49,12 +49,12 @@ router.post('/', async (req, res, next) => {
     image,
     specialty,
     experience,
-    Activity
+    activity
   } = req.body;
   try {
-    const trainer_Create = await trainerCreated(name,image,specialty,experience,Activity)
+    const trainer_Create = await trainerCreated(name,image,specialty,experience,activity)
     trainer_Create ?
-      res.status(200).send("Coach created successfully!!!") :
+      res.status(200).send(trainer_Create) :
       res.status(400).send("Coach not created")
   }
   catch(error){
