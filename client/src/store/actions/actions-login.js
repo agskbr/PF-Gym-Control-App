@@ -124,15 +124,15 @@ const loginWithGoogle = () => {
 
       const authWithGoogleData = {
         uid: userData.user.uid,
-        email: userData.user.email ?? "",
+        email: userData.user.email,
         name: firstName,
         lastName,
-        phoneNumber: userData.user.phoneNumber ?? "",
-        image: userData.user.photoURL ?? "",
+        phoneNumber: userData.user.phoneNumber,
+        image: userData.user.photoURL,
       };
       await axios.post(`${BASE_URL}/user`, authWithGoogleData);
 
-      dispatch({ type: LOGIN_WITH_GOOGLE, payload: authWithGoogleData });
+      dispatch({ type: LOGIN_WITH_GOOGLE, payload: userData });
       dispatch({ type: RECEIVED_USER_LOGIN });
     } catch (error) {
       console.log(error);
@@ -151,10 +151,9 @@ const loginWithGithub = () => {
         email: userData.user.email,
         name: firstName,
         lastName,
-        phoneNumber: userData.user.phoneNumber ?? "",
-        image: userData.user.photoURL ?? "",
+        phoneNumber: userData.user.phoneNumber,
+        image: userData.user.photoURL,
       };
-      console.log(authWithGithubData);
 
       await axios.post(`${BASE_URL}/user`, authWithGithubData);
 
@@ -216,9 +215,15 @@ const actionCodeSettings = {
 
 export function verifyAccount() {
   return async function () {
-    await sendEmailVerification(auth.currentUser, actionCodeSettings);
+    try {
+      await sendEmailVerification(auth.currentUser, actionCodeSettings);
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
+
+
 
 export {
   loginWithGoogle,
