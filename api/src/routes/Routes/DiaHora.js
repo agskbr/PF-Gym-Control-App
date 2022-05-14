@@ -60,7 +60,7 @@ router.put('/subtractStock', async (req, res,)=> {
         await diaHora.save();
         res.send("Capacidad del diaHora restada exitosamente");
     } catch (error) {
-        console.log(error)
+        return(error)
     }
 });
 
@@ -88,7 +88,7 @@ router.post("/create", async (req, res) => {
         const horaDia = await horaDiaCreate(day,hour,capacity)
         return res.send(horaDia)
     } catch (error) {
-        console.log(error)
+        return(error)
     }
 });
 
@@ -128,7 +128,7 @@ router.delete("/:id", async (req, res) => {
         await horaDiaDelete(id)
         res.status(200).json("HoraDia Eliminado");
     } catch (error) {
-        console.log(error)
+        return(error)
     }
 });
 
@@ -140,7 +140,7 @@ router.put('/:id', async (req, res,)=> {
         const horaDia_Upd = horaDiaUpd(id,horaDia);
         res.status(200).json(horaDia_Upd);  
     } catch (error) {
-        console.log(error)
+        return(error)
     }
 });
 

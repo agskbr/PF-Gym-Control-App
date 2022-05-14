@@ -18,7 +18,7 @@ const activityIdHora = async (id) => {
             }
         })
     } catch (err) {
-        console.log(err);
+        return(err);
     }
 }
 
@@ -31,7 +31,7 @@ const activityName = async (name) => {
             }
         })
     } catch (err) {
-        console.log(err);
+        return(err);
     }
 }
 
@@ -51,7 +51,7 @@ const activityId = async (id) => {
             ]
         })
     } catch (err) {
-        console.log(err);
+        return(err);
     }
 }
 
@@ -71,7 +71,7 @@ const allActivity = async () => {
             
         })
     } catch (err) {
-        console.log(err);
+        return(err);
     }
 }
 
@@ -125,7 +125,7 @@ const activityUpd = async (id,activity) => {
             }
         })
     } catch (error) {
-        console.log(error)
+        return(error)
     }
 }
 
@@ -154,7 +154,7 @@ const activityDeleteTrainer = async (idActivity, idTrainer) => {
             return false
         }
     } catch (error) {
-        console.log(error);
+        return(error);
     }
 }
 
@@ -171,7 +171,7 @@ const activityAddTrainer = async (idActivity, idTrainer) => {
             return false
         }
     } catch (error) {
-        console.log(error);
+        return(error);
     }
 }
 
