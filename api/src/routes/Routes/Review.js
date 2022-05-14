@@ -24,7 +24,7 @@ router.post('/activity', async (req,res,) =>{
         }
         res.send("Review no created / ya existente")
     } catch(err){
-        console.log(err.detail)
+        return(err.detail)
     }
 });
 
@@ -39,7 +39,7 @@ router.get("/activity/:id", async (req,res) => {
             res.send("no se econtro review en la actividad")
     }
     catch(error){
-        console.log(error)
+        return(error)
     }
 });
 
@@ -53,7 +53,7 @@ router.get("/user/:id", async (req,res) => {
             res.send("no se econtro review en el user")
     }
     catch(error){
-        console.log(error)
+        return(error)
     }
 });
 
@@ -62,7 +62,7 @@ router.put('/:id', async (req, res,) => {
     try{
     let id = req.params.id;
     let activity  = req.body;
-    console.log(activity)
+    return(activity)
     
         const rew = await reviewUpdate(id,activity);
         res.status(200).json(rew);

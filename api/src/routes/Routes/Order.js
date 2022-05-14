@@ -19,7 +19,7 @@ const {
 router.get("/find/:state", async (req, res) => {   //example: http://localhost:3001/order/find/Complete
     try {
         const state=req.params.state;
-        console.log(state)
+        return(state)
         const orders = await orderStatus(state)
         if (orders) return res.json(orders);
     } catch (err) {
@@ -162,7 +162,7 @@ router.get("/user/:id", async (req,res) => {
             res.send("order of user not found")
     }
     catch(error){
-        console.log(error)
+        return(error)
     }
 })
 // //modificar estado orden 
@@ -229,7 +229,7 @@ router.delete('/:id', async (req, res) => {
         await deleteOrder(id)
         res.status(200).send('Order deleted!!')
     } catch (error) {
-        console.log(error);
+        return(error);
     }
 });
 

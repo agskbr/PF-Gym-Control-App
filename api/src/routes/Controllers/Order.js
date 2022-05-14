@@ -32,10 +32,10 @@ const allOrder = async () => {
         const allOrder = await Order.findAll({
             include: [{model: User}], 
         })
-        console.log(allOrder)
+        //console.log(allOrder)
         return allOrder;
     } catch (error) {
-        console.log(error);
+        return(error);
     }
 }
 
@@ -49,7 +49,7 @@ const orderFilterId = async (id) => {
         })
         return orderFilter
     } catch (error) {
-        console.log(error);
+        return(error);
     }
 }
 
@@ -69,7 +69,7 @@ const orderUpdate = async (state, id) => {
         )
         return orderUpd;
     } catch (error) {
-        console.log(error);
+        return(error);
     }
 
 }

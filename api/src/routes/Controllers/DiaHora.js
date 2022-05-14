@@ -15,7 +15,7 @@ const diahoraActivity = async (activityId) => {
         })
         return dia_Hora;
     } catch (error) {
-        console.log(error)
+        return(error)
     }
 }
 
@@ -75,7 +75,7 @@ const horaDiaId = async (id) => {
             }
         })
     } catch (error) {
-        console.log(error)
+        return(error)
     }
 }
 
@@ -98,7 +98,7 @@ const deleteHoraDiaActivity = async (idActivity,idDiaHora) => {
             return false
         }
     } catch (error) {
-        console.log(error)
+        return(error)
     }   
 }
 
@@ -112,7 +112,7 @@ const deleteHoraDiaUser = async (idUser, idDiaHora) => {
         }
         return false
     } catch (error) {
-        console.log(error)
+        return(error)
     }
 }
 
@@ -125,7 +125,7 @@ const horaDiaDelete = async (id) => {
             }
         })
     } catch (error) {
-        console.log(error)
+        return(error)
     }   
 }
 
@@ -138,7 +138,7 @@ const horaDiaUpd = async (id,horaDia) => {
             }
         })
     } catch (error) {
-        console.log(error)
+        return(error)
     }
 }
 
@@ -158,14 +158,14 @@ const updateHoraDia = async (req, res) => {
         })
         await horaDia.addUser(addUser);
         horaDia.save();
-        console.log(horaDia.users.length)
+        //console.log(horaDia.users.length)
         let newAvailability = horaDia.capacity - (horaDia.users.length + 1);
-        console.log(newAvailability);
+        //console.log(newAvailability);
         horaDia.availability = newAvailability;
         horaDia.save();
         return res.json(horaDia);
     } catch (error) {
-        console.log(error)
+        return(error)
     }
 }
 
@@ -198,7 +198,7 @@ const removeUserHoraDia = async (req, res) => {
             message: "turno eliminado"
         })
     } catch (error) {
-        console.log(error)
+        return(error)
     }
 }
 

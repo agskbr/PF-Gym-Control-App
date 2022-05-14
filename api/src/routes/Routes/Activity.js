@@ -97,7 +97,7 @@ router.delete('/:id', async (req, res) => {
         await deleteActivity(id)
         res.status(200).send('deleted activity!!')
     } catch (error) {
-        console.log(error);
+        return(error);
     }
 });
 

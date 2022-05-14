@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
           msg: 'No es una dirección de correo electrónico.'
         }
       },
-      allowNull: false,
+      allowNull: true,
       unique: true
     },
     phoneNumber: {
