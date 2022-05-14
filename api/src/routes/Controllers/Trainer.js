@@ -15,7 +15,7 @@ const allTrainers = async () => {
             },
         })
     } catch (error) {
-        return(error);
+        console.log(error);
     }
 }
 

@@ -5,7 +5,7 @@ const {
   filterUserEmail,
   userCreate,
   userUpd,
-  getUserId,
+  userId,
   userDelete,
   userIsAdmin,
 } = require("../Controllers/User");
@@ -47,7 +47,7 @@ router.post("/", async (req, res) => {
 });
 
 //obtener usuario por email
-router.get("/email/:email", async (req, res) => {
+router.get("/:email", async (req, res) => {
   try {
     const { email } = req.params;
     const usuarioEmail = await filterUserEmail(email);
@@ -60,26 +60,18 @@ router.get("/email/:email", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  try {
-    const users = await getAllUsers();
-    users
-      ? res.status(200).send(users)
-      : res.status(404).send("Usuario no encontrado");
-  } catch (error) {
-    res.send(error)
-  }
+  const users = await getAllUsers();
+  users
+    ? res.status(200).send(users)
+    : res.status(404).send("Usuario no encontrado");
 });
 
 router.get("/:id", async (req, res) => {
-  try {
-    const id = req.params.id;
-    const user_Id = await getUserId(id);
-    if (user_Id) {
-      res.status(200).json(user_Id);
-    } else res.status(404).send("Usuario no encontrado");
-  } catch (error) {
-    res.send(error)
-  }
+  const id = req.params.id;
+  const user_Id = await userId(id);
+  if (user_Id) {
+    res.status(200).json(user_Id);
+  } else res.status(404).send("Usuario no encontrado");
 });
 
 router.put("/:id", async (req, res, next) => {
