@@ -2,17 +2,12 @@ import React, { useEffect, useState } from "react";
 import { validateForm } from "../../../../utils/validateForm";
 import style from "./CustomModal.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createActivity,
-  createTrainer,
-  createUser,
-} from "../../../../store/actions/index";
+import { createActivity, createTrainer } from "../../../../store/actions/index";
 import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
 import CustomInput from "../CustomInput/CustomInput.jsx";
-import Swal from "sweetalert";
 export default function CustomModal({ type }) {
   const dispatch = useDispatch();
-  const { trainers, activities, users } = useSelector((state) => state.pgym);
+  const { trainers, activities } = useSelector((state) => state.pgym);
   const daysOpt = [
     { id: 1, name: "Lunes" },
     { id: 2, name: "Martes" },
@@ -38,11 +33,7 @@ export default function CustomModal({ type }) {
   const [keys, setKeys] = useState([]);
 
   useEffect(() => {
-    if (users.length && trainers.length && activities.length) {
-      if (type === "Usuarios") {
-        setDisplayInputs([...users]);
-        setKeys(Object.keys(users[0]));
-      }
+    if (trainers.length && activities.length) {
       if (type === "Instructores") {
         setDisplayInputs([...trainers]);
         setKeys(Object.keys(trainers[0]));
@@ -52,7 +43,7 @@ export default function CustomModal({ type }) {
         setKeys(Object.keys(activities[0]));
       }
     }
-  }, [activities, trainers, users, type]);
+  }, [activities, trainers, type]);
 
   useEffect(() => {
     if (keys.length) {
@@ -111,10 +102,7 @@ export default function CustomModal({ type }) {
       <div className={style.contentDialog}>
         {keys.map((input) =>
           input !== "id" &&
-          input !== "uid" &&
           input !== "description" &&
-          input !== "isAdmin" &&
-          input !== "notifications" &&
           input !== "activities" &&
           input !== "status" &&
           input !== "day" &&
@@ -181,9 +169,6 @@ export default function CustomModal({ type }) {
           onClick={() => {
             setErrors(validateForm(inputs, type));
             if (Object.values(errors).length === 0) {
-              if (type === "Usuarios") {
-                dispatch(createUser(inputs));
-              }
               if (type === "Clases") {
                 dispatch(
                   createActivity({
@@ -196,17 +181,7 @@ export default function CustomModal({ type }) {
               if (type === "Instructores") {
                 dispatch(createTrainer(inputs));
               }
-
-              Swal({
-                title: `${
-                  type === "Usuarios" ? type.slice(0, -1) : type.slice(0, -2)
-                } se creó correctamente`,
-                buttons: "Aceptar",
-                icon: "success",
-              });
               document.getElementById("createDialog").close();
-
-              // setActivity({});
             }
           }}
           className={style.createBtn}
