@@ -14,7 +14,7 @@
         "lastName": "Grupo 14",
         "email": "gymcontrol12@gmail.com",
         "phoneNumber":"+543715248594",
-        "image": "https://fcb-abj-pre.s3.amazonaws.com/img/jugadors/MESSI.jpg",
+        "image": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/gym-fitness-center-video-logo-social-media-design-template-f9566537b0445b719d2c9ae5b4264d3c_screen.jpg?ts=1589533347",
         "isAdmin" : true
     },
     {
@@ -23,7 +23,7 @@
         "lastName": "Sanchez",
         "email": "jsanchez@gmail.com",
         "phoneNumber":"+543715240002",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "image": "https://www.mendozapost.com/files/image/40/40698/55dca07400d7c.jpg",
         "isAdmin" : false
     },
     {
@@ -32,7 +32,7 @@
         "lastName": "Salazar",
         "email": "msalazar@gmail.com",
         "phoneNumber":"+543715240003",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "image": "http://ar.cienradios.com/wp-content/uploads/sites/content/2016/02/Julie-Gonzalo.jpg",
         "isAdmin" : false
         
     },
@@ -42,7 +42,7 @@
         "lastName": "Perez",
         "email": "ratonperez@gmail.com",
         "phoneNumber":"+543715240004",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "image": "https://i2.wp.com/www.homosensual.com/wp-content/uploads/2021/04/actores-famosos-gay-argentinos-fernando-dente.jpg?fit=1280%2C720&quality=80&ssl=1",
         "isAdmin" : false
     },
     {
@@ -51,7 +51,7 @@
         "lastName": "Sosa",
         "email": "ssosa09@gmail.com",
         "phoneNumber":"+543715240005",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "image": "https://cloudfront-us-east-1.images.arcpublishing.com/radiomitre/VKCNWEWDDVGGROKEFQGVRB7MKI.jpg",
         "isAdmin" : false
     },
     {
@@ -60,7 +60,7 @@
         "lastName": "Caputo",
         "email": "martin_07caputo@gmail.com",
         "phoneNumber":"+543715240006",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "image": "https://los40.com.ar/los40/imagenes/2016/10/12/album/1476291997_782013_1476292421_album_normal.jpg",
         "isAdmin" : false
     },
     {
@@ -69,7 +69,7 @@
         "lastName": "Angulo",
         "email": "Leoangulo01@gmail.com",
         "phoneNumber":"+543715240007",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "image": "https://i.pinimg.com/236x/39/5d/ae/395dae3491c4bb487d245be3c1ab7a88.jpg",
         "isAdmin" : false
     },
     {
@@ -78,7 +78,7 @@
         "lastName": "Gallardo",
         "email": "elmasgrande@gmail.com",
         "phoneNumber":"+543715240008",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "image": "https://lapaginamillonaria.com/__export/1649691393966/sites/lpm/img/2022/04/11/marcelo_gallardo_crop1649691297500.jpg_1159711837.jpg",
         "isAdmin" : false
     },
     {
@@ -87,7 +87,7 @@
         "lastName": "Perez",
         "email": "pablopegapoco@gmail.com",
         "phoneNumber":"+543715240009",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "image": "https://media.lacapital.com.ar/p/2507b93ef85945c63299d7f9deab8afa/adjuntos/203/imagenes/030/178/0030178956/perezjpg.jpg",
         "isAdmin" : false
     },
     {
@@ -96,7 +96,7 @@
         "lastName": "Torres",
         "email": "mtorres@gmail.com",
         "phoneNumber":"+543715240010",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "image": "https://image.apost.com/media/articletranslation/2021/11/12/13/d91ee34ef9bb3ec5cfffa904dc915737_500x1.jpg",
         "isAdmin" : false
     },
     {
@@ -105,7 +105,7 @@
         "lastName": "Gomez",
         "email": "giugomez@gmail.com",
         "phoneNumber":"+543715240011",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "image": "https://p4.wallpaperbetter.com/wallpaper/981/195/691/actresses-teresa-palmer-actress-australian-blonde-hd-wallpaper-preview.jpg",
         "isAdmin" : false
     },
     {
@@ -114,7 +114,7 @@
         "lastName": "Rodriguez",
         "email": "pedro09@gmail.com",
         "phoneNumber":"+543715240012",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "image": "https://i.pinimg.com/originals/95/52/05/955205bf3b330416bcb0c56af9e9ca67.jpg",
         "isAdmin" : false
     },
     {
@@ -123,7 +123,7 @@
         "lastName": "Peralta",
         "email": "eliperalta@gmail.com",
         "phoneNumber":"+543715240013",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "image": "https://es.web.img2.acsta.net/c_310_420/pictures/14/12/26/12/46/401164.jpg",
         "isAdmin" : false
     },
     {
@@ -132,7 +132,7 @@
         "lastName": "Pelegrini",
         "email": "marcospelegrini05@gmail.com",
         "phoneNumber":"+543715240014",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT01ZoZIeBkLvuECo7z5-KjDltsTwgOgb0GY-4vBy38SiXqZJFvIOLbtmL36TydZ7yrVgM&usqp=CAU",
         "isAdmin" : false
     },
     {
@@ -141,7 +141,8 @@
         "lastName": "Maninni",
         "email": "carlosmaninni07@gmail.com",
         "phoneNumber":"+543715240015",
-        "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+        "image": "http://www.diariolasamericas-storage.com/archivos/files/8174297.jpg",
         "isAdmin" : false
     }
 ]
+
