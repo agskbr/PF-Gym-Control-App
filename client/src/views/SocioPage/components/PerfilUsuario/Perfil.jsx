@@ -7,12 +7,12 @@ import EditProfile from "./EditProfile/EditProfile";
 
 export default function Perfil() {
   const { user } = useSelector((state) => state.login);
-  console.log("usuarios", user)
+  //console.log("user logeado", user)
 
   const dispatch = useDispatch()
 
-  const [verify, setVerify] = useState(user.emailVerified)
-
+  /* const [verify, setVerify] = useState(user.emailVerified) */
+/* 
   let verified = !verify ? 
     <div>
       <p className={style.notVerified}>Email no verificado</p>
@@ -22,7 +22,7 @@ export default function Perfil() {
         }} className={style.verify}>Verifica tu correo electrónico
       </button>
     </div> : ''
-
+ */
 
   return (
     <div className={style.principalContainer}>
@@ -40,7 +40,7 @@ export default function Perfil() {
           </div>
           <p>Nombre: {user.displayName ? user.displayName : "Cargando.."} </p>
           <p>Email: {user.email ? user.email : "Cargando.."}</p>
-          {verified}
+        {/*   {verified} */}
           <p>
             Teléfono: {user.phoneNumber ? user.phoneNumber : "No hay número"}
           </p>

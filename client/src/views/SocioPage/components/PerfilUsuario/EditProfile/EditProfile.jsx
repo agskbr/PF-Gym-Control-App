@@ -1,34 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import s from './EditProfile.module.css'
 import { useDispatch, useSelector } from "react-redux";
-import { getUserByEmail, createNewUser } from '../../../../../store/actions/index';
+import { getUserById, createNewUser } from '../../../../../store/actions/actions-user';
 
 export default function EditProfile() {
-    const dispatch= useDispatch();
-    const { user } = useSelector((state) => state.login); //mail-id state login
-    const email= user.email //para traerme el usuario x mail
-    //console.log("email", email)
-    const allUsers = useSelector((state)=>state.pgym.users)
-    console.log("yan", allUsers)
-    //const usuario = allUsers.find((u)=> u.email === email)
-    //console.log("ACA", usuario)
-    const [data, setData]= useState({
-        nombre: user.displayName,
-        email: user.email,
+
+    //me traigo del estado local del login el usuario
+    const currentUser = useSelector((state) => state.login.user); //mail-id state login
+    console.log("currentU", currentUser)
+    const id = currentUser.uid
+    console.log("ID", id)
+
+    const dispatch = useDispatch();
+    
+    const [user, setUser]= useState({
+        nombre: currentUser.displayName,
+        email: currentUser.email,
         telefono: "",
 
     })
 
-    useEffect((email)=>{
-        if(email){
-            dispatch(getUserByEmail(email))
-        }
-    },[dispatch, email])
+    useEffect((id)=>{
+       /* dispatch(getUserById(id)) */
+    },[dispatch])
 
     /*inputs*/
     const handleChange = (e) => {
-        setData({
-          ...data,
+        setUser({
+          ...user,
           [e.target.name]: e.target.value,
         });
       };
@@ -47,7 +46,7 @@ export default function EditProfile() {
            
         </div>
         <h6>Actualizar Perfil</h6>
-        <form className={s.CreateReaviewForm} /* onSubmit={handleUpDate} */>
+        <form className={s.CreateReaviewForm} >
             <h2>COMPLETAAAAAAAAAAAAAAAAAAAA TU PERFIL</h2>
             <div>
                 <label htmlFor="">Nombre : </label>
@@ -55,7 +54,7 @@ export default function EditProfile() {
                     type="text"
                     className={s.perfilInput}
                     name="nombre"
-                    defaultValue={user.displayName || ""}
+                    defaultValue={currentUser.displayName || ""}
                 />
             </div>
             <div>
@@ -64,7 +63,7 @@ export default function EditProfile() {
                     type="text"
                     className={s.perfilInput}
                     name="email"
-                    defaultValue={user.email || ""}
+                    defaultValue={currentUser.email || ""}
                 />
             </div>  
             <div>
@@ -74,11 +73,11 @@ export default function EditProfile() {
                     className={s.perfilInput}
                     name="telefono"
                     onChange={handleChange}
-                    value={data.telefono} /*ver*/
+                    value={user.telefono} /*ver*/
                 />
             </div>
             <h3>Cambiar contraseña</h3>
-            <div>
+           {/*  <div>
                 <label htmlFor="">Contraseña actual: </label>
                 <input type="" />
             </div>
@@ -89,8 +88,8 @@ export default function EditProfile() {
             <div>
                 <label htmlFor="">reingresar contraseña: </label>
                 <input type="" />
-            </div>
-            <div>
+            </div>*/}
+            <div> 
             <button 
                    /*  style={s.button} */
                    /*  onClick={} */
