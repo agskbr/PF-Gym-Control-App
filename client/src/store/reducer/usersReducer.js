@@ -7,7 +7,8 @@ import {
 } from '../actions-type/index.js'
 
 export const initialState = {
-    users : []
+    users : [],
+    user:{}
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -34,6 +35,7 @@ export const userReducer = (state = initialState, action) => {
         case EDIT_USER:
             return {
                 ...state,
+                user: action.payload,
             } 
         default:
             return {

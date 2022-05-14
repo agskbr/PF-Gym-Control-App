@@ -54,10 +54,10 @@ const createNewUser = (payload)=> {
     }
 }
 
-const editUser = (id, data) => {
+const editUser = (id, payload) => {
     return async function (){
         try {
-            const {data} = await axios.put(`${BASE_URL}/user/${id}`, data)
+            const {data} = await axios.put(`${BASE_URL}/user/${id}`, payload)
             return ({
                 type:EDIT_USER,
                 payload: data
