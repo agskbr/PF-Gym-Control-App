@@ -76,8 +76,8 @@
         "id": 9,
         "name": "Maquinas",
         "description": "Incluye entrada libre para usar las maquinas",
-        "video": "https://youtu.be/ON62i0w334g?t=41",
-        "image": "https://www.bareinternational.cl/wp-content/uploads/sites/4/2019/09/Gimnasio_-Bare--660x321.jpg",
+        "video": "",
+        "image": "",
         "price": 200,
         "trainers":[]
 }
