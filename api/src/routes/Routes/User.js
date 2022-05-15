@@ -74,11 +74,14 @@ router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const user_Id = await getUserId(id);
-    if (user_Id) {
-      res.status(200).json(user_Id);
-    } else res.status(404).send("Usuario no encontrado");
+    if (user_Id.id) {
+      //console.log(user_Id)
+      return res.send(user_Id);
+    }
+    res.status(400).send("usuario no encontrado")
   } catch (error) {
-    res.send(error)
+    //console.log(error)
+    res.status(400).send("error al buscar usuario")
   }
 });
 
