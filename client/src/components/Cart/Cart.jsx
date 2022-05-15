@@ -15,11 +15,18 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 export default function Cart(activity) {
   const state = useSelector((state) => state);
+  const orderLine = useSelector((state)=>state.cart.orderLine)
   const dispatch = useDispatch();
   const { cart, products } = state.cart;
   const { user } = state.login;
 
-  //console.log(cart)
+  //console.log(orderLine)
+  /* 
+  activityId: 5
+  diaHoraId: 21
+  quantity: 1
+  subtotal: 200
+  unitprice: 200 */
 
   async function checkout(user) {
     try {
@@ -31,6 +38,30 @@ export default function Cart(activity) {
       //console.log(data);
       const info = { orderId: data.newOrderId, state: "Created" };
       await axios.put(`${BASE_URL}/order/checkout`, info);
+
+      await orderLine.forEach(element => {
+        const infoPaso3 = {
+          diaHoraId: element.diaHoraId,
+          quantity: element.quantity
+        }
+        const infoPaso4 = { 
+          userId:data2.data.id,
+          diaHoraId:element.diaHoraId,
+          unitprice:element.unitprice,
+          subtotal:element.subtotal,
+          quantity:element.quantity, 
+          orderId:info.orderId, 
+          activityId:element.activityId
+        }
+        const infoPaso5 = {
+          orderId:info.orderId,
+          subtotal: element.subtotal
+        }
+        console.log(infoPaso4)
+        axios.put(`${BASE_URL}/diahora/subtractStock`, infoPaso3);
+        axios.post(`${BASE_URL}/orderLine/checkout`, infoPaso4);
+        axios.put(`${BASE_URL}/order/sumaTotal`, infoPaso5);
+      });
       //   {
       //     "diaHoraId":"2",
       //     "quantity":"1"

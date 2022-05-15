@@ -15,7 +15,8 @@ export const initialState = {
     order: [],
     cart: [],
     totalCart: 0,
-    orderLine:[],
+    orderLine: [],
+    capacity:[]
 }
 
 
@@ -37,6 +38,10 @@ export function cartReducer(state = initialState, action) {
                 orderLine: [],
             }
 
+/*         case "ADD_TO_CART2":
+            let capacidad = action.payload
+            console.log(capacidad)
+*/
         case ADD_TO_CART:
             //console.log(state.cart)
             let product = state.cart.find(product => product.id === action.payload.activity.id);
