@@ -94,6 +94,14 @@ export default function EditProfile() {
                         value={user.phoneNumber ?? ""} 
                     />
                 </div>
+                <div>
+                <button 
+                        className={s.createReviewBoton} 
+                        type="submit"
+                    >
+                        Actualizar
+                    </button>
+                </div>
             </form>
         </div>
     </dialog>
