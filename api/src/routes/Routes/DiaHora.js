@@ -12,7 +12,8 @@ const{
     horaDiaUpd,
     deleteHoraDiaActivity,
     diahoraActivity,
-    deleteHoraDiaUser
+    deleteHoraDiaUser,
+    añadirDia
 } = require('../Controllers/DiaHora');
 
 
@@ -66,6 +67,20 @@ router.put('/subtractStock', async (req, res,)=> {
         return(error)
     }
 });
+
+//añador una relacion de diaHora a una actividad
+router.post("/activity", async (req,res, next) => {
+    try{
+        const { activityId, diaHoraId } = req.body
+        const activity_Name = await añadirDia(activityId, diaHoraId);
+        if (activity_Name) {
+            return res.send(activity_Name);
+        }
+        res.send("actividad No creada");
+    } catch(err){
+        next(err);
+    }
+})
 
 
 //obetener los dias de una actividad especifica 

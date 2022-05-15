@@ -173,6 +173,18 @@ const validateUserIsLogged = () => {
           const { data } = await axios.post(`${BASE_URL}/user/isAdmin`, {
             id: user.uid,
           });
+          const userFind = await axios.get(`${BASE_URL}/user/${user.uid}`);
+          if (!userFind.data.uid) {
+            const authUserValidated = {
+              uid: user.uid,
+              email: user.email,
+              name: user.displayName?.split(" ")[0],
+              lastName: user.displayName?.split(" ")[1],
+              phoneNumber: user.phoneNumber,
+              image: user.photoURL,
+            };
+            await axios.post(`${BASE_URL}/user`, authUserValidated);
+          }
           dispatch({ type: USER_IS_ADMIN, payload: data });
           dispatch({
             type: VALIDATE_USER_IS_LOGGED,
@@ -217,13 +229,21 @@ export function verifyAccount() {
   return async function () {
     try {
       await sendEmailVerification(auth.currentUser, actionCodeSettings);
+      swal({
+        title: "se te envio un mail",
+        buttons: "aceptar",
+        icon: "success",
+      });
     } catch (error) {
       console.log(error);
+      swal({
+        title: "no se pudo enviar el mail",
+        buttons: "aceptar",
+        icon: "error",
+      });
     }
   };
 }
-
-
 
 export {
   loginWithGoogle,
