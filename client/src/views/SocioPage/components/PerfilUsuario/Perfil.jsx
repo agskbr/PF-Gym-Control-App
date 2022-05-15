@@ -41,7 +41,9 @@ export default function Perfil() {
   },[usuario])
 
   useEffect(()=>{
-    dispatch(getUserById(uid))
+    if (uid) {
+      dispatch(getUserById(uid))
+    }
   },[dispatch, uid])
 
   return (
