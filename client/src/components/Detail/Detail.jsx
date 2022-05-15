@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getActivityById } from "../../store/actions";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { addToCart } from "../../store/actions/actionsCart";
+import { addToCart, addToCart2 } from "../../store/actions/actionsCart";
 
 export default function Detail() {
+  const capa = useSelector((state) => state.pgym.capacity);
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const detail = useSelector((state) =>
@@ -15,10 +16,11 @@ export default function Detail() {
   );
   const [time, setTime] = useState("");
   const [idToCart, setIdToCart] = useState([]);
+  //const [capacity, setCap] = useState("");
 
   const text = detail?.description?.substring(0, 700);
-
-  function filterDiaHora(horarios) {
+  
+  /* function filterDiaHora(horarios) {
     const timeFiltered = time.split(" "); //--> [lunes, 20hs]
     // console.log(timeFiltered);
     // console.log(horarios);
@@ -29,18 +31,27 @@ export default function Detail() {
     );
     // console.log(horariosFiltered);
     // setIdToCart(horariosFiltered ? horariosFiltered[0].id : 0);
-  }
+  } */
 
-  function getOptionSelected(horarios) {
+  /* function getOptionSelected(horarios) {
     let selectInput = document.getElementById("select");
     setTime(selectInput.value);
     console.log(time);
     filterDiaHora(horarios);
   }
-
+ */
   function handleFilter(e) {
     e.preventDefault();
     setIdToCart(e.target.value);
+    /* detail.diaHoras.forEach((el) => {
+      if (el.id === idToCart) {
+        setCap(el.capacity)
+      } 
+    }); */
+    //console.log(capacity);
+    /* setIdToCart(horariosFiltered ? horariosFiltered[0].id : 0);*/
+    //console.log()
+    console.log(detail)
   }
 
   const horarios = detail.diaHoras;
@@ -78,17 +89,18 @@ export default function Detail() {
             id="select"
             onChange={(e) => {
               handleFilter(e);
+              //dispatch(addToCart2(idToCart))
               //   getOptionSelected(horarios);
             }}
           >
-              <option >Elegir dia hora</option>
+              <option>Elegir dia hora</option>
             {detail.diaHoras?.map((day) => (
               <option
                 value={day.id}
                 className={style.day}
                 key={day.id}
                 id={day.id}
-              >{` ${day.day} ${day.hour}`}</option>
+              >{` ${day.day} ${day.hour} capacidad:${day.capacity}`}</option>
             ))}
           </select>
         </div>

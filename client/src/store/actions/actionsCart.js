@@ -13,8 +13,13 @@ import {
 } from "../actions-type";
 
 
-
-
+export function orderLinefuntion(payload){
+  console.log("new order line");
+  return {
+    type: "ORDER_LINE",
+    payload:payload
+  };
+}
 
 
 export function clearCart(){
@@ -32,7 +37,7 @@ export function clearCart(){
     return async function (dispatch) {
       try {
         const product = await axios.get(`${BASE_URL}/diahora/` + idDiaHora);
-        //console.log(product.data)
+        console.log(product.data)
         dispatch({
           type: "ADD_TO_CART",
           payload: product.data,
@@ -43,6 +48,23 @@ export function clearCart(){
       }
     };
   }
+
+/* export function addToCart2(idDiaHora) {
+    
+  return async function (dispatch) {
+    try {
+      const product = await axios.get(`${BASE_URL}/diahora/` + idDiaHora);
+      console.log(product.data)
+      dispatch({
+        type: "ADD_TO_CART2",
+        payload: product.data,
+        
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+} */
 
 
   export function addOrderLine(payload){
