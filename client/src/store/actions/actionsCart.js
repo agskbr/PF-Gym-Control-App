@@ -13,8 +13,13 @@ import {
 } from "../actions-type";
 
 
-
-
+export function orderLinefuntion(payload){
+  console.log("new order line");
+  return {
+    type: "ORDER_LINE",
+    payload:payload
+  };
+}
 
 
 export function clearCart(){
