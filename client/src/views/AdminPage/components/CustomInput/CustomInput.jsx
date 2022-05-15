@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./CustomInput.module.css";
+import { FaEyeSlash, FaEye } from "react-icons/fa";
 export default function CustomInput({
   disabled = false,
   name,
@@ -11,6 +12,7 @@ export default function CustomInput({
   min,
   titleInput,
 }) {
+  const [isVisiblePassword, setIsVisiblePassword] = useState(false);
   return (
     <div className={style.inputContainer}>
       <span>{titleInput}</span>
@@ -20,10 +22,32 @@ export default function CustomInput({
         className={style.customInput}
         value={value}
         name={name}
-        type={type}
+        type={
+          name === "password"
+            ? isVisiblePassword
+              ? "text"
+              : "password"
+            : "text"
+        }
         placeholder={placeholder}
         min={min}
+        prefix={"Hola"}
       />
+      {name === "password" ? (
+        <div className={style.passwordToggle}>
+          {isVisiblePassword ? (
+            <FaEyeSlash
+              size={18}
+              onClick={() => setIsVisiblePassword(!isVisiblePassword)}
+            />
+          ) : (
+            <FaEye
+              size={18}
+              onClick={() => setIsVisiblePassword(!isVisiblePassword)}
+            />
+          )}
+        </div>
+      ) : null}
       <label htmlFor={name}>{labelError}</label>
     </div>
   );
