@@ -1,19 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//import { verifyAccount } from "../../../../store/actions/actions-login";
+import { verifyAccount } from "../../../../store/actions/actions-login";
 import style from "./Perfil.module.css";
 import EditProfile from "./EditProfile/EditProfile";
 import { createNewUser, getUserById} from '../../../../store/actions/actions-user'
 import swal from "sweetalert";
 
 export default function Perfil() {
+
   const dispatch = useDispatch()
   const currentUser = useSelector((state) => state.login.user);
   const {uid} = useSelector((state) => state.login.user);
   const usuario = useSelector((state)=> state.users.user)
   console.log("usuario", usuario)
   
+
+
   const [input, setInput]= useState({})
+
+  useEffect(()=>{
+    setInput({
+      ...usuario
+    })
+  },[usuario])
+
+  useEffect(()=>{
+    if(uid){
+      dispatch(getUserById(uid))
+    }
+  },[dispatch, uid])
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -34,15 +49,19 @@ export default function Perfil() {
      })
   }
 
-  useEffect(()=>{
-    setInput({
-      ...usuario
-    })
-  },[usuario])
+  const [verify, setVerify] = useState(currentUser.emailVerified) 
 
-  useEffect(()=>{
-    dispatch(getUserById(uid))
-  },[dispatch, uid])
+  let verified = !verify ? 
+    <div>
+      <p className={style.notVerified}>Email no verificado</p>
+      <button onClick={() => {
+        dispatch(verifyAccount())
+    
+        }} className={style.verify}>Verifica tu correo electrónico
+      </button>
+    </div> : ''
+
+  
 
   return (
     
@@ -64,7 +83,7 @@ export default function Perfil() {
               <p>Nombre: {usuario.name} </p>
               <p>Apellido: {usuario.lastName}</p>
               <p>Email: {usuario.email}</p>
-                {/*  {verified}  */}
+                 {verified} 
               <p>Teléfono: {usuario.phoneNumber}</p>
               <button
                 onClick={() => {
@@ -114,6 +133,7 @@ export default function Perfil() {
                     className
                     name="telefono"
                     onChange={handleChange}
+                    
                   />
                 </div>
                 <button 
@@ -127,5 +147,5 @@ export default function Perfil() {
         )
       }
     </div>
-  );
+  )
 }
