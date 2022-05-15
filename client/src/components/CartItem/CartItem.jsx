@@ -18,6 +18,8 @@ const CartItem = ({data, removeFromCart, info}) => {
         <div className={style.container}>
             <div className={style.contentContainer}>
                 <h4>{name}</h4>
+                <h5>{day}</h5>
+                <h5>{hour}</h5>
                 <h4>${price}.00</h4>
                 <h5>x{quantity}</h5>
                 <h6>Total: ${price * quantity}.00</h6>

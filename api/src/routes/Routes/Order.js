@@ -91,8 +91,8 @@ router.put("/sumaTotal", async (req, res) => {
 //PASO 1 - para cancelar orden -> "Canceled"
 //paso 2 en DiaHora
 //cambio estado a cancelado.
-router.put("/canceled", async (req, res, next) => {
-    const { orderId } = req.body;//id de la order
+router.put("/canceled/:orderId", async (req, res, next) => {
+    const { orderId } = req.params;//id de la order
     const state = "Canceled";
     try {
         const orderUpd = await orderUpdate(state, orderId)

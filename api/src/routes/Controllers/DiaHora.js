@@ -70,8 +70,7 @@ const horaDiaId = async (id) => {
                 id: id,
             },
             include: {
-                model: Activity,
-                attributes: ["name"]
+                model: Activity
             }
         })
     } catch (error) {
