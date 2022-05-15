@@ -64,7 +64,7 @@ export default function Cart(activity) {
         }
         axios.put(`${BASE_URL}/order/sumaTotal`, infoPaso5);
       });
-      //dispatch(orderLinefuntion(data))
+      dispatch(orderLinefuntion(data))
     } catch (err) {
       console.log(err);
     }
