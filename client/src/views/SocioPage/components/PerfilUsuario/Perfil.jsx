@@ -11,7 +11,7 @@ export default function Perfil() {
   const currentUser = useSelector((state) => state.login.user);
   const {uid} = useSelector((state) => state.login.user);
   const usuario = useSelector((state)=> state.users.user)
-  console.log("usuario", usuario)
+  //console.log("usuario", usuario)
   
   const [input, setInput]= useState({})
 
@@ -114,6 +114,7 @@ export default function Perfil() {
                     className
                     name="telefono"
                     onChange={handleChange}
+                    
                   />
                 </div>
                 <button 
@@ -127,5 +128,5 @@ export default function Perfil() {
         )
       }
     </div>
-  );
+  )
 }

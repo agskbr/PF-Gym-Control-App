@@ -61,7 +61,7 @@ export default function EditProfile() {
                         type="text"
                         className={s.perfilInput}
                         name="name"
-                        value={user.name}
+                        value={user.name ?? ""}
                         onChange={handleChange}
                     />
                 </div>
@@ -71,7 +71,7 @@ export default function EditProfile() {
                         type="text"
                         className={s.perfilInput}
                         name="lastName"
-                        value={user.lastName}
+                        value={user.lastName ?? ""}
                         onChange={handleChange}
                     />
                 </div>
@@ -91,19 +91,8 @@ export default function EditProfile() {
                         className={s.perfilInput}
                         name="phoneNumber"
                         onChange={handleChange}
-                        value={user.phoneNumber} /*ver*/
+                        value={user.phoneNumber ?? ""} 
                     />
-                </div>
-                <h3>Cambiar contraseña</h3>
-                <div> 
-                <button 
-                    /*  style={s.button} */
-                    /*  onClick={} */
-                        className={s.createReviewBoton} 
-                        type="submit"
-                    >
-                        Actualizar
-                    </button>
                 </div>
             </form>
         </div>
