@@ -1,4 +1,4 @@
-const { Activity, User } = require("../../db");
+const { Activity, User, DiaHora } = require("../../db");
 
 // const getUserDni = async (dni) => {
 //     const user = await User.findOne({
@@ -123,6 +123,21 @@ const userIsAdmin = async (id) => {
   }
 };
 
+const userAddDiaHora = async (idUser, idDiaHora) => {
+  try {
+      var user = await User.findByPk(idUser);
+      var diahora = await DiaHora.findByPk(idDiaHora);
+      if (user && diahora) {
+        user.addDiaHora(diahora);
+          return true
+      } else {
+          return false
+      }
+  } catch (error) {
+      return(error);
+  }
+}
+
 module.exports = {
   getAllUsers,
   filterUserEmail,
@@ -131,4 +146,5 @@ module.exports = {
   getUserId,
   userDelete,
   userIsAdmin,
+  userAddDiaHora
 };

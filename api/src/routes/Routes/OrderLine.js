@@ -1,6 +1,5 @@
 const router = require('express').Router();
-const { getUserId } = require("../Controllers/User");
-const { horaDiaId } = require("../Controllers/DiaHora");
+const { userAddDiaHora } = require("../Controllers/User");
 const {createOrderline, orderlineByOrderId, orderlineByActivityId} = require('../Controllers/Orderline.js')
 
 //PASO 4 - para checkout
@@ -13,15 +12,12 @@ router.post('/checkout', async (req, res,) => {
             subtotal,
             quantity,
             orderId,
-            activityId
-            //
+            activityId,
+            userId
         } = req.body
         
         const orderline = await createOrderline(unitprice, subtotal, quantity, orderId, activityId,diaHoraId);
-        
-        const usuario = await getUserId(userId);
-        const diahora = await horaDiaId(diaHoraId);
-        await diahora.addUsers(usuario);
+        await userAddDiaHora(userId, diaHoraId)
         if (orderline) {
             return res.send("Ordeline created");
         }

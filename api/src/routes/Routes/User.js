@@ -7,7 +7,7 @@ const {
   userUpd,
   getUserId,
   userDelete,
-  userIsAdmin,
+  userIsAdmin
 } = require("../Controllers/User");
 
 //recibe un UID o un Id del usuario y la propiedad isAdmin del usuario encontrado
@@ -78,10 +78,10 @@ router.get("/:id", async (req, res) => {
       //console.log(user_Id)
       return res.send(user_Id);
     }
-    res.status(400).send("usuario no encontrado")
+    res.send("usuario no encontrado")
   } catch (error) {
     //console.log(error)
-    res.status(400).send("error al buscar usuario")
+    res.send("error al buscar usuario")
   }
 });
 
