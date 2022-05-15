@@ -48,14 +48,13 @@ FONT SIZE SYSTEM (px)
   justify-content: space-between;
   align-items: center;
   background-color: #fdede9;
-  width: 92vw;
 
   /* Because header will be sticky, otherwise padding will do */
   height: 6.2rem;
   padding: 0 4.8rem;
   /* position: relative; */
-
 }
+
 .login{
   background-image: url('../../assets/login3.png');
   background-repeat: no-repeat;
@@ -102,6 +101,10 @@ text-decoration: none;
 height: 6.2rem;
 padding: 0 4.8rem;
 background: rgba(255, 254, 254, 0.9);
+}
+
+.headerScrolled .btn-mobile-nav {
+  margin-right: 4rem;
 }
 
 
@@ -235,6 +238,10 @@ cursor: pointer;
     justify-content: center;
     z-index: 9999;
     color: #333;
+  }
+
+  body {
+    overflow-x: hidden;
   }
 
   .icon-mobile-close {
