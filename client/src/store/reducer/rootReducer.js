@@ -6,6 +6,8 @@ import {
   GET_ID_USER,
   GET_ALL_ORDERS,
   GET_ALL_DAYS_AND_HOURS,
+  GET_ORDERLINE_BY_ORDER_ID,
+  GET_ALL_ORDERS_BY_USER
 } from "../actions-type/index";
 
 export const initialState = {
@@ -18,6 +20,7 @@ export const initialState = {
   orders: [],
   daysAndHours: [],
   userId: [],
+  orderlines: [],
   isLoading: false,
 };
 
@@ -159,6 +162,17 @@ export const rootReducer = (state = initialState, action) => {
         page: orderedActivities.slice(0, 3),
       };
 
+    case GET_ALL_ORDERS_BY_USER:
+      return {
+        ...state,
+        orders: action.payload
+      }
+    case GET_ORDERLINE_BY_ORDER_ID:
+      return {
+        ...state,
+        orderlines: action.payload,
+      }
+      
     default:
       return {
         ...state,
