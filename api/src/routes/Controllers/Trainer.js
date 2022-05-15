@@ -63,6 +63,7 @@ const trainerCreated = async (name,image,specialty,experience,activity) => {
             })
             trainerCreated.addActivity(ActDb)
         });
+        return trainerCreated
     } catch (error) {
         return error
     }
