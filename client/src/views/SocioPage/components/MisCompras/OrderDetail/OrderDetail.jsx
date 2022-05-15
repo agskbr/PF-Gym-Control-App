@@ -11,10 +11,12 @@ export default function OrderDetail({orderId}) {
    
     const dispatch = useDispatch();
 
-   const activities = useSelector((state)=> state.pgym.activities)
-    //console.log("activ", activities)
-    const orderlines = useSelector((state)=> state.pgym.orderlines)
-   // console.log("orderline", orderlines)
+   const activities = useSelector((state)=> state.pgym.activities)   /// [{id:1, name:"yoga"}, {}, {}]
+    console.log("activ", activities)
+    const orderlines = useSelector((state)=> state.pgym.orderlines)  // [{activId1}, {activId2}]
+   console.log("orderline", orderlines)
+
+   //
 
     useEffect(()=>{
 
@@ -23,10 +25,6 @@ export default function OrderDetail({orderId}) {
       }
         dispatch(getActivity())
     },[dispatch, orderId])
-
-    /* useEffect(()=>{
-        orderline
-    },[orderline]) */
 
 
   return (
@@ -57,15 +55,15 @@ export default function OrderDetail({orderId}) {
             </tr>
          </thead>
          <tbody>
-            {orderlines?.map((o)=>(
+            {
+                orderlines?.map((o)=>(
                 <tr key={o.id} >
-                <td  className={s.filas}>
-                  {o.activityId}</td>
+                <td  className={s.filas}>{o.activityId}</td>
                 <td  className={s.filas}>{o.quantity}</td>
                 <td  className={s.filas}> $ {o.unitPrice}</td>
                 </tr>
                 ))
-           } 
+            } 
          </tbody>
         </table>
        </div>  

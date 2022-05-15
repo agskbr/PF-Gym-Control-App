@@ -17,7 +17,7 @@ export default function MisCompras() {
   //console.log("usuario", id)
 
   const allOrders = useSelector((state)=> state.pgym.orders)
-  //console.log("oredn2", orden2)
+  console.log("oredn2", allOrders)
 
 
   useEffect(()=>{
@@ -38,17 +38,19 @@ export default function MisCompras() {
       <table className={s.containerTable}>
          <thead className={s.encabezado}>
           <tr className={s.tableRow}>
-              <th className={s.columnas}>Orden de compra N°</th>
-              <th className={s.columnas}>Estado</th>
-              <th className={s.columnas}>Total</th>
-              <th className={s.columnas}>Comprobante</th>
+              <th className={s.columnas}> Orden de compra N°</th>
+              <th className={s.columnas}> Fecha de compra </th>
+              <th className={s.columnas}> Estado </th>
+              <th className={s.columnas}> Total </th>
+              <th className={s.columnas}> Detalle </th>
               {/* <th className={s.columnas}>Descargar</th> */}
             </tr>
          </thead>
          <tbody>
            {allOrders?.map((orden)=>(
-             <tr  key={orden.id}className={s.tableRow}>
+             <tr key={orden.id} className={s.tableRow}>
                <td  className={s.filas}>{orden.id}</td>
+               <td  className={s.filas}>{orden.updatedAt.slice(0,10)}</td>
                <td  className={s.filas}>{orden.state}</td>
                <td  className={s.filas}> $ {orden.totalPrice}</td>
                <td  className={s.filas}> 
