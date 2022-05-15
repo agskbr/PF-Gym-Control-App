@@ -101,6 +101,24 @@ const deleteHoraDiaActivity = async (idActivity,idDiaHora) => {
     }   
 }
 
+// para añadir una relacion entre un diaHora y una actividad especifica
+const añadirDia = async (idActivity,idDiaHora) => {
+    try {
+        var actividad = await Activity.findByPk(idActivity);
+        var diaHora = await DiaHora.findByPk(idDiaHora);
+        if (diaHora && actividad) {
+            actividad.addDiaHora(diaHora);
+            return true
+        } else {
+            return false
+        }
+    } catch (error) {
+        return(error)
+    }   
+}
+
+
+
 const deleteHoraDiaUser = async (idUser, idDiaHora) => {
     try {
         var diaHora = await DiaHora.findByPk(idDiaHora)
@@ -212,5 +230,6 @@ module.exports = {
     removeUserHoraDia,
     deleteHoraDiaActivity,
     diahoraActivity,
-    deleteHoraDiaUser
+    deleteHoraDiaUser,
+    añadirDia
 }
