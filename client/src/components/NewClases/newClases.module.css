@@ -81,6 +81,11 @@
     border-radius: 50%;
 }
 
+.chat{
+    position: absolute;
+    margin-top: 45vh;
+}
+
 
 @media (max-width: 62em) {
 

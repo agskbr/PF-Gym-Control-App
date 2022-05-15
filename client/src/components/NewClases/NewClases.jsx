@@ -5,6 +5,7 @@ import Paginado from "../Paginado/paginado"
 import Filtrado from "../Filtrado/filtrado"
 import NewActivity from '../NewActivity/NewActivity';
 import Detail from '../Detail/Detail';
+import PowerChat from '../../components/ChatBot/ChatBot'
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -74,6 +75,10 @@ return (
             <div className={detailClass}>
                 <Detail />
                 <div id='close' className={style.buttonCloseDetail} onClick={handleDetailClick}></div>
+            </div>
+
+            <div className={style.chat}>
+                <PowerChat />
             </div>
 
     </div>

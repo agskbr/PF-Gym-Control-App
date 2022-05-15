@@ -61,9 +61,6 @@ export default function Nav() {
               Feedback
             </a>
           </li>
-          
-          <li>
-          </li>
           <li>
             <div className="buttonCart" onClick={handleCartClick}>
             </div>
