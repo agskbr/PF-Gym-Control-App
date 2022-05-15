@@ -217,8 +217,18 @@ export function verifyAccount() {
   return async function () {
     try {
       await sendEmailVerification(auth.currentUser, actionCodeSettings);
+      swal({
+        title:"se te envio un mail",
+        buttons:"aceptar",
+        icon:"success"
+      })
     } catch (error) {
       console.log(error);
+      swal({
+        title:"no se pudo enviar el mail",
+        buttons:"aceptar",
+        icon:"error"
+      })
     }
   };
 }
