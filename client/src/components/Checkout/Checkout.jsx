@@ -8,7 +8,7 @@ import axios from 'axios';
 import { BASE_URL, POST_MERCADOPAGO, LOCAL_HOST} from '../../store/constantes';
 import { clearCart } from '../../store/actions/actionsCart';
 import { removeFromCart } from '../../store/actions/actionsCart';
-
+import { Link } from 'react-router-dom';
 
 /** Reducer para limpiar carrito
 /* import { clearCart } from "../../store/reducer/reducerCart.js"; */
@@ -21,6 +21,9 @@ export default function Checkout(activity) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { user } = useSelector((state) => state.login);
+    const orderLineId = useSelector((state) => state.cart.newOrederLineId)
+    
+
     useEffect(() => {
         dispatch(validateUserIsLogged());
       }, [dispatch]);
@@ -32,6 +35,7 @@ export default function Checkout(activity) {
 
 
     const state = useSelector(state => state);
+
     const {cart} = state.cart;
     const cartCheckOut = useSelector(state => state.cart.order);
     const totalCart = cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -97,12 +101,24 @@ export default function Checkout(activity) {
             window.open(mercadoPagoRes.data)
             window.location.href = mercadoPagoRes.data;
             dispatch(clearCart());
-           
+            
             
 
         } else {
             alert("algo salio mal!")
         }
+    }
+
+
+    async function cancelar(orderLineId) {
+        console.log(orderLineId.newOrderId)
+        await axios.put(`${BASE_URL}/order/canceled/${orderLineId.newOrderId}`);
+        const clearPaso2 = {
+            orderId:orderLineId.newOrderId
+        }
+        const response2 = await axios.put(`${BASE_URL}/diahora/addStock`,clearPaso2);
+        console.log(response2)
+        dispatch(clearCart());
     }
 
        //Hacer verificacion isAuthenticated y en caso de ser afirmativo retornar:
@@ -126,7 +142,10 @@ export default function Checkout(activity) {
                     </p>
                     <button>Editar Email</button>
                 </div>
-                <div className={style.dispatchContainer} >
+                    <div className={style.dispatchContainer} >
+                        <Link to="/" >
+                            <button onClick={e => cancelar(orderLineId)} >cancelar</button>
+                        </Link>
                     <button onClick={e => checkOut(products,totalCart)} >Pagar</button>
                     <p>(al presionar el boton sera redireccionado a la pagina de Mercado Pago para finalizar la compra)</p>
                 </div>

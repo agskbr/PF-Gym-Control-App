@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
     },
     phoneNumber: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       unique: true
     },
     isAdmin: {

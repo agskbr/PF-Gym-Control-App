@@ -8,7 +8,6 @@ const {createOrderline, orderlineByOrderId, orderlineByActivityId} = require('..
 router.post('/checkout', async (req, res,) => {
     try {
         const {
-            userId,
             diaHoraId,
             unitprice,
             subtotal,
@@ -17,6 +16,7 @@ router.post('/checkout', async (req, res,) => {
             activityId
             //
         } = req.body
+        
         const orderline = await createOrderline(unitprice, subtotal, quantity, orderId, activityId,diaHoraId);
         
         const usuario = await getUserId(userId);
@@ -62,13 +62,13 @@ router.get('/:orderId', async(req,res) =>{
 router.post('/cart', async (req, res,) => {
     try {
         const {
+            userId,
             diaHoraId,
             unitprice,
             subtotal,
             quantity,
             orderId,
             activityId
-            //
         } = req.body
         const orderline = await createOrderline(unitprice, subtotal, quantity, orderId, activityId,diaHoraId);
         res.send(orderline)

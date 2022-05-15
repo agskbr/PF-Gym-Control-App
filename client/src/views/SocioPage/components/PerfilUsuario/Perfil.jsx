@@ -1,68 +1,131 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { verifyAccount } from "../../../../store/actions/actions-login";
+//import { verifyAccount } from "../../../../store/actions/actions-login";
 import style from "./Perfil.module.css";
 import EditProfile from "./EditProfile/EditProfile";
-import Loader from "../../../../components/Loader/Loader";
+import { createNewUser, getUserById} from '../../../../store/actions/actions-user'
+import swal from "sweetalert";
 
 export default function Perfil() {
-  const { user } = useSelector((state) => state.login);
-  console.log("usuarios", user)
-
   const dispatch = useDispatch()
+  const currentUser = useSelector((state) => state.login.user);
+  const {uid} = useSelector((state) => state.login.user);
+  const usuario = useSelector((state)=> state.users.user)
+  console.log("usuario", usuario)
+  
+  const [input, setInput]= useState({})
 
-  const [verify, setVerify] = useState(user.emailVerified)
+  const handleChange = (e) => {
+    e.preventDefault();
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+  }
 
-  let verified = !verify ? 
-    <div>
-      <p className={style.notVerified}>Email no verificado</p>
-      <button onClick={() => {
-        dispatch(verifyAccount())
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  dispatch(createNewUser(input))
+     swal({
+      title: "Create profile",
+      icon: "success",
+      position: "center",
+      timer: 2000,
+     })
+  }
+
+  useEffect(()=>{
+    setInput({
+      ...usuario
+    })
+  },[usuario])
+
+  useEffect(()=>{
+    dispatch(getUserById(uid))
+  },[dispatch, uid])
+
+  return (
     
-        }} className={style.verify}>Verifica tu correo electrónico
-      </button>
-    </div> : '';
-
-
-
-  return user.displayName ? (
     <div className={style.principalContainer}>
-      <div className={style.perfilUser}>
-        <div className={style.perfilUserName}>
-          <div className={style.userImg}>
-            <img
-              alt="user"
-              src={
-                user.photoURL
-                  ? user.photoURL
-                  : "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
-              }
-            />
+      {
+        usuario? (
+          <div className={style.perfilUser}>
+            <div className={style.perfilUserName}>
+              <div className={style.userImg}>
+                <img
+                  alt="user"
+                  src={
+                    usuario.photoURL
+                      ? usuario.photoURL
+                      : "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+                  }
+                />
+              </div>
+              <p>Nombre: {usuario.name} </p>
+              <p>Apellido: {usuario.lastName}</p>
+              <p>Email: {usuario.email}</p>
+                {/*  {verified}  */}
+              <p>Teléfono: {usuario.phoneNumber}</p>
+              <button
+                onClick={() => {
+                document.getElementById("editProfileDialog").showModal();
+                }}
+              >
+                {" "}
+                Actualizar Datos{" "}
+              </button>
+            </div>
+            <EditProfile/>
           </div>
-          <p>Nombre: {user.displayName ? user.displayName : "Cargando.."} </p>
-          <p>Email: {user.email ? user.email : "Cargando.."}</p>
-          {verified}
-          <p>
-            Teléfono: {user.phoneNumber ? user.phoneNumber : "No hay número"}
-          </p>
-          <button
-            onClick={() => {
-              document.getElementById("editProfileDialog").showModal();
-            }}>
-            {" "}
-          Actualizar Datos{" "}
-          </button>
-        </div>
-        <EditProfile/>
-      </div>
-      
+        ):(
+          <div className={style.perfilUser}>
+            <div className={style.perfilUserName}>
+              <div className={style.userImg}>
+                <img
+                  alt="user"
+                  src={  currentUser.photoURL ? currentUser.photoURL: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"}
+                />
+              </div>
+              <form onSubmit={handleSubmit}>
+                <div>
+                  <label htmlFor="">Nombre : </label>
+                  <input 
+                    type="text"
+                    className
+                    name="nombre"
+                    defaultValue={currentUser.displayName || ""}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="">Email: </label>
+                  <input
+                    type="text"
+                    className
+                    name="email"
+                    defaultValue={currentUser.email || ""}
+                    onChange={handleChange}
+                  />
+                </div>  
+                <div>
+                  <label htmlFor="">Teléfono: </label>
+                  <input 
+                    type="text"
+                    className
+                    name="telefono"
+                    onChange={handleChange}
+                  />
+                </div>
+                <button 
+                  type="submit"
+                > 
+                  Confirmar Datos 
+                </button>
+              </form>
+            </div>
+          </div>
+        )
+      }
     </div>
-    
-  ) 
-  : 
-  (
-  <Loader/>
-   
   );
 }

@@ -4,7 +4,8 @@ import {
   RECEIVED_POST,
   REQUEST_POST,
   GET_ALL_USERS,
-  GET_ID_USER
+  GET_ID_USER,
+  GET_ALL_DAYS_AND_HOURS,
 } from "../actions-type/index";
 
 import { BASE_URL } from "../constantes";
@@ -19,21 +20,23 @@ const createActivity = (activity) => {
     }
   };
 };
-const createUser = (user) => {
-  return async (dispatch) => {
-    try {
-      await axios.post(`${BASE_URL}/user`, user);
-      dispatch(getAllUsers());
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
 const createTrainer = (trainer) => {
   return async (dispatch) => {
     try {
       await axios.post(`${BASE_URL}/trainer`, trainer);
       dispatch(getAllTrainers());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+const getAllDaysAndHours = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${BASE_URL}/diahora`);
+      dispatch({ type: GET_ALL_DAYS_AND_HOURS, payload: data });
+      dispatch({ type: RECEIVED_POST });
     } catch (error) {
       console.log(error);
     }
@@ -54,14 +57,14 @@ const getAllUsers = () => {
 
 const getIdUser = (uid) => {
   return async (dispatch) => {
-    try{
-      const {data} = await axios.get(`${BASE_URL}/user/${uid}`)
-      dispatch({type: GET_ID_USER, payload: data})
-    } catch(err){
-      console.log(err)
+    try {
+      const { data } = await axios.get(`${BASE_URL}/user/${uid}`);
+      dispatch({ type: GET_ID_USER, payload: data });
+    } catch (err) {
+      console.log(err);
     }
-  }
-}
+  };
+};
 
 const editActivity = (activity, id) => {
   return async () => {
@@ -122,12 +125,12 @@ export function getActivityById(payload) {
 }
 
 export function getTimeByActivityId(payload) {
-      return function (dispatch) {
-      dispatch({
+  return function (dispatch) {
+    dispatch({
       type: "GET_TIME_BY_ACTIVITY_DAY",
-        payload: payload,
-      });
-}
+      payload: payload,
+    });
+  };
 }
 
 export function searchByName(name) {
@@ -169,13 +172,15 @@ export function changePage(page) {
   };
 }
 
+
+
 export {
   createActivity,
-  createUser,
   createTrainer,
   getAllTrainers,
   editActivity,
   requestPost,
   getAllUsers,
-  getIdUser
+  getIdUser,
+  getAllDaysAndHours,
 };

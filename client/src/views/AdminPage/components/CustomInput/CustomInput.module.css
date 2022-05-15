@@ -22,7 +22,6 @@
   text-align: start;
   font-family: sans-serif;
   font-size: 12px;
-  
 }
 
 .inputContainer span {
@@ -33,3 +32,8 @@
   padding: 10px;
 }
 
+.passwordToggle {
+  position: relative;
+  top: -25px;
+  right: -280px;
+}
