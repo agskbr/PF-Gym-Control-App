@@ -47,6 +47,9 @@ const validateForm = (inputs, type) => {
     if (!inputs.trainers.length) {
       errors.trainers = "Debe seleccionar instructor";
     }
+    if (!inputs.diaHoras.length) {
+      errors.diaHoras = "Debe seleccionar dia y hora";
+    }
   }
 
   if (type === "Instructores") {
@@ -62,6 +65,17 @@ const validateForm = (inputs, type) => {
     }
   }
 
+  if (type === "Dias y horas") {
+    if (!inputs.day) {
+      errors.day = "Debes especificar un día";
+    }
+    if (!inputs.capacity) {
+      errors.capacity = "La capacidad es obligatoria";
+    }
+    if (!inputs.hour) {
+      errors.hour = "El horario es obligatorio";
+    }
+  }
   return errors;
 };
 
