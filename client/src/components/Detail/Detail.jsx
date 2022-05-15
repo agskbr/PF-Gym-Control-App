@@ -40,7 +40,7 @@ export default function Detail() {
 
   function handleFilter(e) {
     e.preventDefault();
-    setIdToCart(e.target.id);
+    setIdToCart(e.target.value);
   }
 
   const horarios = detail.diaHoras;
@@ -55,7 +55,7 @@ export default function Detail() {
         <div className={style.info}>
           <div className={style.infoDescription}>{text}...</div>
           <div className={style.infoPrice}>Precio ${detail?.price}.00</div>
-          <label>
+          {/* <label>
             {detail.diaHoras?.map((day) => {
               return (
                 <>
@@ -72,8 +72,8 @@ export default function Detail() {
                 </>
               );
             })}
-          </label>
-          {/* <select
+          </label> */}
+          <select
             className={style.horarios}
             id="select"
             onChange={(e) => {
@@ -84,13 +84,13 @@ export default function Detail() {
               <option >Elegir dia hora</option>
             {detail.diaHoras?.map((day) => (
               <option
-                // value={day.id}
+                value={day.id}
                 className={style.day}
                 key={day.id}
                 id={day.id}
               >{` ${day.day} ${day.hour}`}</option>
             ))}
-          </select> */}
+          </select>
         </div>
         <button
           className={style.elbo}

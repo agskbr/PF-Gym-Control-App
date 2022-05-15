@@ -38,15 +38,17 @@ export function cartReducer(state = initialState, action) {
             }
 
         case ADD_TO_CART:
-            console.log(state.cart)
-            let product = state.cart.find(product => product.id === action.payload.id);
+            //console.log(state.cart)
+            let product = state.cart.find(product => product.id === action.payload.activity.id);
 
-           /*  console.log(action.payload) */
-            console.log(product);   
+            //console.log(action.payload)
+            //console.log(state.cart);
+            //console.log(state.order);
+            //console.log(state.orderLine);
             
-            let itemInCart = state.cart?.find(item => item.id === action.payload.id);
-            let itemInOrder = state.order?.find(item => item.name === action.payload.name);
-            let itemInOrderLine = state.orderLine?.find(item => item.activityId === action.payload.id);
+            let itemInCart = state.cart?.find(item => item.dayHourId === action.payload.id );
+            let itemInOrder = state.order?.find(item => item.name === action.payload.activity.name);
+            let itemInOrderLine = state.orderLine?.find(item => item.activityId === action.payload.activity.id);
             /* console.log(state.cart);
             console.log(itemInCart); */
 
@@ -64,18 +66,19 @@ export function cartReducer(state = initialState, action) {
             } else {
                 return {
                     ...state,
-                    cart: [...state.cart, { ...action.payload, quantity: 1 }],
+                    cart: [...state.cart, { ...action.payload.activity, quantity: 1, day: action.payload.day, hour: action.payload.hour, dayHourId: action.payload.id}],
                     order: [...state.order, {
-                        name: action.payload.name,
-                        price: action.payload.price,
+                        name: action.payload.activity.name,
+                        price: action.payload.activity.price,
                         quantity: 1 
                       }],
                     orderLine: [...state.orderLine, {
-                        activityId: action.payload.id,
-                        unitprice: action.payload.price,
-                        orderId: Math.floor(Math.random(1,1000)),
+                        activityId: action.payload.activity.id,
+                        unitprice: action.payload.activity.price,
+                        //orderId: Math.floor(Math.random(1,1000)),
                         quantity: 1,
-                        subtotal: action.payload.price,
+                        subtotal: action.payload.activity.price,
+                        diaHoraId: action.payload.id
                         }]
                 }
             }

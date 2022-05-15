@@ -32,7 +32,7 @@ export function clearCart(){
     return async function (dispatch) {
       try {
         const product = await axios.get(`${BASE_URL}/diahora/` + idDiaHora);
-        
+        //console.log(product.data)
         dispatch({
           type: "ADD_TO_CART",
           payload: product.data,
