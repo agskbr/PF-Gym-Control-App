@@ -53,6 +53,8 @@ const EDIT_USER = "EDIT_USER";
 export const GET_DESCUENTO = "GET_DESCUENTO";
 export const ADD_DESCUENTO = "ADD_DESCUENTO";
 export const MOD_DESCUENTO = "MOD_DESCUENTO";
+export const GET_ALL_DESCUENTOS = "GET_ALL_DESCUENTOS";
+
 //-----------------
 
 

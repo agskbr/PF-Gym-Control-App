@@ -6,6 +6,7 @@ import Filtrado from "../Filtrado/filtrado"
 import NewActivity from '../NewActivity/NewActivity';
 import Detail from '../Detail/Detail';
 import PowerChat from '../../components/ChatBot/ChatBot'
+import { getDescuento, getAllDescuentos } from "../../store/actions/actions-descuentos";
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -57,6 +58,8 @@ useEffect(() => {
     window.addEventListener("click", handleActivityClick);
   }, []);
 
+
+/* dispatch (getAllDescuentos()); */
 
 return (
 

@@ -4,16 +4,20 @@ import { BASE_URL } from "../constantes";
 import {
     ADD_DESCUENTO,
     GET_DESCUENTO,
-    MOD_DESCUENTO
+    MOD_DESCUENTO,
+    GET_ALL_DESCUENTOS
 } from "../actions-type";
 
 
 
 export function getDescuento(codigoDescuento) {
-    return async function () {
+    return async function (dispatch) {
         try {
             const descuento = await axios.get(`${BASE_URL}/descuento/`+ codigoDescuento);
-            return descuento;
+            return dispatch({
+                type: GET_DESCUENTO,
+                payload: descuento.data,
+            });
         } catch (err) {
             console.log(err);
         }
@@ -21,11 +25,14 @@ export function getDescuento(codigoDescuento) {
 }
 
 
-export function getAllDescuento() {
-    return async function () {
+export function getAllDescuentos() {
+    return async function (dispatch) {
         try {
             const descuentos = await axios.get(`${BASE_URL}/descuento/all`);
-            return descuentos;
+            return dispatch({
+                type: GET_ALL_DESCUENTOS,
+                payload: descuentos.data
+            });
         } catch (err) {
             console.log(err);
         }
