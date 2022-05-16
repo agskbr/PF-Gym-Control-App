@@ -17,9 +17,9 @@ export default function OrderDetail({orderId}) {
   const dispatch = useDispatch();
 
   const activities = useSelector((state)=> state.pgym.activities)   /// [{id:1, name:"yoga"}, {}, {}]
-   console.log("activ", activities)
+// console.log("activ", activities)
     const orderlines = useSelector((state)=> state.pgym.orderlines)  // [{activId1}, {activId2}]
-  console.log("orderline", orderlines)
+ // console.log("orderline", orderlines)
 
     useEffect(()=>{
       if(orderId){
@@ -31,16 +31,7 @@ export default function OrderDetail({orderId}) {
       dispatch(getActivity())
     },[dispatch])
 
-    async function obtenerActividad(id){
-      try {
-        const {data} = await axios.get(`${BASE_URL}/activity/${id}`); 
-        console.log("data2", data.name)
-        return data.name
-      } catch (error) {
-        console.log(error)
-      }
-      
-    }
+    let name 
 
   return (
 
@@ -81,13 +72,19 @@ export default function OrderDetail({orderId}) {
               {
                   orderlines?.map((o)=> {
 
-                    /* const  {name} = activities?.find((a)=> a.id === o.activityId)  */
-                    //console.log("name", acti)
-                    /* const name = obtenerActividad(o.activityId)  */
+                    if (o.activityId === 1) { name = "BodyCombat" }
+                    else if (o.activityId === 2) {name = "Gap"}
+                    else if (o.activityId === 3) {name = "Pilates"}
+                    else if (o.activityId === 4) {name = "Body Pump"}
+                    else if (o.activityId === 5) {name = "Yoga"}
+                    else if (o.activityId === 6) {name = "Zumba"}
+                    else if (o.activityId === 7) { name = "TRX"}
+                    else if (o.activityId === 8) {name = "CardioBox"}
+                    else if (o.activityId === 9) {name = "Maquinas"}
                     
                       return (
                         <tr key={o.id} >
-                          <td  className={s.filas}>{}</td>
+                          <td  className={s.filas}>{name}</td>
                           <td  className={s.filas}>{o.quantity}</td>
                           <td  className={s.filas}> $ {o.unitPrice}</td>
                         </tr>
