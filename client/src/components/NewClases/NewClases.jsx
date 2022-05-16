@@ -78,7 +78,7 @@ return (
             </div>
 
             <div className={style.chat}>
-                <PowerChat />
+               {/*  <PowerChat /> */}
             </div>
 
     </div>
