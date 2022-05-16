@@ -87,3 +87,30 @@ button{
 link {
     text-decoration: none;
 }
+
+
+@media (max-width: 62em) {
+    .cleanCart{
+        grid-area: productFinal;
+        background-color: rgb(255, 123, 0);
+        color: rgb(255, 255, 255);
+        font-size: 1.2rem;
+        border-radius: 10px;
+        height: 6vh;
+        width: 40vw;
+        border-color: aliceblue;
+    }
+
+    .dispatchContainer  button{
+        font-size: 1.2rem;
+        text-decoration: none;
+    }
+
+    .title{
+        font-size: 2rem;
+    }
+
+    .total {
+        margin-bottom: 10vh;
+    }
+}

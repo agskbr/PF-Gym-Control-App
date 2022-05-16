@@ -6,6 +6,7 @@
     display: grid;
     grid-template-areas: "content  button";
     grid-template-columns: 1fr 5vw;
+    
 
 }
 
@@ -15,6 +16,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 .container h4{
@@ -64,3 +66,22 @@
 }
 
 
+
+@media (max-width: 62em) {
+    .contentContainer{
+        width: 50vw;
+        justify-content: space-evenly;
+        margin-left: 10vw;
+       
+    }
+
+    .container h4{
+        margin-left: .5vw;
+    }
+    .container h5{
+        margin-left: 1vw;
+    }
+    .container h6{
+        margin-left: 1vw;
+    }
+}
