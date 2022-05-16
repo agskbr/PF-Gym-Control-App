@@ -229,8 +229,14 @@ export default function EditPage() {
                   );
                 }
                 if (type === "Instructores") {
-                  dispatch(editTrainer({...inputs}, ))
-                  // dispatch(deleteTrainerFromActivity());
+                  const activitiesIds = inputs.activities.map((e) => {
+                    if (e.includes("(")) {
+                      return e.match(/\(([^)]+)\)/)[1];
+                    } else {
+                      return null;
+                    }
+                  });
+                  dispatch(editTrainer({ ...inputs }, id, activitiesIds));
                 }
                 if (type === "Descuentos") {
                   dispatch(modDescuento({ ...inputs }, id));

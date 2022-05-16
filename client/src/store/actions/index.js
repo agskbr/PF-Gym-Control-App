@@ -56,11 +56,13 @@ const createTrainer = (trainer) => {
   };
 };
 
-const editTrainer = (trainer, trainersIds, activityId) => {
+const editTrainer = (trainer, trainerId, activitiesIds) => {
   return async (dispatch) => {
-    await axios.put(`${BASE_URL}/trainer/${trainer.id}`, trainer);
-    trainersIds.forEach((trainerId) => {
-      dispatch(addTrainerToActivity(trainerId, activityId));
+    await axios.put(`${BASE_URL}/trainer/${trainerId}`, trainer);
+    activitiesIds.forEach((activityId) => {
+      if (activityId !== null) {
+        dispatch(addTrainerToActivity(trainerId, activityId));
+      }
     });
   };
 };
