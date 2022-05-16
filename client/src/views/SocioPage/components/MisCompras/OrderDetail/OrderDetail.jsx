@@ -6,8 +6,7 @@ import {getActivity} from '../../../../../store/actions/index'
 import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../../../../assets/logo.png';
 import {AiFillCloseCircle} from 'react-icons/ai';
-import axios from 'axios';
-import { BASE_URL } from "../../../../../store/constantes";
+
 
 
 export default function OrderDetail({orderId}) {
