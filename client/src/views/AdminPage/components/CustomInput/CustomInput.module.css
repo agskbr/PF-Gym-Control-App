@@ -11,6 +11,17 @@
   outline: 1px solid #fe4f22;
 }
 
+.phoneInput {
+  border: none;
+  background-color: whitesmoke;
+  width: 280px;
+  margin-top: 10px;
+  
+  padding: 10px;
+  font-family: sans-serif;
+  border-radius: 5px;
+}
+
 .inputContainer {
   justify-content: space-around;
   display: flex;
@@ -23,8 +34,17 @@
   font-family: sans-serif;
   font-size: 12px;
 }
+.caractArgSpan {
+  position: relative;
+  font-weight: bold;
+  color: grey;
+  font-size: 14px;
 
-.inputContainer span {
+  top: 35px;
+  left: 0px;
+}
+
+.inputContainer .titleInput {
   font-family: sans-serif;
   font-weight: 600;
   font-size: 14px;

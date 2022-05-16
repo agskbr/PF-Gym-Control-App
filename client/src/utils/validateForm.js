@@ -14,9 +14,9 @@ const validateForm = (inputs, type) => {
     if (!inputs.lastName) {
       errors.lastName = "El apellido es requerido";
     }
-    if (!inputs.email) {
-      errors.email = "El email es requerido";
-    }
+    // if (!inputs.email) {
+    //   errors.email = "El email es requerido";
+    // }
     // if (!inputs.phoneNumber) {
     //   errors.phoneNumber = "El número de teléfono es requerido";
     // }

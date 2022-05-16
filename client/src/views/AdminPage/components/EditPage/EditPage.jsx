@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { editUser } from "../../../../store/actions/actions-user.js";
-import { editActivity } from "../../../../store/actions/index.js";
+import {
+  deleteTrainer,
+  deleteTrainerFromActivity,
+  editActivity,
+  editTrainer,
+} from "../../../../store/actions/index.js";
 import { validateForm } from "../../../../utils/validateForm.js";
 import CustomInput from "../CustomInput/CustomInput.jsx";
 import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
@@ -156,6 +161,7 @@ export default function EditPage() {
             Array.isArray(state.itemSelect[selectTag]) ? (
               <CustomSelectTag
                 key={selectTag}
+                id={id}
                 name={selectTag}
                 inputs={inputs}
                 firstOpt="Elegí una o mas opciones"
@@ -223,7 +229,8 @@ export default function EditPage() {
                   );
                 }
                 if (type === "Instructores") {
-                  // dispatch();
+                  dispatch(editTrainer({...inputs}, ))
+                  // dispatch(deleteTrainerFromActivity());
                 }
                 if (type === "Descuentos") {
                   dispatch(modDescuento({ ...inputs }, id));

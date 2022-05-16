@@ -16,23 +16,30 @@ export default function CustomInput({
   return (
     <div className={style.inputContainer}>
       <span>{titleInput}</span>
-      <input
-        disabled={disabled}
-        onChange={onChange}
-        className={style.customInput}
-        value={value}
-        name={name}
-        type={
-          name === "password"
-            ? isVisiblePassword
-              ? "text"
-              : "password"
-            : "text"
-        }
-        placeholder={placeholder}
-        min={min}
-        prefix={"Hola"}
-      />
+      {name === "phoneNumber" ? (
+        <div className={style.phoneInput}>
+          <span>+54</span>
+          <input type={type} />
+        </div>
+      ) : (
+        <input
+          disabled={disabled}
+          onChange={onChange}
+          className={style.customInput}
+          value={value}
+          name={name}
+          type={
+            name === "password"
+              ? isVisiblePassword
+                ? "text"
+                : "password"
+              : "text"
+          }
+          placeholder={placeholder}
+          min={min}
+          prefix={"Hola"}
+        />
+      )}
       {name === "password" ? (
         <div className={style.passwordToggle}>
           {isVisiblePassword ? (

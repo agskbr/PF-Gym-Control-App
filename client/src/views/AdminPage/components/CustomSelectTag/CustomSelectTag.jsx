@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import style from "./CustomSelectTag.module.css";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { validateForm } from "../../../../utils/validateForm";
-import { useDispatch } from "react-redux";
-import { deleteDayHourFromActivity } from "../../../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteDayHourFromActivity,
+  deleteTrainerFromActivity,
+} from "../../../../store/actions";
 
 export default function CustomSelectTag({
   handlerChangeSelectTag,
@@ -16,8 +19,10 @@ export default function CustomSelectTag({
   setErrors,
   inputs,
   type,
+  id,
 }) {
   const dispatch = useDispatch();
+  const { activities } = useSelector((state) => state.pgym);
   const [displayItems, setDisplayItems] = useState([]);
   useEffect(() => {
     setDisplayItems([...visualizeItems]);
@@ -56,6 +61,14 @@ export default function CustomSelectTag({
                 <AiFillCloseCircle
                   key={Math.random()}
                   onClick={() => {
+                    if (type === "Instructores") {
+                      const activityToDelete = activities.find(
+                        (activity) => activity.name === item
+                      );
+                      dispatch(
+                        deleteTrainerFromActivity(id, activityToDelete.id)
+                      );
+                    }
                     setDisplayItems((state) =>
                       state.filter((e) => {
                         if (e.id) {
