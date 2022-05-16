@@ -75,6 +75,7 @@ export function UnAuthenticatedRoutes() {
       <Route path="/" element={<HomePage />} />
       <Route path="/clases/:id" element={<Buy />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/checkout" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
     </Routes>
   );
