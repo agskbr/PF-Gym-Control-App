@@ -124,7 +124,7 @@ router.post("/:idActivity/addTrainer/:idTrainer", async (req, res, next) => {
             res.status(200).send(`Se agrego el entrenador a la actividad`) :
             res.status(400).send("error al agregar entrenador")
     } catch (error) {
-        res.send(error);
+        res.status(404).send(error);
     }
 });
 
