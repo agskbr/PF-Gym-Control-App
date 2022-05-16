@@ -19,7 +19,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 export default function Cart(activity) {
   const state = useSelector((state) => state);
   const orderLine = useSelector((state)=>state.cart.orderLine)
-  const discountCode = useSelector((state)=>state.descuentos.descuentos[0].codigo); 
+  const discountCode = useSelector((state)=>state.descuentos.descuentos[0]?.codigo); 
   const dispatch = useDispatch();
   const { cart, products } = state.cart;
   const { user } = state.login;
