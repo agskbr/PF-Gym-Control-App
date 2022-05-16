@@ -5,7 +5,9 @@ import {getActivity} from '../../../../../store/actions/index'
 //import {getActivity} from '../../../../../store/actions/index'
 import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../../../../assets/logo.png';
-import {AiFillCloseCircle} from 'react-icons/ai'
+import {AiFillCloseCircle} from 'react-icons/ai';
+import axios from 'axios';
+import { BASE_URL } from "../../../../../store/constantes";
 
 
 export default function OrderDetail({orderId}) {
@@ -15,9 +17,9 @@ export default function OrderDetail({orderId}) {
   const dispatch = useDispatch();
 
   const activities = useSelector((state)=> state.pgym.activities)   /// [{id:1, name:"yoga"}, {}, {}]
-   // console.log("activ", activities)
+   console.log("activ", activities)
     const orderlines = useSelector((state)=> state.pgym.orderlines)  // [{activId1}, {activId2}]
-   //console.log("orderline", orderlines)
+  console.log("orderline", orderlines)
 
     useEffect(()=>{
       if(orderId){
@@ -29,6 +31,16 @@ export default function OrderDetail({orderId}) {
       dispatch(getActivity())
     },[dispatch])
 
+    async function obtenerActividad(id){
+      try {
+        const {data} = await axios.get(`${BASE_URL}/activity/${id}`); 
+        console.log("data2", data.name)
+        return data.name
+      } catch (error) {
+        console.log(error)
+      }
+      
+    }
 
   return (
 
@@ -68,16 +80,21 @@ export default function OrderDetail({orderId}) {
           <tbody>
               {
                   orderlines?.map((o)=> {
-                    /*  const {name} = activities?.find((a)=> a.id === o.activityId)  */
-                    //console.log("name", name)
-                    return (
-                      <tr key={o.id} >
-                        <td  className={s.filas}>{  }</td>
-                        <td  className={s.filas}>{o.quantity}</td>
-                        <td  className={s.filas}> $ {o.unitPrice}</td>
-                      </tr>
-                    ) 
+
+                    /* const  {name} = activities?.find((a)=> a.id === o.activityId)  */
+                    //console.log("name", acti)
+                    /* const name = obtenerActividad(o.activityId)  */
+                    
+                      return (
+                        <tr key={o.id} >
+                          <td  className={s.filas}>{}</td>
+                          <td  className={s.filas}>{o.quantity}</td>
+                          <td  className={s.filas}> $ {o.unitPrice}</td>
+                        </tr>
+                      )
+                    
                   })
+
               } 
           </tbody>
           </table>

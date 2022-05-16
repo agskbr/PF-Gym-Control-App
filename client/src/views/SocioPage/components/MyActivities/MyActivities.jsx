@@ -42,9 +42,24 @@ export default function MyActivities() {
 
   return (
     <div className={s.userPrincipalContainer}>
+       <div className={s.userTitleAndAddBtn}>
+        <h4 className={s.myActivitiesTitle}>
+          te gustron nuestras clases? dejanos tu oipinion
+        </h4>
+        <button
+          onClick={() => {
+            document.getElementById("reviewDialog").showModal();
+          }}
+          className={s.userAddBtn}
+        >
+          {" "}
+          Dejanos tu opinion{" "}
+        </button>
+        
+      </div>
       
         <div>
-      
+          <h1></h1>
 
 
           <Activity/>
