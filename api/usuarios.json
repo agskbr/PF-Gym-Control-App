@@ -10,7 +10,7 @@
     },
     {
         "uid":"dd829b3f14d94959982221a7ba36",
-        "name": "PF-GYM",
+        "name": "PF-GYM", 
         "lastName": "Grupo 14",
         "email": "gymcontrol12@gmail.com",
         "phoneNumber":"+543715248594",
@@ -46,7 +46,7 @@
         "isAdmin" : false
     },
     {
-        "uid":"45fd282202d645f1a0a5b49eaaa1",
+        "uid":"45fd282202d645f1a0a5b49eaaa2",
         "name": "Hugo",
         "lastName": "Sosa",
         "email": "ssosa09@gmail.com",

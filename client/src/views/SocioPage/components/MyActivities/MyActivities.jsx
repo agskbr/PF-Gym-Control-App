@@ -3,27 +3,49 @@ import s from "./MyActivities.module.css";
 import CreateReview from '../CreateReview/CreateReview'
 import { getActivity } from "../../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
-import {BsFillCheckCircleFill} from 'react-icons/bs'
+import Activity from "./Activity/Activity";
+import {getUserById } from '../../../../store/actions/actions-user';
+import {getAllOrdersByUser, getOrderlineByOrderid} from '../../../../store/actions/actions-orders';
+
+
 
 export default function MyActivities() {
   const dispatch = useDispatch();
-  const actividades= useSelector((state)=> state.pgym.allActivities);
-  console.log("activ", actividades)
-  //const myActiv = actividades.find((a)=> a.name === "BodyCombat");
-  //console.log("myActiv", myActiv)
- 
-  
+  const {uid} = useSelector((state)=> state.login.user )
+  const {id} = useSelector((state)=> state.users.user); 
 
+  const allOrders = useSelector((state)=> state.pgym.orders); //ordenes de compra --> id orden (18)
+  console.log("orders", allOrders)
+
+  const orderlines = useSelector((state)=> state.pgym.orderlines) //items x compra
+  console.log("oredelines", orderlines)
+
+  const actividades= useSelector((state)=> state.pgym.allActivities);
+ 
+   
+  useEffect(()=> {
+    dispatch(getUserById(uid))
+  },[dispatch, uid])
+
+  useEffect(()=> {
+    dispatch(getAllOrdersByUser(id))
+  },[dispatch, id])
+
+ /*  useEffect(()=> {
+    dispatch(getOrderlineByOrderid())
+  }) */
 
   useEffect(()=>{
     dispatch(getActivity())
   },[dispatch])
 
+
   return (
     <div className={s.userPrincipalContainer}>
-      
-      <div className={s.userTitleAndAddBtn}>
-        <h4 className={s.userNameSeccion}>Mis Actividades</h4>
+       <div className={s.userTitleAndAddBtn}>
+        <h4 className={s.myActivitiesTitle}>
+          te gustron nuestras clases? dejanos tu oipinion
+        </h4>
         <button
           onClick={() => {
             document.getElementById("reviewDialog").showModal();
@@ -35,42 +57,14 @@ export default function MyActivities() {
         </button>
         
       </div>
-    {/*   {
-        Object.keys().length > 0 ? (
-          <div className={s.userCardLayout}>
-          <table className={s.containerTable}>
-           <thead className={s.encabezado}>
-            <tr className={s.tableRow}>
-                <th className={s.columnas}>Actividad</th>
-                <th className={s.columnas}>Dias</th>
-                <th className={s.columnas}>Horario</th>
-                <th className={s.columnas}>Suscripcion</th>
-              </tr>
-           </thead>
-           <tbody>
-               <tr className={s.tableRow}>
-                 <td className={s.filas}>{}</td>
-                 <td className={s.filas}>{}</td>
-                 <td className={s.filas}>{}</td>
-                 <td className={s.filas}>
-                   <BsFillCheckCircleFill/>
-                 </td>
-               </tr>
-               <tr className={s.tableRow}>
-                 <td className={s.filas}>{}</td>
-                 <td className={s.filas}>{}</td>
-                 <td className={s.filas}>{}</td>
-                 <td className={s.filas}>
-                   <BsFillCheckCircleFill/>
-                 </td>
-               </tr>
-             
-           </tbody>
-          </table>
+      
+        <div>
+          <h1></h1>
+
+
+          <Activity/>
         </div>
-        ): <p>err</p>
-      }
-       */}
+       
       <CreateReview/>
     </div>
   );

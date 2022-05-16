@@ -2,28 +2,18 @@ import React, { useEffect, useState } from "react";
 import { validateForm } from "../../../../utils/validateForm";
 import style from "./CustomModal.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { createActivity, createTrainer } from "../../../../store/actions/index";
+import {
+  createActivity,
+  createDayAndHour,
+  createTrainer,
+} from "../../../../store/actions/index";
 import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
 import CustomInput from "../CustomInput/CustomInput.jsx";
 export default function CustomModal({ type }) {
   const dispatch = useDispatch();
-  const { trainers, activities } = useSelector((state) => state.pgym);
-  const daysOpt = [
-    { id: 1, name: "Lunes" },
-    { id: 2, name: "Martes" },
-    { id: 3, name: "Miércoles" },
-    { id: 4, name: "Jueves" },
-    { id: 5, name: "Viernes" },
-    { id: 6, name: "Sábado" },
-  ];
-  const hoursOpt = [
-    { id: 1, name: "8-10" },
-    { id: 2, name: "10-12" },
-    { id: 3, name: "12-14" },
-    { id: 4, name: "14-16" },
-    { id: 5, name: "16-18" },
-    { id: 6, name: "18-20" },
-  ];
+  const { trainers, activities, daysAndHours, users } = useSelector(
+    (state) => state.pgym
+  );
   const trainersOpt = trainers;
 
   const [inputs, setInputs] = useState({});
@@ -42,8 +32,12 @@ export default function CustomModal({ type }) {
         setDisplayInputs([...activities]);
         setKeys(Object.keys(activities[0]));
       }
+      if (type === "Dias y horas") {
+        setDisplayInputs([...daysAndHours]);
+        setKeys(Object.keys(daysAndHours[0]));
+      }
     }
-  }, [activities, trainers, type]);
+  }, [activities, trainers, daysAndHours, type]);
 
   useEffect(() => {
     if (keys.length) {
@@ -105,16 +99,18 @@ export default function CustomModal({ type }) {
           input !== "description" &&
           input !== "activities" &&
           input !== "status" &&
-          input !== "day" &&
           input !== "trainers" &&
+          input !== "activity" &&
+          input !== "activityId" &&
+          input !== "diaHoras" &&
+          input !== "users" &&
           input !== "updatedAt" &&
           input !== "createdAt" &&
-          input !== "createdInDb" &&
-          input !== "hour" ? (
+          input !== "createdInDb" ? (
             <CustomInput
               key={input}
               name={input}
-              type="text"
+              type={input === "capacity" ? "number" : "text"}
               min={0}
               onChange={handlerChange}
               placeholder={input}
@@ -136,6 +132,7 @@ export default function CustomModal({ type }) {
         )}
         <div className={style.selectTagsContainer}>
           {keys.map((selectTag) =>
+            selectTag !== "users" &&
             Array.isArray(displayInputs[0][selectTag]) ? (
               <CustomSelectTag
                 key={selectTag}
@@ -143,14 +140,14 @@ export default function CustomModal({ type }) {
                 firstOpt={`Selecciona al menos 1 ${selectTag}`}
                 name={selectTag}
                 options={
-                  selectTag === "day"
-                    ? daysOpt
-                    : selectTag === "hour"
-                    ? hoursOpt
-                    : selectTag === "trainers"
+                  selectTag === "trainers"
                     ? trainersOpt
+                    : selectTag === "diaHoras"
+                    ? [...daysAndHours]
                     : selectTag === "activities"
                     ? [...activities]
+                    : selectTag === "users"
+                    ? [...users]
                     : []
                 }
                 setInputs={setInputs}
@@ -170,16 +167,28 @@ export default function CustomModal({ type }) {
             setErrors(validateForm(inputs, type));
             if (Object.values(errors).length === 0) {
               if (type === "Clases") {
+                const daysHoursIds = inputs.diaHoras.map(
+                  (e) => e.match(/\(([^)]+)\)/)[1]
+                );
                 dispatch(
                   createActivity({
                     ...inputs,
                     price: parseInt(inputs.price),
-                    capacity: parseInt(inputs.capacity),
+                    diaHoraId: daysHoursIds,
                   })
                 );
               }
               if (type === "Instructores") {
-                dispatch(createTrainer(inputs));
+                dispatch(
+                  createTrainer({ ...inputs, activity: [...inputs.activities] })
+                );
+              }
+              if (type === "Dias y horas") {
+                dispatch(
+                  createDayAndHour({
+                    ...inputs,
+                  })
+                );
               }
               document.getElementById("createDialog").close();
             }

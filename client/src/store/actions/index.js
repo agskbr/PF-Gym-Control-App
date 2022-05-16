@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 import {
   GET_ALL_TRAINERS,
   RECEIVED_POST,
@@ -15,8 +16,20 @@ const createActivity = (activity) => {
     try {
       await axios.post(`${BASE_URL}/activity`, activity);
       dispatch(getActivity());
+      swal({
+        buttons: "Aceptar",
+        icon: "success",
+        timer: 1500,
+        title: "Se creó la clase correctamente",
+      });
     } catch (error) {
       console.log(error);
+      swal({
+        buttons: "Aceptar",
+        icon: "error",
+        timer: 1500,
+        title: "Algo salió mal al crear la clase",
+      });
     }
   };
 };
@@ -25,8 +38,43 @@ const createTrainer = (trainer) => {
     try {
       await axios.post(`${BASE_URL}/trainer`, trainer);
       dispatch(getAllTrainers());
+      swal({
+        buttons: "Aceptar",
+        icon: "success",
+        timer: 1500,
+        title: "Se creó al instructor correctamente",
+      });
     } catch (error) {
       console.log(error);
+      swal({
+        buttons: "Aceptar",
+        icon: "error",
+        timer: 1500,
+        title: "Algo salió mal al crear instructor",
+      });
+    }
+  };
+};
+
+const createDayAndHour = (dayHour) => {
+  return async (dispatch) => {
+    try {
+      await axios.post(`${BASE_URL}/diahora/create`, dayHour);
+      dispatch(getAllDaysAndHours());
+      swal({
+        title: "Se creó el día y horario correctamente",
+        buttons: "Aceptar",
+        icon: "success",
+        timer: 1500,
+      });
+    } catch (error) {
+      console.log(error);
+      swal({
+        title: "Algo salió mal al crear día y horario",
+        buttons: "Aceptar",
+        icon: "error",
+        timer: 1500,
+      });
     }
   };
 };
@@ -66,12 +114,52 @@ const getIdUser = (uid) => {
   };
 };
 
-const editActivity = (activity, id) => {
+const editActivity = (activity, id, dayHourIds, trainersIds) => {
   return async () => {
     try {
       await axios.put(`${BASE_URL}/activity/${id}`, activity);
+      await dayHourIds.forEach((dayHourId) => {
+        if (dayHourId !== null) {
+          axios.post(`${BASE_URL}/diahora/activity`, {
+            activityId: id,
+            diaHoraId: dayHourId,
+          });
+        }
+      });
+      await trainersIds.forEach((trainerId) => {
+        if (trainerId !== null) {
+          axios.post(`${BASE_URL}/activity/${id}/addTrainer/${trainerId}`);
+        }
+      });
+      swal({
+        title: "Actividad editada correctamente",
+        buttons: "Aceptar",
+        icon: "success",
+      });
     } catch (error) {
       console.log(error);
+      swal({
+        title: "Algo salió mal al editar la actividad",
+        buttons: "Aceptar",
+        icon: "error",
+      });
+    }
+  };
+};
+
+const deleteDayHourFromActivity = (activityId, dayHourId) => {
+  return async () => {
+    try {
+      await axios.delete(
+        `${BASE_URL}/diahora/activity/${activityId}/${dayHourId}`
+      );
+    } catch (error) {
+      console.log(error);
+      swal({
+        title: "No se pudo borrar este día-hora de la actividad",
+        icon: "error",
+        buttons: "Aceptar",
+      });
     }
   };
 };
@@ -172,8 +260,6 @@ export function changePage(page) {
   };
 }
 
-
-
 export {
   createActivity,
   createTrainer,
@@ -183,4 +269,6 @@ export {
   getAllUsers,
   getIdUser,
   getAllDaysAndHours,
+  createDayAndHour,
+  deleteDayHourFromActivity,
 };

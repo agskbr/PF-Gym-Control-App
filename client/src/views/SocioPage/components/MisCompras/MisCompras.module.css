@@ -15,7 +15,7 @@
 .comprasCardLayout{
     margin-top: 20px;
     height: 30vh;
-    width: 50vw; /* ver por tema responsive */
+    width: 60vw; /* ver por tema responsive */
     background-color: white;
     /* overflow: scroll; */
 }
@@ -26,7 +26,7 @@
 }
 
  .columnas, .filas {
-    padding: 0;
+    padding: 20;
 }
 .encabezado{
     background-color: #fe4f22;

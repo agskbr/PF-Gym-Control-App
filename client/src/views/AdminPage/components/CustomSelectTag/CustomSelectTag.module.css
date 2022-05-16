@@ -1,7 +1,7 @@
 .customSelectTag {
   background-color: whitesmoke;
   border: none;
-  width: 200px;
+  width: 250px;
   margin-top: 10px;
   padding: 10px;
   border-radius: 5px;
@@ -29,7 +29,7 @@
 
 .selectTagsContainer {
   margin-top: 15px;
-  width: 200px;
+  width: 250px;
 }
 .selectTagsContainer label {
   color: red;
@@ -43,7 +43,7 @@
   justify-content: flex-start;
 }
 .itemContainer li {
-  width: 90px;
+  width: 150px;
   text-align: start;
 }
 

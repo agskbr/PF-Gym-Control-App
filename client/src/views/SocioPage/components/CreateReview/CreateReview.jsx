@@ -21,7 +21,7 @@ export default function CreateReaview() {
     const allActivities = useSelector((state)=>state.pgym.allActivities);
     const allReviewUser = useSelector((state)=>state.review.reviews);
     //console.log("activ", allActivities)
-    console.log("reviewsid", allReviewUser)
+   // console.log("reviewsid", allReviewUser)
     //const user = useSelector((state)=>state.login.user.uid);
     
     const stars= Array(5).fill(0);

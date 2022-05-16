@@ -1,0 +1,12 @@
+.orederDetailContainer{
+    background-color: #fdede9;
+}
+.orderContainerTable{
+   /*  background-color: #fdede9; */
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.columnas, .filas {
+    padding: 10;
+}
