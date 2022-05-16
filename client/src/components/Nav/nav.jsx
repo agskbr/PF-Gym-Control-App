@@ -4,30 +4,35 @@ import { useState, useEffect } from "react";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import Cart from "../Cart/Cart";
+import { useSelector } from "react-redux";
 
 export default function Nav() {
   let [headerClasses, setHeaderClasses] = useState("header");
   let [scrollPosition, setScrollPosition] = useState(0);
-  let [cartClass, setCartClass] = useState('cart-closed')
-  const [headerClass, setHeaderClass] = useState('header')
-  const [mobileNav, setMobileNav] = useState(false)
+  let [cartClass, setCartClass] = useState("cart-closed");
+  const [headerClass, setHeaderClass] = useState("header");
+  const [mobileNav, setMobileNav] = useState(false);
+
+  const { user } = useSelector((state) => state.login);
 
   function handleOpen(event) {
-      event.preventDefault()
-      if (headerClass === 'header') setHeaderClass('header nav-open')
-      else if (headerClass === 'headerScrolled') setHeaderClass('headerScrolled nav-open')
-      else setHeaderClass('headerScrolled')
+    event.preventDefault();
+    if (headerClass === "header") setHeaderClass("header nav-open");
+    else if (headerClass === "headerScrolled")
+      setHeaderClass("headerScrolled nav-open");
+    else setHeaderClass("headerScrolled");
 
-      setMobileNav(!mobileNav)
+    setMobileNav(!mobileNav);
   }
 
   function handleClick(event) {
-      event.preventDefault()
-      if (headerClass === 'header') setHeaderClass('header nav-open')
-      else if (headerClass === 'headerScrolled') setHeaderClass('headerScrolled nav-open')
-      else setHeaderClass('header')
+    event.preventDefault();
+    if (headerClass === "header") setHeaderClass("header nav-open");
+    else if (headerClass === "headerScrolled")
+      setHeaderClass("headerScrolled nav-open");
+    else setHeaderClass("header");
 
-      setMobileNav(!mobileNav)
+    setMobileNav(!mobileNav);
   }
 
   // useState(() => {
@@ -46,12 +51,13 @@ export default function Nav() {
   };
 
   function handleCartClick() {
-    if (cartClass === 'cart-closed') setCartClass('cart-open')
-    if (cartClass === 'cart-open') setCartClass('cart-closed')
+    if (cartClass === "cart-closed") setCartClass("cart-open");
+    if (cartClass === "cart-open") setCartClass("cart-closed");
 
-    if (headerClass === 'header') setHeaderClass('header nav-open')
-    else if (headerClass === 'headerScrolled') setHeaderClass('headerScrolled nav-open')
-    else setHeaderClass('headerScrolled')
+    if (headerClass === "header") setHeaderClass("header nav-open");
+    else if (headerClass === "headerScrolled")
+      setHeaderClass("headerScrolled nav-open");
+    else setHeaderClass("headerScrolled");
   }
 
   useEffect(() => {
@@ -69,13 +75,11 @@ export default function Nav() {
       </a> */}
 
       <nav className="main-nav">
-        <div>
-          
-        </div>
+        <div></div>
         <ul className="main-nav-list">
           <li>
             <a className="main-nav-link" href="/login">
-              Login
+              {user ? "Panel de socio" : "Login"}
             </a>
           </li>
           <li>
@@ -94,21 +98,22 @@ export default function Nav() {
             </a>
           </li>
           <li>
-            <div className="buttonCart" onClick={handleCartClick}>
-            </div>
+            <div className="buttonCart" onClick={handleCartClick}></div>
           </li>
         </ul>
       </nav>
 
       <div className={cartClass}>
-            <Cart className='cart-nav'/>
-            <button className="close-cart" onClick={handleCartClick}>X</button>
+        <Cart className="cart-nav" />
+        <button className="close-cart" onClick={handleCartClick}>
+          X
+        </button>
       </div>
 
-       <button onClick={handleOpen} className="btn-mobile-nav" >{!mobileNav ? 'Menu' : 'Menu'}</button>
-    
+      <button onClick={handleOpen} className="btn-mobile-nav">
+        {!mobileNav ? "Menu" : "Menu"}
+      </button>
     </header>
-    
   );
 }
 
@@ -118,24 +123,24 @@ export default function Nav() {
 
 // export default function Nav() {
 
-    // const [headerClass, setHeaderClass] = useState('header')
-    // const [mobileNav, setMobileNav] = useState(false)
+// const [headerClass, setHeaderClass] = useState('header')
+// const [mobileNav, setMobileNav] = useState(false)
 
-    // function handleOpen(event) {
-    //     event.preventDefault()
-    //     if (headerClass === 'header') setHeaderClass('header nav-open')
-    //     else setHeaderClass('header')
+// function handleOpen(event) {
+//     event.preventDefault()
+//     if (headerClass === 'header') setHeaderClass('header nav-open')
+//     else setHeaderClass('header')
 
-    //     setMobileNav(!mobileNav)
-    // }
+//     setMobileNav(!mobileNav)
+// }
 
-    // function handleClick(event) {
-    //     event.preventDefault()
-    //     if (headerClass === 'header') setHeaderClass('header nav-open')
-    //     else setHeaderClass('header')
+// function handleClick(event) {
+//     event.preventDefault()
+//     if (headerClass === 'header') setHeaderClass('header nav-open')
+//     else setHeaderClass('header')
 
-    //     setMobileNav(!mobileNav)
-    // }
+//     setMobileNav(!mobileNav)
+// }
 
 //     return (
 //         <header className={headerClass}>
@@ -143,7 +148,7 @@ export default function Nav() {
 //             {/* <img className="logo" src="img/omnifood-logo.png" alt="Omnifood logo" /> */}
 //             <p>LOGO</p>
 //         </a>
-        
+
 //         <nav className="main-nav">
 //             <ul className="main-nav-list">
 //                 <li><a onClick={handleClick} className="main-nav-link" href="#section-how">Sobre Nosotros</a></li>
@@ -155,7 +160,7 @@ export default function Nav() {
 //         </nav>
 
 //         <button className="btn-mobile-nav" onClick={handleOpen}>{!mobileNav ? 'Open' : 'Close'}</button>
-       
+
 //     </header>
 //     )
 // }

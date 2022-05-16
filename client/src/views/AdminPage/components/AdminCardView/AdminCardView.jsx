@@ -6,6 +6,7 @@ import { FaEdit, FaPrint } from "react-icons/fa";
 import ExpansibleMenu from "../ExpansibleMenu/ExpansibleMenu";
 
 export default function AdminCardView({ type }) {
+  const { descuentos } = useSelector((state) => state.descuentos);
   const { activities, trainers, users, orders, daysAndHours } = useSelector(
     (state) => state.pgym
   );
@@ -34,8 +35,12 @@ export default function AdminCardView({ type }) {
         setDisplayArray([...daysAndHours]);
         setKeys(Object.keys(daysAndHours[0]));
       }
+      if (type === "Descuentos") {
+        setDisplayArray([...descuentos]);
+        setKeys(Object.keys(descuentos[0]));
+      }
     }
-  }, [activities, trainers, users, orders, daysAndHours, type]);
+  }, [activities, trainers, users, orders, descuentos, daysAndHours, type]);
 
   return (
     <div className={style.principalContainer}>

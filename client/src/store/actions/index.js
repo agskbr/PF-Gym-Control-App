@@ -147,6 +147,7 @@ const editActivity = (activity, id, dayHourIds, trainersIds) => {
   };
 };
 
+
 const deleteDayHourFromActivity = (activityId, dayHourId) => {
   return async () => {
     try {
