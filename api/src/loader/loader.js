@@ -4,7 +4,8 @@ const trainer = require('../../trainer.json')
 const review = require('../../review.json')
 const diaHora = require('../../diaHora.json')
 const orderLine = require ('../../orderLine.json')
-const order = require ('../../Order.json')
+const order = require('../../Order.json')
+const descuento = require('../../descuento.json')
 
 const {
     Activity,
@@ -13,7 +14,8 @@ const {
     Review,
     DiaHora,
     Order,
-    OrderLine
+    OrderLine,
+    Descuento
 } = require('../db');
 
 
@@ -162,6 +164,21 @@ const loaderDiaHora = async () =>{
     }
 }
 
+const loaderCodigo = async () =>{
+    try {
+        descuento.forEach(async (el) => {
+            await Descuento.findOrCreate({
+                where: {
+                    descuento: el.descuento,
+                    codigo: el.codigo
+                },
+            });
+        })
+        console.log('diaHora cargados en la DB')
+    } catch (error) {
+        console.log('Error en la carga de diaHora a la DB')
+    }
+}
 
 module.exports = {
     loaderUsers,
@@ -170,5 +187,6 @@ module.exports = {
     loaderReview,
     loaderDiaHora,
     loaderOrder,
-    loaderOrderline
+    loaderOrderline,
+    loaderCodigo
 }
