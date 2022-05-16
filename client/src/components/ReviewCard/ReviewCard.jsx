@@ -4,23 +4,26 @@ import ReactStars from "react-rating-stars-component";
 // import {getAllUsers} from '../../store/actions/index'
 import { useDispatch, useSelector } from "react-redux";
 
-export default function ReviewCard({ rating, description, id }) {
+export default function ReviewCard({ rating, description, id, name,}) {
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.pgym.users);
+  const allActivities = useSelector((state) => state.pgym.allActivities);
 
   const user = allUsers.find((u) => u.id === id);
-  //console.log("soy yo", user)
+  const activities = allActivities.find((a) => a.id === name);
+  // console.log("soy yo", activities)
 
   return user ? (
     <article className={s.reviewCardContainer}>
       <img src={user.image} alt={user.name} className={s.reviewCardImg} />
       <div className={s.reviewCardText}>
         <h2 className={s.reviewCardName}>{user.name} {user.lastName}</h2>
+        <h4 className={s.reviewCardActivity}>{activities.name}</h4>
         <div className={s.reviewCardDesc}>
           <span className={s.reviewCardRating} title={`${rating} out of 5`}>
             <ReactStars
               name="rating"
-              editing={false}
+              edit={false}
               value={rating}
               onStarClick={() => null}
             />
