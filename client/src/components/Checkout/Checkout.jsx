@@ -76,9 +76,9 @@ export default function Checkout(activity) {
             const lastname = nameMP[1];
             
 
-           /*  //!  ACTIVAR ENVIO DE EMAIL
-            let check = {state:'Processing', totalPrice: totalCart}
-            await axios.post(BASE_URL + '/order/', check);
+            //!  ACTIVAR ENVIO DE EMAIL
+            /* let check = {state:'Processing', totalPrice: totalCart}
+            await axios.post(BASE_URL + '/order/', check); */
                                                 //userID
             let email = {
                 user: {
@@ -91,7 +91,7 @@ export default function Checkout(activity) {
                     totalPrice: totalCart
                 }
             }
-            let resEmail = await axios.post(BASE_URL +'/email/orderCreated', email) */
+            let resEmail = await axios.post(BASE_URL +'/email/orderCreated', email)
             //! --------------------------------------------------------
 
 //name

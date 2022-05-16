@@ -58,7 +58,8 @@ export function cartReducer(state = initialState, action) {
             let itemInCart = state.cart?.find(item => item.dayHourId === action.payload.id );
             console.log(action.payload)
             let itemInOrder = state.order?.find(item => item.name === action.payload.activity.name);
-            let itemInOrderLine = state.orderLine?.find(item => item.dayHourId === action.payload.id);
+            let itemInOrderLine = state.orderLine?.find(item => item.diaHoraId === action.payload.id);
+            console.log(itemInOrderLine)
             /* console.log(state.cart);
             console.log(itemInCart); */
 
