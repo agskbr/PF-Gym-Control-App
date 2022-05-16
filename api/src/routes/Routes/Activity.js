@@ -81,7 +81,7 @@ router.put('/:id', async (req, res, next) => {
     let {id} = req.params
     let activity = req.body;
     try {
-        const activity_Upd = activityUpd(id,activity);
+        const activity_Upd = await activityUpd(id,activity);
         res.status(200).json(activity_Upd);
     } catch (error) {
         next(error);

@@ -70,9 +70,24 @@ const trainerCreated = async (name,image,specialty,experience,activity) => {
 }
 
 
+//actualizar trainer solo
+const trainerUpd = async (id,trainer) => {
+    try {
+        return await Trainer.update(trainer,{   
+            where: {
+                id: id
+            }
+        })
+    } catch (error) {
+        return(error)
+    }
+}
+
+
 module.exports = {
     allTrainers,
     trainerId,
     trainerDelete,
-    trainerCreated
+    trainerCreated,
+    trainerUpd
 }
