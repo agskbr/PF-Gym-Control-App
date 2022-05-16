@@ -132,7 +132,7 @@ export default function CreateReaview() {
     useEffect(()=>{
         dispatch(getActivity())
         dispatch(getReviewsByUser(user))
-    },[dispatch])
+    },[dispatch, user])
 
     return allActivities ? (
 

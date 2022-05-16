@@ -1,10 +1,11 @@
-.principalContainer {
+.perfilContainer{
   height: max-content;
   width: 100%;
   margin-top: 10px;
   align-items: center;
   display: flex;
   flex-direction: column;
+  background-color: gainsboro;
 }
 .perfilUser {
   display: flex;
@@ -33,33 +34,34 @@
 }
 
 .perfilUserName img {
-  height: 10ex;
-  width: 10ex;
+  height: 8ex;
+  width: 8ex;
   border-radius: 100%;
 }
 .perfilUserName {
   display: block;
-  font-size: 3rem;
+  font-size: 2rem;
   color: #111111;
   padding-bottom: 0.5rem;
   margin-top: 2.5rem;
   transition: all 0.2s;
   filter: grayscale(1);
 }
-.perfilUserSub {
+/* .perfilUserSub {
   display: block;
   font-size: 1.2rem;
   color: #777;
   transition: all 0.2s;
-}
-.perfilUserDetail {
+} */
+/* .perfilUserDetail {
   font-size: 1.2rem;
   font-weight: lighter;
   transition: all 0.2s;
-}
+} */
 .perfilUser:hover {
-  /* transform: scale(1); */
-  background: rgba(255, 253, 253, 0.4);
+  transform: scale(1);
+  background: rgba(255, 253, 253, 0.336);
+  width: 73vw;
 }
 .perfilUser:hover .perfilUserSub,
 .perfilUser:hover .perfilUserDetail {
@@ -70,4 +72,25 @@
 }
 .perfilUser:hover .perfilUserName {
   color: #eb4e27;
+}
+.perfilAddBtn{
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-family: sans-serif;
+  padding: 10px;
+  width: auto;
+  font-size: 14px;
+  height: 40px;
+  background-color: #fe4f22;
+  cursor: pointer;
+}
+.perfilAddBtn:hover {
+  cursor: pointer;
+  /* background-color: #fdede9;
+  transition: all .3s;
+  color: #eb4e27; */
+}
+.perfilAddBtn:focus {
+  outline: none;
 }
