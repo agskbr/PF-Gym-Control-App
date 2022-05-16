@@ -1,30 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useParams } from "react-router-dom";
-import { editActivity } from "../../../../store/actions/index.js";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  createDayAndHour,
+  editActivity,
+} from "../../../../store/actions/index.js";
 import { validateForm } from "../../../../utils/validateForm.js";
 import CustomInput from "../CustomInput/CustomInput.jsx";
 import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
 import style from "./EditPage.module.css";
 
 export default function EditPage() {
-  const { trainers, activities } = useSelector((state) => state.pgym);
-  const daysOpt = [
-    { id: 1, name: "Lunes" },
-    { id: 2, name: "Martes" },
-    { id: 3, name: "Miércoles" },
-    { id: 4, name: "Jueves" },
-    { id: 5, name: "Viernes" },
-    { id: 6, name: "Sábado" },
-  ];
-  const hoursOpt = [
-    { id: 1, name: "8-10" },
-    { id: 2, name: "10-12" },
-    { id: 3, name: "12-14" },
-    { id: 4, name: "14-16" },
-    { id: 5, name: "16-18" },
-    { id: 6, name: "18-20" },
-  ];
+  const { trainers, activities, daysAndHours, users } = useSelector(
+    (state) => state.pgym
+  );
+
   const trainersOpt = trainers;
 
   const { state } = useLocation();
@@ -71,7 +61,6 @@ export default function EditPage() {
             const convertToArrayOfString = state.itemSelect[key][0]?.name
               ? state.itemSelect[key].map((item) => item.name)
               : state.itemSelect[key];
-            console.log(convertToArrayOfString);
             return { ...sta, [key]: [...convertToArrayOfString] };
           } else if (typeof displayInputs[0][key] === "number") {
             return { ...sta, [key]: state.itemSelect[key] };
@@ -99,6 +88,7 @@ export default function EditPage() {
           input !== "description" &&
           input !== "experience" &&
           input !== "activities" &&
+          input !== "diaHoras" &&
           input !== "status" &&
           input !== "day" &&
           input !== "trainers" &&
@@ -140,6 +130,7 @@ export default function EditPage() {
 
         <div className={style.selectTagsContainer}>
           {keys.map((selectTag) =>
+            selectTag !== "users" &&
             Array.isArray(state.itemSelect[selectTag]) ? (
               <CustomSelectTag
                 key={selectTag}
@@ -152,14 +143,14 @@ export default function EditPage() {
                 type={type}
                 handlerChangeSelectTag={handlerChangeSelectTag}
                 options={
-                  selectTag === "day"
-                    ? daysOpt
-                    : selectTag === "hour"
-                    ? hoursOpt
-                    : selectTag === "trainers"
+                  selectTag === "trainers"
                     ? trainersOpt
+                    : selectTag === "diaHoras"
+                    ? [...daysAndHours]
                     : selectTag === "activities"
                     ? [...activities]
+                    : selectTag === "users"
+                    ? [...users]
                     : []
                 }
                 visualizeItems={inputs[selectTag] ?? []}
@@ -169,22 +160,37 @@ export default function EditPage() {
         </div>
         <div className={style.buttonsContainer}>
           <button
-            disabled={Object.values(errors).length}
             onClick={() => {
+              setErrors(validateForm(inputs, type));
               if (Object.values(errors).length === 0) {
                 if (type === "Clases") {
+                  const daysHoursIds = inputs.diaHoras.map((e) => {
+                    if (typeof e === "string" && e.includes("(")) {
+                      return e.match(/\(([^)]+)\)/)[1];
+                    } else {
+                      return null;
+                    }
+                  });
+                  const trainersIds = inputs.trainers.map((e) => {
+                    if (e.includes("(")) {
+                      return e.match(/\(([^)]+)\)/)[1];
+                    } else {
+                      return null;
+                    }
+                  });
                   dispatch(
                     editActivity(
                       {
                         ...inputs,
                         price: parseInt(inputs.price),
-                        capacity: parseInt(inputs.capacity),
                       },
-                      id
+                      id,
+                      daysHoursIds,
+                      trainersIds
                     )
                   );
                 }
-                if (type === "Instructores") {
+                if (type === "Usuarios") {
                   // dispatch();
                 }
                 if (type === "Instructores") {
@@ -201,7 +207,7 @@ export default function EditPage() {
             Editar {item}
           </button>
           <Link className={style.link} to={"/admindashboard"}>
-            Terminar edición
+            Volver atrás
           </Link>
         </div>
       </div>
