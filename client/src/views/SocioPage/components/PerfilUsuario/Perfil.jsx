@@ -63,7 +63,7 @@ export default function Perfil() {
 
   return (
     
-    <div className={style.principalContainer}>
+    <div className={style.perfilContainer}>
       {
         usuario? (
           <div className={style.perfilUser}>
@@ -84,6 +84,7 @@ export default function Perfil() {
                  {verified} 
               <p>Teléfono: {usuario.phoneNumber}</p>
               <button
+                className={style.perfilAddBtn}
                 onClick={() => {
                 document.getElementById("editProfileDialog").showModal();
                 }}
