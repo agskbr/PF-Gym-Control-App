@@ -9,8 +9,10 @@ import {
 } from "../../../../store/actions/index";
 import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
 import CustomInput from "../CustomInput/CustomInput.jsx";
+import { addDescuento } from "../../../../store/actions/actions-descuentos";
 export default function CustomModal({ type }) {
   const dispatch = useDispatch();
+  const { descuentos } = useSelector((state) => state.descuentos);
   const { trainers, activities, daysAndHours, users } = useSelector(
     (state) => state.pgym
   );
@@ -36,8 +38,12 @@ export default function CustomModal({ type }) {
         setDisplayInputs([...daysAndHours]);
         setKeys(Object.keys(daysAndHours[0]));
       }
+      if (type === "Descuentos") {
+        setDisplayInputs([...descuentos]);
+        setKeys(Object.keys(descuentos[0]));
+      }
     }
-  }, [activities, trainers, daysAndHours, type]);
+  }, [activities, trainers, daysAndHours, descuentos, type]);
 
   useEffect(() => {
     if (keys.length) {
@@ -189,6 +195,10 @@ export default function CustomModal({ type }) {
                     ...inputs,
                   })
                 );
+              }
+
+              if (type === "Descuentos") {
+                dispatch(addDescuento({ ...inputs }));
               }
               document.getElementById("createDialog").close();
             }

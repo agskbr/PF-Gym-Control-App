@@ -26,6 +26,20 @@
   border-radius: 8px;
   height: 140px;
 }
+
+.adminQuestion {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 300px;
+  text-align: start;
+}
+
+.adminQuestion span {
+  font-weight: 600;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: grey;
+}
 .textAreaContainer {
   display: flex;
   flex-direction: column;

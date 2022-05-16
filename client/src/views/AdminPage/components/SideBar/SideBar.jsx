@@ -14,6 +14,7 @@ import {
   FaArrowCircleLeft,
   FaCalendar,
   FaTicketAlt,
+  FaPercent,
 } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 
@@ -76,8 +77,16 @@ export default function SideBar({ setTypeOfCardView }) {
             setSeletected("Dias y horas");
             setTypeOfCardView("Dias y horas");
           }}
+        />{" "}
+        <CustomItemSideBar
+          icon={<FaPercent size={20} />}
+          name="Descuentos"
+          selected={selected}
+          onClick={() => {
+            setSeletected("Descuentos");
+            setTypeOfCardView("Descuentos");
+          }}
         />
-
         <Link
           onClick={() => {
             dispatch(requestUserLogin());
