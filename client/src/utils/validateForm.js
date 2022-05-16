@@ -76,6 +76,16 @@ const validateForm = (inputs, type) => {
       errors.hour = "El horario es obligatorio";
     }
   }
+  if (type === "Descuentos") {
+    if (!inputs.descuento) {
+      errors.descuento = "Debes indicar un descuento";
+    } else if (inputs.descuento > 100) {
+      errors.descuento = "No puedes crear un descuento mayor al 100%";
+    }
+    if (!inputs.codigo) {
+      errors.codigo = "Debe incluir un codigo";
+    }
+  }
   return errors;
 };
 
