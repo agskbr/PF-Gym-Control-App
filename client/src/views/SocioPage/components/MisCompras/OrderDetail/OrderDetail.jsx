@@ -9,13 +9,13 @@ import {AiFillCloseCircle} from 'react-icons/ai';
 
 
 
-export default function OrderDetail({orderId}) {
+export default function OrderDetail({orderId, totalPrice}) {
 
    // console.log("orderId", orderId)
    
   const dispatch = useDispatch();
 
-  const activities = useSelector((state)=> state.pgym.activities)   /// [{id:1, name:"yoga"}, {}, {}]
+ // const activities = useSelector((state)=> state.pgym.activities)   /// [{id:1, name:"yoga"}, {}, {}]
 // console.log("activ", activities)
     const orderlines = useSelector((state)=> state.pgym.orderlines)  // [{activId1}, {activId2}]
  // console.log("orderline", orderlines)
@@ -57,6 +57,7 @@ export default function OrderDetail({orderId}) {
         </div>
         <div className={s.comprasTitle}>
           <h4 className={s.comprasNameSeccion}>Detalle de Compra </h4>
+          <p className={s.ordenComprobante}>Comprobante N° {orderId}</p>
         </div>
         <div className={s.comprasCardLayout}>
         <table className={s.orderContainerTable}>
@@ -88,10 +89,12 @@ export default function OrderDetail({orderId}) {
                           <td  className={s.filas}> $ {o.unitPrice}</td>
                         </tr>
                       )
-                    
                   })
-
               } 
+               <tr className={s.orderTotal}>
+                <td colSpan={2} className={s.filas} >Total</td>
+                <td className={s.filas}> $ {totalPrice}  </td>
+              </tr>
           </tbody>
           </table>
         </div>  
