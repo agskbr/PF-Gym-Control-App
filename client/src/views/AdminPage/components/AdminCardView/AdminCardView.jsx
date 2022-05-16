@@ -59,6 +59,7 @@ export default function AdminCardView({ type }) {
                 head !== "updatedAt" &&
                 head !== "userId" &&
                 head !== "users" &&
+                head !== "activityId" &&
                 head !== "createdInDb" ? (
                   <th key={head}>{head}</th>
                 ) : null
@@ -73,7 +74,8 @@ export default function AdminCardView({ type }) {
                     key !== "createdAt" &&
                     key !== "updatedAt" &&
                     key !== "userId" &&
-                    key !== "users"&& 
+                    key !== "users" &&
+                    key !== "activityId" &&
                     key !== "createdInDb"
                   ) {
                     if (Array.isArray(el[key])) {
@@ -98,7 +100,10 @@ export default function AdminCardView({ type }) {
                       );
                     }
 
-                    if (key === "activity" && Object.values(el[key]).length) {
+                    if (
+                      key === "activity" &&
+                      Object.values(el[key] ?? {}).length
+                    ) {
                       return <td key={i}>{el[key].name}</td>;
                     }
 

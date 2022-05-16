@@ -39,6 +39,7 @@ export default function Review() {
                   description={r.description}
                   rating={r.rating}
                   id={r.userId}
+                  name={r.activityId}
                 />
               ))}
             </Carousel>
