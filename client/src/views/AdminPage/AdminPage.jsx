@@ -14,6 +14,7 @@ import AdminCardView from "./components/AdminCardView/AdminCardView";
 import CustomModal from "./components/CustomModal/CustomModal";
 import SideBar from "./components/SideBar/SideBar.jsx";
 import TopBar from "./components/TopBar/TopBar";
+import { getAllDescuentos } from "../../store/actions/actions-descuentos";
 
 export default function AdminPage() {
   const { isLoading } = useSelector((state) => state.pgym);
@@ -26,6 +27,7 @@ export default function AdminPage() {
     dispatch(getAllTrainers());
     dispatch(getActivity());
     dispatch(getAllOrders());
+    dispatch(getAllDescuentos());
   }, [dispatch]);
 
   return (

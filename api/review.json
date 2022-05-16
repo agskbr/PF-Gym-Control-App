@@ -1,7 +1,7 @@
 [
     {
         "rating": "3",
-        "description": "pilates.. muy buena la actividad de hacer pilates",
+        "description": "Muy buena la actividad de hacer pilates 😘",
         "userId": "10",
         "activityId":"3"
     },
@@ -9,42 +9,42 @@
     
     {
         "rating": "5",
-        "description": "muy buena actividad. 10/10",
+        "description": "Muy buena actividad. 10/10",
         "userId": "7",
         "activityId":"3"
     },
 
     {
         "rating": "1",
-        "description": "gap, no esperaba mucho pero igual logro decepcionarme.",
+        "description": "No esperaba mucho pero igual logro decepcionarme 😣.",
         "userId": "3",
         "activityId":"2"
     },
 
     {
         "rating": "4",
-        "description": "de apoco me va fortaleciendo el body",
+        "description": "De apoco me va fortaleciendo el body",
         "userId": "13",
         "activityId":"4"
     },
 
     {
         "rating": "3",
-        "description": "yoga muy buena actividad.",
+        "description": "Muy buena actividad.",
         "userId": "4",
         "activityId":"5"
     },
 
     {
         "rating": "5",
-        "description": "de a poco voy quedando como la roca.",
+        "description": "De a poco voy quedando como la roca.",
         "userId": "5",
-        "activityId":"2"
+        "activityId":"1"
     },
 
     {
         "rating": "3",
-        "description": "no esta mal.",
+        "description": "No esta mal para la primer clase.",
         "userId": "15",
         "activityId":"1"
     },
@@ -86,7 +86,7 @@
 
     {
         "rating": "2",
-        "description": "Me quede dormida, muy mala la clase.",
+        "description": "Me quede dormida 🥱, muy mala la clase.",
         "userId": "12",
         "activityId":"5"
     },
@@ -95,12 +95,12 @@
         "rating": "5",
         "description": "Es lo que esperaba, estoy muy conforme precio calidad.",
         "userId": "10",
-        "activityId":"5"
+        "activityId":"6"
     },
 
     {
         "rating": "1",
-        "description": "El profesor es muy gordito y no se mueve.",
+        "description": "El profesor es muy gordito 🍩 y no se mueve.",
         "userId": "11",
         "activityId":"6"
     },
@@ -109,26 +109,26 @@
         "rating": "4",
         "description": "Muy divertida la clase, los profes unos genios.",
         "userId": "12",
-        "activityId":"6"
+        "activityId":"7"
     },
 
     {
         "rating": "2",
         "description": "Se rompio la cinta, muy mala calidad.",
         "userId": "13",
-        "activityId":"8"
+        "activityId":"7"
     },
 
     {
         "rating": "4",
         "description": "Muy bueno los ejercicios, pronto volvere para seguir mi entrenamiento.",
         "userId": "15",
-        "activityId":"7"
+        "activityId":"8"
     },
 
     {
         "rating": "1",
-        "description": "El profesor es muy bruto, casi me pega una trompada",
+        "description": "El profesor es muy bruto, casi me pega una trompada 🥊",
         "userId": "7",
         "activityId":"8"
     },
@@ -142,9 +142,9 @@
     
     {
         "rating": "4",
-        "description": "Excelente la musica para los entrenamientos.",
+        "description": "Muy copada la musica para los entrenamientos.",
         "userId": "16",
-        "activityId":"8"
+        "activityId":"1"
     },
 
     {
@@ -177,7 +177,7 @@
 
     {
         "rating": "4",
-        "description": "Recomiento al 100% esta clase, no queres que se termine.",
+        "description": "Recomiento al 100% esta clase, no queres que se termine 😍",
         "userId": "4",
         "activityId":"2"
     }

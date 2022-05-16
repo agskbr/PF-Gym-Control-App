@@ -21,9 +21,8 @@ export default function CreateReaview() {
     const allActivities = useSelector((state)=>state.pgym.allActivities);
     const allReviewUser = useSelector((state)=>state.review.reviews);
     //console.log("activ", allActivities)
-    console.log("reviewsid", allReviewUser)
-    //const user = useSelector((state)=>state.login.user.uid);
-    
+   // console.log("reviewsid", allReviewUser)
+    const user = useSelector((state)=>state.users.user.id);
     const stars= Array(5).fill(0);
     const [currentValue, setCurrentValue] = useState(0);
     const [hoverValue, setHoverValue]= useState(undefined);
@@ -31,7 +30,7 @@ export default function CreateReaview() {
         rating: "",
         description:"",
         activityId: "",  
-        userId: 1, //le seteo por defecto un id q este en base de datos para q funcione x ahora!!
+        userId: user, //le seteo por defecto un id q este en base de datos para q funcione x ahora!!
     })
 
    /*  function validaciones(input){
@@ -129,12 +128,11 @@ export default function CreateReaview() {
         }
         
     }
-    
-   const user=1
+
     useEffect(()=>{
         dispatch(getActivity())
         dispatch(getReviewsByUser(user))
-    },[dispatch])
+    },[dispatch, user])
 
     return allActivities ? (
 

@@ -21,11 +21,11 @@
     filter: brightness(100%);
 }
 .reviewCardImg{
-    height: 7rem;
-    width: 7rem;
+    height: 10rem;
+    width: 10rem;
     object-fit: contain;
     object-position: top;
-    clip-path: circle(50%);
+    clip-path: circle(30%);
     display: block;
     margin: 0 auto 1.5rem auto;
     transition: filter .3s;
@@ -73,9 +73,9 @@
         flex-basis: 60%;
     }
     .reviewCardImg{
-        height: 12rem;
-        width: 12rem;
-        clip-path: circle(50%);
+        height: 18rem;
+        width: 18rem;
+        clip-path: circle(17%);
         object-fit: contain;
         object-position: top;
         display: block;
@@ -90,5 +90,13 @@
     }
     .reviewCardContent{
         font-size: 1.2rem;
+    }
+
+    .reviewCardActivity{
+        text-transform: uppercase;
+        color: white;
+        text-align: center;
+        /* border-top: 1px solid white; */
+        font-size: 1rem;
     }
 }

@@ -3,6 +3,7 @@ import SideBar from "./components/Sidebar/SideBar";
 import CenterDynamicView from "./components/CenterDynamicView/CenterDynamicView";
 import { useState } from "react";
 
+
 export default function SocioPage() {
   const [itemSelected, setItemSelected] = useState("Mi Perfil");
 

@@ -1,29 +1,42 @@
 import React, { useEffect } from "react";
 import s from "./MyActivities.module.css";
 import CreateReview from '../CreateReview/CreateReview'
-import { getActivity } from "../../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
-import {BsFillCheckCircleFill} from 'react-icons/bs'
+import Activity from './Activity/Activity';
+import {getUserById } from '../../../../store/actions/actions-user';
+import {getAllOrdersByUser} from '../../../../store/actions/actions-orders';
+import {FaHandPointRight} from 'react-icons/fa'
+
+
 
 export default function MyActivities() {
   const dispatch = useDispatch();
-  const actividades= useSelector((state)=> state.pgym.allActivities);
-  console.log("activ", actividades)
-  //const myActiv = actividades.find((a)=> a.name === "BodyCombat");
-  //console.log("myActiv", myActiv)
+  const {uid} = useSelector((state)=> state.login.user )
+  const {id} = useSelector((state)=> state.users.user); 
+  //console.log()
+
+  const allOrders = useSelector((state)=> state.pgym.orders); //ordenes de compra --> id orden (18)
+  console.log("orders", allOrders)
+   
+  useEffect(()=> {
+    dispatch(getUserById(uid))
+  },[dispatch, uid])
+
+  useEffect(()=> {
+    dispatch(getAllOrdersByUser(id))
+  },[dispatch, id])
+
  
+
   
 
 
-  useEffect(()=>{
-    dispatch(getActivity())
-  },[dispatch])
-
   return (
     <div className={s.userPrincipalContainer}>
-      
-      <div className={s.userTitleAndAddBtn}>
-        <h4 className={s.userNameSeccion}>Mis Actividades</h4>
+       <div className={s.userTitleAndAddBtn}>
+        <h4 className={s.myActivitiesTitle}>
+         Queremos conocer tu opinion  <FaHandPointRight/>
+        </h4>
         <button
           onClick={() => {
             document.getElementById("reviewDialog").showModal();
@@ -31,46 +44,28 @@ export default function MyActivities() {
           className={s.userAddBtn}
         >
           {" "}
-          Dejanos tu opinion{" "}
+          Click aqui {" "}
         </button>
         
       </div>
-    {/*   {
-        Object.keys().length > 0 ? (
-          <div className={s.userCardLayout}>
-          <table className={s.containerTable}>
-           <thead className={s.encabezado}>
-            <tr className={s.tableRow}>
-                <th className={s.columnas}>Actividad</th>
-                <th className={s.columnas}>Dias</th>
-                <th className={s.columnas}>Horario</th>
-                <th className={s.columnas}>Suscripcion</th>
-              </tr>
-           </thead>
-           <tbody>
-               <tr className={s.tableRow}>
-                 <td className={s.filas}>{}</td>
-                 <td className={s.filas}>{}</td>
-                 <td className={s.filas}>{}</td>
-                 <td className={s.filas}>
-                   <BsFillCheckCircleFill/>
-                 </td>
-               </tr>
-               <tr className={s.tableRow}>
-                 <td className={s.filas}>{}</td>
-                 <td className={s.filas}>{}</td>
-                 <td className={s.filas}>{}</td>
-                 <td className={s.filas}>
-                   <BsFillCheckCircleFill/>
-                 </td>
-               </tr>
-             
-           </tbody>
-          </table>
+      
+        <div>
+          <h1>Tus Actividades: </h1>
+          
+          <Activity/>
+
+       {/*    {
+             allOrders?.map((orden)=>(
+               <Activity
+               key={orden.id}
+               orderId={orden.id}
+               />
+             ))
+            
+          } */}
+         
         </div>
-        ): <p>err</p>
-      }
-       */}
+       
       <CreateReview/>
     </div>
   );

@@ -6,6 +6,7 @@ import { FaEdit, FaPrint } from "react-icons/fa";
 import ExpansibleMenu from "../ExpansibleMenu/ExpansibleMenu";
 
 export default function AdminCardView({ type }) {
+  const { descuentos } = useSelector((state) => state.descuentos);
   const { activities, trainers, users, orders, daysAndHours } = useSelector(
     (state) => state.pgym
   );
@@ -34,8 +35,12 @@ export default function AdminCardView({ type }) {
         setDisplayArray([...daysAndHours]);
         setKeys(Object.keys(daysAndHours[0]));
       }
+      if (type === "Descuentos") {
+        setDisplayArray([...descuentos]);
+        setKeys(Object.keys(descuentos[0]));
+      }
     }
-  }, [activities, trainers, users, orders, daysAndHours, type]);
+  }, [activities, trainers, users, orders, descuentos, daysAndHours, type]);
 
   return (
     <div className={style.principalContainer}>
@@ -59,6 +64,7 @@ export default function AdminCardView({ type }) {
                 head !== "updatedAt" &&
                 head !== "userId" &&
                 head !== "users" &&
+                head !== "activityId" &&
                 head !== "createdInDb" ? (
                   <th key={head}>{head}</th>
                 ) : null
@@ -73,7 +79,8 @@ export default function AdminCardView({ type }) {
                     key !== "createdAt" &&
                     key !== "updatedAt" &&
                     key !== "userId" &&
-                    key !== "users"&& 
+                    key !== "users" &&
+                    key !== "activityId" &&
                     key !== "createdInDb"
                   ) {
                     if (Array.isArray(el[key])) {
@@ -98,7 +105,10 @@ export default function AdminCardView({ type }) {
                       );
                     }
 
-                    if (key === "activity" && Object.values(el[key]).length) {
+                    if (
+                      key === "activity" &&
+                      Object.values(el[key] ?? {}).length
+                    ) {
                       return <td key={i}>{el[key].name}</td>;
                     }
 

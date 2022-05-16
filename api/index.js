@@ -27,7 +27,8 @@ const {
   loaderReview,
   loaderDiaHora,
   loaderOrder,
-  loaderOrderline
+  loaderOrderline,
+  loaderCodigo
 } = require('./src/loader/loader')
 
 
@@ -42,6 +43,7 @@ conn.sync({ force: false }).then(() => {
     await loaderDiaHora();
     await loaderOrder();
     await loaderOrderline();
+    await loaderCodigo();
 
     console.log('%s listening 3001 '); // eslint-disable-line no-console
   });

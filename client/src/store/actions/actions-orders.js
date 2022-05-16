@@ -38,7 +38,7 @@ const getOrderlineByOrderid = (orderId) => {
   return async (dispatch) => {
     try {
       const {data} = await axios.get(`${BASE_URL}/orderline/${orderId}`)
-      console.log("data", data)
+     // console.log("data", data)
       return dispatch({
         type: GET_ORDERLINE_BY_ORDER_ID,
         payload: data

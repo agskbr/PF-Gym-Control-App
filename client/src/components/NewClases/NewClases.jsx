@@ -5,6 +5,8 @@ import Paginado from "../Paginado/paginado"
 import Filtrado from "../Filtrado/filtrado"
 import NewActivity from '../NewActivity/NewActivity';
 import Detail from '../Detail/Detail';
+import PowerChat from '../../components/ChatBot/ChatBot'
+import { getDescuento, getAllDescuentos } from "../../store/actions/actions-descuentos";
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,12 +22,8 @@ const Clases = () => {
 const dispatch = useDispatch();
 const allActivities = useSelector((state) => state.pgym.allActivities);
 let [detailClass, setDetailClass] = useState("detail-closed");
+let [botClass, setBotClass] = useState("bot-closed");
 
-function openOrClosed (id) {
-    console.log("Estoy en el handle");
-    console.log(id);
-
-}
 
 
 
@@ -57,6 +55,13 @@ useEffect(() => {
   }, []);
 
 
+/* dispatch (getAllDescuentos()); */
+
+function handleBotClick () {
+    if (botClass === 'bot-closed') setBotClass('bot-open')
+    if (botClass === 'bot-open') setBotClass('bot-closed')
+}
+
 return (
 
     <div className={style.container}>
@@ -74,6 +79,13 @@ return (
             <div className={detailClass}>
                 <Detail />
                 <div id='close' className={style.buttonCloseDetail} onClick={handleDetailClick}></div>
+            </div>
+
+            <div className={botClass}>
+                <PowerChat />
+            </div>
+            <div className={style.bot} onClick={handleBotClick} >
+                BOT
             </div>
 
     </div>

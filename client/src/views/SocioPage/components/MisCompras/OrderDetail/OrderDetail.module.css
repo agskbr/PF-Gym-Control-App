@@ -1,0 +1,25 @@
+
+.comprasNameSeccion{
+    justify-content: center;
+}
+.orderContainerTable{
+    border-collapse: collapse;
+    width: 100%;
+    
+}
+.columnas, .filas {
+    padding: 10;
+    border: black 1px solid;
+}
+.ordenComprobante{
+    font-size: 12px;
+}
+.encabezado{
+    background-color: #fe4f22;
+    border-bottom: solid 3px black;
+    color: white;
+}
+.orderTotal{
+    background-color: rgba(95, 92, 92, 0.158);
+    font-weight: 600;
+}

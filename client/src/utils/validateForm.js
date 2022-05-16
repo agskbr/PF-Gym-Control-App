@@ -17,9 +17,9 @@ const validateForm = (inputs, type) => {
     if (!inputs.email) {
       errors.email = "El email es requerido";
     }
-    if (!inputs.phoneNumber) {
-      errors.phoneNumber = "El número de teléfono es requerido";
-    }
+    // if (!inputs.phoneNumber) {
+    //   errors.phoneNumber = "El número de teléfono es requerido";
+    // }
     // if (!inputs.isAdmin) {
     //   errors.isAdmin = "¿Será administrador?";
     // }

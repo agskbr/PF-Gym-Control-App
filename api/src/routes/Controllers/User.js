@@ -1,4 +1,4 @@
-const { Activity, User, DiaHora } = require("../../db");
+const { Activity, User ,DiaHora} = require("../../db");
 
 // const getUserDni = async (dni) => {
 //     const user = await User.findOne({
@@ -123,12 +123,14 @@ const userIsAdmin = async (id) => {
   }
 };
 
-const userAddDiaHora = async (idUser, idDiaHora) => {
+
+//crear relacion entre usuario y un diaHora
+const useraddDiaHora = async (idUser, idHoraDia) => {
   try {
-      var user = await User.findByPk(idUser);
-      var diahora = await DiaHora.findByPk(idDiaHora);
-      if (user && diahora) {
-        user.addDiaHora(diahora);
+      var usuario = await User.findByPk(idUser);
+      var diaHora = await DiaHora.findByPk(idHoraDia);
+      if (usuario && diaHora) {
+        diaHora.addUsuario(usuario);
           return true
       } else {
           return false
@@ -138,6 +140,7 @@ const userAddDiaHora = async (idUser, idDiaHora) => {
   }
 }
 
+
 module.exports = {
   getAllUsers,
   filterUserEmail,
@@ -146,5 +149,5 @@ module.exports = {
   getUserId,
   userDelete,
   userIsAdmin,
-  userAddDiaHora
+  useraddDiaHora
 };
