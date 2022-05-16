@@ -9,9 +9,11 @@ const CartItem = ({data, removeFromCart, info}) => {
             day,
             hour,
             capacity,
-            quantity
+            quantity,
+            dayHourId
    } = data;
 
+  
 
 
     return (
@@ -25,7 +27,7 @@ const CartItem = ({data, removeFromCart, info}) => {
                 <h6>Total: ${price * quantity}.00</h6>
             </div>
             <div className={style.buttonsContainer}>
-                <button onClick={() => removeFromCart(name)}></button>
+                <button onClick={() => removeFromCart(dayHourId)}></button>
                 {/* <button onClick={() => removeFromCart(id, true)}>del all</button> */}
             </div>
         </div>

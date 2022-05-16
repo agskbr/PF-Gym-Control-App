@@ -23,7 +23,6 @@ export default function CreateReaview() {
     //console.log("activ", allActivities)
    // console.log("reviewsid", allReviewUser)
     const user = useSelector((state)=>state.users.user.id);
-    //console.log(user)
     const stars= Array(5).fill(0);
     const [currentValue, setCurrentValue] = useState(0);
     const [hoverValue, setHoverValue]= useState(undefined);
@@ -129,8 +128,7 @@ export default function CreateReaview() {
         }
         
     }
-    
-    //const user=1
+
     useEffect(()=>{
         dispatch(getActivity())
         dispatch(getReviewsByUser(user))

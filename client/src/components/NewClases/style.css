@@ -7,3 +7,17 @@
     z-index: 1;
     display: none;
 }
+
+
+.bot-closed{
+    position: absolute;
+    margin-top: 45vh;
+    visibility: hidden;
+}
+
+.bot-open{
+    position: absolute;
+    margin-top: 45vh;
+    visibility: visible;
+    transition: ease-in-out 2s;
+}

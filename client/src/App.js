@@ -6,6 +6,7 @@ import {
   requestUserLogin,
   validateUserIsLogged,
 } from "./store/actions/actions-login";
+import { getAllDescuentos} from "./store/actions/actions-descuentos";
 import Loader from "./components/Loader/Loader";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   useEffect(() => {
     dispatch(requestUserLogin());
     dispatch(validateUserIsLogged());
+    dispatch(getAllDescuentos());
   }, [dispatch]);
 
   return (

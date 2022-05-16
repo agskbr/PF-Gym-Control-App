@@ -39,11 +39,14 @@ export default function Checkout(activity) {
     const {cart} = state.cart;
     const cartCheckOut = useSelector(state => state.cart.order);
     const totalCart = cart.reduce((total, item) => total + item.price * item.quantity, 0);
-    const products = {orderBody: cartCheckOut.cart};
+    const products = {orderBody: cartCheckOut};
+  /*   console.log(cartCheckOut);
+    console.log(products);
+    console.log(products[0]);
+ */
     
     const usuarioName = state.login.user.displayName;
-    
-    console.log(cartCheckOut);
+    const userEmail = useSelector(state => state.login.user.email);
   
 
     // Validacion de usuario
@@ -74,21 +77,21 @@ export default function Checkout(activity) {
             
 
             //!  ACTIVAR ENVIO DE EMAIL
-            let check = {state:'Processing', totalPrice: totalCart}
-            await axios.post(BASE_URL + '/order/', check);
+            /* let check = {state:'Processing', totalPrice: totalCart}
+            await axios.post(BASE_URL + '/order/', check); */
                                                 //userID
-            let email = {
+           /*  let email = {
                 user: {
                     name: name,
                     lastname: lastname,
-                    email: user.email
+                    email: userEmail    
                 },
                 info: {
                     orderId: idCart,
                     totalPrice: totalCart
                 }
             }
-            let resEmail = await axios.post(BASE_URL +'/email/orderCreated', email)
+            let resEmail = await axios.post(BASE_URL +'/email/orderCreated', email) */
             //! --------------------------------------------------------
 
 //name
@@ -97,8 +100,9 @@ export default function Checkout(activity) {
 
 
             
-            let mercadoPagoRes = await axios.post(BASE_URL + '/mercadopago/', cartCheckOut)
-            window.open(mercadoPagoRes.data)
+            let mercadoPagoRes = await axios.post(BASE_URL + '/mercadopago', cartCheckOut)
+          /*   console.log(mercadoPagoRes); */
+            /* window.open(mercadoPagoRes.data) */
             window.location.href = mercadoPagoRes.data;
             dispatch(clearCart());
             

@@ -23,7 +23,7 @@ export function orderLinefuntion(payload){
 
 
 export function clearCart(){
-  console.log(" action cleanCart");
+ /*  console.log(" action cleanCart"); */
   return {
     type: CLEAR_CART,
   };
@@ -37,7 +37,7 @@ export function clearCart(){
     return async function (dispatch) {
       try {
         const product = await axios.get(`${BASE_URL}/diahora/` + idDiaHora);
-        console.log(product.data)
+     /*    console.log(product.data) */
         dispatch({
           type: "ADD_TO_CART",
           payload: product.data,
