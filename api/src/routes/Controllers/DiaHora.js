@@ -86,7 +86,7 @@ const deleteHoraDiaActivity = async (idActivity,idDiaHora) => {
         var actividad = await Activity.findByPk(idActivity);
         var diaHora = await DiaHora.findByPk(idDiaHora);
         if (diaHora && actividad) {
-            actividad.removeDiaHora(diaHora);
+            await actividad.removeDiaHora(diaHora);
             await DiaHora.destroy({   
                 where: {
                     id : diaHora.id,
@@ -107,7 +107,7 @@ const añadirDia = async (idActivity,idDiaHora) => {
         var actividad = await Activity.findByPk(idActivity);
         var diaHora = await DiaHora.findByPk(idDiaHora);
         if (diaHora && actividad) {
-            actividad.addDiaHora(diaHora);
+            await actividad.addDiaHora(diaHora);
             return true
         } else {
             return false
@@ -124,7 +124,7 @@ const deleteHoraDiaUser = async (idUser, idDiaHora) => {
         var diaHora = await DiaHora.findByPk(idDiaHora)
         var user = await User.findByPk(idUser)
         if (diaHora && user) {
-            user.removeDiaHora(diaHora);
+            await user.removeDiaHora(diaHora);
             return true
         }
         return false
@@ -160,64 +160,64 @@ const horaDiaUpd = async (id,horaDia) => {
 }
 
 // actualizar turno de usuario. esto seria cada vez que el usuario quiera acceder a un turno
-const updateHoraDia = async (req, res) => { 
-    const { idUser, idHoraDia} = req.body;
-    try {
-        let horaDia = await DiaHora.findOne({
-            where: {
-                id: idHoraDia,
-            },
-        })
-        let addUser = await User.findOne({
-            where: {
-                id: idUser,
-            },
-        })
-        await horaDia.addUser(addUser);
-        horaDia.save();
-        //console.log(horaDia.users.length)
-        let newAvailability = horaDia.capacity - (horaDia.users.length + 1);
-        //console.log(newAvailability);
-        horaDia.availability = newAvailability;
-        horaDia.save();
-        return res.json(horaDia);
-    } catch (error) {
-        return(error)
-    }
-}
+// const updateHoraDia = async (req, res) => { 
+//     const { idUser, idHoraDia} = req.body;
+//     try {
+//         let horaDia = await DiaHora.findOne({
+//             where: {
+//                 id: idHoraDia,
+//             },
+//         })
+//         let addUser = await User.findOne({
+//             where: {
+//                 id: idUser,
+//             },
+//         })
+//         await horaDia.addUser(addUser);
+//         horaDia.save();
+//         //console.log(horaDia.users.length)
+//         let newAvailability = horaDia.capacity - (horaDia.users.length + 1);
+//         //console.log(newAvailability);
+//         horaDia.availability = newAvailability;
+//         horaDia.save();
+//         return res.json(horaDia);
+//     } catch (error) {
+//         return(error)
+//     }
+// }
 
 // quitar un turno al usuario. esto seria para que se muestre habilitado o no la clase
-const removeUserHoraDia = async (req, res) => {
-    const { userId, horadiaId } = req.params
-    try {
-        let turno = await tablaintermedia.findOne({
-            where: {
-                horadiaId: parseInt(horadiaId),
-                userId: userId
-            },
-        })
-        let horadia = await DiaHora.findOne({
-            where: {
-                id: horadiaId
-            },
-            include: {
-                model: User,
-                attributes: ["name"],
-                through: {
-                    attributes: [],
-                },
-            }
-        })
-        horadia.availability = horadia.availability + 1
-        turno.destroy()
-        horadia.save()
-        return res.json({
-            message: "turno eliminado"
-        })
-    } catch (error) {
-        return(error)
-    }
-}
+// const removeUserHoraDia = async (req, res) => {
+//     const { userId, horadiaId } = req.params
+//     try {
+//         let turno = await tablaintermedia.findOne({
+//             where: {
+//                 horadiaId: parseInt(horadiaId),
+//                 userId: userId
+//             },
+//         })
+//         let horadia = await DiaHora.findOne({
+//             where: {
+//                 id: horadiaId
+//             },
+//             include: {
+//                 model: User,
+//                 attributes: ["name"],
+//                 through: {
+//                     attributes: [],
+//                 },
+//             }
+//         })
+//         horadia.availability = horadia.availability + 1
+//         turno.destroy()
+//         horadia.save()
+//         return res.json({
+//             message: "turno eliminado"
+//         })
+//     } catch (error) {
+//         return(error)
+//     }
+// }
 
 module.exports = {
     allHoraDia,
@@ -226,8 +226,8 @@ module.exports = {
     horaDiaId,
     horaDiaDelete,
     horaDiaUpd,
-    updateHoraDia,
-    removeUserHoraDia,
+    // updateHoraDia,
+    // removeUserHoraDia,
     deleteHoraDiaActivity,
     diahoraActivity,
     deleteHoraDiaUser,
