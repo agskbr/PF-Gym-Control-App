@@ -1,5 +1,6 @@
 import axios from "axios";
 import swal from "sweetalert";
+import { getAllOrders } from "./actions-orders";
 import {
   GET_ALL_TRAINERS,
   RECEIVED_POST,
@@ -56,6 +57,7 @@ const createTrainer = (trainer) => {
   };
 };
 
+
 const editTrainer = (trainer, trainerId, activitiesIds) => {
   return async (dispatch) => {
     await axios.put(`${BASE_URL}/trainer/${trainerId}`, trainer);
@@ -64,6 +66,7 @@ const editTrainer = (trainer, trainerId, activitiesIds) => {
         dispatch(addTrainerToActivity(trainerId, activityId));
       }
     });
+    dispatch(getAllTrainers());
   };
 };
 
