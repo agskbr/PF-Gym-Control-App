@@ -15,7 +15,6 @@ function App() {
   useEffect(() => {
     dispatch(requestUserLogin());
     dispatch(validateUserIsLogged());
-    dispatch(getAllDescuentos());
   }, [dispatch]);
 
   return (
