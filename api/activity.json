@@ -6,7 +6,7 @@
         "video": "https://youtu.be/ehVlA74NLz0",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-bodycombat.jpg.webp",
         "price": 200,
-        "trainers":["Juanse","Yani"]
+        "trainers":["Agus","Gusta"]
         
     },
     {
@@ -16,7 +16,7 @@
         "video": "https://youtu.be/5IEL9iMVCxM",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-gap.jpg.webp",
         "price": 300,
-        "trainers":["Juanse","Yani"]
+        "trainers":["Juanse","Juani"]
     },
     {
         "id": 3,
@@ -25,7 +25,7 @@
         "video": "https://youtu.be/lFe97uu3FEQ?t=10",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-pilates.jpg.webp",
         "price": 250,
-        "trainers":["Juanse","Yani"]
+        "trainers":["Euge","Yani"]
     },
     {
         "id": 4,
@@ -34,7 +34,7 @@
         "video": "https://youtu.be/1aThW3QKKCY",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-bodypump.jpg.webp",
         "price": 300,
-        "trainers":["Juanse","Yani"]
+        "trainers":["Santi","Mati"]
     },
     {
         "id": 5,
@@ -43,7 +43,7 @@
         "video": "https://youtu.be/Rxd9pDZqZcU",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-yoga.jpg.webp",
         "price": 200,
-        "trainers":["Juanse","Yani"]
+        "trainers":["Euge","Yani"]
     },
     {
         "id": 6,
@@ -52,7 +52,7 @@
         "video": "https://youtu.be/vYXRZNVVFVA",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-zumba.jpg.webp",
         "price": 200,
-        "trainers":["Juanse","Yani"]
+        "trainers":["Gusta","Yani"]
     },
 
     {   "id": 7,
@@ -61,7 +61,7 @@
         "video": "https://youtu.be/Scf3ZcxG1zc",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-trx.jpg.webp",
         "price": 200,
-        "trainers":["Juanse","Yani"]
+        "trainers":["Mati","Santi"]
     },
 
     {   "id": 8,
@@ -70,7 +70,7 @@
         "video": "https://youtu.be/IPF6VPSRNCY",
         "image": "https://time2feat.com/wp-content/uploads/2019/11/mejores-clases-colectivas-gimnasio-en-grupo-ejercicio-entrenamiento-efectivas-cardiobox.jpg.webp",
         "price": 300,
-        "trainers":["Juanse","Yani"]
+        "trainers":["Agus","Juanse"]
     },
     {
         "id": 9,

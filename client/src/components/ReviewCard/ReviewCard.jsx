@@ -15,7 +15,7 @@ export default function ReviewCard({ rating, description, id }) {
     <article className={s.reviewCardContainer}>
       <img src={user.image} alt={user.name} className={s.reviewCardImg} />
       <div className={s.reviewCardText}>
-        <h2 className={s.reviewCardName}>{user.name}</h2>
+        <h2 className={s.reviewCardName}>{user.name} {user.lastName}</h2>
         <div className={s.reviewCardDesc}>
           <span className={s.reviewCardRating} title={`${rating} out of 5`}>
             <ReactStars

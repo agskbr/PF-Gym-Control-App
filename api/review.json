@@ -1,7 +1,7 @@
 [
     {
         "rating": "3",
-        "description": "pilates.. muy buena la actividad de hacer pilates",
+        "description": "Pilates: Muy buena la actividad de hacer pilates 😘",
         "userId": "10",
         "activityId":"3"
     },
@@ -9,56 +9,56 @@
     
     {
         "rating": "5",
-        "description": "muy buena actividad. 10/10",
+        "description": "Pilates: muy buena actividad. 10/10",
         "userId": "7",
         "activityId":"3"
     },
 
     {
         "rating": "1",
-        "description": "gap, no esperaba mucho pero igual logro decepcionarme.",
+        "description": "Gap: No esperaba mucho pero igual logro decepcionarme 😣.",
         "userId": "3",
         "activityId":"2"
     },
 
     {
         "rating": "4",
-        "description": "de apoco me va fortaleciendo el body",
+        "description": "Body Pum: De apoco me va fortaleciendo el body",
         "userId": "13",
         "activityId":"4"
     },
 
     {
         "rating": "3",
-        "description": "yoga muy buena actividad.",
+        "description": "Yoga: muy buena actividad.",
         "userId": "4",
         "activityId":"5"
     },
 
     {
         "rating": "5",
-        "description": "de a poco voy quedando como la roca.",
+        "description": "BodyCombat: De a poco voy quedando como la roca.",
         "userId": "5",
-        "activityId":"2"
+        "activityId":"1"
     },
 
     {
         "rating": "3",
-        "description": "no esta mal.",
+        "description": "BodyCombat: No esta mal para la primer clase.",
         "userId": "15",
         "activityId":"1"
     },
 
     {
         "rating": "2",
-        "description": "La clase estuvo muy buena pero la musica muy alta.",
+        "description": "Gap: La clase estuvo muy buena pero la musica muy alta.",
         "userId": "6",
         "activityId":"2"
     },
 
     {
         "rating": "5",
-        "description": "La profe de pilates es una genia.",
+        "description": "Pilates: La profe de pilates es una genia.",
         "userId": "16",
         "activityId":"3"
     },
@@ -72,112 +72,112 @@
 
     {
         "rating": "5",
-        "description": "Me revento el profesor. espero llegar a mi objetivo de 75 kilos",
+        "description": "Body Pump: Me revento el profesor. espero llegar a mi objetivo de 75 kilos",
         "userId": "6",
         "activityId":"4"
     },
 
     {
         "rating": "4",
-        "description": "La clase es muy divertida, vale la pena terminar reventado.",
+        "description": "Body Pump: La clase es muy divertida, vale la pena terminar reventado.",
         "userId": "8",
         "activityId":"4"
     },
 
     {
         "rating": "2",
-        "description": "Me quede dormida, muy mala la clase.",
+        "description": "Yoga: Me quede dormida 🥱, muy mala la clase.",
         "userId": "12",
         "activityId":"5"
     },
 
     {
         "rating": "5",
-        "description": "Es lo que esperaba, estoy muy conforme precio calidad.",
+        "description": "Zumba: Es lo que esperaba, estoy muy conforme precio calidad.",
         "userId": "10",
-        "activityId":"5"
+        "activityId":"6"
     },
 
     {
         "rating": "1",
-        "description": "El profesor es muy gordito y no se mueve.",
+        "description": "Zumba: El profesor es muy gordito 🍩 y no se mueve.",
         "userId": "11",
         "activityId":"6"
     },
 
     {
         "rating": "4",
-        "description": "Muy divertida la clase, los profes unos genios.",
+        "description": "TRX: Muy divertida la clase, los profes unos genios.",
         "userId": "12",
-        "activityId":"6"
-    },
-
-    {
-        "rating": "2",
-        "description": "Se rompio la cinta, muy mala calidad.",
-        "userId": "13",
-        "activityId":"8"
-    },
-
-    {
-        "rating": "4",
-        "description": "Muy bueno los ejercicios, pronto volvere para seguir mi entrenamiento.",
-        "userId": "15",
         "activityId":"7"
     },
 
     {
+        "rating": "2",
+        "description": "TRX: Se rompio la cinta, muy mala calidad.",
+        "userId": "13",
+        "activityId":"7"
+    },
+
+    {
+        "rating": "4",
+        "description": "CardioBox: Muy bueno los ejercicios, pronto volvere para seguir mi entrenamiento.",
+        "userId": "15",
+        "activityId":"8"
+    },
+
+    {
         "rating": "1",
-        "description": "El profesor es muy bruto, casi me pega una trompada",
+        "description": "CardioBox: El profesor es muy bruto, casi me pega una trompada 🥊",
         "userId": "7",
         "activityId":"8"
     },
 
     {
         "rating": "5",
-        "description": "Es excelente para principiantes, los profes muy copados.",
+        "description": "CardioBox: Es excelente para principiantes, los profes muy copados.",
         "userId": "8",
         "activityId":"8"
     },
     
     {
         "rating": "4",
-        "description": "Excelente la musica para los entrenamientos.",
+        "description": "BodyPump: Muy copada la musica para los entrenamientos.",
         "userId": "16",
-        "activityId":"8"
+        "activityId":"1"
     },
 
     {
         "rating": "1",
-        "description": "Pocas maquinas para hacer piernas, tienen que mejorar.",
+        "description": "Maquinas: Pocas maquinas para hacer piernas, tienen que mejorar.",
         "userId": "11",
         "activityId":"9"
     },
 
     {
         "rating": "2",
-        "description": "Muy poco seguimiento de parte de los profesores.",
+        "description": "Maquinas: Muy poco seguimiento de parte de los profesores.",
         "userId": "5",
         "activityId":"9"
     },
 
     {
         "rating": "5",
-        "description": "Excelente rutinas, la verdad que se hace mover.",
+        "description": "Zumba: Excelente rutinas, la verdad que se hace mover.",
         "userId": "14",
         "activityId":"6"
     },
 
     {
         "rating": "5",
-        "description": "La verdad que vale la pena pagar esta clase.",
+        "description": "Pilates: La verdad que vale la pena pagar esta clase.",
         "userId": "8",
         "activityId":"3"
     },
 
     {
         "rating": "4",
-        "description": "Recomiento al 100% esta clase, no queres que se termine.",
+        "description": "Gap: Recomiento al 100% esta clase, no queres que se termine 😍",
         "userId": "4",
         "activityId":"2"
     }
