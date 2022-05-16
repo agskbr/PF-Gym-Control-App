@@ -29,7 +29,6 @@ export function descuentoReducer(state = initialState, action) {
                 descuentos: [action.payload]
             };
         case GET_ALL_DESCUENTOS:
-            console.log ("action.payload", action.payload);
             return {
                 ...state,
                 descuentos: action.payload

@@ -26,7 +26,7 @@ return (
                         steps={[
                         {
                             id: '1',
-                            message: 'Que onda, en que te puedo ayudar?',
+                            message: 'Buenos dias, en que te puedo ayudar?',
                             trigger: '2',
                         },
                         {
@@ -39,17 +39,17 @@ return (
                         },
                         {
                             id: '3',
-                            message: 'Disculpa mostro, no te puedo ayudar en eso',
+                            message: 'Mi regalo es recomendarte las clases de Body Pump con La Roca',
                             trigger: '2',
                         },
                         {
                             id: '4',
-                            message: 'Proximamente (:',
+                            message: 'Hoy es tu dia de suerte, tenemos un descuento del 10% en todas las clases, ingresa este codigo en tu carrito de compras: GYM_POWER2022',
                             trigger: '2',
                         },
                         {
                             id: '5',
-                            message: 'Me ofendes, pero anota crack: +5411257896',
+                            message: 'Me ofendes, pero anota: +5411257896',
                             trigger: '2',
                         },
                         ]}

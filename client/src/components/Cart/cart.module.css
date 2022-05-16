@@ -88,6 +88,10 @@ link {
     text-decoration: none;
 }
 
+.descuento input{
+    text-align: center;
+}
+
 
 @media (max-width: 62em) {
     .cleanCart{

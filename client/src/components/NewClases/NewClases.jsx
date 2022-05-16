@@ -22,12 +22,8 @@ const Clases = () => {
 const dispatch = useDispatch();
 const allActivities = useSelector((state) => state.pgym.allActivities);
 let [detailClass, setDetailClass] = useState("detail-closed");
+let [botClass, setBotClass] = useState("bot-closed");
 
-function openOrClosed (id) {
-    console.log("Estoy en el handle");
-    console.log(id);
-
-}
 
 
 
@@ -61,6 +57,11 @@ useEffect(() => {
 
 /* dispatch (getAllDescuentos()); */
 
+function handleBotClick () {
+    if (botClass === 'bot-closed') setBotClass('bot-open')
+    if (botClass === 'bot-open') setBotClass('bot-closed')
+}
+
 return (
 
     <div className={style.container}>
@@ -80,8 +81,11 @@ return (
                 <div id='close' className={style.buttonCloseDetail} onClick={handleDetailClick}></div>
             </div>
 
-            <div className={style.chat}>
-               {/*  <PowerChat /> */}
+            <div className={botClass}>
+                <PowerChat />
+            </div>
+            <div className={style.bot} onClick={handleBotClick} >
+                BOT
             </div>
 
     </div>
