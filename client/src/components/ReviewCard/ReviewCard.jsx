@@ -18,14 +18,14 @@ export default function ReviewCard({ rating, description, id, name,}) {
       <img src={user.image} alt={user.name} className={s.reviewCardImg} />
       <div className={s.reviewCardText}>
         <h2 className={s.reviewCardName}>{user.name} {user.lastName}</h2>
-        <h4 className={s.reviewCardActivity}>{activities.name}</h4>
+        <h4 className={s.reviewCardActivity}>{activities?.name}</h4>
         <div className={s.reviewCardDesc}>
           <span className={s.reviewCardRating} title={`${rating} out of 5`}>
             <ReactStars
               name="rating"
               edit={false}
-              value={rating}
-              onStarClick={() => null}
+              value={parseFloat(rating)}
+              onStarClick={false}
             />
           </span>
         </div>
