@@ -2,7 +2,7 @@ const { Router } = require('express');
 const router = Router();
 const { orderlineByOrderId } = require("../Controllers/Orderline");
 const { orderFilterId } = require("../Controllers/Order");
-const { getUserId } = require("../Controllers/User");
+const { getUserId2 } = require("../Controllers/User");
 const{ 
     allHoraDia,
     allHoraDiaUser,
@@ -23,10 +23,10 @@ router.put('/addStock', async (req, res,)=> {
     let { orderId } = req.body;
     try {
         const orderline = await orderlineByOrderId(orderId);
-        console.log(orderline)
+        // console.log(orderline)
         const order = await orderFilterId(orderId)
-        console.log(order)
-        const user = await getUserId(order.userId)
+        console.log(order.userId)
+        const user = await getUserId2(order.userId)
         console.log(user)
         await orderline.forEach(async element => {
             const diaHora = await horaDiaId(element.diaHoraId);
@@ -37,8 +37,8 @@ router.put('/addStock', async (req, res,)=> {
             await diaHora.save();
             const resp = await deleteHoraDiaUser(order.userId, element.diaHoraId)
             resp ? 
-            console.log(`Relación del diaHora (id: ${diaHora.id}) con el usuario ${user.name} eliminada`) :
-            console.log('Relacion no hecha')
+            console.log(`Relación del diaHora (id: ${diaHora.id}) con el usuario ${user.name} ${user.lastName} eliminada`) :
+            console.log('Relacion no eliminada')
         });
         res.send("stock restaurado y relaciones eliminadas")
     } catch (error) {

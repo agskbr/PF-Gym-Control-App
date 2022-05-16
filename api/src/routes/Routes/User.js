@@ -7,7 +7,7 @@ const {
   userUpd,
   getUserId,
   userDelete,
-  userIsAdmin,
+  userIsAdmin
 } = require("../Controllers/User");
 
 //recibe un UID o un Id del usuario y la propiedad isAdmin del usuario encontrado
