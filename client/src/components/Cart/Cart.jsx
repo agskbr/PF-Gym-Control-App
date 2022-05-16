@@ -104,7 +104,7 @@ export default function Cart(activity) {
             <CartItem
               key={index}
               data={item}
-              removeFromCart={() => dispatch(removeFromCart(item.name))}
+              removeFromCart={() => dispatch(removeFromCart(item.dayHourId))}
             />
           ))}
         </div>

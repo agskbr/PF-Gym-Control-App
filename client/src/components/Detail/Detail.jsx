@@ -51,7 +51,7 @@ export default function Detail() {
     //console.log(capacity);
     /* setIdToCart(horariosFiltered ? horariosFiltered[0].id : 0);*/
     //console.log()
-    console.log(detail)
+   /*  console.log(detail) */
   }
 
   const horarios = detail.diaHoras;

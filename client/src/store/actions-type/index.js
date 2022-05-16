@@ -49,6 +49,14 @@ const GET_USER_BY_UID = "GET_USER_BY_UID";
 const EDIT_USER = "EDIT_USER";
 
 
+//DESCUENTOS
+export const GET_DESCUENTO = "GET_DESCUENTO";
+export const ADD_DESCUENTO = "ADD_DESCUENTO";
+export const MOD_DESCUENTO = "MOD_DESCUENTO";
+//-----------------
+
+
+
 export {
   CREATE_ACTIVITY,
   REQUEST_POST,
