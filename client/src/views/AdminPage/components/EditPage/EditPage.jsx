@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import {
-  createDayAndHour,
-  editActivity,
-} from "../../../../store/actions/index.js";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { editUser } from "../../../../store/actions/actions-user.js";
+import { editActivity } from "../../../../store/actions/index.js";
 import { validateForm } from "../../../../utils/validateForm.js";
 import CustomInput from "../CustomInput/CustomInput.jsx";
 import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
 import style from "./EditPage.module.css";
+import { useNavigate } from "react-router-dom";
+import { modDescuento } from "../../../../store/actions/actions-descuentos.js";
 
 export default function EditPage() {
   const { trainers, activities, daysAndHours, users } = useSelector(
     (state) => state.pgym
   );
+
+  const navigate = useNavigate();
 
   const trainersOpt = trainers;
 
@@ -92,21 +94,41 @@ export default function EditPage() {
           input !== "status" &&
           input !== "day" &&
           input !== "trainers" &&
+          input !== "notifications" &&
           input !== "updatedAt" &&
           input !== "createdAt" &&
           input !== "createdInDb" &&
           input !== "hour" ? (
-            <CustomInput
-              disabled={disabledUserInputs(type, input)}
-              key={input}
-              labelError={errors[input]}
-              name={input}
-              onChange={handlerChange}
-              value={inputs[input] ?? ""}
-              placeholder={input}
-              titleInput={input}
-              type="text"
-            />
+            input === "isAdmin" ? (
+              <div key={input} className={style.adminQuestion}>
+                <span>¿Este usuario es admin?</span>
+                <input
+                  name={input}
+                  disabled={inputs.name === "Admin"}
+                  type="checkbox"
+                  checked={inputs.isAdmin}
+                  value={inputs.isAdmin}
+                  onChange={(e) =>
+                    setInputs((state) => ({
+                      ...state,
+                      [e.target.name]: !state[input],
+                    }))
+                  }
+                />
+              </div>
+            ) : (
+              <CustomInput
+                disabled={disabledUserInputs(type, input)}
+                key={input}
+                labelError={errors[input]}
+                name={input}
+                onChange={handlerChange}
+                value={inputs[input] ?? ""}
+                placeholder={input}
+                titleInput={input}
+                type="text"
+              />
+            )
           ) : input === "experience" || input === "description" ? (
             <div key={input} className={style.textAreaContainer}>
               <span>
@@ -160,6 +182,7 @@ export default function EditPage() {
         </div>
         <div className={style.buttonsContainer}>
           <button
+            disabled={Object.values(errors).length !== 0}
             onClick={() => {
               setErrors(validateForm(inputs, type));
               if (Object.values(errors).length === 0) {
@@ -191,11 +214,21 @@ export default function EditPage() {
                   );
                 }
                 if (type === "Usuarios") {
-                  // dispatch();
+                  dispatch(
+                    editUser(id, {
+                      isAdmin: inputs.isAdmin,
+                      image: inputs.image,
+                      activities: inputs.activities,
+                    })
+                  );
                 }
                 if (type === "Instructores") {
                   // dispatch();
                 }
+                if (type === "Descuentos") {
+                  dispatch(modDescuento({ ...inputs }, id));
+                }
+                navigate("/admindashboard", { replace: true });
               }
             }}
             className={
