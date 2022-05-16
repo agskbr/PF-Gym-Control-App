@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import s from "./ReviewCard.module.css";
 import ReactStars from "react-rating-stars-component";
 // import {getAllUsers} from '../../store/actions/index'
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 
 export default function ReviewCard({ rating, description, id, name,}) {
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.pgym.users);
   const allActivities = useSelector((state) => state.pgym.allActivities);
 
