@@ -16,7 +16,7 @@
   background-color: whitesmoke;
   width: 280px;
   margin-top: 10px;
-  
+
   padding: 10px;
   font-family: sans-serif;
   border-radius: 5px;
@@ -28,7 +28,7 @@
   align-items: flex-start;
   flex-direction: column;
 }
-.inputContainer label {
+.inputContainer .titleInput {
   color: red;
   text-align: start;
   font-family: sans-serif;

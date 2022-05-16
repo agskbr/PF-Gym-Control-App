@@ -10,12 +10,13 @@ export default function CustomInput({
   type,
   labelError,
   min,
+  max,
   titleInput,
 }) {
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
   return (
     <div className={style.inputContainer}>
-      <span>{titleInput}</span>
+      <span className={style.titleInput}>{titleInput}</span>
       {name === "phoneNumber" ? (
         <div className={style.phoneInput}>
           <span>+54</span>
@@ -23,6 +24,7 @@ export default function CustomInput({
         </div>
       ) : (
         <input
+          max={max}
           disabled={disabled}
           onChange={onChange}
           className={style.customInput}
@@ -33,7 +35,7 @@ export default function CustomInput({
               ? isVisiblePassword
                 ? "text"
                 : "password"
-              : "text"
+              : type
           }
           placeholder={placeholder}
           min={min}
