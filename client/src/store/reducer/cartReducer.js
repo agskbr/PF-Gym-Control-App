@@ -64,7 +64,7 @@ export function cartReducer(state = initialState, action) {
 
             if (itemInCart) {
                 itemInCart.quantity += 1;
-                itemInOrder.quantity += 1;
+                itemInOrder.count += 1;
                 itemInOrderLine.quantity += 1;
                 itemInOrderLine.subtotal = ((itemInOrderLine.unitprice * itemInOrderLine.quantity));
                 return {
@@ -80,7 +80,7 @@ export function cartReducer(state = initialState, action) {
                     order: [...state.order, {
                         name: action.payload.activity.name,
                         price: action.payload.activity.price,
-                        quantity: 1 
+                        count: 1 
                       }],
                     orderLine: [...state.orderLine, {
                         activityId: action.payload.activity.id,
