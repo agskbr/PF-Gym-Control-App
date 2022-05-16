@@ -46,7 +46,7 @@ export default function Checkout(activity) {
  */
     
     const usuarioName = state.login.user.displayName;
-    
+    const userEmail = useSelector(state => state.login.user.email);
   
 
     // Validacion de usuario
@@ -80,18 +80,18 @@ export default function Checkout(activity) {
             /* let check = {state:'Processing', totalPrice: totalCart}
             await axios.post(BASE_URL + '/order/', check); */
                                                 //userID
-            let email = {
+           /*  let email = {
                 user: {
                     name: name,
                     lastname: lastname,
-                    email: user.email
+                    email: userEmail    
                 },
                 info: {
                     orderId: idCart,
                     totalPrice: totalCart
                 }
             }
-            let resEmail = await axios.post(BASE_URL +'/email/orderCreated', email)
+            let resEmail = await axios.post(BASE_URL +'/email/orderCreated', email) */
             //! --------------------------------------------------------
 
 //name

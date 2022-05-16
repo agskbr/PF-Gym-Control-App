@@ -21,16 +21,41 @@ export function getDescuento(codigoDescuento) {
 }
 
 
-export function addDescuento(payload) {
-    return async function (dispatch) {
-        const descuentoSend{
-            descuento : payload.descuento,
-
-
-        }
+export function getAllDescuento() {
+    return async function () {
         try {
-            const product = await axios.post(`${BASE_URL}/descuento/`, payload);
-           
+            const descuentos = await axios.get(`${BASE_URL}/descuento/all`);
+            return descuentos;
+        } catch (err) {
+            console.log(err);
+        }
+    };
+}
+
+export function addDescuento(descuento) {
+    const descuentoToCreate = {
+        codigo: descuento.codigo,
+        descuento: descuento.descuento
+    };
+    return async function () {
+        try {
+            const descuentoCreado = await axios.post(`${BASE_URL}/descuento/`, descuentoToCreate);
+            return descuentoCreado;
+        } catch (err) {
+            console.log(err);
+        }
+    };
+}
+
+export function modDescuento(descuento, id) {
+    const descuentoToUpdate = {
+        codigo: descuento.codigo,
+        descuento: descuento.descuento
+    };
+    return async function () {
+        try {
+            const descuentoModificado = await axios.put(`${BASE_URL}/descuento/`+ id , descuentoToUpdate);
+            return descuentoModificado;
         } catch (err) {
             console.log(err);
         }
