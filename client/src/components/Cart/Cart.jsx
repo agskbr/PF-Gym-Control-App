@@ -1,8 +1,10 @@
+import "./style.css"
 import s from "./cart.module.css";
 import axios from "axios";
 import { BASE_URL } from "../../store/constantes";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../CartItem/CartItem";
+import { useState } from 'react';
 import {
   addToCart,
   removeFromCart,
@@ -17,9 +19,12 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 export default function Cart(activity) {
   const state = useSelector((state) => state);
   const orderLine = useSelector((state)=>state.cart.orderLine)
+  const discountCode = useSelector((state)=>state.descuentos.descuentos[0].codigo); 
   const dispatch = useDispatch();
   const { cart, products } = state.cart;
   const { user } = state.login;
+  const [validarClass, setValidarClass] = useState("validar-red");
+  const [total, setTotal] = useState(0);
 
   //console.log(orderLine)
   /* 
@@ -94,6 +99,18 @@ export default function Cart(activity) {
     }
     
   }
+   
+  const totalCart = ( cart.reduce((total, item) => total + item.price * item.quantity, 0))
+  
+
+  
+  const getValueInput = () =>{
+    let inputValue = document.getElementById("descuento").value; 
+    if (inputValue === discountCode){
+    setValidarClass("validar-green");
+    setTotal(totalCart * 0.1);
+    }
+  }
 
   return (
     <div className={s.container}>
@@ -104,7 +121,7 @@ export default function Cart(activity) {
             <CartItem
               key={index}
               data={item}
-              removeFromCart={() => dispatch(removeFromCart(item.name))}
+              removeFromCart={() => dispatch(removeFromCart(item.dayHourId))}
             />
           ))}
         </div>
@@ -118,10 +135,13 @@ export default function Cart(activity) {
 
       <div className={s.cartFinal}></div>
 
+      <div className={s.descuento}>Codigo de descuento: <br/><input type="text" id="descuento" /></div>
+      <button className={validarClass} onClick={getValueInput}>Validar</button>
+
       <div className={s.total}>
         <h4>
           Total: $
-          {cart.reduce((total, item) => total + item.price * item.quantity, 0)}
+          {totalCart - total}
         </h4>
       </div>
       

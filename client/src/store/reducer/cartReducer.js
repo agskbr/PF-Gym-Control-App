@@ -56,14 +56,16 @@ export function cartReducer(state = initialState, action) {
             //console.log(state.orderLine);
             
             let itemInCart = state.cart?.find(item => item.dayHourId === action.payload.id );
+            console.log(action.payload)
             let itemInOrder = state.order?.find(item => item.name === action.payload.activity.name);
-            let itemInOrderLine = state.orderLine?.find(item => item.activityId === action.payload.activity.id);
+            let itemInOrderLine = state.orderLine?.find(item => item.diaHoraId === action.payload.id);
+            console.log(itemInOrderLine)
             /* console.log(state.cart);
             console.log(itemInCart); */
 
             if (itemInCart) {
                 itemInCart.quantity += 1;
-                itemInOrder.quantity += 1;
+                itemInOrder.count += 1;
                 itemInOrderLine.quantity += 1;
                 itemInOrderLine.subtotal = ((itemInOrderLine.unitprice * itemInOrderLine.quantity));
                 return {
@@ -79,7 +81,7 @@ export function cartReducer(state = initialState, action) {
                     order: [...state.order, {
                         name: action.payload.activity.name,
                         price: action.payload.activity.price,
-                        quantity: 1 
+                        count: 1 
                       }],
                     orderLine: [...state.orderLine, {
                         activityId: action.payload.activity.id,
@@ -102,7 +104,9 @@ export function cartReducer(state = initialState, action) {
                                     cart: [...state.cart, {...action.payload, quantity: 1}]}; */
 
         case REMOVE_ONE_FROM_CART:
-            let itemInCartToDel = state.cart.find(item => item.name === action.payload);
+            let itemInCartToDel = state.cart?.find(item => item.dayHourId === action.payload );
+            console.log (itemInCartToDel)
+            console.log(action.payload)
             let idOfItem = state.cart.find(item => item.name === action.payload);
 
 
@@ -110,25 +114,25 @@ export function cartReducer(state = initialState, action) {
                       
               itemInCartToDel.quantity > 1 ? {...state,
                                 cart: state.cart.map(item =>
-                                item.name === action.payload
+                                item.dayHourId === action.payload
                                 ? {...item, quantity: item.quantity - 1}
                                 : item
                                 ),
                                 order: state.order.map(item =>
-                                  item.name === action.payload
+                                  item.dayHourId === action.payload
                                   ? {...item, quantity: item.quantity - 1}
                                   : item
                                   ),
                                 orderLine: state.orderLine.map(item =>
-                                    item.activityId === idOfItem.id
+                                    item.dayHourId === action.payload
                                     ? {...item, quantity: item.quantity - 1, subtotal: item.unitprice * (item.quantity - 1)}
                                     : item
                                     ),
                               } : {
                                     ...state,
-                                    cart: state.cart.filter(item => item.name !== action.payload),
-                                    order: state.order.filter(item => item.name !== action.payload),
-                                    orderLine: state.orderLine.filter(item => item.activityId !== action.payload),
+                                    cart: state.cart.filter(item => item.dayHourId !== action.payload),
+                                    order: state.order.filter(item => item.dayHourId !== action.payload),
+                                    orderLine: state.orderLine.filter(item => item.dayHourId !== action.payload),
                                   }
                                   )
        
