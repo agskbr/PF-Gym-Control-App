@@ -13,7 +13,7 @@ export default function Nav() {
   const [headerClass, setHeaderClass] = useState("header");
   const [mobileNav, setMobileNav] = useState(false);
 
-  const { user } = useSelector((state) => state.login);
+  const { user, isAdmin } = useSelector((state) => state.login);
 
   function handleOpen(event) {
     event.preventDefault();
@@ -79,7 +79,7 @@ export default function Nav() {
         <ul className="main-nav-list">
           <li>
             <a className="main-nav-link" href="/login">
-              {user ? "Panel de socio" : "Login"}
+              {user ? (isAdmin ? "Panel de admin" : "Panel de socio") : "Login"}
             </a>
           </li>
           <li>
