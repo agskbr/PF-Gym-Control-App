@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 import {
   RECEIVED_POST,
   GET_ALL_ORDERS,
@@ -37,16 +38,32 @@ const getAllOrdersByUser = (id) => {
 const cancelOrder = (orderId) => {
   return async (dispatch) => {
     try {
-      await axios.put(`${BASE_URL}/order/canceled/${orderId}`);
-      const clearPaso2 = { orderId };
-      const response2 = await axios.put(
-        `${BASE_URL}/diahora/addStock`,
-        clearPaso2
-      );
-      console.log(response2);
-      dispatch(getAllOrders());
+      const value = await swal({
+        title: "¿Seguro quieres cancelar esta orden?",
+        buttons: {
+          cancel: "No estoy seguro",
+          catch: {
+            text: "Si, estoy seguro",
+            value: "Borrar",
+          },
+        },
+      });
+      if (value) {
+        await axios.put(`${BASE_URL}/order/canceled/${orderId}`);
+        swal({
+          title: "Orden cancelada correctamente",
+          icon: "success",
+          buttons: "Aceptar",
+        });
+        dispatch(getAllOrders());
+      }
     } catch (error) {
       console.log(error);
+      swal({
+        title: "Algo salió mal al cancelar la orden",
+        icon: "error",
+        buttons: "Aceptar",
+      });
     }
   };
 };

@@ -20,7 +20,14 @@ export default function CustomInput({
       {name === "phoneNumber" ? (
         <div className={style.phoneInput}>
           <span>+54</span>
-          <input type={type} />
+          <input
+            value={value}
+            disabled={disabled}
+            name={name}
+            onChange={onChange}
+            placeholder={name}
+            type={"tel"}
+          />
         </div>
       ) : (
         <input
@@ -39,7 +46,6 @@ export default function CustomInput({
           }
           placeholder={placeholder}
           min={min}
-          prefix={"Hola"}
         />
       )}
       {name === "password" ? (
@@ -57,7 +63,9 @@ export default function CustomInput({
           )}
         </div>
       ) : null}
-      <label htmlFor={name}>{labelError}</label>
+      <label className={style.errorLabel} htmlFor={name}>
+        {labelError}
+      </label>
     </div>
   );
 }

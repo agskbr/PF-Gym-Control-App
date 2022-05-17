@@ -72,7 +72,7 @@ export function cartReducer(state = initialState, action) {
             //console.log(state.orderLine);
             
             let itemInCart = state.cart?.find(item => item.dayHourId === action.payload.id );
-            console.log(action.payload)
+      
             let itemInOrder = state.order?.find(item => item.name === action.payload.activity.name);
             let itemInOrderLine = state.orderLine?.find(item => item.diaHoraId === action.payload.id);
             console.log(itemInOrderLine)
@@ -121,9 +121,8 @@ export function cartReducer(state = initialState, action) {
 
         case REMOVE_ONE_FROM_CART:
             let itemInCartToDel = state.cart?.find(item => item.dayHourId === action.payload );
-            console.log (itemInCartToDel)
-            console.log(action.payload)
-            let idOfItem = state.cart.find(item => item.name === action.payload);
+            let nameOfItem = itemInCartToDel.name;
+            console.log(nameOfItem);
 
 
             return (
@@ -135,20 +134,20 @@ export function cartReducer(state = initialState, action) {
                                 : item
                                 ),
                                 order: state.order.map(item =>
-                                  item.dayHourId === action.payload
-                                  ? {...item, quantity: item.quantity - 1}
+                                  item.name === nameOfItem
+                                  ? {...item, count: item.count - 1}
                                   : item
                                   ),
                                 orderLine: state.orderLine.map(item =>
-                                    item.dayHourId === action.payload
+                                    item.diaHoraId === action.payload
                                     ? {...item, quantity: item.quantity - 1, subtotal: item.unitprice * (item.quantity - 1)}
                                     : item
                                     ),
                               } : {
                                     ...state,
                                     cart: state.cart.filter(item => item.dayHourId !== action.payload),
-                                    order: state.order.filter(item => item.dayHourId !== action.payload),
-                                    orderLine: state.orderLine.filter(item => item.dayHourId !== action.payload),
+                                    order: state.order.filter(item => item.name !== nameOfItem),
+                                    orderLine: state.orderLine.filter(item => item.diaHoraId !== action.payload),
                                   }
                                   )
        

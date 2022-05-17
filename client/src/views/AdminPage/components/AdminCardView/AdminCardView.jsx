@@ -3,6 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import style from "./AdminCardView.module.css";
 import { Link } from "react-router-dom";
 import { FaBan, FaEdit } from "react-icons/fa";
+import {
+  getActivity,
+  getAllTrainers,
+  getAllUsers,
+  requestPost,
+  getAllDaysAndHours,
+} from "../../../../store/actions/index";
+import { getAllDescuentos } from "../../../../store/actions/actions-descuentos";
+import { getAllOrders } from "../../../../store/actions/actions-orders";
+import { MdRefresh } from "react-icons/md";
 import ExpansibleMenu from "../ExpansibleMenu/ExpansibleMenu";
 import { cancelOrder } from "../../../../store/actions/actions-orders";
 
@@ -47,6 +57,21 @@ export default function AdminCardView({ type }) {
   return (
     <div className={style.principalContainer}>
       <div className={style.titleAndAddBtn}>
+        <div className={style.refreshBtn}>
+          <MdRefresh
+            color="white"
+            size={35}
+            onClick={() => {
+              dispatch(requestPost());
+              dispatch(getAllUsers());
+              dispatch(getAllDaysAndHours());
+              dispatch(getAllTrainers());
+              dispatch(getActivity());
+              dispatch(getAllOrders());
+              dispatch(getAllDescuentos());
+            }}
+          />
+        </div>
         <h4>{type}</h4>
         {type !== "Ordenes" && type !== "Usuarios" ? (
           <button
@@ -158,15 +183,16 @@ export default function AdminCardView({ type }) {
                   return null;
                 })}
                 <td>
-                  {type === "Ordenes" ? (
+                  {type === "Ordenes" && el.state !== "Canceled" ? (
                     <FaBan
+                      className={style.cancelOrderBtn}
                       onClick={() => {
                         dispatch(cancelOrder(el.id));
                       }}
                       color="#fe4f22"
                       size={20}
                     />
-                  ) : (
+                  ) : type === "Ordenes" ? null : (
                     <Link
                       to={`/admindashboard/${type.toLowerCase()}/edit/${el.id}`}
                       state={{ displayArray, itemSelect: el }}

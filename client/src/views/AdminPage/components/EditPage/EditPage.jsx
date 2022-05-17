@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { editUser } from "../../../../store/actions/actions-user.js";
-import { editActivity, editTrainer } from "../../../../store/actions/index.js";
+import {
+  editActivity,
+  editDaysAndHours,
+  editTrainer,
+} from "../../../../store/actions/index.js";
 import { validateForm } from "../../../../utils/validateForm.js";
 import CustomInput from "../CustomInput/CustomInput.jsx";
 import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
@@ -92,13 +96,14 @@ export default function EditPage() {
           input !== "activities" &&
           input !== "diaHoras" &&
           input !== "status" &&
-          input !== "day" &&
+          input !== "users" &&
+          input !== "activityId" &&
+          input !== "activity" &&
           input !== "trainers" &&
           input !== "notifications" &&
           input !== "updatedAt" &&
           input !== "createdAt" &&
-          input !== "createdInDb" &&
-          input !== "hour" ? (
+          input !== "createdInDb" ? (
             input === "isAdmin" ? (
               <div key={input} className={style.adminQuestion}>
                 <span>¿Este usuario es admin?</span>
@@ -234,6 +239,9 @@ export default function EditPage() {
                     }
                   });
                   dispatch(editTrainer({ ...inputs }, id, activitiesIds));
+                }
+                if (type === "Dias y horas") {
+                  dispatch(editDaysAndHours({ ...inputs }, id));
                 }
                 if (type === "Descuentos") {
                   dispatch(modDescuento({ ...inputs }, id));
