@@ -70,10 +70,10 @@ export default function Perfil() {
             <div className={style.perfilUserName}>
               <div className={style.userImg}>
                 <img
-                  alt="user"
+                  // alt="user"
                   src={
-                    usuario.photoURL
-                      ? usuario.photoURL
+                    currentUser.photoURL
+                      ? currentUser.photoURL
                       : "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
                   }
                 />

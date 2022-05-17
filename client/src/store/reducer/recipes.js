@@ -19,7 +19,7 @@ const initialState ={
                 ...state,
                 recipes: action.payload.slice(0, 50),
                 orderedRecipes: action.payload.slice(0, 50),
-                currentPage: action.payload.slice(0,8)
+                currentPage: action.payload.slice(0,4)
             }
 
             
@@ -35,14 +35,14 @@ const initialState ={
                 return {
                   ...state,
                   orderedRecipes: state.recipes,
-                  currentPage: state.recipes.slice(0,8)
+                  currentPage: state.recipes.slice(0,4)
                 };
               }
             
             return {
                     ...state,
                     orderedRecipes: state.recipes.filter(recipe => recipe.diets.includes(action.payload)),
-                    currentPage: state.recipes.filter(recipe => recipe.diets.includes(action.payload)).slice(0,8)
+                    currentPage: state.recipes.filter(recipe => recipe.diets.includes(action.payload)).slice(0,4)
                 }
             
         case "CHANGE_PAGE":
@@ -50,7 +50,7 @@ const initialState ={
             console.log(action.payload)
             return {
                 ...state,
-                currentPage: state.orderedRecipes.slice((action.payload - 1) * 8,action.payload * 8)                        
+                currentPage: state.orderedRecipes.slice((action.payload - 1) * 4,action.payload * 4)                        
             };
 
             default:

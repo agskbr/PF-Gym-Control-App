@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
         },
         description: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         rating:{
             type: DataTypes.ENUM,

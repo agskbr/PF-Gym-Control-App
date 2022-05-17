@@ -4,7 +4,9 @@ const {
     reviewActivityId,
     reviewUserId,
     reviewUpdate,
-    allReviews
+    allReviews,
+    createRelation,
+    deleteRelation
 } = require('../Controllers/Review');
 
 
@@ -12,6 +14,29 @@ const {
 router.get('/all', async (req,res) => {
     const all_Reviews = await allReviews();
     res.json(all_Reviews);
+});
+
+//crear la relacino en tre usuario y la actividad
+router.post('/create', async (req, res) => {
+    try {
+        const { idUser, idActivity } = req.body
+        const response = await createRelation(idUser,idActivity);
+        res.json(response)
+    } catch (error) {
+        res.state(404).send(error)
+    }
+});
+
+//eliminar la relacion entre usuario y la actividad
+router.delete('/delete/:idUser/:idActivity', async (req, res) => {
+    try {
+        const { idUser, idActivity } = req.params
+        //console.log(idUser, idActivity)
+        const response = await deleteRelation(idUser,idActivity);
+        res.json(response)
+    } catch (error) {
+        res.state(404).send(error)
+    }
 });
 
 
@@ -61,13 +86,16 @@ router.get("/user/:id", async (req,res) => {
 router.put('/:id', async (req, res,) => {
     try{
     let id = req.params.id;
-    let activity  = req.body;
-    return(activity)
+    let review  = req.body;
     
-        const rew = await reviewUpdate(id,activity);
-        res.status(200).json(rew);
+    
+        const rew = await reviewUpdate(id,review);
+        rew?
+        res.send(rew) :
+        res.send("no se modifico review en el user")
     } catch (error) {
-        res.send(error)
+        res.status(404).send(error)
+        
     } 
     
 })
