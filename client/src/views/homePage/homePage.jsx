@@ -9,6 +9,7 @@ import PowerChat from "../../components/ChatBot/ChatBot";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getAllDescuentos } from "../../store/actions/actions-descuentos";
+import Footer from "../../components/Footer/Footer";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -30,6 +31,15 @@ export default function HomePage() {
         <Review />
       </div>
       <div>{/*  <PowerChat/> */}</div>
+      <div id="footer">
+        <Footer />
+      </div>
+
+      
+
+
+
     </div>
+    
   );
 }
