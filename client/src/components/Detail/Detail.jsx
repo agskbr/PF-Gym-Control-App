@@ -6,6 +6,7 @@ import { getActivityById } from "../../store/actions";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { addToCart, addToCart2 } from "../../store/actions/actionsCart";
+import swal from "sweetalert";
 
 export default function Detail() {
   const capa = useSelector((state) => state.pgym.capacity);
@@ -54,7 +55,17 @@ export default function Detail() {
    /*  console.log(detail) */
   }
 
-  const horarios = detail.diaHoras;
+  // function handleAddToCart(e) {
+  //   e.preventDefault();
+  //   if (capacidad === 0) {
+  //     swal("No hay cupos disponibles", "", "error");
+  //   } else {
+  //     dispatch(addToCart2(idToCart));
+  //     swal("Agregado al carrito", "", "success");
+  //   }
+  // }
+
+
 
   return (
     <div className={style.containerOpen}>
@@ -108,7 +119,7 @@ export default function Detail() {
           className={style.elbo}
           onClick={() => dispatch(addToCart(idToCart))}
         >
-          Add to cart
+          Agregar al carro
         </button>
       </div>
     </div>

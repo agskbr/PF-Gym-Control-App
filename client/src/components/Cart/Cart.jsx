@@ -130,8 +130,8 @@ export default function Cart(activity) {
       icon: "warning",
       buttons: ["Cancelar", "Vaciar"],
       dangerMode: true,
-    }).then((vaciar) => {
-      if (vaciar) {
+    }).then((Vaciar) => {
+      if (Vaciar) {
         dispatch(clearCart());
         swal({
           title: "Carrito vaciado",
@@ -162,8 +162,8 @@ export default function Cart(activity) {
       icon: "warning",
       buttons: ["Cancelar", "Confirmar"],
       dangerMode: true,
-    }).then((confirmar) => {
-      if (confirmar) {
+    }).then((Confirmar) => {
+      if (Confirmar) {
         <Link to="/checkout"/>
         checkout(user);
       }
@@ -210,13 +210,18 @@ export default function Cart(activity) {
         <h4>Total: ${totalCart}</h4>
       </div>
 
-      {/* <Link to="/checkout"> */}
+       <Link to="/checkout"> }
         <div className={s.dispatchContainer}>
           <button onClick={() => 
             alertaCheckout()}>
           Finalizar la compra </button>
         </div>
-      {/* </Link> */}
+      </Link> 
     </div>
   );
 }
+
+
+
+
+
