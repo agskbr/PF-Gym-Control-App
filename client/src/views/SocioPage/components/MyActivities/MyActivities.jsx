@@ -18,6 +18,9 @@ export default function MyActivities() {
   const allOrders = useSelector((state)=> state.pgym.orders); //ordenes de compra --> id orden (18)
   console.log("orders", allOrders)
 
+  const ultima = allOrders[allOrders.length-1]
+  console.log("ultima", ultima)
+
  
    
   useEffect(()=> {
@@ -28,10 +31,6 @@ export default function MyActivities() {
     dispatch(getAllOrdersByUser(id))
   },[dispatch, id])
 
- useEffect(()=>{
- 
- },[])
-
 
 
   return (
@@ -40,15 +39,15 @@ export default function MyActivities() {
           <h1>Mis actividades</h1>
           <div>
            {
-             allOrders?.map((orden)=>(
+             ultima?(
                
                <Activity
-               key={orden.id}
-               orderId={orden.id}
+               key={id}
+               orderId={id}
                
                />
                
-             ))
+             ): <></>
              
             } 
         </div>
