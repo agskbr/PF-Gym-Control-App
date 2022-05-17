@@ -81,9 +81,9 @@ const allReviews = async () => {
 const createRelation = async (idUser,idActivity) => {
     try {
         var user = await User.findByPk(idUser);
-        console.log(user)
+        //console.log(user)
         var activity = await Activity.findByPk(idActivity);
-        console.log(activity)
+        //console.log(activity)
         if (user && activity) {
             await activity.addUser(user);
             return true

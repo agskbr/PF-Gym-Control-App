@@ -5,6 +5,7 @@ import { BASE_URL } from "../../store/constantes";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../CartItem/CartItem";
 import { useState } from "react";
+import swal from "sweetalert";
 import {
   addToCart,
   removeFromCart,
@@ -73,6 +74,7 @@ export default function Cart(activity) {
           orderId: info.orderId,
           subtotal: element.subtotal,
         };
+        console.log(element.subtotal)
         axios.put(`${BASE_URL}/order/sumaTotal`, infoPaso5);
         const infoPaso6 = {
           idUser:data2.data.id,

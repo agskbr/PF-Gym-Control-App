@@ -20,8 +20,8 @@ router.post('/checkout', async (req, res,) => {
         
         const orderline = await createOrderline(unitprice, subtotal, quantity, orderId, activityId,diaHoraId);
         
-        const diaHoraRelacionado = await useraddDiaHora(userId,diaHoraId)
-        console.log(diaHoraRelacionado)
+        await useraddDiaHora(userId,diaHoraId)
+        //console.log(diaHoraRelacionado)
 
         if (orderline) {
             return res.send("Ordeline created");
