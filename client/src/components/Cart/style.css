@@ -10,3 +10,38 @@
     background-color: green;
     color:green;
 }
+
+.validar-red-moved{
+	cursor: pointer;
+	text-decoration: none;
+	transition: ease-in-out 0.5s;
+	background:red;
+    animation: vibrate 0.4s both;
+}
+
+@keyframes vibrate {
+
+
+    from{
+        transform: skew(10deg, 10deg);
+    }
+
+    10%{
+        transform: skew(-10deg, -10deg);
+    }
+
+    20%{
+        transform: skew(10deg, 10deg);
+    }
+
+    30%{
+        transform: skew(-10deg, -10deg);
+    }
+
+    to {
+        transform: skew(0deg, 0deg);
+    }
+
+}
+
+ 

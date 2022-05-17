@@ -10,6 +10,7 @@ import {
   removeFromCart,
   clearCart,
   orderLinefuntion,
+  set_discount,
 } from "../../store/actions/actionsCart";
 // import { getIdUser } from "../../store/actions/index";
 // import { useEffect } from "react";
@@ -19,7 +20,8 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 export default function Cart(activity) {
   const state = useSelector((state) => state);
   const orderLine = useSelector((state)=>state.cart.orderLine)
-  const discountCode = useSelector((state)=>state.descuentos.descuentos[0]?.codigo); 
+  const discountCode = useSelector((state)=>state.descuentos.descuentos[0]?.codigo);
+  const porcentajeDescuento = useSelector((state)=>state.descuentos.descuentos[0]?.descuento); 
   const dispatch = useDispatch();
   const { cart, products } = state.cart;
   const { user } = state.login;
@@ -110,7 +112,14 @@ export default function Cart(activity) {
     if (inputValue === discountCode) {
       setValidarClass("validar-green");
       setTotal(totalCart * 0.1);
+      dispatch(set_discount(porcentajeDescuento));
+    } else {
+      if (validarClass === "validar-red-moved") {
+      setValidarClass("validar-red");
+    } else { 
+      setValidarClass("validar-red-moved");
     }
+  }
   };
 
   return (
@@ -150,18 +159,12 @@ export default function Cart(activity) {
       </button>
 
       <div className={s.total}>
-        <h4>Total: ${totalCart - total}</h4>
+        <h4>Total: ${totalCart}</h4>
       </div>
 
       <Link to="/checkout">
         <div className={s.dispatchContainer}>
-          <button
-            onClick={() => {
-              checkout(user);
-            }}
-          >
-            Finalizar la compra
-          </button>
+          <button onClick={() => {checkout(user);}}> Finalizar la compra </button>
         </div>
       </Link>
     </div>

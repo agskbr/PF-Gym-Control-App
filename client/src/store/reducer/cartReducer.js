@@ -5,7 +5,9 @@ import {
     CLEAR_CART,
     TOTAL_CART,
     CLEAN_CART,
-    ADD_ORDER_LINE} from "../actions-type/index.js";
+    ADD_ORDER_LINE,
+    SET_DISCOUNT,
+} from "../actions-type/index.js";
 
 
 
@@ -23,6 +25,20 @@ export const initialState = {
 
 export function cartReducer(state = initialState, action) {
     switch (action.type) {
+
+      case SET_DISCOUNT:
+          state.order.forEach(product => { product.price = product.price - (product.price / action.payload) });
+          state.cart.forEach(product => { product.price = product.price - (product.price / action.payload) });
+          state.orderLine.forEach(product => { product.unitprice = product.unitprice - (product.unitprice / action.payload) });
+          state.orderLine.forEach(product => { product.subtotal = product.unitprice * product.quantity });
+        return {
+            ...state,
+            order: [...state.order]
+            /* order: [{
+                ...state.order,
+                price: action.payload,
+            }] */
+        }
         
       case ADD_ORDER_LINE:
         return {
