@@ -15,18 +15,22 @@
 
 
 import React from 'react';
-import {NavLink} from 'react-router-dom';
-import './footer.css';
+import {Link} from 'react-router-dom';
+import footer from './Footer.module.css'
+import { AiFillFacebook } from 'react-icons/ai';
+import {BsInstagram} from 'react-icons/bs';
+import {AiFillTwitterCircle} from 'react-icons/ai';
 
 const Footer = () => {
   return (
-    <div className='FooterAll'>
-      <NavLink className='FooterAbout' to='/about'>About Us</NavLink>
-      <NavLink className='FooterRules' to='/rules'>Rules</NavLink>
-      <a href='https://www.instagram.com/PowerGym/'><p className="fa fa-instagram"></p></a>
-      <a href='https://twitter.com/PowerGym'><p className='fa fa-twitter'></p></a>
-      <a className='fa fa-facebook'href='https://www.facebook.com/PowerGym'><p></p></a>
-      <p className='FooterName'>©Power Gym</p>
+    <div className= {footer.All}>
+      <Link className= {footer.About} to='/about'>About Us</Link>
+      <Link className= {footer.Rules} to='/rules'>Rules</Link>
+
+      <a href='https://www.instagram.com/PowerGym/'><p className={footer.fa}><BsInstagram/></p></a>
+      <a href='https://twitter.com/PowerGym'><p className={footer.fa}><AiFillTwitterCircle/></p></a>
+      <a href='https://www.facebook.com/PowerGym'><p className= {footer.fa}><AiFillFacebook/></p></a>
+      <p className ={footer.Name}>©Power Gym</p>
     </div>
   );
 };
