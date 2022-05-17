@@ -10,29 +10,38 @@ export default function CustomInput({
   type,
   labelError,
   min,
+  max,
   titleInput,
 }) {
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
   return (
     <div className={style.inputContainer}>
-      <span>{titleInput}</span>
-      <input
-        disabled={disabled}
-        onChange={onChange}
-        className={style.customInput}
-        value={value}
-        name={name}
-        type={
-          name === "password"
-            ? isVisiblePassword
-              ? "text"
-              : "password"
-            : "text"
-        }
-        placeholder={placeholder}
-        min={min}
-        prefix={"Hola"}
-      />
+      <span className={style.titleInput}>{titleInput}</span>
+      {name === "phoneNumber" ? (
+        <div className={style.phoneInput}>
+          <span>+54</span>
+          <input type={type} />
+        </div>
+      ) : (
+        <input
+          max={max}
+          disabled={disabled}
+          onChange={onChange}
+          className={style.customInput}
+          value={value}
+          name={name}
+          type={
+            name === "password"
+              ? isVisiblePassword
+                ? "text"
+                : "password"
+              : type
+          }
+          placeholder={placeholder}
+          min={min}
+          prefix={"Hola"}
+        />
+      )}
       {name === "password" ? (
         <div className={style.passwordToggle}>
           {isVisiblePassword ? (

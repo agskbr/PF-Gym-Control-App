@@ -1,5 +1,6 @@
 import axios from "axios";
 import swal from "sweetalert";
+import { getAllOrders } from "./actions-orders";
 import {
   GET_ALL_TRAINERS,
   RECEIVED_POST,
@@ -53,6 +54,19 @@ const createTrainer = (trainer) => {
         title: "Algo salió mal al crear instructor",
       });
     }
+  };
+};
+
+
+const editTrainer = (trainer, trainerId, activitiesIds) => {
+  return async (dispatch) => {
+    await axios.put(`${BASE_URL}/trainer/${trainerId}`, trainer);
+    activitiesIds.forEach((activityId) => {
+      if (activityId !== null) {
+        dispatch(addTrainerToActivity(trainerId, activityId));
+      }
+    });
+    dispatch(getAllTrainers());
   };
 };
 
@@ -147,6 +161,28 @@ const editActivity = (activity, id, dayHourIds, trainersIds) => {
   };
 };
 
+const addTrainerToActivity = (trainerId, activityId) => {
+  return async () => {
+    try {
+      await axios.post(
+        `${BASE_URL}/activity/${activityId}/addTrainer/${trainerId}`
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+const deleteTrainerFromActivity = (trainerId, activityId) => {
+  return async () => {
+    try {
+      await axios.delete(
+        `${BASE_URL}/activity/${activityId}/deleteTrainer/${trainerId}`
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 const deleteDayHourFromActivity = (activityId, dayHourId) => {
   return async () => {
@@ -183,7 +219,7 @@ const requestPost = () => {
 };
 
 export function getActivity() {
-  return function (dispatch) {
+  return function(dispatch) {
     axios
       .get(`${BASE_URL}/activity/all`)
       .then((activity) =>
@@ -200,7 +236,7 @@ export function getActivity() {
 }
 
 export function getActivityById(payload) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       const activity = await axios.get(`${BASE_URL}/activity/` + payload);
       dispatch({
@@ -214,7 +250,7 @@ export function getActivityById(payload) {
 }
 
 export function getTimeByActivityId(payload) {
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch({
       type: "GET_TIME_BY_ACTIVITY_DAY",
       payload: payload,
@@ -223,7 +259,7 @@ export function getTimeByActivityId(payload) {
 }
 
 export function searchByName(name) {
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch({
       type: "SEARCH_BY_NAME",
       payload: name,
@@ -232,7 +268,7 @@ export function searchByName(name) {
 }
 
 export function filterByDay(filterBy) {
-  return function (dispatch) {
+  return function(dispatch) {
     console.log("action");
     dispatch({
       type: "FILTER_BY_DAY",
@@ -242,7 +278,7 @@ export function filterByDay(filterBy) {
 }
 //
 export function orderActivities(orderBy) {
-  return function (dispatch) {
+  return function(dispatch) {
     console.log("action");
     dispatch({
       type: "ORDER_ACTIVITIES",
@@ -253,7 +289,7 @@ export function orderActivities(orderBy) {
 
 export function changePage(page) {
   console.log("action");
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch({
       type: "CHANGE_PAGE",
       payload: page,
@@ -272,4 +308,7 @@ export {
   getAllDaysAndHours,
   createDayAndHour,
   deleteDayHourFromActivity,
+  addTrainerToActivity,
+  deleteTrainerFromActivity,
+  editTrainer,
 };

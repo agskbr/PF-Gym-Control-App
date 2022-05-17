@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getUserId } = require("../Controllers/User");
+const { getUserId, useraddDiaHora } = require("../Controllers/User");
 const { horaDiaId } = require("../Controllers/DiaHora");
 const {createOrderline, orderlineByOrderId, orderlineByActivityId} = require('../Controllers/Orderline.js')
 
@@ -20,15 +20,13 @@ router.post('/checkout', async (req, res,) => {
         
         const orderline = await createOrderline(unitprice, subtotal, quantity, orderId, activityId,diaHoraId);
         
-        await useraddDiaHora(userId,diaHoraId)
-        /* const usuario = await getUserId(userId);
-        const diahora = await horaDiaId(diaHoraId);
-        await diahora.addUsers(usuario) */;
+        const diaHoraRelacionado = await useraddDiaHora(userId,diaHoraId)
+        console.log(diaHoraRelacionado)
 
         if (orderline) {
             return res.send("Ordeline created");
         }
-        res.send("Orderline ya existente")
+        res.status(400).send("Orderline ya existente o relación no realizada exitosamente")
     } catch (error) {
         console.log(error)
     }
