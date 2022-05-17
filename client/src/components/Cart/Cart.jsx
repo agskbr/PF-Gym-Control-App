@@ -19,9 +19,14 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 export default function Cart(activity) {
   const state = useSelector((state) => state);
-  const orderLine = useSelector((state)=>state.cart.orderLine)
-  const discountCode = useSelector((state)=>state.descuentos.descuentos[0]?.codigo);
-  const porcentajeDescuento = useSelector((state)=>state.descuentos.descuentos[0]?.descuento); 
+  const orderLine = useSelector((state) => state.cart.orderLine);
+  const orderLineId = useSelector((state) => state.cart.newOrederLineId);
+  const discountCode = useSelector(
+    (state) => state.descuentos.descuentos[0]?.codigo
+  );
+  const porcentajeDescuento = useSelector(
+    (state) => state.descuentos.descuentos[0]?.descuento
+  );
   const dispatch = useDispatch();
   const { cart, products } = state.cart;
   const { user } = state.login;
@@ -108,6 +113,12 @@ export default function Cart(activity) {
     }
   }
 
+  async function vaciarCarrito(orderId) {
+    console.log(orderId);
+    await axios.delete(`${BASE_URL}/order/${orderId}`);
+    dispatch(clearCart());
+  }
+
   const totalCart = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -121,12 +132,48 @@ export default function Cart(activity) {
       dispatch(set_discount(porcentajeDescuento));
     } else {
       if (validarClass === "validar-red-moved") {
-      setValidarClass("validar-red");
-    } else { 
-      setValidarClass("validar-red-moved");
+        setValidarClass("validar-red");
+      } else {
+        setValidarClass("validar-red-moved");
+      }
     }
-  }
   };
+
+
+  const alertaVaciarCarro = () => {
+    swal({
+      title: "¿Estás seguro?",
+      text: "Si vacias el carrito, no podrás recuperarlo!",
+      icon: "warning",
+      buttons: ["Cancelar", "Vaciar"],
+      dangerMode: true,
+    }).then((Vaciar) => {
+      if (Vaciar) {
+        dispatch(clearCart());
+        vaciarCarrito(orderLineId);
+        swal({
+          title: "Carrito vaciado",
+          text: "Tu carrito ha sido vaciado",
+          icon: "success",
+        });
+      }
+    });
+  };
+
+  const alertaGuardarCarro = () => {
+    swal({
+      title: "Carrito guardado",
+      text:
+        "El carrito se guardará para que puedas usarlo en cualquier momento",
+      icon: "success",
+      button: "Ok",
+    }).then((response) => {
+      if (response) {
+        guardar(user);
+      }
+    });
+  };
+
 
   return (
     <div className={s.container}>
@@ -141,7 +188,7 @@ export default function Cart(activity) {
             />
           ))}
         </div>
-        <button className={s.cleanCart} onClick={() => dispatch(clearCart())}>
+        <button className={s.cleanCart} onClick={() => alertaVaciarCarro()}>
           Vaciar Carrito
         </button>
         <button
@@ -170,7 +217,9 @@ export default function Cart(activity) {
 
       <Link to="/checkout">
         <div className={s.dispatchContainer}>
-          <button onClick={() => {checkout(user);}}> Finalizar la compra </button>
+          <button className={s.dispatch} onClick={() => checkout(user)}>
+            Finalizar la compra
+          </button>
         </div>
       </Link>
     </div>

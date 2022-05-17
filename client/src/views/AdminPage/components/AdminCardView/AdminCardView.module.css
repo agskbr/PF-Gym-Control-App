@@ -23,11 +23,26 @@
   height: 40px;
   background-color: #fe4f22;
 }
+.addDisabledBtn {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-family: sans-serif;
+  padding: 10px;
+  width: 80px;
+  font-size: 14px;
+  height: 40px;
+  background-color: grey;
+}
 .addBtn:hover {
   cursor: pointer;
 }
 .addBtn:focus {
   outline: none;
+}
+
+.refreshBtn:hover {
+  cursor: pointer;
 }
 .titleAndAddBtn h4 {
   font-family: sans-serif;

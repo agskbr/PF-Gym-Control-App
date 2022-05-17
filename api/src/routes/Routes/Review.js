@@ -86,13 +86,16 @@ router.get("/user/:id", async (req,res) => {
 router.put('/:id', async (req, res,) => {
     try{
     let id = req.params.id;
-    let activity  = req.body;
-    return(activity)
+    let review  = req.body;
     
-        const rew = await reviewUpdate(id,activity);
-        res.status(200).json(rew);
+    
+        const rew = await reviewUpdate(id,review);
+        rew?
+        res.send(rew) :
+        res.send("no se modifico review en el user")
     } catch (error) {
-        res.send(error)
+        res.status(404).send(error)
+        
     } 
     
 })
