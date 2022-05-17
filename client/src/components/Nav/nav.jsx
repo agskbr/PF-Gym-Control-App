@@ -94,7 +94,7 @@ export default function Nav() {
           </li>
           <li>
             <a className="main-nav-link" href="#section-testimonials">
-              Feedback
+            Comentarios
             </a>
           </li>
           <li>
