@@ -13,8 +13,10 @@ export const postReview = (payload)=>{ // review = description, rating, userId, 
                 type:CREATE_REVIEW,
                 payload:data
             })
+
         } catch (err) {
             console.log('postReview error', err)
+            
         }
     }
 }

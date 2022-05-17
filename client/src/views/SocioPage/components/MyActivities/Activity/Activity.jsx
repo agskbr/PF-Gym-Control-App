@@ -12,16 +12,13 @@ export default function Activity ({orderId}) {//imagen, nombre de la activ
  const dispatch = useDispatch()
 
  const orderlines = useSelector((state)=> state.pgym.orderlines) //items x compra
- console.log("oredelines", orderlines)
+ //console.log("oredelines", orderlines)
 
   const [orderLine, setOrderLine] = useState([])
 
-  //console.log("11", orderLine)
+  console.log("orderLine", orderLine)
   //const [activity, setActivity] = useState([])
 
-
-
- 
   const allActivities = useSelector((state)=> state.pgym.allActivities);
   console.log("actividades", allActivities)
 
@@ -33,13 +30,12 @@ export default function Activity ({orderId}) {//imagen, nombre de la activ
     })
 
   })
-  console.log("nombre", newAct) 
+ // console.log("nombre", newAct) 
 
   useEffect(() =>{
     if(orderlines.length){
       setOrderLine([...orderlines])
     }
-
   },[orderlines]) 
 
    useEffect(()=> {
