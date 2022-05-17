@@ -3,9 +3,9 @@ const nodemailer = require("nodemailer");
 //const hbs = require("nodemailer-express-handlebars");
 //const {USER_MAIL, USER_PASS} = process.env;
 //const UserMail = "gymcontrol12@gmail.com"
-const UserMail = "gymcontrol12@outlook.com"
+const UserMail = "admin.pgym@coderbox.com.ar"
 //const UserMail = "admin.pgym@coderbox.com.ar"
-const Pass = "Proyectofinal2022"
+const Pass = "Password123*"
 //const Pass = "Admin12345678"
 
 //turn on less security app
@@ -19,7 +19,9 @@ const Pass = "Proyectofinal2022"
 
 router.post('/:emailType', async (req,res) => {
     let transporter = nodemailer.createTransport({
-        service: "outlook",
+        host: "smtp.correoseguro.co",
+        port: 587,
+        secure: false,
         auth: {
             user: UserMail,
             pass: Pass,
@@ -140,7 +142,7 @@ router.post('/:emailType', async (req,res) => {
       }
 
 
-    transporter.sendMail(mailOptions, (err, data) => {
+      transporter.sendMail(mailOptions, (err, data) => {
         if (err) {
           res.send(err.message);
         } else {
