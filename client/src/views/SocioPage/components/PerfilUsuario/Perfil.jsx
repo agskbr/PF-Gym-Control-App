@@ -78,7 +78,7 @@ export default function Perfil() {
                   }
                 />
               </div>
-              <p>Nombre: {usuario.name} </p>
+              <p>Nombre: {usuario.name } </p>
               <p>Apellido: {usuario.lastName}</p>
               <p>Email: {usuario.email}</p>
                  {verified} 
