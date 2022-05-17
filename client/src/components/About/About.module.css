@@ -90,6 +90,10 @@
     width: 2.5rem;
     height: 2.5rem;
 }
+.GitHub:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 20px #fdede9;
+}
 
 .LinkedIn {
     grid-row: 4/5;
@@ -97,6 +101,11 @@
     justify-self: center;
     width: 2.5rem;
     height: 2.5rem;
+}
+
+.LinkedIn:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 20px #fdede9;
 }
 
 .Role {

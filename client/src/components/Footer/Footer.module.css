@@ -36,6 +36,11 @@
     color: #b5bcf3
 }
 
+.fa:hover{
+    transform: scale(1.1);
+    box-shadow: 0px 0px 20px #fdede9;
+}
+
 .About{
     margin-right: 20rem;
     color: white;
@@ -44,10 +49,19 @@
     justify-content: center;
 }
 
+.About:hover{
+    color: #b5bcf3;
+
+}
+
 .Rules{
     margin-right: 15rem;
     color: white;
     max-width: 2.5rem;
     max-height: 2.5rem;
+}
+
+.Rules:hover{
+    color: #b5bcf3;
 }
 
