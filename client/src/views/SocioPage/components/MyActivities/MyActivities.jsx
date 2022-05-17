@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Activity from './Activity/Activity';
 import {getUserById } from '../../../../store/actions/actions-user';
 import {getAllOrdersByUser} from '../../../../store/actions/actions-orders';
-import {FaHandPointRight} from 'react-icons/fa'
+//import {FaHandPointRight} from 'react-icons/fa'
 
 
 
@@ -32,41 +32,25 @@ export default function MyActivities() {
 
 
   return (
-    <div className={s.userPrincipalContainer}>
-       <div className={s.userTitleAndAddBtn}>
-        <h4 className={s.myActivitiesTitle}>
-         Queremos conocer tu opinion  <FaHandPointRight/>
-        </h4>
-        <button
-          onClick={() => {
-            document.getElementById("reviewDialog").showModal();
-          }}
-          className={s.userAddBtn}
-        >
-          {" "}
-          Click aqui {" "}
-        </button>
+    <div className={s.containerActividades}>
+      <div className={s.actividadesEncabezado}>
+        <h1>
+          Actividades!!!
+        </h1>
+        <div>
+        {
+               allOrders?.map((orden)=>(
+                 <Activity
+                 key={orden.id}
+                 orderId={orden.id}
+                 />
+               ))
+              
+            }
+        </div>
         
       </div>
-      
-        <div>
-          <h1>Tus Actividades: </h1>
-          
-          <Activity/>
 
-       {/*    {
-             allOrders?.map((orden)=>(
-               <Activity
-               key={orden.id}
-               orderId={orden.id}
-               />
-             ))
-            
-          } */}
-         
-        </div>
-       
-      <CreateReview/>
     </div>
-  );
+  )
 }

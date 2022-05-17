@@ -1,9 +1,9 @@
 import axios from "axios";
-import { 
+import {
   RECEIVED_POST,
-  GET_ALL_ORDERS, 
-  GET_ALL_ORDERS_BY_USER, 
-  GET_ORDERLINE_BY_ORDER_ID 
+  GET_ALL_ORDERS,
+  GET_ALL_ORDERS_BY_USER,
+  GET_ORDERLINE_BY_ORDER_ID,
 } from "../actions-type/index";
 import { BASE_URL } from "../constantes";
 
@@ -23,35 +23,47 @@ const getAllOrders = () => {
 const getAllOrdersByUser = (id) => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.get(`${BASE_URL}/order/user/${id}`)
+      const { data } = await axios.get(`${BASE_URL}/order/user/${id}`);
       return dispatch({
-        type:GET_ALL_ORDERS_BY_USER,
-        payload: data
-      })
+        type: GET_ALL_ORDERS_BY_USER,
+        payload: data,
+      });
     } catch (error) {
-      console.log("ordersByUser",error)
+      console.log("ordersByUser", error);
     }
-  }
-}
+  };
+};
+
+const cancelOrder = (orderId) => {
+  return async (dispatch) => {
+    try {
+      await axios.put(`${BASE_URL}/order/canceled/${orderId}`);
+      const clearPaso2 = { orderId };
+      const response2 = await axios.put(
+        `${BASE_URL}/diahora/addStock`,
+        clearPaso2
+      );
+      console.log(response2);
+      dispatch(getAllOrders());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 const getOrderlineByOrderid = (orderId) => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.get(`${BASE_URL}/orderline/${orderId}`)
-     // console.log("data", data)
+      const { data } = await axios.get(`${BASE_URL}/orderline/${orderId}`);
+      // console.log("data", data)
       return dispatch({
         type: GET_ORDERLINE_BY_ORDER_ID,
-        payload: data
-      })
+        payload: data,
+      });
     } catch (error) {
-      console.log("orderlineByOrderid", error)
+      console.log("orderlineByOrderid", error);
     }
-  }
-}
-
-
-export { 
-  getAllOrders,
-  getAllOrdersByUser,
-  getOrderlineByOrderid
+  };
 };
+
+export { getAllOrders, getAllOrdersByUser, getOrderlineByOrderid, cancelOrder };

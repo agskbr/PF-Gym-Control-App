@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import style from "./AdminCardView.module.css";
 import { Link } from "react-router-dom";
-import { FaEdit, FaPrint } from "react-icons/fa";
+import { FaBan, FaEdit } from "react-icons/fa";
 import ExpansibleMenu from "../ExpansibleMenu/ExpansibleMenu";
+import { cancelOrder } from "../../../../store/actions/actions-orders";
 
 export default function AdminCardView({ type }) {
+  const dispatch = useDispatch();
   const { descuentos } = useSelector((state) => state.descuentos);
   const { activities, trainers, users, orders, daysAndHours } = useSelector(
     (state) => state.pgym
@@ -157,7 +159,13 @@ export default function AdminCardView({ type }) {
                 })}
                 <td>
                   {type === "Ordenes" ? (
-                    <FaPrint color="#fe4f22" size={20} />
+                    <FaBan
+                      onClick={() => {
+                        dispatch(cancelOrder(el.id));
+                      }}
+                      color="#fe4f22"
+                      size={20}
+                    />
                   ) : (
                     <Link
                       to={`/admindashboard/${type.toLowerCase()}/edit/${el.id}`}

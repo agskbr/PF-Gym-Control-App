@@ -4,7 +4,8 @@ const {
   allTrainers,
   trainerId,
   trainerDelete,
-  trainerCreated
+  trainerCreated,
+  trainerUpd
 } = require('../Controllers/Trainer');
 
 
@@ -63,6 +64,18 @@ router.post('/', async (req, res, next) => {
 
 })
 
+
+//editar solamente el trainer por trainerId
+router.put('/:trainerid', async (req, res, next) => {
+  let {trainerid} = req.params
+  let trainer = req.body;
+  try {
+      const trainer_Upd = await trainerUpd(trainerid,trainer);
+      res.send(trainer_Upd);
+  } catch (error) {
+      res.status(400).send(error)
+  } 
+})
 
 
 module.exports = router;
