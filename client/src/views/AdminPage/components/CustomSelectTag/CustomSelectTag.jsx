@@ -23,7 +23,7 @@ export default function CustomSelectTag({
   disabled,
 }) {
   const dispatch = useDispatch();
-  const { activities } = useSelector((state) => state.pgym);
+  const { activities, trainers } = useSelector((state) => state.pgym);
   const [displayItems, setDisplayItems] = useState([]);
   useEffect(() => {
     setDisplayItems([...visualizeItems]);
@@ -72,6 +72,14 @@ export default function CustomSelectTag({
                             );
                             dispatch(
                               deleteTrainerFromActivity(id, activityToDelete.id)
+                            );
+                          }
+                          if (type === "Clases" && name === "trainers") {
+                            const trainerToDelete = trainers.find(
+                              (trainer) => trainer.name === item
+                            );
+                            dispatch(
+                              deleteTrainerFromActivity(trainerToDelete.id, id)
                             );
                           }
                           setDisplayItems((state) =>
