@@ -1,11 +1,12 @@
-.userPrincipalContainer{
+/* .userPrincipalContainer{
     height: 100%;
     width: 100%;
     margin-top: 10px;
     align-items: center;
     display: flex;
     flex-direction: column;
-}
+} */
+/* 
 .userTitleAndAddBtn{
     display: flex;
     width: 90%;
@@ -30,9 +31,9 @@
 }
 .userAddBtn:hover {
     cursor: pointer;
-    /* background-color: #fdede9;
+    background-color: #fdede9;
     transition: all .3s;
-    color: #eb4e27; */
+    color: #eb4e27; 
 }
 .userAddBtn:focus {
     outline: none;
@@ -40,9 +41,9 @@
 .userCardLayout{
     margin-top: 20px;
     height: 30vh;
-    width: 50vw; /* ver por tema responsive */
+    width: 50vw; 
     background-color: white;
-    /* overflow: scroll; */
+     overflow: scroll; 
 }
 .containerTable{
     background-color: #fdede9;
@@ -61,4 +62,4 @@
 .tableRow:hover{
     background-color: #fe4f22;
     color: white;
-}
+} */

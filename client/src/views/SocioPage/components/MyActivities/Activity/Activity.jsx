@@ -1,48 +1,75 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 //import s from './Activity.module.css';
 import {getOrderlineByOrderid} from '../../../../../store/actions/actions-orders'
 import { useDispatch, useSelector } from 'react-redux';
 import { getActivity } from "../../../../../store/actions";
 
-export default function Activity ({orderId}) {//imagen, fehca y hora, nombre d ela activ, instructor
-//console.log("ya", orderId)
+
+export default function Activity ({orderId}) {//imagen, nombre de la activ, instructor
+ console.log("ya", orderId)
 
  const dispatch = useDispatch()
 
  const orderlines = useSelector((state)=> state.pgym.orderlines) //items x compra
-  //console.log("oredelines", orderlines)
+ console.log("oredelines", orderlines)
 
-  const actividades = useSelector((state)=> state.pgym.allActivities);
-  //console.log("actividades", actividades)
-    
+  const [orderLine, setOrderLine] = useState([])
+
+  //console.log("11", orderLine)
+  //const [activity, setActivity] = useState([])
+
+
+
+ 
+  const allActivities = useSelector((state)=> state.pgym.allActivities);
+  console.log("actividades", allActivities)
+
+  const newAct = allActivities.map((e) =>{
+    return ({
+      name: e.name,
+      image:e.image, 
+      id:e.id
+    })
+
+  })
+  console.log("nombre", newAct) 
+
+  useEffect(() =>{
+    if(orderlines.length){
+      setOrderLine([...orderlines])
+    }
+
+  },[orderlines]) 
+
+
    useEffect(()=> {
     dispatch(getOrderlineByOrderid(orderId))
   },[dispatch, orderId])
 
- useEffect(()=>{
-    dispatch(getActivity())
+  useEffect(()=>{
+      
   },[dispatch])
+
+  
+
 
   return (
 
     <div>
-      <h2>hola</h2>
-     {/*  {
-        orderlines?.map((orden)=>{
-          
-          const {image, name} = actividades?.find((a)=> a.id === orden.activityId)
-          console.log("img", image) 
-          
-          return (
-            
-            <image key={orden.id} src={image} alt={name}/>
-          
-          )
-          
-          
-        })
-      } */}
-        
+    {
+          orderLine.map((orden)=>{
+            const {name, image} = newAct?.find((a)=> a.id === orden.activityId)
+            console.log("img", name, image) 
+            return(
+               <div key={orden.id}>
+                <img src={image} alt= {name}/>
+                <p>{name}</p>
+              </div> 
+            )
+
+          })
+        }
+
     </div>
   )
 }
