@@ -3,18 +3,31 @@ import SideBar from "./components/Sidebar/SideBar";
 import CenterDynamicView from "./components/CenterDynamicView/CenterDynamicView";
 import { useEffect, useState } from "react";
 import { getActivity } from "../../store/actions/index";
-import { getOrderlineByOrderid, getAllOrdersByUser } from "../../store/actions/actions-orders";
-import { useSelector } from "react-redux";
+import { getAllOrdersByUser } from "../../store/actions/actions-orders";
+import { useSelector, useDispatch} from "react-redux";
 import { getUserById } from "../../store/actions/actions-user";
-import { useDispatch } from "react-redux";
 
 
 export default function SocioPage() {
   const dispatch = useDispatch()
   const [itemSelected, setItemSelected] = useState("Mi Perfil");
-  //const allOrders = useSelector((state)=> state.pgym.orders)
+
+  const {uid} = useSelector((state)=> state.login.user )
+  const {id} = useSelector((state)=> state.users.user); 
+  const allOrders = useSelector((state)=> state.pgym.orders)
+  const allActivities = useSelector((state)=> state.pgym.allActivities);
 
  // const {data} = axios.get(`${BASE_URL}/user/${id}`) 
+
+  
+  useEffect(()=> {
+   dispatch(getUserById(uid))
+  },[dispatch, uid])
+
+  useEffect(()=> {
+   dispatch(getAllOrdersByUser(id))
+  },[dispatch, id])
+
 
   useEffect(()=>{
     dispatch(getActivity())
