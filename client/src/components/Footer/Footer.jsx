@@ -20,6 +20,6 @@ const Footer = () => {
       <a href='https://chat.whatsapp.com/DkY0COIOu4ADHrSNlgX1Cu' target="_blank"><p className= {footer.fa}><BsWhatsapp/></p></a>
       <p className ={footer.Name}>©Power Gym</p>
     </div>
-  );
+  ); 
 };
 export default Footer;
