@@ -93,10 +93,7 @@ export default function Checkout(activity) {
       //price
       //count
 
-      let mercadoPagoRes = await axios.post(
-        BASE_URL + "/mercadopago",
-        cartCheckOut
-      );
+      let mercadoPagoRes = await axios.post( BASE_URL + "/mercadopago", cartCheckOut );
       /*   console.log(mercadoPagoRes); */
       /* window.open(mercadoPagoRes.data) */
       window.location.href = mercadoPagoRes.data;
