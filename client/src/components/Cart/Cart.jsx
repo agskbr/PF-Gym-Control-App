@@ -155,20 +155,6 @@ export default function Cart(activity) {
     });
   }
 
-  const alertaCheckout = ()=>{
-    swal({
-      title: "Confirmar compra?",
-      text: "La clase se validara una vez efectuado el Pago 💯",
-      icon: "warning",
-      buttons: ["Cancelar", "Confirmar"],
-      dangerMode: true,
-    }).then((Confirmar) => {
-      if (Confirmar) {
-        <Link to="/checkout"/>
-        checkout(user);
-      }
-    });
-  }
   
   return (
     <div className={s.container}>
@@ -210,16 +196,18 @@ export default function Cart(activity) {
         <h4>Total: ${totalCart}</h4>
       </div>
 
-       <Link to="/checkout"> }
+       <Link to="/checkout"> 
         <div className={s.dispatchContainer}>
-          <button onClick={() => 
-            alertaCheckout()}>
-          Finalizar la compra </button>
+          <button className={s.dispatch} onClick={() => checkout(user)}>
+          Finalizar la compra
+          </button>
         </div>
       </Link> 
     </div>
   );
 }
+
+
 
 
 

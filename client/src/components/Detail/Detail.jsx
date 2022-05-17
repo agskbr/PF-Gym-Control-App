@@ -119,7 +119,7 @@ export default function Detail() {
           className={style.elbo}
           onClick={() => dispatch(addToCart(idToCart))}
         >
-          Agregar al carro
+          Agregar
         </button>
       </div>
     </div>

@@ -9,6 +9,7 @@ import { BASE_URL, POST_MERCADOPAGO, LOCAL_HOST } from "../../store/constantes";
 import { clearCart } from "../../store/actions/actionsCart";
 import { removeFromCart } from "../../store/actions/actionsCart";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 
 /** Reducer para limpiar carrito
 /* import { clearCart } from "../../store/reducer/reducerCart.js"; */
@@ -117,6 +118,27 @@ export default function Checkout(activity) {
     dispatch(clearCart());
   }
 
+  const alertCancelar = () => {
+    swal({
+      title: "¿Está seguro que desea cancelar?",
+      text: "Una vez cancelado no se podrá recuperar",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        navigate("/", {replace: true});
+        cancelar(orderLineId);
+        swal("Su pedido ha sido cancelado", {
+          icon: "success",
+        });
+      } else {
+        swal("Su pedido no ha sido cancelado");
+      }
+    });
+  }
+
+
   //Hacer verificacion isAuthenticated y en caso de ser afirmativo retornar:
   return (
     <div className={style.container}>
@@ -144,9 +166,7 @@ export default function Checkout(activity) {
           <button>Editar Email</button>
         </div>
         <div className={style.dispatchContainer}>
-          <Link to="/">
-            <button onClick={(e) => cancelar(orderLineId)}>cancelar</button>
-          </Link>
+          <button onClick={(e) => alertCancelar()}>cancelar</button>
           <button onClick={(e) => checkOut(products, totalCart)}>Pagar</button>
           <p>
             (al presionar el boton sera redireccionado a la pagina de Mercado
@@ -160,3 +180,4 @@ export default function Checkout(activity) {
     </div>
   );
 }
+
