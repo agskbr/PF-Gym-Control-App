@@ -113,8 +113,13 @@ export default function Cart(activity) {
       setValidarClass("validar-green");
       setTotal(totalCart * 0.1);
       dispatch(set_discount(porcentajeDescuento));
-
+    } else {
+      if (validarClass === "validar-red-moved") {
+      setValidarClass("validar-red");
+    } else { 
+      setValidarClass("validar-red-moved");
     }
+  }
   };
 
   return (
