@@ -20,6 +20,9 @@
   height: 70px;
   margin-bottom: 15px;
 }
+.gymLogo:hover {
+  cursor: pointer;
+}
 .gymLogo img {
   width: 100%;
   height: 100%;

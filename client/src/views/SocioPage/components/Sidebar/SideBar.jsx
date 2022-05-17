@@ -71,7 +71,7 @@ export default function SideBar({ setItemSelected }) {
           <a
             href={item.path}
             onClick={() => {
-              if (item.name === "SignOut") {
+              if (item.name === "Cerrar sesión") {
                 dispatch(requestUserLogin());
                 navigate("/", { replace: true });
                 return dispatch(userSignOut());
