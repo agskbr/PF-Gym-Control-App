@@ -35,7 +35,7 @@ const getAllOrdersByUser = (id) => {
   };
 };
 
-const cancelOrder = (orderId) => {
+const cancelOrder = (orderId, userId) => {
   return async (dispatch) => {
     try {
       const value = await swal({
@@ -59,6 +59,13 @@ const cancelOrder = (orderId) => {
           orderId,
         };
         await axios.put(`${BASE_URL}/diahora/addStock`, clearPaso2);
+        const orderlines = await axios.get(`${BASE_URL}/orderline/${orderId}`);
+        console.log(orderlines);
+        await orderlines.data.forEach((orderline) => {
+          axios.delete(
+            `${BASE_URL}/review/delete/${userId}/${orderline.activityId}`
+          );
+        });
         dispatch(getAllOrders());
       }
     } catch (error) {

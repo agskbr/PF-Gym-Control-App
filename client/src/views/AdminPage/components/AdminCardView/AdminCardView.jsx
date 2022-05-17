@@ -192,7 +192,7 @@ export default function AdminCardView({ type }) {
                     <FaBan
                       className={style.cancelOrderBtn}
                       onClick={() => {
-                        dispatch(cancelOrder(el.id));
+                        dispatch(cancelOrder(el.id, el.user.id));
                       }}
                       color="#fe4f22"
                       size={20}
