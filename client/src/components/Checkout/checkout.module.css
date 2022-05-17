@@ -19,7 +19,7 @@
                         "total"
                         "address"
                         "dispatch";
-    grid-template-rows: 5vh 1fr 5vh 10vh 10vh;
+    grid-template-rows: 5vh 1fr 5vh 10vh 20vh;
  }
 
  .title {
@@ -85,7 +85,7 @@
         border: none;
         border-radius: 5px;
         height: 5vh;
-        width: 10vw;
+        width: 5vw;
         font-size: 1vw;
         transition: ease-in-out 0.2s;
 }
@@ -98,7 +98,7 @@
 
  .dispatchContainer p{
      justify-self: flex-end;
-     font-size: 10px;
+     font-size: 15px;
  }
 
  .crossHide{
@@ -125,3 +125,4 @@
        top: 46vh;
        right: 31vw;
 }
+

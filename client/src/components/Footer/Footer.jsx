@@ -11,7 +11,6 @@ const Footer = () => {
   return (
     <div className= {footer.All}>
       <Link className= {footer.About} to='/about'>Sobre nosotros!</Link>
-      <Link className= {footer.Rules} to='/rules'>Normas</Link>
 
       <a href='https://www.instagram.com/PowerGym/' target="_blank"><p className={footer.fa}><BsInstagram/></p></a>
       <a href='https://twitter.com/PowerGym' target="_blank"><p className={footer.fa}><AiFillTwitterCircle/></p></a>
