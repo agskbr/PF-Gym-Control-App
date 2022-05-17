@@ -81,6 +81,9 @@ const orderUserId = async (userId) => {
             where: {
                 userId: userId,
             },
+            include: {
+                model: Activity
+            }
         })
         return reviews 
     } catch (error) {
