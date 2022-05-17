@@ -97,7 +97,7 @@ export default function SideBar({ setTypeOfCardView }) {
         >
           <CustomItemSideBar
             icon={<FaArrowCircleLeft size={20} />}
-            name="LogOut"
+            name="Cerrar sesion"
           />
         </Link>
       </div>
