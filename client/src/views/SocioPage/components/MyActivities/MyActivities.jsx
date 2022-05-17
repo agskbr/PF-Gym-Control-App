@@ -69,7 +69,7 @@ const handleChange = (e)=>{ //textarea>> description
   })
 }
 
-const handleName = (e) => {
+const handleSelect = (e) => {
   setInput({
     ...input,
     activityId: e.target.value
@@ -203,12 +203,15 @@ useEffect(()=>{
                             })
                         }
                     </div>
-                    <select name="" id="">
-                      <option
-                        name={a.name}
-                        value={a.id}
-                        onChange={handleName}
-                        >
+                    <select 
+                      name="activityId" 
+                      id="activityId"
+                      key="activityId"
+                      onClick={handleSelect}
+                      className={s.CreateReaviewSelect}
+                    >
+                      <option value="">Tu Actividad</option>
+                      <option name={a.name} value={a.id}>
                           {a.name}
                       </option>
 
