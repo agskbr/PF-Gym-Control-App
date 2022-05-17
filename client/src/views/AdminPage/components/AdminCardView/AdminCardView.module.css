@@ -175,6 +175,10 @@
   font-weight: 600;
 }
 
+.deleteUserBtn:hover {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1050px) {
   .cardLayout {
     width: 70vw;
