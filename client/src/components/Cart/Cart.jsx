@@ -119,7 +119,7 @@ export default function Cart(activity) {
 
   return (
     <div className={s.container}>
-      <div className={s.title}>Cart</div>
+      <div className={s.title}>Carrito de compras</div>
       <div className={s.cartContainer}>
         <div className={s.cartItem}>
           {cart?.map((item, index) => (
