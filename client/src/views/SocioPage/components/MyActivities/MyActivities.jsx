@@ -147,112 +147,87 @@ useEffect(()=>{
                Object.keys(ultima).length> 0? (
                     ultima.activities.map((a)=>(
                       <>
-                      <div>
-                      <p>{a.name}</p>
-                        <img src={a.image} alt={a.name} /> 
- 
-                         <button
-                             onClick={() => {
-                               document.getElementById("reviewDialog").showModal();
-                             }}
-                             /* className={} */
-                         >
-                               {" "}
-                               Click aqui {" "}
-                         </button> 
+                      <div className={s.myActivitiesContainer}>
+                        <div className={s.myActivitiesCard}>
+                          <p>{a.name}</p>
+                          <img src={a.image} alt={a.name} />
+                          <button>Dejar review</button>
+                        </div>  
                       </div>
-
                       <div>
-                      <div className={s.createReviewContainer}>
-                <div className={s.createReviewHeader}>
-                    <div style={{ justifyContent: "flex-end", display: "flex" }}>
-                        <button
-                        onClick={() => document.getElementById("reviewDialog").close()}
-                        className={s.createReviewBoton}
-                        >
-                        x
-                        </button>
-                    </div>
-                    <img 
-                        src={logo} 
-                        style={{ width: 100, objectFit: "cover", justifyContent: "center"}}
-                        alt="logo"
-                    />
-                    <h3 className={s.createReviewTitle}>Power Gym</h3>
-                    <h4>¿Estas conforme son nuestro servicio? Dejanos tu opinion</h4>
-                </div>
-                <h6>Dejanos tu opinion...</h6>
-                <form className={s.CreateReaviewForm} onSubmit>
-                    <div style={styles.stars}>
-                        {
-                            stars.map((_, index)=> {
-                                return (
-                                    <FaStar
-                                        key={index}
-                                        size={24}
-                                        style={{
-                                            marginRight:10,
-                                            cursor: "pointer"
-                                        }}
-                                        color={( hoverValue || currentValue) > index ? colors.orange : colors.grey}
-                                        onClick={()=> handleClick(index + 1)}
-                                        onMouseOver={()=> handleMouseOver(index + 1)}
-                                        onMouseLeave= {handleMouseLeave}
+                        <div className={s.createReviewContainer}>
+                          <div className={s.createReviewHeader}>
+                            {/*  <div style={{ justifyContent: "flex-end", display: "flex" }}>
+                                  <button
+                                  onClick={() => document.getElementById("reviewDialog").close()}
+                                  className={s.createReviewBoton}
+                                  >
+                                  x
+                                  </button>
+                              </div> */}
+                            <img 
+                                src={logo} 
+                                style={{ width: 85, objectFit: "cover", justifyContent: "center"}}
+                                alt="logo"
+                            />
+                            <h3 className={s.createReviewTitle}>Power Gym</h3>
+                            <h4>¿Estas conforme con nuestro servicio? Dejanos tu opinion</h4>
+                          </div>
+                            <form className={s.CreateReaviewForm} onSubmit>
+                                <div style={styles.stars}>
+                                    {
+                                        stars.map((_, index)=> {
+                                            return (
+                                                <FaStar
+                                                    key={index}
+                                                    size={24}
+                                                    style={{
+                                                        marginRight:10,
+                                                        cursor: "pointer"
+                                                    }}
+                                                    color={( hoverValue || currentValue) > index ? colors.orange : colors.grey}
+                                                    onClick={()=> handleClick(index + 1)}
+                                                    onMouseOver={()=> handleMouseOver(index + 1)}
+                                                    onMouseLeave= {handleMouseLeave}
+                                                />
+                                            )
+                                        })
+                                    }
+                                </div>
+                                <select 
+                                  name="activityId" 
+                                  id="activityId"
+                                  key="activityId"
+                                  onClick={handleSelect}
+                                  className={s.CreateReaviewSelect}
+                                >
+                                  <option value="">Tu Actividad</option>
+                                  <option name={a.name} value={a.id}>
+                                      {a.name}
+                                  </option>
+
+                                </select>
+                                <div>
+                                    <textarea
+                                      placeholder='Dejanos tu comentario'
+                                      style={styles.textarea}
+                                      onChange={handleChange}
+                                      cols={40}
                                     />
-                                )
-                            })
-                        }
-                    </div>
-                    <select 
-                      name="activityId" 
-                      id="activityId"
-                      key="activityId"
-                      onClick={handleSelect}
-                      className={s.CreateReaviewSelect}
-                    >
-                      <option value="">Tu Actividad</option>
-                      <option name={a.name} value={a.id}>
-                          {a.name}
-                      </option>
-
-                    </select>
-              
-                    {/* <p
-                      name={a.name}
-                      value={a.id}
-                      onChange={handleName}
-                    >
-                      {a.name}
-                    </p> */}
-                    <div>
-                        <textarea
-                                placeholder='Dejanos tu comentario'
-                                style={styles.textarea}
-                                onChange={handleChange}
-                                cols={40}
-                        />
-                    </div>
-                    <div>
-                        <button 
-                            style={styles.button}
-                            onClick={(e)=> handleSubmit(e)}
-                            className={s.createReviewBoton} 
-                        >
-                            Enviar
-                        </button>
-                    </div>   
-                </form>
-            </div>
-
+                                </div>
+                                <div>
+                                  <button 
+                                    style={styles.button}
+                                    onClick={(e)=> handleSubmit(e)}
+                                    className={s.createReviewBoton} 
+                                  >
+                                    Enviar
+                                  </button>
+                                </div>   
+                            </form>
+                        </div>
                       </div>
-                        
- 
-                         {/* <CreateReaview
-                           name={a.name}
-                           id={a.id}
-                         /> */}
- 
-                        </>
+                      </>
                     ))
                ):""
              } 
