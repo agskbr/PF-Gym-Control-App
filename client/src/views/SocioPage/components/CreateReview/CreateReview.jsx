@@ -15,9 +15,10 @@ const colors = {
 }
 
 
-export default function CreateReaview() {
+export default function CreateReaview({name, id}) { //id activ review
 
     const dispatch = useDispatch();
+    
     const allActivities = useSelector((state)=>state.pgym.allActivities);
     const allReviewUser = useSelector((state)=>state.review.reviews);
     //console.log("activ", allActivities)
@@ -29,7 +30,7 @@ export default function CreateReaview() {
     const [ input, setInput]= useState({
         rating: "",
         description:"",
-        activityId: "",  
+        activityId: id, 
         userId: user, //le seteo por defecto un id q este en base de datos para q funcione x ahora!!
     })
 
@@ -79,20 +80,20 @@ export default function CreateReaview() {
             description:e.target.value
         })) */
     }
-    const handleSelect = (e)=>{//actividad
+ /*    const handleSelect = (e)=>{//actividad
         setInput({
             ...input,
             activityId: e.target.value,
             
         });
-      /*   setErrors(validaciones({
+        setErrors(validaciones({
             ...input,
             activityId:e.target.value
-        })) */
-    }
+        }))
+    } */
 
     const handleSubmit = (e) => { //button
-        if(!input.description || !input.rating || !input.activityId){
+        if(!input.description || !input.rating ){
             e.preventDefault()
             Swal({
                 title:"Complete todos los campos.",
@@ -101,7 +102,7 @@ export default function CreateReaview() {
                 timer: 2000,
                 
             });
-        }else if (allReviewUser.find((r)=>r.activityId === input.activityId)) {
+        }else if (allReviewUser.find((r)=>r.activityId === id)) {
                 e.preventDefault()
                 alert("ya realizaste una review de esta clase")
                 document.getElementById("reviewDialog").close();
@@ -112,7 +113,7 @@ export default function CreateReaview() {
             setInput({
                 rating: " ",
                 description:" ",
-                activityId: " ",  
+                activityId: " ",
                 userId: " "
             })
             Swal({
@@ -155,7 +156,7 @@ export default function CreateReaview() {
                     <h3 className={s.createReviewTitle}>Power Gym</h3>
                     <h4>¿Estas conforme son nuestro servicio? Dejanos tu opinion</h4>
                 </div>
-                <div>
+{/*                 <div>
                     <h6> ¿Que servicio vas a calificar? </h6>
                     <select 
                         name="activityId" 
@@ -178,7 +179,7 @@ export default function CreateReaview() {
                         )): <p></p>
                     }
                     </select>
-                </div>
+                </div> */}
                 <h6>Dejanos tu opinion...</h6>
                 <form className={s.CreateReaviewForm} onSubmit>
                     <div style={styles.stars}>

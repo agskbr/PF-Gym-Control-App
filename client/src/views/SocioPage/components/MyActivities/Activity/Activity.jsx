@@ -16,7 +16,7 @@ export default function Activity ({orderId}) {//imagen, nombre de la activ
 
   const [orderLine, setOrderLine] = useState([])
 
-  //console.log("11", orderLine)
+  console.log("orderLine", orderLine)
   //const [activity, setActivity] = useState([])
 
   const allActivities = useSelector((state)=> state.pgym.allActivities);

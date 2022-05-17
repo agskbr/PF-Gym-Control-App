@@ -15,6 +15,7 @@ export default function SocioPage() {
   const {uid} = useSelector((state)=> state.login.user )
   const {id} = useSelector((state)=> state.users.user); 
   const allOrders = useSelector((state)=> state.pgym.orders)
+  const allActivities = useSelector((state)=> state.pgym.allActivities);
 
  // const {data} = axios.get(`${BASE_URL}/user/${id}`) 
 
