@@ -22,6 +22,7 @@ export default function Checkout(activity) {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.login);
   const orderLineId = useSelector((state) => state.cart.newOrederLineId);
+  const orderLine = useSelector((state)=>state.cart.orderLine)
 
   useEffect(() => {
     dispatch(validateUserIsLogged());
@@ -110,11 +111,17 @@ export default function Checkout(activity) {
     const clearPaso2 = {
       orderId: orderLineId.newOrderId,
     };
-    const response2 = await axios.put(
+    await axios.put(
       `${BASE_URL}/diahora/addStock`,
       clearPaso2
     );
-    console.log(response2);
+    //console.log(response2);
+    const usuario = await axios.get(`${BASE_URL}/user/${user.uid}`);
+    console.log(usuario.data)
+    await orderLine.forEach((e) => {
+      axios.delete(`${BASE_URL}/review/delete/${usuario.data.id}/${e.activityId}`);
+    })
+    //const { data } = await axios.delete(`${BASE_URL}/order/cart/${data2.data.id}`);
     dispatch(clearCart());
   }
 

@@ -31,6 +31,7 @@ router.post('/create', async (req, res) => {
 router.delete('/delete/:idUser/:idActivity', async (req, res) => {
     try {
         const { idUser, idActivity } = req.params
+        console.log(idUser, idActivity)
         const response = await deleteRelation(idUser,idActivity);
         res.json(response)
     } catch (error) {

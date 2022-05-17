@@ -85,8 +85,7 @@ const createRelation = async (idUser,idActivity) => {
         var activity = await Activity.findByPk(idActivity);
         console.log(activity)
         if (user && activity) {
-            const response = await activity.addUser(user);
-            console.log(response)
+            await activity.addUser(user);
             return true
         } else {
             return false

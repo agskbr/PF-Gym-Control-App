@@ -16,7 +16,6 @@ import {
 // import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import swal from "sweetalert";
 
 export default function Cart(activity) {
   const state = useSelector((state) => state);
@@ -70,6 +69,12 @@ export default function Cart(activity) {
           subtotal: element.subtotal,
         };
         axios.put(`${BASE_URL}/order/sumaTotal`, infoPaso5);
+        const infoPaso6 = {
+          idUser:data2.data.id,
+          idActivity: element.activityId
+        }
+        //console.log(element.activityId)
+        axios.post(`${BASE_URL}/review/create`,infoPaso6);
       });
       dispatch(orderLinefuntion(data));
     } catch (err) {
@@ -123,39 +128,6 @@ export default function Cart(activity) {
   }
   };
 
-  const alertaVaciarCarro = ()=>{
-    swal({
-      title: "¿Estás seguro?",
-      text: "Si vacias el carrito, no podrás recuperarlo!",
-      icon: "warning",
-      buttons: ["Cancelar", "Vaciar"],
-      dangerMode: true,
-    }).then((Vaciar) => {
-      if (Vaciar) {
-        dispatch(clearCart());
-        swal({
-          title: "Carrito vaciado",
-          text: "Tu carrito ha sido vaciado",
-          icon: "success",
-        })
-      }
-    });
-  }
-
-  const alertaGuardarCarro = ()=>{
-    swal({
-      title: "Carrito guardado",
-      text: "El carrito se guardará para que puedas usarlo en cualquier momento",
-      icon: "success",
-      button: "Ok",
-    }).then((guardar) => {
-      if (guardar) {
-        guardar(user);
-      }
-    });
-  }
-
-  
   return (
     <div className={s.container}>
       <div className={s.title}>Carrito de compras</div>
@@ -169,13 +141,13 @@ export default function Cart(activity) {
             />
           ))}
         </div>
-        <button className={s.cleanCart} onClick= {() => alertaVaciarCarro() }>
+        <button className={s.cleanCart} onClick={() => dispatch(clearCart())}>
           Vaciar Carrito
         </button>
         <button
           className={s.cleanCart}
           onClick={() => {
-            alertaGuardarCarro();
+            guardar(user);
           }}
         >
           Guardar
@@ -196,20 +168,11 @@ export default function Cart(activity) {
         <h4>Total: ${totalCart}</h4>
       </div>
 
-       <Link to="/checkout"> 
+      <Link to="/checkout">
         <div className={s.dispatchContainer}>
-          <button className={s.dispatch} onClick={() => checkout(user)}>
-          Finalizar la compra
-          </button>
+          <button onClick={() => {checkout(user);}}> Finalizar la compra </button>
         </div>
-      </Link> 
+      </Link>
     </div>
   );
 }
-
-
-
-
-
-
-
