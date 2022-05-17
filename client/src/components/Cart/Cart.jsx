@@ -5,6 +5,7 @@ import { BASE_URL } from "../../store/constantes";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../CartItem/CartItem";
 import { useState } from "react";
+import swal from "sweetalert";
 import {
   addToCart,
   removeFromCart,
@@ -16,7 +17,6 @@ import {
 // import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import swal from "sweetalert";
 
 export default function Cart(activity) {
   const state = useSelector((state) => state);
@@ -74,7 +74,14 @@ export default function Cart(activity) {
           orderId: info.orderId,
           subtotal: element.subtotal,
         };
+        console.log(element.subtotal)
         axios.put(`${BASE_URL}/order/sumaTotal`, infoPaso5);
+        const infoPaso6 = {
+          idUser:data2.data.id,
+          idActivity: element.activityId
+        }
+        //console.log(element.activityId)
+        axios.post(`${BASE_URL}/review/create`,infoPaso6);
       });
       dispatch(orderLinefuntion(data));
     } catch (err) {
@@ -134,6 +141,7 @@ export default function Cart(activity) {
     }
   };
 
+
   const alertaVaciarCarro = () => {
     swal({
       title: "¿Estás seguro?",
@@ -168,6 +176,7 @@ export default function Cart(activity) {
     });
   };
 
+
   return (
     <div className={s.container}>
       <div className={s.title}>Carrito de compras</div>
@@ -187,7 +196,7 @@ export default function Cart(activity) {
         <button
           className={s.cleanCart}
           onClick={() => {
-            alertaGuardarCarro();
+            guardar(user);
           }}
         >
           Guardar

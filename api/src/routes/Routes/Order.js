@@ -81,7 +81,8 @@ router.put("/sumaTotal", async (req, res) => {
     try {
         const order = await orderFilterId(orderId)
         order.totalPrice = Number(order.totalPrice) + Number(subtotal);
-        order.save()
+        await order.save()
+        //console.log(order)
         res.send("Precio Total de la orden modificada exitósamente");
     } catch (error) {
         res.send(error)
