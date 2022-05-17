@@ -10,6 +10,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage.jsx";
 import Checkout from "./components/Checkout/Checkout.jsx";
 import Loader from "./components/Loader/Loader.jsx";
+import About from "./components/About/About.jsx";
 
 export function AunthenticatedRoutes({ isAdmin, isLoading }) {
   return (
@@ -18,6 +19,7 @@ export function AunthenticatedRoutes({ isAdmin, isLoading }) {
       <Route path="/" element={<HomePage />} />
       <Route path="/clases/:id" element={<Buy />} />
       <Route path="/checkout" element={<Checkout />} />
+      <Route path="/about" element={<About />} />
 
       <Route
         path="/admindashboard"
@@ -77,6 +79,7 @@ export function UnAuthenticatedRoutes() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/checkout" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/about" element={<About />} />
     </Routes>
   );
 }

@@ -9,4 +9,19 @@
 </p>
 
 ## Objetivos del Proyecto
+*
+*
+*
+*
+*
+*
+*
+*
+
+## Team fourteen
+<a href="https://github.com/agskbr/PF-Gym-Control-App/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=agskbr/PF-Gym-Control-App" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
 

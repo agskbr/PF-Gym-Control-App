@@ -1,14 +1,11 @@
 import React, { useEffect} from "react";
 import s from "./MyActivities.module.css";
-import CreateReview from '../CreateReview/CreateReview'
+//import CreateReview from '../CreateReview/CreateReview'
 import { useDispatch, useSelector } from "react-redux";
 import Activity from './Activity/Activity';
 import {getUserById } from '../../../../store/actions/actions-user';
 import {getAllOrdersByUser} from '../../../../store/actions/actions-orders';
 //import {FaHandPointRight} from 'react-icons/fa'
-
-
-
 
 export default function MyActivities() {
 
@@ -41,8 +38,6 @@ export default function MyActivities() {
     <div className={s.containerActividades}>
       <div className={s.actividadesEncabezado}>
           <h1>Mis actividades</h1>
-         
-
           <div>
            {
              allOrders?.map((orden)=>(
@@ -55,15 +50,9 @@ export default function MyActivities() {
                
              ))
              
-          } 
-           
+            } 
         </div>
-   
       </div>
-      
-
-        
-      
     </div>
-  );
+  )
 }

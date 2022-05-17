@@ -6,8 +6,8 @@ import { getActivity } from "../../../../../store/actions";
 import CreateReview from '../../CreateReview/CreateReview'
 
 
-export default function Activity ({orderId}) {//imagen, nombre de la activ, instructor
- console.log("ya", orderId)
+export default function Activity ({orderId}) {//imagen, nombre de la activ
+//console.log("ya", orderId) 
 
  const dispatch = useDispatch()
 
@@ -42,20 +42,21 @@ export default function Activity ({orderId}) {//imagen, nombre de la activ, inst
 
   },[orderlines]) 
 
-
    useEffect(()=> {
     dispatch(getOrderlineByOrderid(orderId))
   },[dispatch, orderId])
 
-  useEffect(()=>{
-      
-  },[dispatch])
+
+ useEffect(()=>{
+   if(orderId){
+    dispatch(getActivity())
+  }
+  },[dispatch, orderId])
 
   
 
 
   return (
-
     <div>
        <button
             onClick={() => {
@@ -80,6 +81,8 @@ export default function Activity ({orderId}) {//imagen, nombre de la activ, inst
           })
         }
         <CreateReview/>
+
     </div>
+
   )
 }

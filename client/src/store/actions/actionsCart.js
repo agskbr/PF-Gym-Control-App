@@ -10,8 +10,17 @@ import {
   REMOVE_ONE_FROM_CART,
   TOTAL_CART,
   ADD_ORDER_LINE,
+  SET_DISCOUNT,
 } from "../actions-type";
 
+
+
+export function set_discount(discount) {
+  return {
+    type: SET_DISCOUNT,
+    payload: discount,
+  };
+}
 
 export function orderLinefuntion(payload){
   console.log("new order line");
