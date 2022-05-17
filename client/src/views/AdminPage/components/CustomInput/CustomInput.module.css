@@ -28,7 +28,7 @@
   align-items: flex-start;
   flex-direction: column;
 }
-.inputContainer .titleInput {
+.errorLabel {
   color: red;
   text-align: start;
   font-family: sans-serif;
