@@ -93,10 +93,7 @@ export default function Checkout(activity) {
       //price
       //count
 
-      let mercadoPagoRes = await axios.post(
-        BASE_URL + "/mercadopago",
-        cartCheckOut
-      );
+      let mercadoPagoRes = await axios.post( BASE_URL + "/mercadopago", cartCheckOut );
       /*   console.log(mercadoPagoRes); */
       /* window.open(mercadoPagoRes.data) */
       window.location.href = mercadoPagoRes.data;
@@ -130,7 +127,6 @@ export default function Checkout(activity) {
             <CartItem
               key={index}
               data={item}
-              removeFromCart={() => dispatch(removeFromCart(item.name))}
             />
           ))}
         </div>
@@ -157,6 +153,9 @@ export default function Checkout(activity) {
             Pago para finalizar la compra)
           </p>
         </div>
+        <div className={style.crossHide}></div>
+        <div className={style.crossHide2}></div>
+        <div className={style.crossHide3}></div>
       </div>
     </div>
   );
