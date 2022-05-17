@@ -11,6 +11,7 @@ import { BASE_URL } from '../../store/constantes';
 export default function SocioPage() {
   const dispatch = useDispatch()
   const [itemSelected, setItemSelected] = useState("Mi Perfil");
+  //const allOrders = useSelector((state)=> state.pgym.orders)
 
  // const {data} = axios.get(`${BASE_URL}/user/${id}`) 
 

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import {getOrderlineByOrderid} from '../../../../../store/actions/actions-orders'
 import { useDispatch, useSelector } from 'react-redux';
 import { getActivity } from "../../../../../store/actions";
+import CreateReview from '../../CreateReview/CreateReview'
 
 
 export default function Activity ({orderId}) {//imagen, nombre de la activ, instructor
@@ -56,6 +57,15 @@ export default function Activity ({orderId}) {//imagen, nombre de la activ, inst
   return (
 
     <div>
+       <button
+            onClick={() => {
+              document.getElementById("reviewDialog").showModal();
+            }}
+             /* className={} */
+        >
+               {" "}
+               Click aqui {" "}
+        </button> 
     {
           orderLine.map((orden)=>{
             const {name, image} = newAct?.find((a)=> a.id === orden.activityId)
@@ -69,7 +79,7 @@ export default function Activity ({orderId}) {//imagen, nombre de la activ, inst
 
           })
         }
-
+        <CreateReview/>
     </div>
   )
 }
