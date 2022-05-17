@@ -1,6 +1,5 @@
 import axios from "axios";
 import swal from "sweetalert";
-import { getAllOrders } from "./actions-orders";
 import {
   GET_ALL_TRAINERS,
   RECEIVED_POST,
@@ -57,16 +56,30 @@ const createTrainer = (trainer) => {
   };
 };
 
-
 const editTrainer = (trainer, trainerId, activitiesIds) => {
   return async (dispatch) => {
-    await axios.put(`${BASE_URL}/trainer/${trainerId}`, trainer);
-    activitiesIds.forEach((activityId) => {
-      if (activityId !== null) {
-        dispatch(addTrainerToActivity(trainerId, activityId));
-      }
-    });
-    dispatch(getAllTrainers());
+    try {
+      await axios.put(`${BASE_URL}/trainer/${trainerId}`, trainer);
+      activitiesIds.forEach((activityId) => {
+        if (activityId !== null) {
+          dispatch(addTrainerToActivity(trainerId, activityId));
+        }
+      });
+      swal({
+        title: "Instructor editado correctamente",
+        buttons: "Aceptar",
+        icon: "success",
+      });
+      dispatch(getAllTrainers());
+      dispatch(getActivity());
+    } catch (error) {
+      console.log(error);
+      swal({
+        title: "Algo salió mal al editar el instructor",
+        buttons: "Aceptar",
+        icon: "error",
+      });
+    }
   };
 };
 
@@ -105,6 +118,26 @@ const getAllDaysAndHours = () => {
   };
 };
 
+const editDaysAndHours = (dayHour, id) => {
+  return async (dispatch) => {
+    try {
+      await axios.put(`${BASE_URL}/diahora/${id}`, dayHour);
+      swal({
+        title: "Dia y hora editado correctamente",
+        icon: "success",
+        buttons: "Aceptar",
+      });
+    } catch (error) {
+      console.log(error);
+      swal({
+        title: "Algo salió mal al editar el dia y hora",
+        icon: "error",
+        buttons: "Aceptar",
+      });
+    }
+  };
+};
+
 const getAllUsers = () => {
   return async (dispatch) => {
     try {
@@ -129,7 +162,7 @@ const getIdUser = (uid) => {
 };
 
 const editActivity = (activity, id, dayHourIds, trainersIds) => {
-  return async () => {
+  return async (dispatch) => {
     try {
       await axios.put(`${BASE_URL}/activity/${id}`, activity);
       await dayHourIds.forEach((dayHourId) => {
@@ -150,6 +183,8 @@ const editActivity = (activity, id, dayHourIds, trainersIds) => {
         buttons: "Aceptar",
         icon: "success",
       });
+      dispatch(getActivity());
+      dispatch(getAllTrainers());
     } catch (error) {
       console.log(error);
       swal({
@@ -311,4 +346,5 @@ export {
   addTrainerToActivity,
   deleteTrainerFromActivity,
   editTrainer,
+  editDaysAndHours,
 };
