@@ -14,9 +14,9 @@ const validateForm = (inputs, type) => {
     if (!inputs.lastName) {
       errors.lastName = "El apellido es requerido";
     }
-    if (!inputs.email) {
-      errors.email = "El email es requerido";
-    }
+    // if (!inputs.email) {
+    //   errors.email = "El email es requerido";
+    // }
     // if (!inputs.phoneNumber) {
     //   errors.phoneNumber = "El número de teléfono es requerido";
     // }
@@ -74,6 +74,16 @@ const validateForm = (inputs, type) => {
     }
     if (!inputs.hour) {
       errors.hour = "El horario es obligatorio";
+    }
+  }
+  if (type === "Descuentos") {
+    if (!inputs.descuento) {
+      errors.descuento = "Debes indicar un descuento";
+    } else if (inputs.descuento > 100) {
+      errors.descuento = "No puedes crear un descuento mayor al 100%";
+    }
+    if (!inputs.codigo) {
+      errors.codigo = "Debe incluir un codigo";
     }
   }
   return errors;

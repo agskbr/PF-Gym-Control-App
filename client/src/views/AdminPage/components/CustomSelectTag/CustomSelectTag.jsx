@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import style from "./CustomSelectTag.module.css";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { validateForm } from "../../../../utils/validateForm";
-import { useDispatch } from "react-redux";
-import { deleteDayHourFromActivity } from "../../../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteDayHourFromActivity,
+  deleteTrainerFromActivity,
+} from "../../../../store/actions";
 
 export default function CustomSelectTag({
   handlerChangeSelectTag,
@@ -16,8 +19,11 @@ export default function CustomSelectTag({
   setErrors,
   inputs,
   type,
+  id,
+  disabled,
 }) {
   const dispatch = useDispatch();
+  const { activities } = useSelector((state) => state.pgym);
   const [displayItems, setDisplayItems] = useState([]);
   useEffect(() => {
     setDisplayItems([...visualizeItems]);
@@ -25,6 +31,7 @@ export default function CustomSelectTag({
   return (
     <div className={style.selectTagsContainer}>
       <select
+        disabled={disabled}
         onChange={handlerChangeSelectTag}
         className={style.customSelectTag}
         name={name}
@@ -55,45 +62,60 @@ export default function CustomSelectTag({
                 </li>
                 <AiFillCloseCircle
                   key={Math.random()}
-                  onClick={() => {
-                    setDisplayItems((state) =>
-                      state.filter((e) => {
-                        if (e.id) {
-                          dispatch(
-                            deleteDayHourFromActivity(item.activityId, item.id)
+                  onClick={
+                    type === "Usuarios"
+                      ? () => null
+                      : () => {
+                          if (type === "Instructores") {
+                            const activityToDelete = activities.find(
+                              (activity) => activity.name === item
+                            );
+                            dispatch(
+                              deleteTrainerFromActivity(id, activityToDelete.id)
+                            );
+                          }
+                          setDisplayItems((state) =>
+                            state.filter((e) => {
+                              if (e.id) {
+                                dispatch(
+                                  deleteDayHourFromActivity(
+                                    item.activityId,
+                                    item.id
+                                  )
+                                );
+                                return e.id !== item.id;
+                              } else {
+                                return e !== item;
+                              }
+                            })
                           );
-                          return e.id !== item.id;
-                        } else {
-                          return e !== item;
+                          setInputs((state) => ({
+                            ...state,
+                            [name]: visualizeItems.filter((e) => {
+                              if (e.id) {
+                                return e.id !== item.id;
+                              } else {
+                                return e !== item;
+                              }
+                            }),
+                          }));
+                          setErrors(
+                            validateForm(
+                              {
+                                ...inputs,
+                                [name]: visualizeItems.filter((e) => {
+                                  if (e.id) {
+                                    return e.id !== item.id;
+                                  } else {
+                                    return e !== item;
+                                  }
+                                }),
+                              },
+                              type
+                            )
+                          );
                         }
-                      })
-                    );
-                    setInputs((state) => ({
-                      ...state,
-                      [name]: visualizeItems.filter((e) => {
-                        if (e.id) {
-                          return e.id !== item.id;
-                        } else {
-                          return e !== item;
-                        }
-                      }),
-                    }));
-                    setErrors(
-                      validateForm(
-                        {
-                          ...inputs,
-                          [name]: visualizeItems.filter((e) => {
-                            if (e.id) {
-                              return e.id !== item.id;
-                            } else {
-                              return e !== item;
-                            }
-                          }),
-                        },
-                        type
-                      )
-                    );
-                  }}
+                  }
                   color="red"
                   className={style.deleteItemIcon}
                 />
