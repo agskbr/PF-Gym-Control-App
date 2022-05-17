@@ -79,7 +79,7 @@ export default function Nav() {
         <ul className="main-nav-list">
           <li>
             <a className="main-nav-link" href="/login">
-              {user ? "Panel de socio" : "Login"}
+              {user ? "Panel de socio" : "Iniciar sesión"}
             </a>
           </li>
           <li>
