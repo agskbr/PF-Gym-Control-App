@@ -127,7 +127,6 @@ export default function Checkout(activity) {
             <CartItem
               key={index}
               data={item}
-              removeFromCart={() => dispatch(removeFromCart(item.name))}
             />
           ))}
         </div>
@@ -154,6 +153,9 @@ export default function Checkout(activity) {
             Pago para finalizar la compra)
           </p>
         </div>
+        <div className={style.crossHide}></div>
+        <div className={style.crossHide2}></div>
+        <div className={style.crossHide3}></div>
       </div>
     </div>
   );

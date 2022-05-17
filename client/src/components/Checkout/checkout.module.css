@@ -100,3 +100,28 @@
      justify-self: flex-end;
      font-size: 10px;
  }
+
+ .crossHide{
+        width: 5vw;
+        height: 5vh;
+        background-color: #ff8838;
+        position: absolute;
+        top: 25vh;
+        right: 31vw;
+ }
+ .crossHide2{
+       width: 5vw;
+       height: 5vh;
+       background-color: #ff8838;
+       position: absolute;
+       top: 35vh;
+       right: 31vw;
+}
+.crossHide3{
+       width: 5vw;
+       height: 5vh;
+       background-color: #ff8838;
+       position: absolute;
+       top: 45vh;
+       right: 31vw;
+}
