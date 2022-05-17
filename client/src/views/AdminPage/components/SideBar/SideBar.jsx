@@ -5,7 +5,7 @@ import {
   requestUserLogin,
   userSignOut,
 } from "../../../../store/actions/actions-login";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import style from "./SideBar.module.css";
 import {
   FaUsers,
@@ -19,12 +19,18 @@ import {
 import { useDispatch } from "react-redux";
 
 export default function SideBar({ setTypeOfCardView }) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [selected, setSeletected] = useState("Usuarios");
   return (
     <div className={style.sideBarContainer}>
       <div className={style.headerSideBar}>
-        <div className={style.gymLogo}>
+        <div
+          onClick={() => {
+            navigate("/", { replace: true });
+          }}
+          className={style.gymLogo}
+        >
           <img src={logoUser} alt="User" />
         </div>
         <div className={style.nameGym}>

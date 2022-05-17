@@ -57,6 +57,7 @@ export default function AdminCardView({ type }) {
   return (
     <div className={style.principalContainer}>
       <div className={style.titleAndAddBtn}>
+        <h4>{type}</h4>
         <div className={style.refreshBtn}>
           <MdRefresh
             color="white"
@@ -72,15 +73,17 @@ export default function AdminCardView({ type }) {
             }}
           />
         </div>
-        <h4>{type}</h4>
-        {type !== "Ordenes" && type !== "Usuarios" ? (
-          <button
-            onClick={() => document.getElementById("createDialog").showModal()}
-            className={style.addBtn}
-          >
-            Agregar
-          </button>
-        ) : null}
+        <button
+          disabled={type === "Ordenes" || type === "Usuarios"}
+          onClick={() => document.getElementById("createDialog").showModal()}
+          className={
+            type === "Ordenes" || type === "Usuarios"
+              ? style.addDisabledBtn
+              : style.addBtn
+          }
+        >
+          Agregar
+        </button>
       </div>
       <div className={style.cardLayout}>
         <table className={style.tableAdminView}>
