@@ -116,7 +116,11 @@ export default function CustomModal({ type }) {
             <CustomInput
               key={input}
               name={input}
-              type={input === "capacity" ? "number" : "text"}
+              type={
+                input === "capacity" || input === "descuento"
+                  ? "number"
+                  : "text"
+              }
               min={0}
               onChange={handlerChange}
               placeholder={input}
@@ -169,6 +173,7 @@ export default function CustomModal({ type }) {
       </div>
       <div className={style.createBtnContainer}>
         <button
+          disabled={Object.values(errors).length !== 0}
           onClick={() => {
             setErrors(validateForm(inputs, type));
             if (Object.values(errors).length === 0) {
@@ -203,7 +208,11 @@ export default function CustomModal({ type }) {
               document.getElementById("createDialog").close();
             }
           }}
-          className={style.createBtn}
+          className={
+            Object.values(errors).length === 0
+              ? style.createBtn
+              : style.createDisabledBtn
+          }
         >
           Crear
         </button>

@@ -36,6 +36,7 @@ const getUserId = async (id) => {
         uid: id
       },
     });
+    console.log(UserUid)
     if (UserUid) {
       return UserUid;
     } else {
@@ -46,6 +47,21 @@ const getUserId = async (id) => {
       });
       return UserId;
     }
+  } catch (error) {
+    return(error);
+  }
+};
+
+const getUserId2 = async (id) => {
+  try {
+      const user2 = await User.findOne({
+        where: {
+          id: id
+        }
+      })
+      if(user2){
+        return user2
+      }
   } catch (error) {
     return(error);
   }
@@ -129,8 +145,10 @@ const useraddDiaHora = async (idUser, idHoraDia) => {
   try {
       var usuario = await User.findByPk(idUser);
       var diaHora = await DiaHora.findByPk(idHoraDia);
+      console.log(usuario)
+      console.log(diaHora)
       if (usuario && diaHora) {
-        diaHora.addUsuario(usuario);
+        await usuario.addDiaHora(diaHora)
           return true
       } else {
           return false
@@ -149,5 +167,6 @@ module.exports = {
   getUserId,
   userDelete,
   userIsAdmin,
-  useraddDiaHora
+  useraddDiaHora,
+  getUserId2
 };
