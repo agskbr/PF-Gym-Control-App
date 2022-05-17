@@ -27,7 +27,7 @@ export default function SideBar({ setItemSelected }) {
       path: "#/miperfil",
     },
     {
-      name: "Home",
+      name: "Inicio",
       icon: <AiFillHome />,
       path: "/",
     },
@@ -47,7 +47,7 @@ export default function SideBar({ setItemSelected }) {
       path: "#/miscompras",
     },
     {
-      name: "SignOut",
+      name: "Cerrar sesión",
       icon: <GoSignOut />,
       path: "/",
     },
