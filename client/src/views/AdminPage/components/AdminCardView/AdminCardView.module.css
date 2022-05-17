@@ -142,7 +142,9 @@
 .editBtn:focus {
   outline: none;
 }
-
+.cancelOrderBtn:hover {
+  cursor: pointer;
+}
 .deleteBtn {
   height: 30px;
   padding: 8px;

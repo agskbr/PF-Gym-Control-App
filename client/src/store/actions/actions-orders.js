@@ -55,6 +55,10 @@ const cancelOrder = (orderId) => {
           icon: "success",
           buttons: "Aceptar",
         });
+        const clearPaso2 = {
+          orderId,
+        };
+        await axios.put(`${BASE_URL}/diahora/addStock`, clearPaso2);
         dispatch(getAllOrders());
       }
     } catch (error) {
