@@ -19,37 +19,35 @@
 }
 
 .Name{
-    margin-left: 5rem;
+    margin-left: 25rem;
     color: white;
-    max-width: 6rem;
+    max-width: 10rem;
     max-height: 2.5rem;
     justify-content: center;
+    font-size: 1.3rem;
 }
 
 .fa{
-    margin-left: 5rem;
-    max-width: 2.5rem;
-    max-height: 2.5rem;
-    font-size: 1.5rem;
+    margin-left: 4rem;
+    max-width: 2rem;
+    max-height: 2rem;
+    font-size: 2rem;
     text-decoration: none;
-    color: #081feb
+    color: #b5bcf3
 }
 
 .About{
-    margin-left: 5rem;
+    margin-right: 20rem;
     color: white;
-    max-width: 6rem;
+    max-width: 8rem;
     max-height: 2.5rem;
     justify-content: center;
 }
 
 .Rules{
-    margin-left: 5rem;
+    margin-right: 15rem;
     color: white;
     max-width: 2.5rem;
     max-height: 2.5rem;
 }
 
-.fa{
-  color: #74009D;
-}
