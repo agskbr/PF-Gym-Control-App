@@ -64,6 +64,10 @@ export default function Detail() {
   //     swal("Agregado al carrito", "", "success");
   //   }
   // }
+  function handleClickAddToCart() {
+    dispatch(addToCart(idToCart));
+    swal("Agregado al carrito", "", "success");
+  }
 
 
 
@@ -117,7 +121,7 @@ export default function Detail() {
         </div>
         <button
           className={style.elbo}
-          onClick={() => dispatch(addToCart(idToCart))}
+          onClick={handleClickAddToCart}
         >
           Agregar
         </button>
