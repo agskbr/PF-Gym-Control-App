@@ -1,4 +1,5 @@
 import style from './cartItem.module.css';
+import swal from 'sweetalert';
 
 const CartItem = ({data, removeFromCart, info}) => {
    const {
@@ -13,7 +14,10 @@ const CartItem = ({data, removeFromCart, info}) => {
             dayHourId
    } = data;
 
-  
+  function handleClickRemoveFromCart (){
+    removeFromCart(dayHourId)
+    swal("Se elimino del carrito", "", "error");
+  }
 
 
     return (
@@ -27,7 +31,7 @@ const CartItem = ({data, removeFromCart, info}) => {
                 <h6>Total: ${price * quantity}.00</h6>
             </div>
             <div className={style.buttonsContainer}>
-                <button onClick={() => removeFromCart(dayHourId)}></button>
+                <button onClick={handleClickRemoveFromCart}></button>
                 {/* <button onClick={() => removeFromCart(id, true)}>del all</button> */}
             </div>
         </div>
