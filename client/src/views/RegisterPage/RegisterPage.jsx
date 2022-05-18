@@ -137,7 +137,10 @@ export default function RegisterPage() {
                   input.password,
                   input.name,
                   input.lastName,
-                  input.phoneNumber
+                  input.phoneNumber.replace(
+                    input.phoneNumber,
+                    `+54${input.phoneNumber}`
+                  )
                 )
               );
             }

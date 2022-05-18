@@ -181,7 +181,7 @@ export default function AdminCardView({ type }) {
                         }
                         key={i}
                       >
-                        {el[key]}
+                        {key === "descuento" ? `${el[key]}%` : el[key]}
                       </td>
                     );
                   }

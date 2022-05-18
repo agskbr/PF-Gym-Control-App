@@ -12,6 +12,7 @@ export default function CustomInput({
   min,
   max,
   titleInput,
+  suffixIcon,
 }) {
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
   return (
@@ -37,6 +38,7 @@ export default function CustomInput({
           onChange={onChange}
           className={style.customInput}
           value={value}
+          style={name === "codigo" ? { textTransform: "uppercase" } : null}
           name={name}
           type={
             name === "password"
@@ -49,6 +51,7 @@ export default function CustomInput({
           min={min}
         />
       )}
+      <div className={style.suffixIcon}>{suffixIcon}</div>
       {name === "password" ? (
         <div className={style.passwordToggle}>
           {isVisiblePassword ? (
