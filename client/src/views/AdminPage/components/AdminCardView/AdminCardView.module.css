@@ -215,3 +215,71 @@
     font-weight: bold;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .cardLayout {
+    width: 80vw;
+  }
+  .addBtn {
+    font-size: 12px;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    background-color: #fe4f22;
+    background-image: url("../../../../assets/add-btn.svg");
+    background-position: 15px;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: 30px 30px;
+  }
+  .addBtn span {
+    display: none;
+  }
+  .addDisabledBtn {
+    font-size: 12px;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    background-image: url("../../../../assets/add-btn.svg");
+    background-position: 15px;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: 30px 30px;
+  }
+  .addDisabledBtn span {
+    display: none;
+  }
+  .customSelectTag {
+    width: 140px;
+    font-size: 12px;
+  }
+  .refreshBtn {
+    position: absolute;
+    top: 15px;
+    right: 20%;
+  }
+  .titleAndAddBtn h4 {
+    font-size: 14px;
+    color: white;
+  }
+
+  .tableAdminView thead tr {
+    font-size: 12px;
+  }
+
+  .tableAdminView tbody tr {
+    font-size: 12px;
+  }
+}

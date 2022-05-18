@@ -102,7 +102,7 @@ export default function AdminCardView({ type }) {
                 : style.addBtn
             }
           >
-            Agregar
+            <span>Agregar</span>
           </button>
         </div>
       </div>
