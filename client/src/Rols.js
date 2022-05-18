@@ -11,6 +11,7 @@ import NotFoundPage from "./components/NotFoundPage/NotFoundPage.jsx";
 import Checkout from "./components/Checkout/Checkout.jsx";
 import Loader from "./components/Loader/Loader.jsx";
 import About from "./components/About/About.jsx";
+import Detail from "./views/SocioPage/components/Recetas/Detail.jsx";
 
 export function AunthenticatedRoutes({ isAdmin, isLoading }) {
   return (
@@ -20,6 +21,7 @@ export function AunthenticatedRoutes({ isAdmin, isLoading }) {
       <Route path="/clases/:id" element={<Buy />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/about" element={<About />} />
+      <Route path="/recipes/:id" element={<Detail />} />
 
       <Route
         path="/admindashboard"
@@ -80,6 +82,7 @@ export function UnAuthenticatedRoutes() {
       <Route path="/checkout" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/about" element={<About />} />
+      <Route path="/recipes/:id" element={<Detail />} /> 
     </Routes>
   );
 }
