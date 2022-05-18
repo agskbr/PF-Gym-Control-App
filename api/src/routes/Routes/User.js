@@ -32,6 +32,7 @@ router.post("/isAdmin", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const { uid, name, lastName, email, phoneNumber, image } = req.body;
+    //console.log(req.body)
     const user_Create = await userCreate(
       uid,
       name,

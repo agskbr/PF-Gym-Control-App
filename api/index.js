@@ -33,7 +33,7 @@ const {
 
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(process.env.PORT || 3001, async () => {
 
     await loaderUsers();
