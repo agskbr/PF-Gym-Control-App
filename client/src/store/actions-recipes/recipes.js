@@ -4,8 +4,8 @@ export const GET_RECIPES = "GET_RECIPES";
 export const GET_NAME_RECIPES = "GET_NAME_RECIPES";
 export const GET_DETAIL = "GET_DETAIL";
 
-// const base_url = "https://pfgymapp-2.herokuapp.com";
-const base_url = "http://localhost:3001";
+const base_url = "https://pfgymapp-2.herokuapp.com";
+//const base_url = "http://localhost:3001";
 
 export function getRecipes(){
     return async function (dispatch) {

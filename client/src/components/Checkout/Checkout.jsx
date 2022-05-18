@@ -26,6 +26,7 @@ export default function Checkout(activity) {
   const orderLine = useSelector((state)=>state.cart.orderLine)
   const [emailClass, setEmailClass] = useState("email-hiden");
   const [emailCheckout, setEmailCheckout] = useState("");
+  const [timerToMP , setTimerToMP] = useState("timer-hiden");
   const userEmail = useSelector((state) => state.login.user.email);
 
   useEffect(() => {
@@ -165,6 +166,13 @@ export default function Checkout(activity) {
     console.log(emailCheckout);
   }
 
+function handleButtonPay (){
+
+  checkOut(products, totalCart);
+  setTimerToMP('timer-show');
+
+}
+ 
 
   //Hacer verificacion isAuthenticated y en caso de ser afirmativo retornar:
   return (
@@ -195,7 +203,7 @@ export default function Checkout(activity) {
         </div>
         <div className={style.dispatchContainer}>
           <button onClick={(e) => alertCancelar()}>cancelar</button>
-          <button onClick={(e) => checkOut(products, totalCart)}>Pagar</button>
+          <button onClick={handleButtonPay}>Pagar</button>
           <p>
             (al presionar el boton sera redireccionado a la pagina de Mercado
             Pago para finalizar la compra)
@@ -204,6 +212,8 @@ export default function Checkout(activity) {
         <div className={style.crossHide}></div>
         <div className={style.crossHide2}></div>
         <div className={style.crossHide3}></div>
+
+         <div className={timerToMP}><span id="countdown">Seras Redireccionado a Mercado Pago en segundos</span></div>
       </div>
     </div>
   );
