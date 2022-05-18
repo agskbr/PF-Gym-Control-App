@@ -129,7 +129,9 @@ export default function EditPage() {
               <select
                 key={input}
                 onChange={(e) => {
-                  setErrors(validateForm({ ...inputs, day: e.target.value }));
+                  setErrors(
+                    validateForm({ ...inputs, day: e.target.value }, type)
+                  );
                   setInputs({ ...inputs, day: e.target.value });
                 }}
                 className={style.customSelectTag}

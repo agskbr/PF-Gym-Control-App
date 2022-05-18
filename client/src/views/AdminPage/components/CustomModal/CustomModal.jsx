@@ -119,7 +119,7 @@ export default function CustomModal({ type }) {
                 key={input}
                 onChange={(e) => {
                   setErrors(
-                    validateForm({ ...inputs, [input]: e.target.value })
+                    validateForm({ ...inputs, [input]: e.target.value }, type)
                   );
                   setInputs({ ...inputs, [input]: e.target.value });
                 }}
