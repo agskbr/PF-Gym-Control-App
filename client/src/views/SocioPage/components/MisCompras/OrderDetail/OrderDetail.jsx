@@ -11,7 +11,7 @@ import {AiFillCloseCircle} from 'react-icons/ai';
 
 export default function OrderDetail({orderId, totalPrice}) {
 
-   // console.log("orderId", orderId)
+   console.log("orderId", orderId)
    
   const dispatch = useDispatch();
 
@@ -19,6 +19,9 @@ export default function OrderDetail({orderId, totalPrice}) {
 // console.log("activ", activities)
     const orderlines = useSelector((state)=> state.pgym.orderlines)  // [{activId1}, {activId2}]
  // console.log("orderline", orderlines)
+
+ const orders = useSelector((state)=> state.pgym.orders)
+console.log("orders", orders)
 
     useEffect(()=>{
       if(orderId){

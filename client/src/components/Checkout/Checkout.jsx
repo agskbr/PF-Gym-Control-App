@@ -1,8 +1,9 @@
+import "./style.css"
 import style from "./checkout.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../CartItem/CartItem";
 import { validateUserIsLogged } from "../../store/actions/actions-login";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL, POST_MERCADOPAGO, LOCAL_HOST } from "../../store/constantes";
@@ -23,9 +24,13 @@ export default function Checkout(activity) {
   const { user } = useSelector((state) => state.login);
   const orderLineId = useSelector((state) => state.cart.newOrederLineId);
   const orderLine = useSelector((state)=>state.cart.orderLine)
+  const [emailClass, setEmailClass] = useState("email-hiden");
+  const [emailCheckout, setEmailCheckout] = useState("");
+  const userEmail = useSelector((state) => state.login.user.email);
 
   useEffect(() => {
     dispatch(validateUserIsLogged());
+    setEmailCheckout(userEmail);
   }, [dispatch]);
   useEffect(() => {
     if (!user) {
@@ -48,7 +53,7 @@ export default function Checkout(activity) {
  */
 
   const usuarioName = state.login.user.displayName;
-  const userEmail = useSelector((state) => state.login.user.email);
+  
 
   // Validacion de usuario
   /* const userState = useSelector(state => state.user[0]) */
@@ -77,18 +82,19 @@ export default function Checkout(activity) {
       /* let check = {state:'Processing', totalPrice: totalCart}
             await axios.post(BASE_URL + '/order/', check); */
       //userID
-      /*  let email = {
+      
+       let email = {
                 user: {
                     name: name,
                     lastname: lastname,
-                    email: userEmail    
+                    email: emailCheckout    
                 },
                 info: {
                     orderId: idCart,
                     totalPrice: totalCart
                 }
             }
-            let resEmail = await axios.post(BASE_URL +'/email/orderCreated', email) */
+            let resEmail = await axios.post(BASE_URL +'/email/orderCreated', email)
       //! --------------------------------------------------------
 
       //name
@@ -145,6 +151,20 @@ export default function Checkout(activity) {
     });
   }
 
+  function handleEmailClick (){
+    if(emailClass === 'email-hiden')setEmailClass('email-show');
+    if (emailClass === 'email-show'){
+      setEmailClass('email-hiden');
+      let emailValue = document.getElementById("Email").value;
+      setEmailCheckout(emailValue);
+    }
+
+    /* if(emailValue !== ''){
+      setEmailCheckout(emailValue);
+    } */
+    console.log(emailCheckout);
+  }
+
 
   //Hacer verificacion isAuthenticated y en caso de ser afirmativo retornar:
   return (
@@ -169,8 +189,9 @@ export default function Checkout(activity) {
           </h4>
         </div>
         <div className={style.address}>
-          <p>Email: {user.email}</p>
-          <button>Editar Email</button>
+          <p>Email: {emailCheckout}</p>
+          <button onClick={handleEmailClick}>Editar Email</button>
+        <input className={emailClass} type="text" id="Email" />
         </div>
         <div className={style.dispatchContainer}>
           <button onClick={(e) => alertCancelar()}>cancelar</button>
