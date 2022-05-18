@@ -29,7 +29,6 @@ router.post('/:emailType', async (req,res) => {
     })
     const emailType = req.params.emailType;
     let mailOptions;
-    console.log(req.body.user.email)
     if (emailType === "welcome") {
         mailOptions = {
           from: UserMail,
@@ -47,7 +46,7 @@ router.post('/:emailType', async (req,res) => {
                                         Bienvenid@   ` +
             req.body.user.name +
             `  ` +
-            req.body.user.lastname +
+            req.body.user.lastName +
             `  !
             <hr>
             <p style= "color: #eb4e27;" >
@@ -100,7 +99,7 @@ router.post('/:emailType', async (req,res) => {
           
           <div style="text-align: center; padding: 0 0.72rem; padding-top: 2.5rem; background-color: rgba(253,237,233,.98)">
           <p style="color: #4f5154; margin-bottom: 1.4rem; font-size: 1rem;">&iexcl;
-          Hola ${user.name}  ${user.lastname}  !
+          Hola ${user.name}  ${user.lastName}  !
           <h3>Tu orden fue creada con éxito </h3>
           Order N° ${info.orderId}
           <hr>
@@ -126,7 +125,7 @@ router.post('/:emailType', async (req,res) => {
               </div>
           <div style="text-align: center; padding: 0 0.72rem; padding-top: 2.5rem; background-color:rgba(253,237,233,.98)">
           <p style="color: #4f5154; margin-bottom: 1.4rem; font-size: 1rem;">&iexcl;
-          Hola ${user.name}  ${user.lastname}  !
+          Hola ${user.name}  ${user.lastName}  !
           <h3>Tu orden fue pagada con éxito </h3>
           Order N° ${info.orderId}
           <hr>
