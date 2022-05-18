@@ -1,8 +1,9 @@
 
 .myActivitiesContainer{
-    width: 100%;
+    width: 80%;
     display: flex;
     max-width: 100%;
+    
 }
 .myActivitiesCard{
     width: 100%;
@@ -54,6 +55,4 @@
     outline: none;
     color: rgb(255, 255, 0);
 }
- #review{
-    display: none;
-} 
+ 

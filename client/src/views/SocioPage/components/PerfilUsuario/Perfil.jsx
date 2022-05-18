@@ -70,7 +70,7 @@ export default function Perfil() {
             <div className={style.perfilUserName}>
               <div className={style.userImg}>
                 <img
-                  // alt="user"
+                   alt="user"
                   src={
                     currentUser.photoURL
                       ? currentUser.photoURL
