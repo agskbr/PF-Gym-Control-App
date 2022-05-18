@@ -10,6 +10,7 @@ import {
 import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
 import CustomInput from "../CustomInput/CustomInput.jsx";
 import { addDescuento } from "../../../../store/actions/actions-descuentos";
+import { FaPercent } from "react-icons/fa";
 export default function CustomModal({ type }) {
   const dispatch = useDispatch();
   const { descuentos } = useSelector((state) => state.descuentos);
@@ -113,20 +114,57 @@ export default function CustomModal({ type }) {
           input !== "updatedAt" &&
           input !== "createdAt" &&
           input !== "createdInDb" ? (
-            <CustomInput
-              key={input}
-              name={input}
-              type={
-                input === "capacity" || input === "descuento"
-                  ? "number"
-                  : "text"
-              }
-              min={0}
-              onChange={handlerChange}
-              placeholder={input}
-              value={inputs[input] || ""}
-              labelError={errors[input]}
-            />
+            input === "day" ? (
+              <select
+                key={input}
+                onChange={(e) => {
+                  setErrors(
+                    validateForm({ ...inputs, [input]: e.target.value }, type)
+                  );
+                  setInputs({ ...inputs, [input]: e.target.value });
+                }}
+                className={style.customSelectTag}
+                name={input}
+              >
+                <option hidden>Selecciona un día</option>
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miercoles">Miercoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Sabado">Sabado</option>
+                <option value="Domingo">Domingo</option>
+              </select>
+            ) : (
+              <CustomInput
+                key={input}
+                name={input}
+                type={
+                  input === "capacity" || input === "descuento"
+                    ? "number"
+                    : "text"
+                }
+                min={0}
+                onChange={handlerChange}
+                placeholder={input}
+                suffixIcon={
+                  input === "hour" ? (
+                    <span
+                      style={{
+                        color: "#fe4f22",
+                        fontFamily: "sans-serif",
+                        fontWeight: "600",
+                      }}
+                    >
+                      Hs
+                    </span>
+                  ) : input === "descuento" ? (
+                    <FaPercent size={16} color="#fe4f22" />
+                  ) : null
+                }
+                value={inputs[input] || ""}
+                labelError={errors[input]}
+              />
+            )
           ) : input === "description" ? (
             <div key={input} className={style.textAreaContainer}>
               <textarea
@@ -203,7 +241,12 @@ export default function CustomModal({ type }) {
               }
 
               if (type === "Descuentos") {
-                dispatch(addDescuento({ ...inputs }));
+                dispatch(
+                  addDescuento({
+                    ...inputs,
+                    codigo: inputs.codigo.toUpperCase(),
+                  })
+                );
               }
               document.getElementById("createDialog").close();
             }

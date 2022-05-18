@@ -7,7 +7,7 @@ import {
 } from "../actions-type/index";
 import { BASE_URL } from "../constantes";
 import swal from "sweetalert";
-import { getAllUsers } from ".";
+import { getAllUsers } from "../actions/index";
 
 const getUsers = () => {
   return async function(dispatch) {
@@ -60,30 +60,31 @@ const createNewUser = (payload) => {
 };
 
 const editUser = (id, payload) => {
-    return async function (dispatch){
-        try {
-            const {data} = await axios.put(`${BASE_URL}/user/${id}`, payload)
-            swal({
-                title: "edit profile",
-                icon: "success",
-                position: "center",
-                timer: 2000,
-            });
-            dispatch(getUserById(id))
-            return ({
-                type:EDIT_USER,
-                payload: data
-            })
-            
-        } catch (error) {
-           console.log(error)
-           swal({
-            title: "algo salio mal",
-            icon: "error",
-            position: "center",
-            timer: 3000,
-        });
-        }
+  return async function(dispatch) {
+    try {
+      const { data } = await axios.put(`${BASE_URL}/user/${id}`, payload);
+      swal({
+        title: "edit profile",
+        icon: "success",
+        position: "center",
+        timer: 2000,
+      });
+      dispatch(getUserById(id));
+      return {
+        type: EDIT_USER,
+        payload: data,
+      };
+    } catch (error) {
+      console.log(error);
+      swal({
+        title: "algo salio mal",
+        icon: "error",
+        position: "center",
+        timer: 3000,
+      });
+    }
+  };
+};
 
 const deleteUser = (id) => {
   return async (dispatch) => {
@@ -107,7 +108,6 @@ const deleteUser = (id) => {
         icon: "success",
         buttons: "Aceptar",
       });
-
     }
   };
 };

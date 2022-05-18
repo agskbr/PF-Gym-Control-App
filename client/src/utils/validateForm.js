@@ -11,16 +11,16 @@ const validateForm = (inputs, type) => {
   }
 
   if (type === "Usuarios") {
-    if (!inputs.lastName) {
-      errors.lastName = "El apellido es requerido";
-    }
+    // if (!inputs.lastName) {
+    //   errors.lastName = "El apellido es requerido";
+    // }
     // if (!inputs.email) {
     //   errors.email = "El email es requerido";
     // }
     // if (!inputs.phoneNumber) {
     //   errors.phoneNumber = "El número de teléfono es requerido";
     // }
-    if (inputs.isAdmin === false) {
+    if (!inputs.isAdmin) {
       errors.isAdmin = "¿Será administrador?";
     }
     // if (!inputs.notifications) {
@@ -69,16 +69,24 @@ const validateForm = (inputs, type) => {
     if (!inputs.day) {
       errors.day = "Debes especificar un día";
     }
-    if (!inputs.capacity) {
-      errors.capacity = "La capacidad es obligatoria";
-    }
     if (!inputs.hour) {
       errors.hour = "El horario es obligatorio";
+    } else if (!/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/g.test(inputs.hour)) {
+      errors.hour = "El formato debe ser el siguiente: HH:MM o H:MM";
     }
+    if (!inputs.capacity) {
+      errors.capacity = "La capacidad es obligatoria";
+    } /* else if (inputs.capacity.includes(",") || inputs.capacity.includes(".")) {
+      errors.capacity = "Solo numeros enteros";
+    } */
   }
   if (type === "Descuentos") {
     if (!inputs.descuento) {
       errors.descuento = "Debes indicar un descuento";
+    } else if (inputs.descuento[0] === "0") {
+      errors.descuento = "Este descuento no es posible";
+    } else if (!/^[0-9]+$/g.test(inputs.descuento)) {
+      errors.descuento = "Solo números";
     } else if (inputs.descuento > 100) {
       errors.descuento = "No puedes crear un descuento mayor al 100%";
     }
