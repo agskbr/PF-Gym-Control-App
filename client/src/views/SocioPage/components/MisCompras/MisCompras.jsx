@@ -21,8 +21,11 @@ export default function MisCompras() {
 
   const allOrders = useSelector((state) => state.pgym.orders);
   const statusOrder = useSelector((state) => state.pgym.orderStatus);
+  const {orderlines} = useSelector((state) => state.pgym.orders)
+  console.log("orderlinesss", orderlines)
 
-  //console.log("oredn2", allOrders)
+  console.log("oredn2", allOrders)
+  
   const completeStatusOrder = () => {
     console.log("entre al put");
     if (statusOrder === "approved") {
@@ -43,6 +46,10 @@ export default function MisCompras() {
       }
     }
   };
+  const newAllOrders = allOrders.filter(
+    (el) => el.state === "Complete"
+  );
+
 
   useEffect(() => {
     dispatch(getUserById(uid));
@@ -66,21 +73,55 @@ export default function MisCompras() {
           <thead className={s.encabezado}>
             <tr className={s.tableRow}>
               <th className={s.columnas}> Orden de compra N°</th>
-              <th className={s.columnas}> Fecha de compra </th>
+              <th className={s.columnas}> Actividad </th>
+              <th className={s.columnas}> Fecha de compra</th>
               <th className={s.columnas}> Estado </th>
-              <th className={s.columnas}> Importe </th>
-              <th className={s.columnas}> ver detalle </th>
+              <th className={s.columnas}> Total </th>
+              {/* <th className={s.columnas}> Cantidad </th> */}
+              {/* <th className={s.columnas}> Total </th> */}
               {/* <th className={s.columnas}>Descargar</th> */}
             </tr>
           </thead>
           <tbody>
-            {allOrders?.map((orden) => (
-              <tr key={orden.id} className={s.tableRow}>
+            {newAllOrders?.map((orden) => (
+              <tr key={orden.id}  className={s.tableRow}>
                 <td className={s.filas}>{orden.id}</td>
+                {orden.activities.map((e) => (
+                  <td className={s.filasAct}>
+                    {e.name}
+                  </td>
+
+                ))
+              }
+              
+
                 <td className={s.filas}>{orden.updatedAt.slice(0, 10)}</td>
                 <td className={s.filas}>{orden.state}</td>
-                <td className={s.filas}> $ {orden.totalPrice}</td>
-                <td className={s.filas}>
+                {/* {orden.activities.map((e) => (
+                  // e.values((e))
+          
+
+                )) */}
+              {/* } */}
+                
+                <td className={s.filas}> ${orden.totalPrice}</td>
+                
+
+
+                 {/* {orden.activities.map((e) => (
+                  e.map((e)=> (
+                    <td className={s.filasAct2}>
+                    $ {e.quantity}
+                   </td>
+        
+
+                  ))
+
+
+                ))
+              } */}
+
+                {/* <td className={s.filas}>
                   <HiDocumentSearch
                     onClick={() => {
                       document.getElementById("orderDetailDialog").showModal();
@@ -91,9 +132,10 @@ export default function MisCompras() {
                     orderId={orden.id}
                     totalPrice={orden.totalPrice}
                   />
-                </td>
+                </td> */}
               </tr>
             ))}
+            
           </tbody>
         </table>
       </div>

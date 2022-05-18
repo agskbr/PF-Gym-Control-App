@@ -5,6 +5,8 @@
     display: block;
     position: absolute;
     background-color: black;
-    top: 15rem;
-    left: 40rem;
+    top: 5rem;
+    left: 30rem;
+    width: 500px ;
+    height: 80vh;
 }

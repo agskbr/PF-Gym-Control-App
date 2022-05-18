@@ -2,15 +2,36 @@ import React, { useEffect, useState } from 'react'
 import s from './EditProfile.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { editUser} from '../../../../../store/actions/actions-user';
+import logo from '../../../../../assets/logo.png'
+
 
 //me traigo los users logueados para poder la imagen??
+
+
+// const validatePhonenumber = (input) =>{
+//     console.log("input", input)
+//     const errors = {};
+//     if (!input.phoneNumber.match(/^(()?\d{3}())?(-|\s)?\d{3}(-|\s)\d{4}$/)){
+        // /^\d{7,14}$/.test(input.phoneNumber)
+        // /^\(?(\d{3})\)?[-]?(\d{3})[-]?(\d{4})$/.test(input.phoneNumber)
+//         errors.phoneNumber = "El teléfono debe ser válido";
+//      }
+//       return errors;
+
+// }
+
+
 export default function EditProfile() {
 
     const actual = useSelector((state)=> state.users.user)
     // const {uid} = useSelector((state)=> state.login.user )
     
     const dispatch = useDispatch();
-    
+    // const [errors, setErrors] = useState({})
+
+    //     const [input, setInput] = useState({
+    //     phoneNumber:""
+    // })
     const [user, setUser]= useState({
         name: "",
         lastName:"",
@@ -36,27 +57,33 @@ export default function EditProfile() {
         });
       };
     
-    const handleSubmit = (e) => {
+      const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(editUser(actual.id, user))
+        // setErrors(validatePhonenumber(user));
+        // if (Object.keys(errors).length === 0) {
+        //     dispatch(editUser(actual.id, input)) 
+        // };
         document.getElementById("editProfileDialog").close()
     }
+
+
   return (
     <dialog id="editProfileDialog" style={{ border: "none", height: "80vh"}}>
-        <div className={s.Container}>
+        <div className={s.editPerfilContainer}>
             <div className={s.createReviewHeader}>
                 <div style={{ justifyContent: "flex-end", display: "flex" }}>
                     <button
                     onClick={() => document.getElementById("editProfileDialog").close()}
-                    className={s.createReviewBoton}
+                    className={s.editPerfilAddBtn}
                     >
                     x
                     </button>
                 </div>
+                <img src={logo} alt={logo} width="90"/>
             
             </div>
-            <h6>Actualizar Perfil</h6>
-            <form className={s.CreateReaviewForm} onSubmit={handleSubmit} >
+            <h6 className={s.editProfileForm}>Actualizar Perfil</h6>
+            <form className={s.editProfileForm} onSubmit={handleSubmit} >
                 <div>
                     <label htmlFor="">Nombre : </label>
                     <input 
@@ -93,12 +120,13 @@ export default function EditProfile() {
                         className={s.perfilInput}
                         name="phoneNumber"
                         onChange={handleChange}
-                        value={user.phoneNumber ?? ""} 
+                        value={user.phoneNumber ?? ""}
+                        // Error={errors.phoneNumber} 
                     />
                 </div>
                 <div>
                 <button 
-                        className={s.createReviewBoton} 
+                        className={s.editPerfilAddBtn} 
                         type="submit"
                     >
                         Actualizar
