@@ -31,7 +31,7 @@ export default function MyActivities() {
   const {id} = useSelector((state)=> state.users.user); 
   
   //console.log()
-  const allActivities = useSelector((state)=> state.pgym.allActivities);
+ // const allActivities = useSelector((state)=> state.pgym.allActivities);
   const allOrders = useSelector((state)=> state.pgym.orders[0].activities); //ordenes de compra --> id orden (18)
   //console.log("orders", allOrders)
 
@@ -40,6 +40,9 @@ export default function MyActivities() {
 
   /** */
   const allReviewUser = useSelector((state)=>state.review.reviews);
+  console.log(("allReviewUser", allReviewUser))
+  
+  
 
   const stars= Array(5).fill(0);
     const [currentValue, setCurrentValue] = useState(0);
@@ -50,6 +53,7 @@ export default function MyActivities() {
         activityId: "", 
         userId: id, //le seteo por defecto un id q este en base de datos para q funcione x ahora!!
     })
+
     const handleClick = value => { //rating
       setCurrentValue(value)
       setInput({
@@ -96,7 +100,7 @@ const handleSubmit = (e) => { //button
           timer: 2000,
           
       });
-  }else if (allReviewUser.find((r)=>r.activityId === id)) {
+  }else if (allReviewUser.find((r)=>r.activityId === input.activityId)) {
           e.preventDefault()
           alert("ya realizaste una review de esta clase")
           setClassForm("hide")
