@@ -13,6 +13,7 @@ import CustomSelectTag from "../CustomSelectTag/CustomSelectTag.jsx";
 import style from "./EditPage.module.css";
 import { useNavigate } from "react-router-dom";
 import { modDescuento } from "../../../../store/actions/actions-descuentos.js";
+import { FaPercent } from "react-icons/fa";
 
 export default function EditPage() {
   const { trainers, activities, daysAndHours, users } = useSelector(
@@ -114,7 +115,9 @@ export default function EditPage() {
                   checked={inputs.isAdmin ?? false}
                   value={inputs.isAdmin}
                   onChange={(e) => {
-                    validateForm({ ...inputs, isAdmin: e.target.value }, type);
+                    setErrors(
+                      validateForm({ ...inputs, isAdmin: "Change" }, type)
+                    );
                     setInputs((state) => ({
                       ...state,
                       [e.target.name]: !state[input],
@@ -122,6 +125,26 @@ export default function EditPage() {
                   }}
                 />
               </div>
+            ) : input === "day" ? (
+              <select
+                key={input}
+                onChange={(e) => {
+                  setErrors(
+                    validateForm({ ...inputs, day: e.target.value }, type)
+                  );
+                  setInputs({ ...inputs, day: e.target.value });
+                }}
+                className={style.customSelectTag}
+                name={input}
+              >
+                <option hidden>Selecciona un día</option>
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miercoles">Miercoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Sabado">Sabado</option>
+                <option value="Domingo">Domingo</option>
+              </select>
             ) : (
               <CustomInput
                 disabled={disabledUserInputs(type, input)}
@@ -132,7 +155,16 @@ export default function EditPage() {
                 value={inputs[input] ?? ""}
                 placeholder={input}
                 titleInput={input}
-                type="text"
+                type={
+                  input === "capacity" || input === "descuento"
+                    ? "number"
+                    : "text"
+                }
+                suffixIcon={
+                  input === "descuento" ? (
+                    <FaPercent size={16} color="#fe4f22" />
+                  ) : null
+                }
               />
             )
           ) : input === "experience" || input === "description" ? (
@@ -245,7 +277,12 @@ export default function EditPage() {
                   dispatch(editDaysAndHours({ ...inputs }, id));
                 }
                 if (type === "Descuentos") {
-                  dispatch(modDescuento({ ...inputs }, id));
+                  dispatch(
+                    modDescuento(
+                      { ...inputs, codigo: inputs.codigo.toUpperCase() },
+                      id
+                    )
+                  );
                 }
                 navigate("/admindashboard", { replace: true });
               }

@@ -17,6 +17,7 @@ import { MdRefresh } from "react-icons/md";
 import ExpansibleMenu from "../ExpansibleMenu/ExpansibleMenu";
 import { cancelOrder } from "../../../../store/actions/actions-orders";
 import { deleteUser } from "../../../../store/actions/actions-user";
+import { filterBy } from "../../../../utils/filterArrayFromAdmin";
 
 export default function AdminCardView({ type }) {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export default function AdminCardView({ type }) {
   );
   const [expanseItemDay, setExpanseItemDay] = useState({});
   const [keys, setKeys] = useState([]);
+  const [filter, setFilter] = useState("");
   const [displayArray, setDisplayArray] = useState([]);
   useEffect(() => {
     if (users.length && trainers.length && activities.length) {
@@ -56,6 +58,10 @@ export default function AdminCardView({ type }) {
     }
   }, [activities, trainers, users, orders, descuentos, daysAndHours, type]);
 
+  useEffect(() => {
+    setDisplayArray((state) => [...state]);
+  }, [filter]);
+
   return (
     <div className={style.principalContainer}>
       <div className={style.titleAndAddBtn}>
@@ -75,17 +81,30 @@ export default function AdminCardView({ type }) {
             }}
           />
         </div>
-        <button
-          disabled={type === "Ordenes" || type === "Usuarios"}
-          onClick={() => document.getElementById("createDialog").showModal()}
-          className={
-            type === "Ordenes" || type === "Usuarios"
-              ? style.addDisabledBtn
-              : style.addBtn
-          }
-        >
-          Agregar
-        </button>
+        <div>
+          <select
+            onChange={(event) => {
+              setFilter(event.target.value);
+              setDisplayArray(filterBy(displayArray, event.target.value));
+            }}
+            className={style.customSelectTag}
+          >
+            <option hidden>Podes filtrar por:</option>
+            <option value="Ultimos creados">Ultimos creados</option>
+            <option value="Ultimos modificados">Ultimos modificados</option>
+          </select>
+          <button
+            disabled={type === "Ordenes" || type === "Usuarios"}
+            onClick={() => document.getElementById("createDialog").showModal()}
+            className={
+              type === "Ordenes" || type === "Usuarios"
+                ? style.addDisabledBtn
+                : style.addBtn
+            }
+          >
+            Agregar
+          </button>
+        </div>
       </div>
       <div className={style.cardLayout}>
         <table className={style.tableAdminView}>
@@ -181,7 +200,7 @@ export default function AdminCardView({ type }) {
                         }
                         key={i}
                       >
-                        {el[key]}
+                        {key === "descuento" ? `${el[key]}%` : el[key]}
                       </td>
                     );
                   }

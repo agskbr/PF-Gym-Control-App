@@ -186,15 +186,18 @@ const validateUserIsLogged = () => {
             };
             await axios.post(`${BASE_URL}/user`, authUserValidated);
           }
-          const cart = await axios.post(`${BASE_URL}/order/cart`, {userId:userFind.data.id})
-          dispatch(orderLinefuntion(cart.data[0].id));
-          console.log(cart.data)
-          if(cart.data[1] === false){
-            const orderlines = await axios.get(`${BASE_URL}/orderline/${cart.data[0].id}`)
-            console.log(orderlines.data)
-            orderlines.data.forEach(el=>{
-              dispatch(addToCart(el.diaHoraId))
-            })
+          const cart = await axios.post(`${BASE_URL}/order/cart`, {
+            userId: userFind.data?.id,
+          });
+          dispatch(orderLinefuntion(cart.data[0]?.id));
+          if (cart.data[1] === false) {
+            const orderlines = await axios.get(
+              `${BASE_URL}/orderline/${cart.data[0]?.id}`
+            );
+            console.log(orderlines.data);
+            orderlines.data.forEach((el) => {
+              dispatch(addToCart(el.diaHoraId));
+            });
           }
           dispatch({ type: USER_IS_ADMIN, payload: data });
           dispatch({
@@ -237,7 +240,7 @@ const actionCodeSettings = {
 };
 
 export function verifyAccount() {
-  return async function () {
+  return async function() {
     try {
       await sendEmailVerification(auth.currentUser, actionCodeSettings);
       swal({
