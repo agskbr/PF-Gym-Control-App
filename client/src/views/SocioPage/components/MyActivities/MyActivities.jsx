@@ -189,7 +189,7 @@ useEffect(()=>{
                                 alt="logo"
                             />
                             <h3 className={s.createReviewTitle}>Power Gym</h3>
-                            <h4>¿Estas conforme con nuestro servicio? Dejanos tu opinion</h4>
+                            <h4 className={s.createReviewh4}>¿Estas conforme con nuestro servicio? Dejanos tu opinion</h4>
                           </div>
                             <form className={s.CreateReaviewForm} onSubmit>
                                 <div style={styles.stars}>
