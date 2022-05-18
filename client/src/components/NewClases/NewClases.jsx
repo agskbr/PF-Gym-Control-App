@@ -23,6 +23,7 @@ const dispatch = useDispatch();
 const allActivities = useSelector((state) => state.pgym.allActivities);
 let [detailClass, setDetailClass] = useState("detail-closed");
 let [botClass, setBotClass] = useState("bot-closed");
+let [bubbleClass, setBubbleClass] = useState("bubble-open");
 
 
 
@@ -58,8 +59,14 @@ useEffect(() => {
 /* dispatch (getAllDescuentos()); */
 
 function handleBotClick () {
-    if (botClass === 'bot-closed') setBotClass('bot-open')
-    if (botClass === 'bot-open') setBotClass('bot-closed')
+    if (botClass === 'bot-closed'){
+        setBotClass('bot-open')
+        setBubbleClass('bubble-closed')
+    } 
+    if (botClass === 'bot-open'){
+        setBotClass('bot-closed')
+        setBubbleClass('bubble-open')
+    }
 }
 
 return (
@@ -84,9 +91,10 @@ return (
             <div className={botClass}>
                 <PowerChat />
             </div>
-            <div className={style.bot} onClick={handleBotClick} >
-                BOT
+            <div className={bubbleClass} onClick={handleBotClick} >
             </div>
+            
+                <div className="buttonCloseBot"></div>
 
     </div>
 

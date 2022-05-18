@@ -21,3 +21,72 @@
     visibility: visible;
     transition: ease-in-out 2s;
 }
+
+
+.buttonCloseBot{
+    position: absolute;
+    margin-top: 47vh;
+    margin-left: 16vw;
+    z-index: 999;
+    background-image: url("../../assets/del.ico");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 1vw;
+    height: 2vh;
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+}
+
+.bubble-closed{
+    display: none;
+}
+
+
+.bubble-open{
+    color: #000000;
+    background-color: #ff9100;
+    border-radius: 50%;
+    width: 4vw;
+    height: 4vw;
+    position: sticky;
+    top: 85vh;
+    left: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-image: url("../../assets/logo.png");
+    background-size: cover;
+    background-position: center;
+    transition: ease-in-out 1s;
+    animation : bot 1s infinite;
+    
+
+}
+@keyframes bot {
+    from {
+        transform: scale(1.1);
+        background-color: #ff00dd;
+    }
+    50% {
+        transform: scale(1);
+        /* filter:invert(50%); */
+    }
+    to {
+        transform: sclae(1.1);
+    }
+}
+
+
+@media (max-width: 62em) {
+
+    .buttonCloseDetail{
+        margin-top: -88.5vh;
+        margin-left: 87vw;
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+}
