@@ -82,12 +82,14 @@ router.put("/sumaTotal", async (req, res) => {
         const order = await orderFilterId(orderId)
         order.totalPrice = Number(order.totalPrice) + Number(subtotal);
         await order.save()
-        //console.log(order)
+        console.log("ordenTotalPrice" , order.totalPrice)
         res.send("Precio Total de la orden modificada exitósamente");
     } catch (error) {
         res.send(error)
     }
+    
 })
+
 
 //PASO 1 - para cancelar orden -> "Canceled"
 //paso 2 en DiaHora

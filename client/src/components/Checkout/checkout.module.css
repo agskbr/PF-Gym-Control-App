@@ -85,10 +85,22 @@
         border: none;
         border-radius: 5px;
         height: 5vh;
-        width: 5vw;
+        margin-top: 1rem;
+        width: 8vw;
         font-size: 1vw;
         transition: ease-in-out 0.2s;
 }
+.dispatchContainer button:nth-child(1){
+       background-color: #e2280f;
+       color: #ffffff;
+       border: none;
+       border-radius: 5px;
+       height: 5vh;
+       width: 8vw;
+       font-size: 1vw;
+       transition: ease-in-out 0.2s;
+}
+
 
 .dispatchContainer button:hover{
     background-color: #ffffff;
@@ -126,3 +138,6 @@
        right: 31vw;
 }
 
+.email{
+    display: none;
+}

@@ -3,6 +3,7 @@
     color: rgb(168, 167, 167);
     padding: 1rem;
     font-size: 20px;position: relative;
+    width: 60vw;
 }
 .createReviewHeader{
    /*  width: 40vw; */
