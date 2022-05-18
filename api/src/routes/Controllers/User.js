@@ -36,7 +36,7 @@ const getUserId = async (id) => {
         uid: id
       },
     });
-    console.log(UserUid)
+    //console.log(UserUid)
     if (UserUid) {
       return UserUid;
     } else {
@@ -145,8 +145,8 @@ const useraddDiaHora = async (idUser, idHoraDia) => {
   try {
       var usuario = await User.findByPk(idUser);
       var diaHora = await DiaHora.findByPk(idHoraDia);
-      console.log(usuario)
-      console.log(diaHora)
+      //console.log(usuario)
+      //console.log(diaHora)
       if (usuario && diaHora) {
         await usuario.addDiaHora(diaHora)
           return true

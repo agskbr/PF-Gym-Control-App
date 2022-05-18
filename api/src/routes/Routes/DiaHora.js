@@ -25,9 +25,9 @@ router.put('/addStock', async (req, res,)=> {
         const orderline = await orderlineByOrderId(orderId);
         // console.log(orderline)
         const order = await orderFilterId(orderId)
-        console.log(order.userId)
+        //console.log(order.userId)
         const user = await getUserId2(order.userId)
-        console.log(user)
+        //console.log(user)
         await orderline.forEach(async element => {
             const diaHora = await horaDiaId(element.diaHoraId);
             console.log(`La capacidad actual es: ${diaHora.capacity}`)

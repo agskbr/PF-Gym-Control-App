@@ -78,10 +78,44 @@ const allReviews = async () => {
     }
 }
 
+const createRelation = async (idUser,idActivity) => {
+    try {
+        var user = await User.findByPk(idUser);
+        //console.log(user)
+        var activity = await Activity.findByPk(idActivity);
+        //console.log(activity)
+        if (user && activity) {
+            await activity.addUser(user);
+            return true
+        } else {
+            return false
+        }
+    } catch (error) {
+        return(error);
+    }
+}
+
+const deleteRelation = async (idUser,idActivity) => {
+    try {
+        var user = await User.findByPk(idUser);
+        var activity = await Activity.findByPk(idActivity);
+        if (user && activity) {
+            await activity.removeUser(user);
+            return true
+        } else {
+            return false
+        }
+    } catch (error) {
+        return(error);
+    }
+}
+
 module.exports = {
     createReview,
     reviewActivityId,
     reviewUserId,
     reviewUpdate,
-    allReviews
+    allReviews,
+    createRelation,
+    deleteRelation
 }

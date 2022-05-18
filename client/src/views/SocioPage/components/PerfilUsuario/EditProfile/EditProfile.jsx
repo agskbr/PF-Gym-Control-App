@@ -3,10 +3,11 @@ import s from './EditProfile.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { editUser} from '../../../../../store/actions/actions-user';
 
-
+//me traigo los users logueados para poder la imagen??
 export default function EditProfile() {
 
     const actual = useSelector((state)=> state.users.user)
+    // const {uid} = useSelector((state)=> state.login.user )
     
     const dispatch = useDispatch();
     
@@ -14,13 +15,15 @@ export default function EditProfile() {
         name: "",
         lastName:"",
         phoneNumber: "",
+        image: "",
     })
     
     useEffect(()=>{
        setUser({
            name: actual.name,
            lastName: actual.lastName,
-           phoneNumber: actual.phoneNumber
+           phoneNumber: actual.phoneNumber,
+        //    image: actual.image
        })
     },[actual])
 
@@ -54,7 +57,6 @@ export default function EditProfile() {
             </div>
             <h6>Actualizar Perfil</h6>
             <form className={s.CreateReaviewForm} onSubmit={handleSubmit} >
-                <h2>COMPLETAAAAAAAAA TU PERFIL</h2>
                 <div>
                     <label htmlFor="">Nombre : </label>
                     <input 
@@ -75,15 +77,15 @@ export default function EditProfile() {
                         onChange={handleChange}
                     />
                 </div>
-                <div>
-                    <label htmlFor="">Email: </label>
+                {/* <div> */}
+                    {/* <label htmlFor="">Email: </label>
                     <input
                         type="text"
                         className={s.perfilInput}
                         name="email"
                         defaultValue={actual.email || ""}
                     />
-                </div>  
+                </div>   */}
                 <div>
                     <label htmlFor="">Teléfono: </label>
                     <input 

@@ -4,7 +4,9 @@ const {
     reviewActivityId,
     reviewUserId,
     reviewUpdate,
-    allReviews
+    allReviews,
+    createRelation,
+    deleteRelation
 } = require('../Controllers/Review');
 
 
@@ -12,6 +14,29 @@ const {
 router.get('/all', async (req,res) => {
     const all_Reviews = await allReviews();
     res.json(all_Reviews);
+});
+
+//crear la relacino en tre usuario y la actividad
+router.post('/create', async (req, res) => {
+    try {
+        const { idUser, idActivity } = req.body
+        const response = await createRelation(idUser,idActivity);
+        res.json(response)
+    } catch (error) {
+        res.state(404).send(error)
+    }
+});
+
+//eliminar la relacion entre usuario y la actividad
+router.delete('/delete/:idUser/:idActivity', async (req, res) => {
+    try {
+        const { idUser, idActivity } = req.params
+        //console.log(idUser, idActivity)
+        const response = await deleteRelation(idUser,idActivity);
+        res.json(response)
+    } catch (error) {
+        res.state(404).send(error)
+    }
 });
 
 
