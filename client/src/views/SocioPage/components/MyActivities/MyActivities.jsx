@@ -34,7 +34,7 @@ export default function MyActivities() {
  // const allActivities = useSelector((state)=> state.pgym.allActivities);
   const allOrders = useSelector((state)=> state.pgym.orders[0].activities); //ordenes de compra --> id orden (18)
   //console.log("orders", allOrders)
-
+  const ordersFilter = allOrders.filter((order) => order.state === "Complete")
   //const ultima = allOrders[allOrders.length-2] //
   //console.log("ultima", ultima)
 
@@ -153,10 +153,10 @@ useEffect(()=>{
       <div className={s.actividadesEncabezado}>
           <h1>Mis actividades</h1>
          {
-           allOrders? (
+           ordersFilter? (
             <div>
             {
-                    allOrders.map((a)=>(
+                    ordersFilter.map((a)=>(
                     
                       <>
                       <div className={s.myActivitiesContainer}>
