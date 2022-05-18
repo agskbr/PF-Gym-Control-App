@@ -7,7 +7,8 @@ import {
   GET_ALL_ORDERS,
   GET_ALL_DAYS_AND_HOURS,
   GET_ORDERLINE_BY_ORDER_ID,
-  GET_ALL_ORDERS_BY_USER
+  GET_ALL_ORDERS_BY_USER,
+  SET_ORDER_STATUS
 } from "../actions-type/index";
 
 export const initialState = {
@@ -21,11 +22,18 @@ export const initialState = {
   daysAndHours: [],
   userId: [],
   orderlines: [],
+  orderStatus: [],
   isLoading: false,
 };
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_ORDER_STATUS:
+      console.log(action.payload)
+      return {
+        ...state,
+        orderStatus: action.payload,
+      }
     case GET_ALL_TRAINERS:
       return {
         ...state,

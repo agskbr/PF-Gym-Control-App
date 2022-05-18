@@ -9,6 +9,7 @@ const RECEIVED_POST = "RECEIVED_POST";
 const GET_ID_USER = "GET_ID_USER";
 const GET_ALL_ORDERS_BY_USER = "GET_ALL_ORDERS_BY_USER";
 const GET_ORDERLINE_BY_ORDER_ID = "GET_ORDERLINE_BY_ORDER_ID";
+export const SET_ORDER_STATUS = "SET_ORDER_STATUS";
 //-----------------
 
 //data by review reducer
