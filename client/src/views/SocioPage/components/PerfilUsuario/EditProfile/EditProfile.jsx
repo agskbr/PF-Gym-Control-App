@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import s from './EditProfile.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { editUser} from '../../../../../store/actions/actions-user';
+import logo from '../../../../../assets/logo.png'
 
 
 //me traigo los users logueados para poder la imagen??
@@ -68,20 +69,21 @@ export default function EditProfile() {
 
   return (
     <dialog id="editProfileDialog" style={{ border: "none", height: "80vh"}}>
-        <div className={s.Container}>
+        <div className={s.editPerfilContainer}>
             <div className={s.createReviewHeader}>
                 <div style={{ justifyContent: "flex-end", display: "flex" }}>
                     <button
                     onClick={() => document.getElementById("editProfileDialog").close()}
-                    className={s.createReviewBoton}
+                    className={s.editPerfilAddBtn}
                     >
                     x
                     </button>
                 </div>
+                <img src={logo} alt={logo} width="90"/>
             
             </div>
-            <h6>Actualizar Perfil</h6>
-            <form className={s.CreateReaviewForm} onSubmit={handleSubmit} >
+            <h6 className={s.editProfileForm}>Actualizar Perfil</h6>
+            <form className={s.editProfileForm} onSubmit={handleSubmit} >
                 <div>
                     <label htmlFor="">Nombre : </label>
                     <input 
@@ -124,7 +126,7 @@ export default function EditProfile() {
                 </div>
                 <div>
                 <button 
-                        className={s.createReviewBoton} 
+                        className={s.editPerfilAddBtn} 
                         type="submit"
                     >
                         Actualizar
