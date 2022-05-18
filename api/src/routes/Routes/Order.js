@@ -167,7 +167,7 @@ router.get("/user/:id", async (req,res) => {
     }
 })
 // //modificar estado orden 
-// router.put("/checkout/:id", async (req, res) => {
+// router.put("/:id", async (req, res) => {
 //     const { state, totalPrice } = req.body;
 //     const { id } = req.params;
 //     try {
@@ -208,7 +208,7 @@ router.get("/:id", async (req, res) => {
 });
 
 
-// modificar orden orderId
+// modifica estado de la orden por orderId
 router.put("/:id", async (req, res, next) => {
     const { state } = req.body;
     const { id } = req.params;
@@ -217,7 +217,7 @@ router.put("/:id", async (req, res, next) => {
         if (order_upd) {
             return res.status(202).send("Elemento actualizado");
         }
-            return res.status(400).send("Orden o encontrada");
+            return res.status(400).send("Orden no encontrada");
     } catch (error) {
         res.status(400).send(error);
     }

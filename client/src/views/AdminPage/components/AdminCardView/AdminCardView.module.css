@@ -142,7 +142,9 @@
 .editBtn:focus {
   outline: none;
 }
-
+.cancelOrderBtn:hover {
+  cursor: pointer;
+}
 .deleteBtn {
   height: 30px;
   padding: 8px;
@@ -171,6 +173,10 @@
   font-size: 14px;
   color: #fe4f22;
   font-weight: 600;
+}
+
+.deleteUserBtn:hover {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1050px) {

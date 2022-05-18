@@ -19,8 +19,8 @@ router.post("/", (req, res, next) => {
       items: [],
       back_urls: {
         success: "http://localhost:3000/sociodashboard", // /home
-        failure: "http://localhost:3000/",
-        pendind: "http://localhost:3000/",
+        failure: "http://localhost:3000/sociodashboard",
+        pendind: "http://localhost:3000/sociodashboard",
       },
       auto_return: "all",
     };
@@ -35,6 +35,7 @@ router.post("/", (req, res, next) => {
   
     mercadopago.preferences.create(preference)
       .then((response) => {
+        // console.log(response)
         res.send(response.body.init_point)
       }).catch((error) => {
         return(error)

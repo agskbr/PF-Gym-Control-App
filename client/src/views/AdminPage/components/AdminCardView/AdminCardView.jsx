@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import style from "./AdminCardView.module.css";
 import { Link } from "react-router-dom";
 import { FaBan, FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 import {
   getActivity,
   getAllTrainers,
@@ -15,6 +16,7 @@ import { getAllOrders } from "../../../../store/actions/actions-orders";
 import { MdRefresh } from "react-icons/md";
 import ExpansibleMenu from "../ExpansibleMenu/ExpansibleMenu";
 import { cancelOrder } from "../../../../store/actions/actions-orders";
+import { deleteUser } from "../../../../store/actions/actions-user";
 
 export default function AdminCardView({ type }) {
   const dispatch = useDispatch();
@@ -142,22 +144,22 @@ export default function AdminCardView({ type }) {
                       return <td key={i}>{el[key].name}</td>;
                     }
 
-                    if (key === "user") {
+                    if (key === "user" && el[key]?.name) {
                       return (
                         <td key={i}>
                           <div className={style.userDataContainer}>
                             <ul>
                               <li>
-                                <span>NOMBRE:</span> {el[key].name}
+                                <span>NOMBRE:</span> {el[key]?.name}
                               </li>
                               <li>
-                                <span>APELLIDO:</span> {el[key].lastName}
+                                <span>APELLIDO:</span> {el[key]?.lastName}
                               </li>
                               <li>
-                                <span>EMAIL:</span> {el[key].email}
+                                <span>EMAIL:</span> {el[key]?.email}
                               </li>
                               <li>
-                                <span>TELEFONO:</span> {el[key].phoneNumber}
+                                <span>TELEFONO:</span> {el[key]?.phoneNumber}
                               </li>
                             </ul>
                           </div>
@@ -190,7 +192,7 @@ export default function AdminCardView({ type }) {
                     <FaBan
                       className={style.cancelOrderBtn}
                       onClick={() => {
-                        dispatch(cancelOrder(el.id));
+                        dispatch(cancelOrder(el.id, el.user.id));
                       }}
                       color="#fe4f22"
                       size={20}
@@ -204,6 +206,18 @@ export default function AdminCardView({ type }) {
                     </Link>
                   )}
                 </td>
+                {type === "Usuarios" ? (
+                  <td>
+                    <MdDelete
+                      className={style.deleteUserBtn}
+                      onClick={() => {
+                        dispatch(deleteUser(el.id));
+                      }}
+                      size={20}
+                      color="#fe4f22"
+                    />
+                  </td>
+                ) : null}
               </tr>
             ))}
           </tbody>

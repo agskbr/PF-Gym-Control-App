@@ -21,12 +21,13 @@ export default function CustomInput({
         <div className={style.phoneInput}>
           <span>+54</span>
           <input
+            className={style.phoneNumberInput}
             value={value}
             disabled={disabled}
             name={name}
             onChange={onChange}
             placeholder={name}
-            type={"tel"}
+            type="tel"
           />
         </div>
       ) : (

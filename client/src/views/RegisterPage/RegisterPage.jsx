@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import style from "./RegisterPage.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUserWithEmailAndPass, verifyAccount } from "../../store/actions/actions-login";
+import {
+  registerUserWithEmailAndPass,
+  verifyAccount,
+} from "../../store/actions/actions-login";
 import CustomInput from "../AdminPage/components/CustomInput/CustomInput";
 import Loader from "../../components/Loader/Loader";
 
@@ -58,10 +61,16 @@ export default function RegisterPage() {
     }
     if (!input.phoneNumber) {
       err.phoneNumber = "Debe ingresar un numero de teléfono";
-    } else if (
-      /^\(?(\d{3})\)?[-]?(\d{3})[-]?(\d{4})$/g.test(input.phoneNumber)
-    ) {
+    } else if (input.phoneNumber.length > 10) {
       err.phoneNumber = "El telefono debe ser válido";
+    } else if (input.phoneNumber[0] === "1" && input.phoneNumber[1] === "5") {
+      err.phoneNumber = "Debes ingresar tu numero sin el 15";
+    } else if (
+      !/^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/g.test(
+        input.phoneNumber
+      )
+    ) {
+      err.phoneNumber = "Tu número debe tener el siguiente formato: 3813540145";
     }
     return err;
   };
