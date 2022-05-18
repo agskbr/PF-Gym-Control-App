@@ -77,7 +77,7 @@ const editUser = (id, payload) => {
             title: "algo salio mal",
             icon: "error",
             position: "center",
-            timer: 2000,
+            timer: 3000,
         });
         }
     }

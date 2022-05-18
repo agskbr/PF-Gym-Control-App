@@ -1,75 +1,3 @@
-/* .userPrincipalContainer{
-    height: 100%;
-    width: 100%;
-    margin-top: 10px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-} */
-/* 
-
-/* .userTitleAndAddBtn{
-    display: flex;
-    width: 90%;
-    align-items: center;
-    justify-content: space-between;
-}
-.userNameSeccion{
-    color: white;
-    font-size: 2rem;
-}
-.userAddBtn{
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-family: sans-serif;
-    padding: 10px;
-    width: auto;
-    font-size: 14px;
-    height: 40px;
-    background-color: #fe4f22;
-    cursor: pointer;
-}
-.userAddBtn:hover {
-    cursor: pointer;
-    background-color: #fdede9;
-    transition: all .3s;
-    color: #eb4e27; */
-/* } */
-
-/* .userAddBtn:focus {
-    outline: none;
-}
-.userCardLayout{
-    margin-top: 20px;
-    height: 30vh;
-    width: 50vw; 
-    background-color: white;
-    overflow: scroll; 
-}
-.containerTable{
-    width: 50vw; ver por tema responsive
-    background-color: white;
-    overflow: scroll;
-} */
-/* .containerTable{
-    background-color: #fdede9;
-    border-collapse: collapse;
-    width: 100%;
-}
-
- .columnas, .filas {
-    padding: 0;
-}
-.encabezado{
-    background-color: #fe4f22;
-    border-bottom: solid 3px black;
-    color: white;
-}
-.tableRow:hover{
-    background-color: #fe4f22;
-    color: white;
-} */
 
 .myActivitiesContainer{
     width: 100%;
@@ -98,4 +26,34 @@
     padding: 15px;
     text-align: center;
 }
+.myActivitiesBtn{
+    display: inline-block;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-family: sans-serif;
+    width: auto;
+    font-size: 14px;
+    height: 40px;
+    background-color: #fe4f22;
+    cursor: pointer;
+    transition: all 400ms ease;
+}
 
+
+.myActivitiesBtn:hover {
+    cursor: pointer;
+    background-color: #fe4f22;
+    transition: all .3s;
+    color: black; 
+}
+
+ .myActivitiesBtn:focus {
+    outline: none;
+    color: rgb(255, 255, 0);
+}
+ #review{
+    display: none;
+} 

@@ -109,7 +109,7 @@ const handleSubmit = (e) => { //button
           toast: true,
           position:"top-end",
       })
-      document.getElementById("reviewDialog").close();
+      document.getElementById("review").close();
   }
   
 }
@@ -133,9 +133,6 @@ useEffect(()=>{
 
 
 
-
-
-
   return (
     <div className={s.containerActividades}>
       <div className={s.actividadesEncabezado}>
@@ -151,20 +148,15 @@ useEffect(()=>{
                         <div className={s.myActivitiesCard}>
                           <p>{a.name}</p>
                           <img src={a.image} alt={a.name} />
-                          <button>Dejar review</button>
+                          <button 
+                            className={s.myActivitiesBtn}
+                            onClick={()=> {document.getElementById("review").op}}
+                            >Dejar review</button>
                         </div>  
                       </div>
-                      <div>
+                      <div id="review">
                         <div className={s.createReviewContainer}>
                           <div className={s.createReviewHeader}>
-                            {/*  <div style={{ justifyContent: "flex-end", display: "flex" }}>
-                                  <button
-                                  onClick={() => document.getElementById("reviewDialog").close()}
-                                  className={s.createReviewBoton}
-                                  >
-                                  x
-                                  </button>
-                              </div> */}
                             <img 
                                 src={logo} 
                                 style={{ width: 85, objectFit: "cover", justifyContent: "center"}}
@@ -219,7 +211,7 @@ useEffect(()=>{
                                   <button 
                                     style={styles.button}
                                     onClick={(e)=> handleSubmit(e)}
-                                    className={s.createReviewBoton} 
+                                    className={s.myActivitiesBtn}
                                   >
                                     Enviar
                                   </button>
@@ -260,5 +252,9 @@ const styles = {
       borderRadius: 5,
       with:300,
       padding:10
-  }
+  },
+
+  /* #review:{
+    display:none
+  } */
 }
