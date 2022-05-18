@@ -1,4 +1,5 @@
 import React, { useEffect, useState} from "react";
+import "./style.css"
 import s from "./MyActivities.module.css";
 //import CreateReview from '../CreateReview/CreateReview'
 import { useDispatch, useSelector } from "react-redux";
@@ -23,17 +24,19 @@ const colors = {
 
 export default function MyActivities() {
 
+  const [classForm, setClassForm] = useState("hide")
+
   const dispatch = useDispatch();
   const {uid} = useSelector((state)=> state.login.user )
   const {id} = useSelector((state)=> state.users.user); 
   
   //console.log()
   const allActivities = useSelector((state)=> state.pgym.allActivities);
-  const allOrders = useSelector((state)=> state.pgym.orders); //ordenes de compra --> id orden (18)
-  console.log("orders", allOrders)
+  const allOrders = useSelector((state)=> state.pgym.orders[0].activities); //ordenes de compra --> id orden (18)
+  //console.log("orders", allOrders)
 
-  const ultima = allOrders[allOrders.length-1]
-  console.log("ultima", ultima)
+  //const ultima = allOrders[allOrders.length-2] //
+  //console.log("ultima", ultima)
 
   /** */
   const allReviewUser = useSelector((state)=>state.review.reviews);
@@ -76,6 +79,13 @@ const handleSelect = (e) => {
   })
 }
 
+
+const handleMostrar = (e)=> {
+  if(classForm === "hide") setClassForm("show")
+  if(classForm === "show") setClassForm("hide")
+}
+
+
 const handleSubmit = (e) => { //button
   if(!input.description || !input.rating ){
       e.preventDefault()
@@ -89,7 +99,7 @@ const handleSubmit = (e) => { //button
   }else if (allReviewUser.find((r)=>r.activityId === id)) {
           e.preventDefault()
           alert("ya realizaste una review de esta clase")
-          document.getElementById("reviewDialog").close();
+          setClassForm("hide")
   }else{
       e.preventDefault()
       dispatch(postReview(input))
@@ -109,9 +119,8 @@ const handleSubmit = (e) => { //button
           toast: true,
           position:"top-end",
       })
-      document.getElementById("reviewDialog").close();
   }
-  
+  setClassForm("hide")
 }
 
 useEffect(()=>{
@@ -134,37 +143,42 @@ useEffect(()=>{
 
 
 
-
-
   return (
+
     <div className={s.containerActividades}>
       <div className={s.actividadesEncabezado}>
           <h1>Mis actividades</h1>
          {
-           ultima?(
+           allOrders? (
             <div>
             {
-               Object.keys(ultima).length> 0? (
-                    ultima.activities.map((a)=>(
+                    allOrders.map((a)=>(
+                    
                       <>
                       <div className={s.myActivitiesContainer}>
                         <div className={s.myActivitiesCard}>
                           <p>{a.name}</p>
                           <img src={a.image} alt={a.name} />
-                          <button>Dejar review</button>
-                        </div>  
+                          <button 
+                            onClick={handleMostrar}
+                            className={s.myActivitiesBtn}    
+                            >mostrar</button>
+                          </div>  
                       </div>
-                      <div>
+
+                      </>
+                    ))
+             } 
+             </div>
+           ): <p> no tenes ninguna compra</p>
+         }
+           
+      </div>
+       
+   
+      <div    className={classForm} >
                         <div className={s.createReviewContainer}>
                           <div className={s.createReviewHeader}>
-                            {/*  <div style={{ justifyContent: "flex-end", display: "flex" }}>
-                                  <button
-                                  onClick={() => document.getElementById("reviewDialog").close()}
-                                  className={s.createReviewBoton}
-                                  >
-                                  x
-                                  </button>
-                              </div> */}
                             <img 
                                 src={logo} 
                                 style={{ width: 85, objectFit: "cover", justifyContent: "center"}}
@@ -202,9 +216,12 @@ useEffect(()=>{
                                   className={s.CreateReaviewSelect}
                                 >
                                   <option value="">Tu Actividad</option>
-                                  <option name={a.name} value={a.id}>
-                                      {a.name}
-                                  </option>
+                                  {
+                                    allOrders.map((a)=>(
+                                      <option key={a.id} value={a.id}  > {a.name}</option>
+                                    ))
+                                  }
+                                
 
                                 </select>
                                 <div>
@@ -219,7 +236,7 @@ useEffect(()=>{
                                   <button 
                                     style={styles.button}
                                     onClick={(e)=> handleSubmit(e)}
-                                    className={s.createReviewBoton} 
+                                    className={s.myActivitiesBtn}
                                   >
                                     Enviar
                                   </button>
@@ -227,17 +244,8 @@ useEffect(()=>{
                             </form>
                         </div>
                       </div>
-                      </>
-                    ))
-               ):""
-             } 
-             </div>
-           ): <p> no tenes ninguna compra</p>
-         }
-           
-      </div>
-      
     </div>
+      
   )
 }
 
@@ -260,5 +268,11 @@ const styles = {
       borderRadius: 5,
       with:300,
       padding:10
-  }
+  },
+
+  /*  #review:{
+    display:none
+  }  */
 }
+
+

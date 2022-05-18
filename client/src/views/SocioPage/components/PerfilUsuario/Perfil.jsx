@@ -23,8 +23,8 @@ export default function Perfil() {
 
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.login.user);
-  const { uid } = useSelector((state) => state.login.user);
-  const usuario = useSelector((state) => state.users.user);
+  const {uid} = useSelector((state) => state.login.user);
+  const usuario = useSelector((state)=> state.users.user)//
   const orders = useSelector((state) => state.pgym.orders);
   //console.log("usuario", usuario)
   const [statusOrder, setStatusOrder] = useState("");
@@ -109,34 +109,35 @@ export default function Perfil() {
 
   return (
     <div className={style.perfilContainer}>
-      {usuario ? (
-        <div className={style.perfilUser}>
-          <div className={style.perfilUserName}>
-            <div className={style.userImg}>
-              <img
-                // alt="user"
-                src={
-                  currentUser.photoURL
-                    ? currentUser.photoURL
-                    : "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
-                }
-              />
-            </div>
-            <p>Nombre: {usuario.name} </p>
-            <p>Apellido: {usuario.lastName}</p>
-            <p>Email: {usuario.email}</p>
-            {verified}
-            <p>Teléfono: {usuario.phoneNumber}</p>
-            <button
-              className={style.perfilAddBtn}
-              onClick={() => {
+      {
+        usuario? (
+          <div className={style.perfilUser}>
+            <div className={style.perfilUserName}>
+              <div className={style.userImg}>
+                <img
+                   alt="user"
+                  src={
+                    currentUser.photoURL
+                      ? currentUser.photoURL
+                      : "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+                  }
+                />
+              </div>
+              <p>Nombre: {usuario.name } </p>
+              <p>Apellido: {usuario.lastName}</p>
+              <p>Email: {usuario.email}</p>
+                 {verified} 
+              <p>Teléfono: {usuario.phoneNumber}</p>
+              <button
+                className={style.perfilAddBtn}
+                onClick={() => {
                 document.getElementById("editProfileDialog").showModal();
-              }}
-            >
-              {" "}
-              Actualizar Datos{" "}
-            </button>
-          </div>
+                }}
+              >
+                {" "}
+                Actualizar Datos{" "}
+              </button>
+            </div>
           <EditProfile />
         </div>
       ) : (
