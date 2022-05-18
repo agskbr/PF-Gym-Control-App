@@ -20,15 +20,15 @@ const validateForm = (inputs, type) => {
     // if (!inputs.phoneNumber) {
     //   errors.phoneNumber = "El número de teléfono es requerido";
     // }
-    // if (!inputs.isAdmin) {
-    //   errors.isAdmin = "¿Será administrador?";
-    // }
+    if (inputs.isAdmin === false) {
+      errors.isAdmin = "¿Será administrador?";
+    }
     // if (!inputs.notifications) {
     //   errors.notifications = "¿Quiere activar las notificaciones?";
     // }
-    if (!inputs.activities.length) {
-      errors.activities = "Debes mandar al menos una actividad";
-    }
+    // if (!inputs.activities.length) {
+    //   errors.activities = "Debes mandar al menos una actividad";
+    // }
   }
 
   if (type === "Clases") {
