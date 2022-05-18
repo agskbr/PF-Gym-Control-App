@@ -14,13 +14,16 @@ router.post("/", (req, res, next) => {
     mercadopago.configure({
       access_token: 'APP_USR-4956501168084278-050317-2dacf17c8364126a0177a1ef5846ee9e-1117263864'
     });
-  
+  const url = "http://localhost:3000"
+  //http://localhost:3000
+  //https://pf-gym-final.vercel.app
+
     let preference = {
       items: [],
       back_urls: {
-        success: "http://localhost:3000/sociodashboard", // /home
-        failure: "http://localhost:3000/sociodashboard",
-        pendind: "http://localhost:3000/sociodashboard",
+        success: `${url}/sociodashboard`, // /home
+        failure: `${url}/sociodashboard`,
+        pendind: `${url}/sociodashboard`,
       },
       auto_return: "all",
     };
