@@ -16,13 +16,13 @@ export default function Detail() {
   const capa = useSelector((state) => state.pgym.capacity);
   const state = useSelector((state) => state);
   const countClick = useSelector((state) => state.pgym.countClick);
+  const disable = useSelector((state) => state.pgym.disable);
   const dispatch = useDispatch();
   const detail = useSelector((state) =>
     state.pgym.detail ? state.pgym.detail : null
   );
   const [time, setTime] = useState("");
   const [idToCart, setIdToCart] = useState([]);
-  const [disable, setDisable] = useState(false);
   const [cursor, setCursor] = useState("pointer");
   const [background, setBackground] = useState("rgb(255, 75, 43)");
   const [color, setColor] = useState("rgb(255, 255, 255)");
@@ -78,6 +78,7 @@ export default function Detail() {
     console.log(`Entre al handler y el count actual es: ${countClick}`);
     dispatch(setterCountClick(countClick + 1));
     dispatch(addToCart(idToCart));
+    swal("Agregado al carrito", "", "success");
     if (countClick >= 9) {
       setDisable(true);
       console.log("entre al if de not-allowed");

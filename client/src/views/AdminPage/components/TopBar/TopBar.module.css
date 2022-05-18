@@ -57,3 +57,17 @@
   width: 40px;
   object-fit: contain;
 }
+
+@media screen and (max-width: 600px) {
+  .logoUser {
+    width: 30px;
+    height: 30px;
+  }
+  .logoUser img {
+    width: 30px;
+    height: 30px;
+  }
+  .titleTopBar span {
+    font-size: 18px;
+  }
+}
