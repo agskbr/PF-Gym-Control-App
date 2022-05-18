@@ -3,14 +3,34 @@ import s from './EditProfile.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { editUser} from '../../../../../store/actions/actions-user';
 
+
 //me traigo los users logueados para poder la imagen??
+
+
+// const validatePhonenumber = (input) =>{
+//     console.log("input", input)
+//     const errors = {};
+//     if (!input.phoneNumber.match(/^(()?\d{3}())?(-|\s)?\d{3}(-|\s)\d{4}$/)){
+        // /^\d{7,14}$/.test(input.phoneNumber)
+        // /^\(?(\d{3})\)?[-]?(\d{3})[-]?(\d{4})$/.test(input.phoneNumber)
+//         errors.phoneNumber = "El teléfono debe ser válido";
+//      }
+//       return errors;
+
+// }
+
+
 export default function EditProfile() {
 
     const actual = useSelector((state)=> state.users.user)
     // const {uid} = useSelector((state)=> state.login.user )
     
     const dispatch = useDispatch();
-    
+    // const [errors, setErrors] = useState({})
+
+    //     const [input, setInput] = useState({
+    //     phoneNumber:""
+    // })
     const [user, setUser]= useState({
         name: "",
         lastName:"",
@@ -36,11 +56,16 @@ export default function EditProfile() {
         });
       };
     
-    const handleSubmit = (e) => {
+      const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(editUser(actual.id, user))
+        // setErrors(validatePhonenumber(user));
+        // if (Object.keys(errors).length === 0) {
+        //     dispatch(editUser(actual.id, input)) 
+        // };
         document.getElementById("editProfileDialog").close()
     }
+
+
   return (
     <dialog id="editProfileDialog" style={{ border: "none", height: "80vh"}}>
         <div className={s.Container}>
@@ -93,7 +118,8 @@ export default function EditProfile() {
                         className={s.perfilInput}
                         name="phoneNumber"
                         onChange={handleChange}
-                        value={user.phoneNumber ?? ""} 
+                        value={user.phoneNumber ?? ""}
+                        // Error={errors.phoneNumber} 
                     />
                 </div>
                 <div>

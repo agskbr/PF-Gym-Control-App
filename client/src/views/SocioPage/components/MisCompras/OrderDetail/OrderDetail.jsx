@@ -18,7 +18,8 @@ export default function OrderDetail({orderId, totalPrice}) {
  const activities = useSelector((state)=> state.pgym.activities)   /// [{id:1, name:"yoga"}, {}, {}]
 // console.log("activ", activities)
     const orderlines = useSelector((state)=> state.pgym.orderlines)  // [{activId1}, {activId2}]
- // console.log("orderline", orderlines)
+    console.log("orderline", orderlines)
+    
 
     useEffect(()=>{
       if(orderId){

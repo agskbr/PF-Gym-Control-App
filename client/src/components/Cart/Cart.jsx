@@ -74,7 +74,7 @@ export default function Cart(activity) {
           orderId: info.orderId,
           subtotal: element.subtotal,
         };
-        console.log(element.subtotal)
+        console.log(" SUBTOTAL", element.subtotal)
         axios.put(`${BASE_URL}/order/sumaTotal`, infoPaso5);
         const infoPaso6 = {
           idUser:data2.data.id,
