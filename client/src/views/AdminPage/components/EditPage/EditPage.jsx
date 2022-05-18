@@ -111,14 +111,15 @@ export default function EditPage() {
                   name={input}
                   disabled={inputs.name === "Admin"}
                   type="checkbox"
-                  checked={inputs.isAdmin}
+                  checked={inputs.isAdmin ?? false}
                   value={inputs.isAdmin}
-                  onChange={(e) =>
+                  onChange={(e) => {
+                    validateForm({ ...inputs, isAdmin: e.target.value }, type);
                     setInputs((state) => ({
                       ...state,
                       [e.target.name]: !state[input],
-                    }))
-                  }
+                    }));
+                  }}
                 />
               </div>
             ) : (
@@ -272,7 +273,8 @@ export const disabledUserInputs = (type, input) => {
     input === "name" ||
     input === "lastName" ||
     input === "email" ||
-    input === "phoneNumber"
+    input === "phoneNumber" ||
+    input === "image"
   ) {
     return true;
   }

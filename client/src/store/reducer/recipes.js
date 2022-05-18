@@ -1,6 +1,7 @@
 import { 
     GET_RECIPES,
     GET_NAME_RECIPES,
+    GET_DETAIL
     
 
 } from '../actions-recipes/recipes.js'
@@ -8,7 +9,8 @@ import {
 const initialState ={
     recipes: [],
     orderedRecipes: [],
-    currentPage: []
+    currentPage: [],
+    detail: []
  }
  
  function recipeReducer (state = initialState, action){
@@ -52,6 +54,13 @@ const initialState ={
                 ...state,
                 currentPage: state.orderedRecipes.slice((action.payload - 1) * 4,action.payload * 4)                        
             };
+
+        case GET_DETAIL:
+            console.log(action.payload)
+            return{
+                ...state,
+                detail: action.payload,
+            }    
 
             default:
                 return {

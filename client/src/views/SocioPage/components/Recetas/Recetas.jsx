@@ -37,7 +37,8 @@ export default function SocioPage() {
                                                     title={el.title} 
                                                     diets={el.diets} 
                                                     key={el.id} 
-                                                    id={el.id}                 
+                                                    id={el.id} 
+                                                    sourceUrl={el.sourceUrl}                
                                                     /> 
                                                     </div>
                                                 )})   },
