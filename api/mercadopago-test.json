@@ -2,6 +2,7 @@
     "users:": [
         {
             "id": 1117263864,
+            "rol": "comprador",
             "nickname": "TETE3507388",
             "password": "qatest4037",
             "site_status": "active",
@@ -22,6 +23,7 @@
         },
         {
             "id": 1117274741,
+            "rol": "vendedor",
             "nickname": "TT312843",
             "password": "qatest9601",
             "site_status": "active",

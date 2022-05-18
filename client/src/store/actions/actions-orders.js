@@ -5,8 +5,15 @@ import {
   GET_ALL_ORDERS,
   GET_ALL_ORDERS_BY_USER,
   GET_ORDERLINE_BY_ORDER_ID,
+  SET_ORDER_STATUS
 } from "../actions-type/index";
 import { BASE_URL } from "../constantes";
+
+const setOrderStatus = (payload) => {
+  console.log(payload)
+  return { type: SET_ORDER_STATUS, payload: payload };  
+}
+
 
 const getAllOrders = () => {
   return async (dispatch) => {
@@ -68,6 +75,16 @@ const cancelOrder = (orderId) => {
   };
 };
 
+const completeOrder = async (orderId) => {
+  console.log(`entre a la accion y el orderId es: ${orderId}`)
+  await axios.put(`${BASE_URL}/order/${orderId}`, {state:"Complete"});
+}
+
+const cancelOrder2 = async (orderId) => {
+  await axios.put(`${BASE_URL}/order/canceled/${orderId}`);
+  await axios.put(`${BASE_URL}/diahora/addStock`, {orderId:orderId});
+}
+
 const getOrderlineByOrderid = (orderId) => {
   return async (dispatch) => {
     try {
@@ -83,4 +100,4 @@ const getOrderlineByOrderid = (orderId) => {
   };
 };
 
-export { getAllOrders, getAllOrdersByUser, getOrderlineByOrderid, cancelOrder };
+export { getAllOrders, getAllOrdersByUser, getOrderlineByOrderid, cancelOrder,completeOrder, setOrderStatus, cancelOrder2 };
