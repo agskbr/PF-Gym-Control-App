@@ -55,6 +55,7 @@ const registerUserWithEmailAndPass = (
         phoneNumber,
         image: "",
       };
+      console.log(userToDB);
       await axios.post(`${BASE_URL}/user`, userToDB);
       await updateProfile(auth.currentUser, {
         displayName: `${name} ${lastName}`,
@@ -69,6 +70,7 @@ const registerUserWithEmailAndPass = (
         icon: "success",
         title: "Usuario creado correctamente",
       });
+      await axios.post(`${BASE_URL}/email/welcome`, { user: userToDB });
     } catch (error) {
       console.log(error);
       swal({
@@ -88,6 +90,7 @@ const signInWithEmailAndPass = (email, password) => {
         email,
         password
       );
+
       dispatch({ type: SIGN_IN_USER, payload: userCredential });
       dispatch({ type: RECEIVED_USER_LOGIN });
     } catch (error) {
@@ -234,7 +237,7 @@ const userSignOut = () => {
 const actionCodeSettings = {
   // URL you want to redirect back to. The domain (www.example.com) for this
   // URL must be in the authorized domains list in the Firebase Console.
-  url: "http://localhost:3000/sociodashboard",
+  url: "https://pf-gym-final.vercel.app/sociodashboard",
   // This must be true.
   // dynamicLinkDomain: 'http://localhost:3000/login'
 };
