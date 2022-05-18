@@ -22,12 +22,12 @@ router.post("/isAdmin", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+/* router.get("/", async (req, res) => {
   const users = await getAllUsers();
   users
     ? res.status(200).send(users)
     : res.status(404).send("Usuario no encontrado");
-});
+}); */
 
 router.post("/", async (req, res) => {
   try {
