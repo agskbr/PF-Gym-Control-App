@@ -47,7 +47,7 @@ export default function MisCompras() {
     }
   };
   const newAllOrders = allOrders.filter(
-    (el) => el.state === "Complete"
+    (el) => el.state !== "Cart"
   );
 
 

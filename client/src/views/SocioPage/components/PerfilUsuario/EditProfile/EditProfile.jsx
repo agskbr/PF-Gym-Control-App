@@ -8,17 +8,27 @@ import logo from '../../../../../assets/logo.png'
 //me traigo los users logueados para poder la imagen??
 
 
-// const validatePhonenumber = (input) =>{
-//     console.log("input", input)
-//     const errors = {};
-//     if (!input.phoneNumber.match(/^(()?\d{3}())?(-|\s)?\d{3}(-|\s)\d{4}$/)){
-        // /^\d{7,14}$/.test(input.phoneNumber)
-        // /^\(?(\d{3})\)?[-]?(\d{3})[-]?(\d{4})$/.test(input.phoneNumber)
-//         errors.phoneNumber = "El teléfono debe ser válido";
-//      }
-//       return errors;
-
-// }
+const validatePhonenumber = (input) =>{
+    console.log("input", input)
+    const errors = {};
+    /* if (!input.phoneNumber) {
+        errors.phoneNumber = "Debe ingresar un numero de teléfono";
+    }else */ if (input.phoneNumber.length < 9 || input.phoneNumber.length > 12) {
+        errors.phoneNumber = "El telefono debe ser válido";
+    }/* else if (input.phoneNumber[0] === "1" && input.phoneNumber[1] === "5") {
+        errors.phoneNumber = "Debes ingresar tu numero sin el 15";
+    } *//* else if (!/^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/g.test(input.phoneNumber))
+    {
+        errors.phoneNumber = "Tu número debe tener el siguiente formato: 3813540145";
+    } */
+    /* if (!/^\(?(\d{3})\)?[-]?(\d{3})[-]?(\d{4})$/g.test(input.phoneNumber)){
+    // /^\d{7,14}$/.test(input.phoneNumber)
+    ///^\(?(\d{3})\)?[-]?(\d{3})[-]?(\d{4})$/.test(input.phoneNumber)
+    errors.phoneNumber = "El teléfono debe ser válido";
+    } */
+    
+    return errors;
+}
 
 
 export default function EditProfile() {
@@ -27,11 +37,11 @@ export default function EditProfile() {
     // const {uid} = useSelector((state)=> state.login.user )
     
     const dispatch = useDispatch();
-    // const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState({})
 
-    //     const [input, setInput] = useState({
-    //     phoneNumber:""
-    // })
+    const [input, setInput] = useState({
+        phoneNumber:""
+    })
     const [user, setUser]= useState({
         name: "",
         lastName:"",
@@ -51,18 +61,20 @@ export default function EditProfile() {
     /*inputs*/
     const handleChange = (e) => {
         e.preventDefault()
-        setUser({
-          ...user,
-          [e.target.name]: e.target.value,
+        setErrors(validatePhonenumber(input));
+        setInput({
+            //...user,
+            //...input,
+            [e.target.name]: e.target.value,
         });
-      };
+    };
     
-      const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        // setErrors(validatePhonenumber(user));
-        // if (Object.keys(errors).length === 0) {
-        //     dispatch(editUser(actual.id, input)) 
-        // };
+        setErrors(validatePhonenumber(input));
+        if (Object.values(errors).length === 0) {
+            dispatch(editUser(actual.id, input)) 
+        };
         document.getElementById("editProfileDialog").close()
     }
 
@@ -120,14 +132,22 @@ export default function EditProfile() {
                         className={s.perfilInput}
                         name="phoneNumber"
                         onChange={handleChange}
-                        value={user.phoneNumber ?? ""}
-                        // Error={errors.phoneNumber} 
-                    />
+                        value={input.phoneNumber??""}
+                        // Error={errors.phoneNumber}
+                      />
+                      <br/>
+                      <label style={
+                          {
+                              color:"red",
+                              fontSize: "1ex"
+                          }
+                      }>{errors.phoneNumber}</label>
                 </div>
                 <div>
                 <button 
                         className={s.editPerfilAddBtn} 
-                        type="submit"
+                          type="submit"
+                          disabled={Object.values(errors).length > 0}
                     >
                         Actualizar
                     </button>

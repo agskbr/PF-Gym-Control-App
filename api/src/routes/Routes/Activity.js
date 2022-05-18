@@ -8,8 +8,7 @@ const {
     deleteActivity,
     activityDeleteTrainer,
     activityAddTrainer,
-    activityName,
-    allActivityDh
+    activityName
 } = require('../Controllers/Activity');
 
 
@@ -35,7 +34,7 @@ router.get("/", async (req,res) => {
     // ME GUARDO EL NAME QUE ME LLEGA POR QUERY PARA USARLO CUANDO LO NECESITE
     const {name} = req.query;
     try {
-        const allCards = await allActivityDh();
+        const allCards = await allActivity();
         if(name){
             const cardsName = allCards.filter(card => card.name.toLowerCase().includes(name.toLowerCase()));
             cardsName.length ? 
