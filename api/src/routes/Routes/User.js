@@ -7,7 +7,7 @@ const {
   userUpd,
   getUserId,
   userDelete,
-  userIsAdmin
+  userIsAdmin,
 } = require("../Controllers/User");
 
 //recibe un UID o un Id del usuario y la propiedad isAdmin del usuario encontrado
@@ -41,9 +41,10 @@ router.post("/", async (req, res) => {
       phoneNumber,
       image
     );
+    console.log(req.body);
     return res.send(user_Create);
   } catch (error) {
-    return(error);
+    return error;
   }
 });
 
@@ -67,7 +68,7 @@ router.get("/", async (req, res) => {
       ? res.status(200).send(users)
       : res.status(404).send("Usuario no encontrado");
   } catch (error) {
-    res.status(error)
+    res.status(error);
   }
 });
 
@@ -79,10 +80,10 @@ router.get("/:id", async (req, res) => {
       //console.log(user_Id)
       return res.send(user_Id);
     }
-    res.send("usuario no encontrado")
+    res.send("usuario no encontrado");
   } catch (error) {
     //console.log(error)
-    res.send("error al buscar usuario")
+    res.send("error al buscar usuario");
   }
 });
 
