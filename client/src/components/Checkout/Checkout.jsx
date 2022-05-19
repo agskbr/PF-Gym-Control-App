@@ -87,7 +87,7 @@ export default function Checkout(activity) {
        let email = {
                 user: {
                     name: name,
-                    lastname: lastname,
+                    lastName: lastname,
                     email: emailCheckout    
                 },
                 info: {
