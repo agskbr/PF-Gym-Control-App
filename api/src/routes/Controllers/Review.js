@@ -7,23 +7,19 @@ const {
 
 const createReview = async (description, rating, userId, activityId) => {
     try {
-        const review = await Review.findOne({
+        const newReview = {
+            description:description,
+            rating:rating,
+            userId:userId,
+            activityId:activityId
+        }
+        const review = await Review.update(newReview,{
             where: {
                 userId: userId,
                 activityId:activityId
             },
         })
-        if (!review) {
-            const newReview = await Review.create({
-                description,
-                rating,
-                activityId,
-                userId
-            })
-            return newReview
-        }else{
-            return false
-        }
+        return review
     } catch (error) {
         return(error)
     }

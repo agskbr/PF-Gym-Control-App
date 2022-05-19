@@ -116,14 +116,14 @@ const handleSubmit = (e) => { //button
           timer: 2000,
           
       });
-  }else if (allReviewUser.find((r)=>r.activityId === input.activityId)) {
+  }/* else if (allReviewUser.find((r)=>r.activityId === input.activityId)) {
           e.preventDefault()
           alert("ya realizaste una review de esta clase")
           setClassForm("hide")
-  }else{
+  } */else{
       e.preventDefault()
       dispatch(postReview(input))
-    //  console.log("input", input)
+      console.log("input", input)
       setInput({
           rating: " ",
           description:" ",

@@ -40,16 +40,13 @@ router.delete('/delete/:idUser/:idActivity', async (req, res) => {
 });
 
 
-router.post('/activity', async (req,res,) =>{
+router.put('/activity', async (req,res,) =>{
     try {
         const { description, rating, userId, activityId} = req.body
         const review = await createReview(description, rating, userId, activityId);
-        if(review){
-            res.send("Review created");
-        }
-        res.send("Review no created / ya existente")
+        res.send(`se creo/modifico ${review} review`)
     } catch(err){
-        return(err.detail)
+        res.status(404).send(err)
     }
 });
 
