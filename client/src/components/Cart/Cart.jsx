@@ -39,10 +39,10 @@ export default function Cart(activity) {
 
   const oneDiscount = alldiscounts.filter((e) => e.name === inputDiscount);
   
-  console.log("%" , porcentajeDescuento)
+/*   console.log("%" , porcentajeDescuento) */
   const porcentajefinal = porcentajeDescuento / 100;
-  console.log("porcentajefinal", porcentajefinal)
-
+  /* console.log("porcentajefinal", porcentajefinal)
+ */
 
   //console.log ("all discounts", alldiscounts);
 
@@ -141,7 +141,7 @@ export default function Cart(activity) {
   );
 
   const finalTotalCart = totalCart * porcentajefinal;
-  console.log("finalTotalCart", finalTotalCart)
+/*   console.log("finalTotalCart", finalTotalCart) */
 
   const getValueInput = () => {
     let inputValue = document.getElementById("descuento").value;
@@ -233,7 +233,7 @@ export default function Cart(activity) {
       </button>
 
       <div className={s.total}>
-        <h4>Total: ${total}</h4>
+        <h4>Total: ${totalCart}</h4>
       </div>
 
       <Link to="/checkout">
