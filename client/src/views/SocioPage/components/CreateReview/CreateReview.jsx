@@ -21,8 +21,9 @@ export default function CreateReaview({name, id}) { //id activ review
     
     const allActivities = useSelector((state)=>state.pgym.allActivities);
     const allReviewUser = useSelector((state)=>state.review.reviews);
-    //console.log("activ", allActivities)
-   // console.log("reviewsid", allReviewUser)
+  console.log("allreview", allReviewUser)
+    const filtradas = allReviewUser.filter((r)=> r.activityId === id)
+
     const user = useSelector((state)=>state.users.user.id);
     const stars= Array(5).fill(0);
     const [currentValue, setCurrentValue] = useState(0);
@@ -31,25 +32,8 @@ export default function CreateReaview({name, id}) { //id activ review
         rating: "",
         description:"",
         activityId: id, 
-        userId: user, //le seteo por defecto un id q este en base de datos para q funcione x ahora!!
+        userId: user, 
     })
-
-   /*  function validaciones(input){
-        let errors = {}
-
-        if(!input.rating){
-            errors.rating= "debes seleccionar un valor";
-        };
-        if(!input.description){
-            errors.description="por favor ingresa una reseña"
-        };
-        if(!input.activityId){
-            errors.activityId= "debes seleccionar una actividad"
-        };
-        return errors
-    }
- */
-    
 
     const handleClick = value => { //rating
         setCurrentValue(value)
@@ -57,10 +41,6 @@ export default function CreateReaview({name, id}) { //id activ review
             ...input,
             rating:value
         })
-       /*  setErrors(validaciones({
-            ...input,
-            rating:value,
-        })) */
     };
 
     const handleMouseOver = value => {
@@ -75,22 +55,8 @@ export default function CreateReaview({name, id}) { //id activ review
             ...input,
             description: e.target.value
         })
-       /*  setErrors(validaciones({
-            ...input,
-            description:e.target.value
-        })) */
     }
- /*    const handleSelect = (e)=>{//actividad
-        setInput({
-            ...input,
-            activityId: e.target.value,
-            
-        });
-        setErrors(validaciones({
-            ...input,
-            activityId:e.target.value
-        }))
-    } */
+
 
     const handleSubmit = (e) => { //button
         if(!input.description || !input.rating ){
@@ -156,30 +122,7 @@ export default function CreateReaview({name, id}) { //id activ review
                     <h3 className={s.createReviewTitle}>Power Gym</h3>
                     <h4>¿Estas conforme son nuestro servicio? Dejanos tu opinion</h4>
                 </div>
-{/*                 <div>
-                    <h6> ¿Que servicio vas a calificar? </h6>
-                    <select 
-                        name="activityId" 
-                        id="activityId"
-                        key="activityId"
-                        onClick={handleSelect}
-                        className={s.CreateReaviewSelect}
-                        >
-                            <option value="">Actividad</option>
-                    {
-                        allActivities? allActivities.map((activity, index) => (
-                            <option 
-                                key={activity.id} 
-                                name={activity.name}
-                                value={activity.id}
-                                
-                            >
-                                {activity.name}
-                            </option>
-                        )): <p></p>
-                    }
-                    </select>
-                </div> */}
+                   
                 <h6>Dejanos tu opinion...</h6>
                 <form className={s.CreateReaviewForm} onSubmit>
                     <div style={styles.stars}>

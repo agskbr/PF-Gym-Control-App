@@ -32,9 +32,25 @@ export default function MyActivities() {
   
   //console.log()
  // const allActivities = useSelector((state)=> state.pgym.allActivities);
-  const allOrders = useSelector((state)=> state.pgym.orders[0].activities); //ordenes de compra --> id orden (18)
+  const allOrders = useSelector((state)=> state.pgym.orders); //ordenes de compra --> id orden (18)
   //console.log("orders", allOrders)
   const ordersFilter = allOrders.filter((order) => order.state === "Complete")
+  console.log("filtradas", ordersFilter)
+  
+  const actividades = []
+  ordersFilter.forEach((e)=> actividades.push(e.activities))
+  console.log("fil", actividades)
+  
+  const actividades2 =[]
+  actividades.forEach((a) => {actividades2.push(a) })
+   console.log("2", actividades2)
+  
+   const actividades3 = []
+   actividades2.forEach((el)=> el.map((a)=> actividades3.push(a)) )
+
+   console.log("3", actividades3)
+    
+
   //const ultima = allOrders[allOrders.length-2] //
   //console.log("ultima", ultima)
 
@@ -107,7 +123,7 @@ const handleSubmit = (e) => { //button
   }else{
       e.preventDefault()
       dispatch(postReview(input))
-      console.log("input", input)
+    //  console.log("input", input)
       setInput({
           rating: " ",
           description:" ",
@@ -153,11 +169,11 @@ useEffect(()=>{
       <div className={s.actividadesEncabezado}>
           <h1>Mis actividades</h1>
          {
-           ordersFilter? (
+           actividades3?(
             <div>
             {
-                    ordersFilter.map((a)=>(
-                    
+                    actividades3.map((a)=>(
+                          
                       <>
                       <div className={s.myActivitiesContainer}>
                         <div className={s.myActivitiesCard}>
@@ -174,7 +190,7 @@ useEffect(()=>{
                     ))
              } 
              </div>
-           ): <p> no tenes ninguna compra</p>
+           ) : <p> No tenes compras confirmadas... <br />¿Que estas esperando?</p> 
          }
            
       </div>
@@ -221,7 +237,7 @@ useEffect(()=>{
                                 >
                                   <option value="">Tu Actividad</option>
                                   {
-                                    allOrders.map((a)=>(
+                                    actividades3.map((a)=>(
                                       <option key={a.id} value={a.id}  > {a.name}</option>
                                     ))
                                   }
