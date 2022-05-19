@@ -3,10 +3,12 @@
     width: 80%;
     display: flex;
     max-width: 100%;
-    
+    justify-content: center;
+
 }
 .myActivitiesCard{
-    width: 100%;
+    height: 60vh;
+    width: 50vw;
     margin: 20px;
     border-radius: 6px;
     overflow: hidden;
@@ -14,6 +16,7 @@
     box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
     cursor: default;
     transition: all 400ms ease;
+    margin-left: 15vw;
 }
 .myActivitiesCard:hover{
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
@@ -21,7 +24,8 @@
 }
 .myActivitiesCard img{
     width: 100%;
-    height: 210px;
+    height: 40vh;
+    object-fit: cover;
 }
 .myActivitiesCard p{
     padding: 15px;
@@ -62,3 +66,9 @@
 .createReviewh4{
    color: #fff;
 }
+
+/* .MyActivitiesCall{
+    color: blue;
+    font-size: 25px;
+    background-color: #fe4f22;
+} */

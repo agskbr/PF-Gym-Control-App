@@ -8,7 +8,9 @@ import {BASE_URL} from '../constantes'
 export const postReview = (payload)=>{ // review = description, rating, userId, img??
     return async (dispatch)=> {
         try {
-            const {data} = await axios.post(`${BASE_URL}/review/activity`, payload)
+            console.log(payload)
+            const { data } = await axios.put(`${BASE_URL}/review/activity`, payload)
+            console.log(data)
             return dispatch({
                 type:CREATE_REVIEW,
                 payload:data
