@@ -234,7 +234,7 @@ const userSignOut = () => {
 const actionCodeSettings = {
   // URL you want to redirect back to. The domain (www.example.com) for this
   // URL must be in the authorized domains list in the Firebase Console.
-  url: "http://localhost:3000/sociodashboard",
+  url: "https://pgym-henry-final.vercel.app/sociodashboard",
   // This must be true.
   // dynamicLinkDomain: 'http://localhost:3000/login'
 };
