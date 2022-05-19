@@ -33,6 +33,20 @@ export default function Cart(activity) {
   const { user } = state.login;
   const [validarClass, setValidarClass] = useState("validar-red");
   const [total, setTotal] = useState(0);
+  const [inputDiscount, setInputDiscount] = useState("");
+
+  const alldiscounts = useSelector((state) => state.descuentos.descuentos);
+
+  const oneDiscount = alldiscounts.filter((e) => e.name === inputDiscount);
+  
+  console.log("%" , porcentajeDescuento)
+  const porcentajefinal = porcentajeDescuento / 100;
+  console.log("porcentajefinal", porcentajefinal)
+
+
+  //console.log ("all discounts", alldiscounts);
+
+
 
   //console.log(orderLine)
   /* 
@@ -126,12 +140,17 @@ export default function Cart(activity) {
     0
   );
 
+  const finalTotalCart = totalCart * porcentajefinal;
+  console.log("finalTotalCart", finalTotalCart)
+
   const getValueInput = () => {
     let inputValue = document.getElementById("descuento").value;
-    if (inputValue === discountCode) {
+    setInputDiscount(inputValue);
+    if ( oneDiscount) {
+      console.log("one discount", oneDiscount);
       setValidarClass("validar-green");
-      setTotal(totalCart * 0.1);
-      dispatch(set_discount(porcentajeDescuento));
+      setTotal(totalCart * porcentajefinal);
+      dispatch(set_discount(porcentajefinal));
     } else {
       if (validarClass === "validar-red-moved") {
         setValidarClass("validar-red");
@@ -196,7 +215,7 @@ export default function Cart(activity) {
         <button
           className={s.cleanCart}
           onClick={() => {
-            guardar(user);
+            alertaGuardarCarro();
           }}
         >
           Guardar
@@ -214,7 +233,7 @@ export default function Cart(activity) {
       </button>
 
       <div className={s.total}>
-        <h4>Total: ${totalCart}</h4>
+        <h4>Total: ${total}</h4>
       </div>
 
       <Link to="/checkout">
