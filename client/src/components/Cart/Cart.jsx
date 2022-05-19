@@ -34,6 +34,7 @@ export default function Cart(activity) {
   const [validarClass, setValidarClass] = useState("validar-red");
   const [total, setTotal] = useState(0);
   const [inputDiscount, setInputDiscount] = useState("");
+  const [disable, setDisable] = useState(false);
 
   const alldiscounts = useSelector((state) => state.descuentos.descuentos);
 
@@ -156,6 +157,7 @@ export default function Cart(activity) {
       setValidarClass("validar-green");
       setTotal(totalCart - (totalCart * porcentajefinal));
       dispatch(set_discount(porcentajefinal));
+      setDisable(true);
     } else {
       if (validarClass === "validar-red-moved") {
         setValidarClass("validar-red");
@@ -233,7 +235,7 @@ export default function Cart(activity) {
         Codigo de descuento: <br />
         <input type="text" id="descuento" />
       </div>
-      <button className={validarClass} onClick={getValueInput}>
+      <button disable={disable} className={validarClass} onClick={getValueInput}>
         Validar
       </button>
 
