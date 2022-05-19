@@ -39,6 +39,10 @@
     border-radius: 50%;
 }
 
+.buttonCloseBotHidden{
+    display: none;
+}
+
 .bubble-closed{
     display: none;
 }

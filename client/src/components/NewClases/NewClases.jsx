@@ -24,6 +24,7 @@ const allActivities = useSelector((state) => state.pgym.allActivities);
 let [detailClass, setDetailClass] = useState("detail-closed");
 let [botClass, setBotClass] = useState("bot-closed");
 let [bubbleClass, setBubbleClass] = useState("bubble-open");
+let [buttonCloseBotClass, setButtonCloseBotClass] = useState("buttonCloseBotHidden");
 
 
 
@@ -44,6 +45,11 @@ const handleActivityClick = (id) => {
     
 }
 
+function handleCloseBot() {
+    setBotClass("bot-closed");
+    setBubbleClass("bubble-open");
+    setButtonCloseBotClass("buttonCloseBotHidden");
+}
 
 function handleDetailClick () {
     if (detailClass === 'detail-closed') setDetailClass('detail-open')
@@ -62,10 +68,12 @@ function handleBotClick () {
     if (botClass === 'bot-closed'){
         setBotClass('bot-open')
         setBubbleClass('bubble-closed')
+        setButtonCloseBotClass('buttonCloseBot')
     } 
     if (botClass === 'bot-open'){
         setBotClass('bot-closed')
         setBubbleClass('bubble-open')
+        setButtonCloseBotClass('buttonCloseBotHidden')
     }
 }
 
@@ -94,7 +102,7 @@ return (
             <div className={bubbleClass} onClick={handleBotClick} >
             </div>
             
-                <div className="buttonCloseBot"></div>
+                <div className={buttonCloseBotClass} onClick={handleCloseBot}></div>
 
     </div>
 
