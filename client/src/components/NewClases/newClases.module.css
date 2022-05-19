@@ -87,29 +87,3 @@
     visibility: hidden;
 }
 
-.bot{
-    color: #000000;
-    background-color: #ff9100;
-    border-radius: 50%;
-    width: 4vw;
-    height: 4vw;
-    position: sticky;
-    top: 85vh;
-    left: 1vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-
-@media (max-width: 62em) {
-
-    .buttonCloseDetail{
-        margin-top: -88.5vh;
-        margin-left: 87vw;
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-
-}

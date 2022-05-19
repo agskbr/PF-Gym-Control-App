@@ -20,20 +20,24 @@ export default function Review() {
     dispatch(getAllUsers());
   }, [dispatch]);
 
-  return allReviews ? (
+  const reviews = allReviews.filter(review => review.description!==null)
+
+  return reviews ? (
     <main className={s.reviewContainer}>
       <section className={s.reviewList}>
         {/* <h1># que dicen nuestros clientes</h1> */}
         <div className={s.contenedorSlider}>
           <div className={s.revierCarrousel}>
             <Carousel
+              
               useKeyboardArrows
               infiniteLoop
               autoPlay
               interval={5000}
               showThumbs={false}
             >
-              {allReviews?.map((r) => (
+              {reviews?.map((r) =>
+              (
                 <ReviewCard
                   key={r.id}
                   description={r.description}
@@ -41,13 +45,14 @@ export default function Review() {
                   id={r.userId}
                   name={r.activityId}
                 />
-              ))}
+              )
+            )}
             </Carousel>
           </div>
         </div>
       </section>
     </main>
-  ) : (
+  ):(
     <></>
   );
 }
