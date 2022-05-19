@@ -27,9 +27,9 @@ export function cartReducer(state = initialState, action) {
     switch (action.type) {
 
       case SET_DISCOUNT:
-          state.order.forEach(product => { product.price = product.price - (product.price / action.payload) });
-          state.cart.forEach(product => { product.price = product.price - (product.price / action.payload) });
-          state.orderLine.forEach(product => { product.unitprice = product.unitprice - (product.unitprice / action.payload) });
+          state.order.forEach(product => { product.price = product.price * action.payload });
+          state.cart.forEach(product => { product.price = product.price * action.payload });
+          state.orderLine.forEach(product => { product.unitprice = product.unitprice * action.payload });
           state.orderLine.forEach(product => { product.subtotal = product.unitprice * product.quantity });
         return {
             ...state,
