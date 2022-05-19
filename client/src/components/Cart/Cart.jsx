@@ -39,10 +39,10 @@ export default function Cart(activity) {
 
   const oneDiscount = alldiscounts.filter((e) => e.name === inputDiscount);
   
-/*   console.log("%" , porcentajeDescuento) */
-  const porcentajefinal = porcentajeDescuento / 100;
-  /* console.log("porcentajefinal", porcentajefinal)
- */
+
+  const porcentajefinal = (100 - porcentajeDescuento ) / 100;
+  console.log("porcentajefinal", porcentajefinal)
+
 
   //console.log ("all discounts", alldiscounts);
 
@@ -65,6 +65,7 @@ export default function Cart(activity) {
       );
       //console.log(data);
       const info = { orderId: data.newOrderId, state: "Created" };
+    
       await axios.put(`${BASE_URL}/order/checkout`, info);
 
       await orderLine.forEach((element) => {
@@ -72,6 +73,7 @@ export default function Cart(activity) {
           diaHoraId: element.diaHoraId,
           quantity: element.quantity,
         };
+      
         axios.put(`${BASE_URL}/diahora/subtractStock`, infoPaso3);
         const infoPaso4 = {
           userId: data2.data.id,
@@ -82,22 +84,25 @@ export default function Cart(activity) {
           orderId: info.orderId,
           activityId: element.activityId,
         };
-        // console.log(infoPaso4)
+        
         axios.post(`${BASE_URL}/orderLine/checkout`, infoPaso4);
         const infoPaso5 = {
           orderId: info.orderId,
           subtotal: element.subtotal,
         };
+     
         console.log(" SUBTOTAL", element.subtotal)
         axios.put(`${BASE_URL}/order/sumaTotal`, infoPaso5);
         const infoPaso6 = {
           idUser:data2.data.id,
           idActivity: element.activityId
         }
+       
         //console.log(element.activityId)
         axios.post(`${BASE_URL}/review/create`,infoPaso6);
       });
       dispatch(orderLinefuntion(data));
+      console.log(data)
     } catch (err) {
       console.log(err);
     }
@@ -146,10 +151,10 @@ export default function Cart(activity) {
   const getValueInput = () => {
     let inputValue = document.getElementById("descuento").value;
     setInputDiscount(inputValue);
-    if ( oneDiscount) {
+    if ( inputValue == discountCode) {
       console.log("one discount", oneDiscount);
       setValidarClass("validar-green");
-      setTotal(totalCart * porcentajefinal);
+      setTotal(totalCart - (totalCart * porcentajefinal));
       dispatch(set_discount(porcentajefinal));
     } else {
       if (validarClass === "validar-red-moved") {
