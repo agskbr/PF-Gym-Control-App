@@ -41,7 +41,7 @@ Sección en donde se incluye la localización de la sucursal del gym seleccionad
 </p>
 
 <p align="center">
-  <a><img width="250px" src="./images/perfil.png" /></a>
+  <a><img width="250px" src="./images/perfil2.png" /></a>
   <a><img width="250px" src="./images/recipes.png" /></a>
 </p>
 &nbsp;
