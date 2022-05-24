@@ -8,7 +8,8 @@ import {
   GET_ALL_DAYS_AND_HOURS,
   GET_ORDERLINE_BY_ORDER_ID,
   GET_ALL_ORDERS_BY_USER,
-  SET_ORDER_STATUS
+  SET_ORDER_STATUS,
+  SET_COUNT_CLICK
 } from "../actions-type/index";
 
 export const initialState = {
@@ -23,11 +24,28 @@ export const initialState = {
   userId: [],
   orderlines: [],
   orderStatus: [],
+  countClick:0,
+  disable:false,
   isLoading: false,
 };
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_COUNT_CLICK:
+      let contador = action.payload
+      if(contador >= 9){
+        return {
+          ...state,
+          disable:true,
+          countClick: action.payload
+        }
+      }else{
+        return {
+            ...state,
+            countClick: action.payload,
+            disable:false
+        }
+      }
     case SET_ORDER_STATUS:
       console.log(action.payload)
       return {

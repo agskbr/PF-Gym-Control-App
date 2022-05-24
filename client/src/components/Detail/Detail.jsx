@@ -5,22 +5,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { getActivityById } from "../../store/actions";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { addToCart, addToCart2 } from "../../store/actions/actionsCart";
+import {
+  addToCart,
+  addToCart2,
+  setterCountClick,
+} from "../../store/actions/actionsCart";
 import swal from "sweetalert";
 
 export default function Detail() {
   const capa = useSelector((state) => state.pgym.capacity);
   const state = useSelector((state) => state);
+  const countClick = useSelector((state) => state.pgym.countClick);
+  const disable = useSelector((state) => state.pgym.disable);
   const dispatch = useDispatch();
   const detail = useSelector((state) =>
     state.pgym.detail ? state.pgym.detail : null
   );
   const [time, setTime] = useState("");
   const [idToCart, setIdToCart] = useState([]);
+  const [cursor, setCursor] = useState("pointer");
+  const [background, setBackground] = useState("rgb(255, 75, 43)");
+  const [color, setColor] = useState("rgb(255, 255, 255)");
   //const [capacity, setCap] = useState("");
 
   const text = detail?.description?.substring(0, 700);
-  
+
   /* function filterDiaHora(horarios) {
     const timeFiltered = time.split(" "); //--> [lunes, 20hs]
     // console.log(timeFiltered);
@@ -52,7 +61,7 @@ export default function Detail() {
     //console.log(capacity);
     /* setIdToCart(horariosFiltered ? horariosFiltered[0].id : 0);*/
     //console.log()
-   /*  console.log(detail) */
+    /*  console.log(detail) */
   }
 
   // function handleAddToCart(e) {
@@ -64,12 +73,20 @@ export default function Detail() {
   //     swal("Agregado al carrito", "", "success");
   //   }
   // }
-  function handleClickAddToCart() {
+  function handleClick(e) {
+    e.preventDefault();
+    console.log(`Entre al handler y el count actual es: ${countClick}`);
+    dispatch(setterCountClick(countClick + 1));
     dispatch(addToCart(idToCart));
     swal("Agregado al carrito", "", "success");
+    if (countClick >= 9) {
+      setDisable(true);
+      console.log("entre al if de not-allowed");
+      setCursor("not-allowed");
+      setBackground("rgba(255, 38, 0, 0.567)");
+      // setColor("")
+    }
   }
-
-
 
   return (
     <div className={style.containerOpen}>
@@ -108,7 +125,7 @@ export default function Detail() {
               //   getOptionSelected(horarios);
             }}
           >
-              <option>Elegir dia hora</option>
+            <option>Elegir dia hora</option>
             {detail.diaHoras?.map((day) => (
               <option
                 value={day.id}
@@ -120,8 +137,15 @@ export default function Detail() {
           </select>
         </div>
         <button
+          disabled={disable}
+          id={detail.id}
           className={style.elbo}
-          onClick={handleClickAddToCart}
+          onClick={(e) => handleClick(e)}
+          style={{
+            cursor: `${cursor}`,
+            backgroundColor: `${background}`,
+            color: `${color}`,
+          }}
         >
           Agregar
         </button>

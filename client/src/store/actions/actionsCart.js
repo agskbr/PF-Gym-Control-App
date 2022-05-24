@@ -11,6 +11,7 @@ import {
   TOTAL_CART,
   ADD_ORDER_LINE,
   SET_DISCOUNT,
+  SET_COUNT_CLICK
 } from "../actions-type";
 
 
@@ -110,3 +111,10 @@ export function clearCart(){
         }
       }
   
+      export function setterCountClick(payload){
+        return function(dispatch){
+          dispatch({type:SET_COUNT_CLICK, payload: payload})
+        }
+      }
+
+      
