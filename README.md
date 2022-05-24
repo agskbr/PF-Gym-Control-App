@@ -26,7 +26,7 @@ Sección en donde se incluye la localización de la sucursal del gym seleccionad
 </p>
 
 <p align="center">
-  <a><img width="250px" src="./images/cart.png" /></a>
+  <a><img width="250px" src="./images/cart2.png" /></a>
   <a><img width="250px" src="./images/activities.png" /></a>
 </p>
 
@@ -37,7 +37,7 @@ Sección en donde se incluye la localización de la sucursal del gym seleccionad
 
 <p align="center">
   <a><img width="250px" src="./images/googleMaps.png" /></a>
-  <a><img width="250px" src="./images/MercadoPago.png" /> </a>
+  <a><img width="250px" src="./images/MercadoPago2.png" /> </a>
 </p>
 
 <p align="center">
